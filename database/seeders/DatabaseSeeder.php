@@ -22,7 +22,10 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
-            LaratrustSeeder::class,
+            LanguageTableSeeder::class,
+            AddonTableSeeder::class,
+//            LaratrustSeeder::class,
+            UsersTableSeeder::class,
         ]);
 
     }

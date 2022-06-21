@@ -7,11 +7,28 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as Middleware;
 class VerifyCsrfToken extends Middleware
 {
     /**
+     * Indicates whether the XSRF-TOKEN cookie should be set on the response.
+     *
+     * @var bool
+     */
+    protected $addHttpCookie = true;
+
+    /**
      * The URIs that should be excluded from CSRF verification.
      *
-     * @var array<int, string>
+     * @var array
      */
-    protected $except = [
-        //
-    ];
+     protected $except = [
+         '/sslcommerz*',
+         '/config_content',
+         '/paytm*',
+         '/payhere*',
+         '/stripe*',
+         '/iyzico*',
+         '/payfast*',
+         '/bkash*',
+         '/aamarpay*',
+         '/mock_payments',
+         '/lnmo*'
+     ];
 }
