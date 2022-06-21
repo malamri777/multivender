@@ -142,7 +142,7 @@ class UpdateController extends Controller
 
             $sql_path = base_path('sqlupdates/v553.sql');
             DB::unprepared(file_get_contents($sql_path));
-            
+
             $sql_path = base_path('sqlupdates/v554.sql');
             DB::unprepared(file_get_contents($sql_path));
 
@@ -169,7 +169,7 @@ class UpdateController extends Controller
 
             $sql_path = base_path('sqlupdates/v553.sql');
             DB::unprepared(file_get_contents($sql_path));
-            
+
             $sql_path = base_path('sqlupdates/v554.sql');
             DB::unprepared(file_get_contents($sql_path));
 
@@ -199,7 +199,7 @@ class UpdateController extends Controller
 
             $sql_path = base_path('sqlupdates/v553.sql');
             DB::unprepared(file_get_contents($sql_path));
-            
+
             $sql_path = base_path('sqlupdates/v554.sql');
             DB::unprepared(file_get_contents($sql_path));
 
@@ -232,7 +232,7 @@ class UpdateController extends Controller
 
             $sql_path = base_path('sqlupdates/v553.sql');
             DB::unprepared(file_get_contents($sql_path));
-            
+
             $sql_path = base_path('sqlupdates/v554.sql');
             DB::unprepared(file_get_contents($sql_path));
 
@@ -268,7 +268,7 @@ class UpdateController extends Controller
 
             $sql_path = base_path('sqlupdates/v553.sql');
             DB::unprepared(file_get_contents($sql_path));
-            
+
             $sql_path = base_path('sqlupdates/v554.sql');
             DB::unprepared(file_get_contents($sql_path));
 
@@ -307,7 +307,7 @@ class UpdateController extends Controller
 
             $sql_path = base_path('sqlupdates/v553.sql');
             DB::unprepared(file_get_contents($sql_path));
-            
+
             $sql_path = base_path('sqlupdates/v554.sql');
             DB::unprepared(file_get_contents($sql_path));
 
@@ -346,7 +346,7 @@ class UpdateController extends Controller
 
             $sql_path = base_path('sqlupdates/v553.sql');
             DB::unprepared(file_get_contents($sql_path));
-            
+
             $sql_path = base_path('sqlupdates/v554.sql');
             DB::unprepared(file_get_contents($sql_path));
 
@@ -388,7 +388,7 @@ class UpdateController extends Controller
 
             $sql_path = base_path('sqlupdates/v553.sql');
             DB::unprepared(file_get_contents($sql_path));
-            
+
             $sql_path = base_path('sqlupdates/v554.sql');
             DB::unprepared(file_get_contents($sql_path));
 
@@ -433,7 +433,7 @@ class UpdateController extends Controller
 
             $sql_path = base_path('sqlupdates/v553.sql');
             DB::unprepared(file_get_contents($sql_path));
-            
+
             $sql_path = base_path('sqlupdates/v554.sql');
             DB::unprepared(file_get_contents($sql_path));
 
@@ -481,7 +481,7 @@ class UpdateController extends Controller
 
             $sql_path = base_path('sqlupdates/v553.sql');
             DB::unprepared(file_get_contents($sql_path));
-            
+
             $sql_path = base_path('sqlupdates/v554.sql');
             DB::unprepared(file_get_contents($sql_path));
 
@@ -532,7 +532,7 @@ class UpdateController extends Controller
 
             $sql_path = base_path('sqlupdates/v553.sql');
             DB::unprepared(file_get_contents($sql_path));
-            
+
             $sql_path = base_path('sqlupdates/v554.sql');
             DB::unprepared(file_get_contents($sql_path));
 
@@ -648,7 +648,7 @@ class UpdateController extends Controller
                 $seller->num_of_sale = $num_of_sale;
                 $seller->save();
             } catch (\Exception $e) {
-                
+
             }
         }
     }

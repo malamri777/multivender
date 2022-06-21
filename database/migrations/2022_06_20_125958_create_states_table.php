@@ -18,8 +18,7 @@ class CreateStatesTable extends Migration
             $table->string('name', 255);
             $table->integer('country_id');
             $table->integer('status')->default(0);
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamps();
             $table->softDeletes();
         });
     }

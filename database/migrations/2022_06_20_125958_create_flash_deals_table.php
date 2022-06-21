@@ -14,7 +14,7 @@ class CreateFlashDealsTable extends Migration
     public function up()
     {
         Schema::create('flash_deals', function (Blueprint $table) {
-            $table->integer('id', true);
+            $table->id();
             $table->string('title', 255)->nullable();
             $table->integer('start_date')->nullable();
             $table->integer('end_date')->nullable();
@@ -24,8 +24,7 @@ class CreateFlashDealsTable extends Migration
             $table->string('text_color', 255)->nullable();
             $table->string('banner', 255)->nullable();
             $table->string('slug', 255)->nullable();
-            $table->timestamp('created_at')->nullable()->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamps();
         });
     }
 

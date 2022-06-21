@@ -14,11 +14,10 @@ class CreateCouponUsagesTable extends Migration
     public function up()
     {
         Schema::create('coupon_usages', function (Blueprint $table) {
-            $table->integer('id', true);
+            $table->id();
             $table->integer('user_id');
             $table->integer('coupon_id');
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamps();
         });
     }
 

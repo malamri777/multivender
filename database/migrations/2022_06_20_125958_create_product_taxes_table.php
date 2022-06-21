@@ -14,13 +14,12 @@ class CreateProductTaxesTable extends Migration
     public function up()
     {
         Schema::create('product_taxes', function (Blueprint $table) {
-            $table->integer('id', true);
+            $table->id();
             $table->integer('product_id');
             $table->integer('tax_id');
             $table->double('tax', 20, 2);
             $table->string('tax_type', 10);
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamps();
         });
     }
 

@@ -13,14 +13,14 @@
                 <ul class="nav nav-tabs nav-fill border-light">
                     @foreach (\App\Models\Language::all() as $key => $language)
                     <li class="nav-item">
-                        <a class="nav-link text-reset @if ($language->code == $lang) active @else bg-soft-dark border-light border-left-0 @endif py-3" href="{{ route('categories.edit', ['id'=>$category->id, 'lang'=> $language->code] ) }}">
+                        <a class="nav-link text-reset @if ($language->code == $lang) active @else bg-soft-dark border-light border-left-0 @endif py-3" href="{{ route('admin.categories.edit', ['category'=>$category->id, 'lang'=> $language->code] ) }}">
                             <img src="{{ static_asset('assets/img/flags/'.$language->code.'.png') }}" height="11" class="mr-1">
                             <span>{{$language->name}}</span>
                         </a>
                     </li>
                     @endforeach
                 </ul>
-                <form class="p-4" action="{{ route('categories.update', $category->id) }}" method="POST" enctype="multipart/form-data">
+                <form class="p-4" action="{{ route('admin.categories.update', $category->id) }}" method="POST" enctype="multipart/form-data">
                     <input name="_method" type="hidden" value="PATCH">
     	            <input type="hidden" name="lang" value="{{ $lang }}">
                 	@csrf
@@ -102,12 +102,12 @@
                             <textarea name="meta_description" rows="5" class="form-control">{{ $category->meta_description }}</textarea>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-md-3 col-form-label">{{translate('Slug')}}</label>
-                        <div class="col-md-9">
-                            <input type="text" placeholder="{{translate('Slug')}}" id="slug" name="slug" value="{{ $category->slug }}" class="form-control">
-                        </div>
-                    </div>
+{{--                    <div class="form-group row">--}}
+{{--                        <label class="col-md-3 col-form-label">{{translate('Slug')}}</label>--}}
+{{--                        <div class="col-md-9">--}}
+{{--                            <input type="text" placeholder="{{translate('Slug')}}" id="slug" name="slug" value="{{ $category->slug }}" class="form-control">--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                     @if (get_setting('category_wise_commission') == 1)
                         <div class="form-group row">
                             <label class="col-md-3 col-form-label">{{translate('Commission Rate')}}</label>

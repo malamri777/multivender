@@ -2,11 +2,15 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use App;
+use Modules\Translations\Entities\CategoryTranslation;
 
 class Category extends Model
 {
+    use Sluggable;
+
     protected $with = ['category_translations'];
 
     public function getTranslation($field = '', $lang = false){
@@ -45,5 +49,14 @@ class Category extends Model
     public function attributes()
     {
         return $this->belongsToMany(Attribute::class);
+    }
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
     }
 }

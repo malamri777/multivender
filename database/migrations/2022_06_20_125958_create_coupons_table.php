@@ -14,7 +14,7 @@ class CreateCouponsTable extends Migration
     public function up()
     {
         Schema::create('coupons', function (Blueprint $table) {
-            $table->integer('id', true);
+            $table->id();
             $table->integer('user_id');
             $table->string('type', 255);
             $table->string('code', 255);
@@ -23,8 +23,7 @@ class CreateCouponsTable extends Migration
             $table->string('discount_type', 100);
             $table->integer('start_date');
             $table->integer('end_date');
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamps();
         });
     }
 

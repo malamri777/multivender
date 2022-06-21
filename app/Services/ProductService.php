@@ -5,8 +5,8 @@ namespace App\Services;
 use App\Models\Color;
 use App\Models\Product;
 use App\Models\User;
+use App\Utility\CombinationsUtility;
 use App\Utility\ProductUtility;
-use Combinations;
 use Illuminate\Support\Str;
 
 class ProductService
@@ -79,7 +79,7 @@ class ProductService
 
         $options = ProductUtility::get_attribute_options($collection);
 
-        $combinations = Combinations::makeCombinations($options);
+        $combinations = CombinationsUtility::makeCombinations($options);
         if (count($combinations[0]) > 0) {
             foreach ($combinations as $key => $combination) {
                 $str = ProductUtility::get_combination_string($combination, $collection);
@@ -189,7 +189,7 @@ class ProductService
         if ($collection['meta_img'] == null) {
             $collection['meta_img'] = $collection['thumbnail_img'];
         }
-        
+
         $shipping_cost = 0;
         if (isset($collection['shipping_type'])) {
             if ($collection['shipping_type'] == 'free') {
@@ -202,7 +202,7 @@ class ProductService
 
         $colors = json_encode(array());
         if (
-            isset($collection['colors_active']) && 
+            isset($collection['colors_active']) &&
             $collection['colors_active'] &&
             $collection['colors'] &&
             count($collection['colors']) > 0
@@ -212,7 +212,7 @@ class ProductService
 
         $options = ProductUtility::get_attribute_options($collection);
 
-        $combinations = Combinations::makeCombinations($options);
+        $combinations = CombinationsUtility::makeCombinations($options);
         if (count($combinations[0]) > 0) {
             foreach ($combinations as $key => $combination) {
                 $str = ProductUtility::get_combination_string($combination, $collection);

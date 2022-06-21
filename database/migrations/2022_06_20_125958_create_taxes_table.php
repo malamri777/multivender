@@ -14,11 +14,10 @@ class CreateTaxesTable extends Migration
     public function up()
     {
         Schema::create('taxes', function (Blueprint $table) {
-            $table->integer('id', true);
+            $table->id();
             $table->string('name', 255);
             $table->boolean('tax_status')->default(true)->comment('0 = Inactive, 1 = Active');
-            $table->timestamp('created_at')->nullable()->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamps();
         });
     }
 

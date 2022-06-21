@@ -142,7 +142,7 @@
 
                                 @if ($detailedProduct->brand != null)
                                     <div class="col-auto">
-                                        <a href="{{ route('products.brand',$detailedProduct->brand->slug) }}">
+                                        <a href="{{ route('products.brand',$detailedProduct->brand->slug ?? '') }}">
                                             <img src="{{ uploaded_asset($detailedProduct->brand->logo) }}" alt="{{ $detailedProduct->brand->getTranslation('name') }}" height="30">
                                         </a>
                                     </div>
@@ -406,11 +406,11 @@
                                         <div class="opacity-50 mt-2">{{ translate('Refund')}}:</div>
                                     </div>
                                     <div class="col-10">
-                                        <a href="{{ route('returnpolicy') }}" target="_blank"> 
-                                            @if ($refund_sticker != null) 
-                                                <img src="{{ uploaded_asset($refund_sticker) }}" height="36"> 
-                                            @else 
-                                                <img src="{{ static_asset('assets/img/refund-sticker.jpg') }}" height="36"> 
+                                        <a href="{{ route('returnpolicy') }}" target="_blank">
+                                            @if ($refund_sticker != null)
+                                                <img src="{{ uploaded_asset($refund_sticker) }}" height="36">
+                                            @else
+                                                <img src="{{ static_asset('assets/img/refund-sticker.jpg') }}" height="36">
                                             @endif</a>
                                         <a href="{{ route('returnpolicy') }}" class="ml-2" target="_blank">{{ translate('View Policy') }}</a>
                                     </div>

@@ -20,8 +20,7 @@ class CreateCustomerProductTranslationsTable extends Migration
             $table->string('unit', 20)->nullable();
             $table->longText('description')->nullable();
             $table->string('lang', 100);
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamps();
         });
     }
 

@@ -14,13 +14,12 @@ class CreateFlashDealProductsTable extends Migration
     public function up()
     {
         Schema::create('flash_deal_products', function (Blueprint $table) {
-            $table->integer('id', true);
+            $table->id();
             $table->integer('flash_deal_id');
             $table->integer('product_id');
             $table->double('discount', 20, 2)->nullable()->default(0);
             $table->string('discount_type', 20)->nullable();
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamps();
         });
     }
 

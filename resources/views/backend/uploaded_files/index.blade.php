@@ -7,7 +7,7 @@
 			<h1 class="h3">{{translate('All uploaded files')}}</h1>
 		</div>
 		<div class="col-md-6 text-md-right">
-			<a href="{{ route('uploaded-files.create') }}" class="btn btn-primary">
+			<a href="{{ route('admin.uploaded-files.create') }}" class="btn btn-primary">
 				<span>{{translate('Upload New File')}}</span>
 			</a>
 		</div>
@@ -65,7 +65,7 @@
     								<i class="las la-clipboard mr-2"></i>
     								<span>{{ translate('Copy Link') }}</span>
     							</a>
-    							<a href="javascript:void(0)" class="dropdown-item confirm-alert" data-href="{{ route('uploaded-files.destroy', $file->id ) }}" data-target="#delete-modal">
+    							<a href="javascript:void(0)" class="dropdown-item confirm-alert" data-href="{{ route('admin.uploaded-files.destroy', $file->id ) }}" data-target="#delete-modal">
     								<i class="las la-trash mr-2"></i>
     								<span>{{ translate('Delete') }}</span>
     							</a>
@@ -139,7 +139,7 @@
             $('#info-modal-content').html('<div class="c-preloader text-center absolute-center"><i class="las la-spinner la-spin la-3x opacity-70"></i></div>');
 			var id = $(e).data('id')
 			$('#info-modal').modal('show');
-			$.post('{{ route('uploaded-files.info') }}', {_token: AIZ.data.csrf, id:id}, function(data){
+			$.post('{{ route('admin.uploaded-files.info') }}', {_token: AIZ.data.csrf, id:id}, function(data){
                 $('#info-modal-content').html(data);
 				// console.log(data);
 			});

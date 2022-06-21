@@ -14,7 +14,7 @@ class CreateOrdersTable extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->integer('id', true);
+            $table->id();
             $table->integer('combined_order_id')->nullable();
             $table->integer('user_id')->nullable();
             $table->integer('guest_id')->nullable();
@@ -35,8 +35,7 @@ class CreateOrdersTable extends Migration
             $table->integer('delivery_viewed')->default(1);
             $table->integer('payment_status_viewed')->nullable()->default(1);
             $table->integer('commission_calculated')->default(0);
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamps();
         });
     }
 

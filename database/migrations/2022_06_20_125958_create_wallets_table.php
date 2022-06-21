@@ -14,13 +14,12 @@ class CreateWalletsTable extends Migration
     public function up()
     {
         Schema::create('wallets', function (Blueprint $table) {
-            $table->integer('id', true);
+            $table->id();
             $table->integer('user_id');
             $table->double('amount', 20, 2);
             $table->string('payment_method', 255)->nullable();
             $table->longText('payment_details')->nullable();
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamps();
         });
     }
 

@@ -14,11 +14,10 @@ class CreateAttributeCategoryTable extends Migration
     public function up()
     {
         Schema::create('attribute_category', function (Blueprint $table) {
-            $table->integer('id', true);
+            $table->id();
             $table->integer('category_id');
             $table->integer('attribute_id');
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamps();
         });
     }
 

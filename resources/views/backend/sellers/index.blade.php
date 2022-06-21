@@ -16,7 +16,7 @@
             <div class="col">
                 <h5 class="mb-md-0 h6">{{ translate('Sellers') }}</h5>
             </div>
-            
+
             <div class="dropdown mb-2 mb-md-0">
                 <button class="btn border dropdown-toggle" type="button" data-toggle="dropdown">
                     {{translate('Bulk Action')}}
@@ -25,7 +25,7 @@
                     <a class="dropdown-item" href="#" onclick="bulk_delete()">{{translate('Delete selection')}}</a>
                 </div>
             </div>
-            
+
             <div class="col-md-3 ml-auto">
                 <select class="form-control aiz-selectpicker" name="approved_status" id="approved_status" onchange="sort_sellers()">
                     <option value="">{{translate('Filter by Approval')}}</option>
@@ -39,7 +39,7 @@
                 </div>
             </div>
         </div>
-    
+
         <div class="card-body">
             <table class="table aiz-table mb-0">
                 <thead>
@@ -82,7 +82,7 @@
                         <td>{{$shop->user->email}}</td>
                         <td>
                             @if ($shop->verification_info != null)
-                                <a href="{{ route('sellers.show_verification_request', $shop->id) }}">
+                                <a href="{{ route('admin.sellers.show_verification_request', $shop->id) }}">
                                     <span class="badge badge-inline badge-info">{{translate('Show')}}</span>
                                 </a>
                             @endif
@@ -110,30 +110,30 @@
                                     <a href="#" onclick="show_seller_profile('{{$shop->id}}');"  class="dropdown-item">
                                         {{translate('Profile')}}
                                     </a>
-                                    <a href="{{route('sellers.login', encrypt($shop->id))}}" class="dropdown-item">
+                                    <a href="{{route('admin.sellers.login', encrypt($shop->id))}}" class="dropdown-item">
                                         {{translate('Log in as this Seller')}}
                                     </a>
                                     <a href="#" onclick="show_seller_payment_modal('{{$shop->id}}');" class="dropdown-item">
                                         {{translate('Go to Payment')}}
                                     </a>
-                                    <a href="{{route('sellers.payment_history', encrypt($shop->id))}}" class="dropdown-item">
+                                    <a href="{{route('admin.sellers.payment_history', encrypt($shop->id))}}" class="dropdown-item">
                                         {{translate('Payment History')}}
                                     </a>
-                                    <a href="{{route('sellers.edit', encrypt($shop->id))}}" class="dropdown-item">
+                                    <a href="{{route('admin.sellers.edit', encrypt($shop->id))}}" class="dropdown-item">
                                         {{translate('Edit')}}
                                     </a>
                                     @if($shop->user->banned != 1)
-                                        <a href="#" onclick="confirm_ban('{{route('sellers.ban', $shop->id)}}');" class="dropdown-item">
+                                        <a href="#" onclick="confirm_ban('{{route('admin.sellers.ban', $shop->id)}}');" class="dropdown-item">
                                         {{translate('Ban this seller')}}
                                         <i class="fa fa-ban text-danger" aria-hidden="true"></i>
                                         </a>
                                     @else
-                                        <a href="#" onclick="confirm_unban('{{route('sellers.ban', $shop->id)}}');" class="dropdown-item">
+                                        <a href="#" onclick="confirm_unban('{{route('admin.sellers.ban', $shop->id)}}');" class="dropdown-item">
                                         {{translate('Unban this seller')}}
                                         <i class="fa fa-check text-success" aria-hidden="true"></i>
                                         </a>
                                     @endif
-                                    <a href="#" class="dropdown-item confirm-delete" data-href="{{route('sellers.destroy', $shop->id)}}" class="">
+                                    <a href="#" class="dropdown-item confirm-delete" data-href="{{route('admin.sellers.destroy', $shop->id)}}" class="">
                                         {{translate('Delete')}}
                                     </a>
                                 </div>
@@ -221,18 +221,18 @@
             if(this.checked) {
                 // Iterate each checkbox
                 $('.check-one:checkbox').each(function() {
-                    this.checked = true;                        
+                    this.checked = true;
                 });
             } else {
                 $('.check-one:checkbox').each(function() {
-                    this.checked = false;                       
+                    this.checked = false;
                 });
             }
-          
+
         });
-        
+
         function show_seller_payment_modal(id){
-            $.post('{{ route('sellers.payment_modal') }}',{_token:'{{ @csrf_token() }}', id:id}, function(data){
+            $.post('{{ route('admin.sellers.payment_modal') }}',{_token:'{{ @csrf_token() }}', id:id}, function(data){
                 $('#payment_modal #payment-modal-content').html(data);
                 $('#payment_modal').modal('show', {backdrop: 'static'});
                 $('.demo-select2-placeholder').select2();
@@ -240,7 +240,7 @@
         }
 
         function show_seller_profile(id){
-            $.post('{{ route('sellers.profile_modal') }}',{_token:'{{ @csrf_token() }}', id:id}, function(data){
+            $.post('{{ route('admin.sellers.profile_modal') }}',{_token:'{{ @csrf_token() }}', id:id}, function(data){
                 $('#profile_modal #profile-modal-content').html(data);
                 $('#profile_modal').modal('show', {backdrop: 'static'});
             });
@@ -253,7 +253,7 @@
             else{
                 var status = 0;
             }
-            $.post('{{ route('sellers.approved') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
+            $.post('{{ route('admin.sellers.approved') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
                 if(data == 1){
                     AIZ.plugins.notify('success', '{{ translate('Approved sellers updated successfully') }}');
                 }
@@ -278,14 +278,14 @@
             $('#confirm-unban').modal('show', {backdrop: 'static'});
             document.getElementById('confirmationunban').setAttribute('href' , url);
         }
-        
+
         function bulk_delete() {
             var data = new FormData($('#sort_sellers')[0]);
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url: "{{route('bulk-seller-delete')}}",
+                url: "{{route('admin.bulk-seller-delete')}}",
                 type: 'POST',
                 data: data,
                 cache: false,

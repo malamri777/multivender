@@ -14,14 +14,13 @@ class CreateConversationsTable extends Migration
     public function up()
     {
         Schema::create('conversations', function (Blueprint $table) {
-            $table->integer('id', true);
+            $table->id();
             $table->integer('sender_id');
             $table->integer('receiver_id');
             $table->string('title', 1000)->nullable();
             $table->integer('sender_viewed')->default(1);
             $table->integer('receiver_viewed')->default(0);
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamps();
         });
     }
 

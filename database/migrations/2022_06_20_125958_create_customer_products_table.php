@@ -14,7 +14,7 @@ class CreateCustomerProductsTable extends Migration
     public function up()
     {
         Schema::create('customer_products', function (Blueprint $table) {
-            $table->integer('id', true);
+            $table->id();
             $table->string('name', 255)->nullable();
             $table->integer('published')->default(0);
             $table->integer('status')->default(0);
@@ -39,8 +39,7 @@ class CreateCustomerProductsTable extends Migration
             $table->string('meta_img', 150)->nullable();
             $table->string('pdf', 200)->nullable();
             $table->string('slug', 200)->nullable();
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamps();
         });
     }
 

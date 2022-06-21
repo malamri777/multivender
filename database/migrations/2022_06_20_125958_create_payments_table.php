@@ -14,14 +14,13 @@ class CreatePaymentsTable extends Migration
     public function up()
     {
         Schema::create('payments', function (Blueprint $table) {
-            $table->integer('id', true);
+            $table->id();
             $table->integer('seller_id');
             $table->double('amount', 20, 2)->default(0);
             $table->longText('payment_details')->nullable();
             $table->string('payment_method', 255)->nullable();
             $table->string('txn_code', 100)->nullable();
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamps();
         });
     }
 

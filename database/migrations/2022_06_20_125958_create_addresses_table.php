@@ -14,7 +14,7 @@ class CreateAddressesTable extends Migration
     public function up()
     {
         Schema::create('addresses', function (Blueprint $table) {
-            $table->integer('id', true);
+            $table->id();
             $table->integer('user_id');
             $table->string('address', 255)->nullable();
             $table->integer('country_id')->nullable();
@@ -25,8 +25,7 @@ class CreateAddressesTable extends Migration
             $table->string('postal_code', 255)->nullable();
             $table->string('phone', 255)->nullable();
             $table->integer('set_default')->default(0);
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamps();
         });
     }
 

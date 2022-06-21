@@ -14,15 +14,14 @@ class CreateProductStocksTable extends Migration
     public function up()
     {
         Schema::create('product_stocks', function (Blueprint $table) {
-            $table->integer('id', true);
+            $table->id();
             $table->integer('product_id');
             $table->string('variant', 255);
             $table->string('sku', 255)->nullable();
             $table->double('price', 20, 2)->default(0);
             $table->integer('qty')->default(0);
             $table->integer('image')->nullable();
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamps();
         });
     }
 

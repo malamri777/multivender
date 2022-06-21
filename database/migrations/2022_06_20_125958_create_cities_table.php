@@ -19,8 +19,7 @@ class CreateCitiesTable extends Migration
             $table->integer('state_id');
             $table->double('cost', 20, 2)->default(0);
             $table->integer('status')->default(1);
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamps();
             $table->softDeletes();
         });
     }

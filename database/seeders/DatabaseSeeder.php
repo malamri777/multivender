@@ -22,10 +22,18 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
+            BusinessSettingTableSeeder::class,
             LanguageTableSeeder::class,
+            SetupTableSeeder::class,
+            TranslationTableSeeder::class,
+            RoleTableSeeder::class,
             AddonTableSeeder::class,
 //            LaratrustSeeder::class,
             UsersTableSeeder::class,
+
+            // Product
+            CategoryTableSeeder::class,
+            BrandTableSeeder::class,
         ]);
 
     }

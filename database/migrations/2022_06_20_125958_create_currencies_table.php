@@ -14,14 +14,13 @@ class CreateCurrenciesTable extends Migration
     public function up()
     {
         Schema::create('currencies', function (Blueprint $table) {
-            $table->integer('id', true);
+            $table->id();
             $table->string('name', 255);
             $table->string('symbol', 255);
             $table->double('exchange_rate', 10, 5);
             $table->integer('status')->default(0);
             $table->string('code', 20)->nullable();
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamps();
         });
     }
 

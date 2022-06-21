@@ -39,13 +39,13 @@
 		                        <td>{{ ($key+1) + ($brands->currentPage() - 1)*$brands->perPage() }}</td>
 		                        <td>{{ $brand->getTranslation('name') }}</td>
 								<td>
-		                            <img src="{{ uploaded_asset($brand->logo) }}" alt="{{translate('Brand')}}" class="h-50px">
+		                            <img src="{{ uploaded_asset($brand->logo) ?? asset($brand->logo) }}" alt="{{translate('Brand')}}" class="h-50px">
 		                        </td>
 		                        <td class="text-right">
-		                            <a class="btn btn-soft-primary btn-icon btn-circle btn-sm" href="{{route('brands.edit', ['id'=>$brand->id, 'lang'=>env('DEFAULT_LANGUAGE')] )}}" title="{{ translate('Edit') }}">
+		                            <a class="btn btn-soft-primary btn-icon btn-circle btn-sm" href="{{route('admin.brands.edit', ['brand'=>$brand->id, 'lang'=>env('DEFAULT_LANGUAGE')] )}}" title="{{ translate('Edit') }}">
 		                                <i class="las la-edit"></i>
 		                            </a>
-		                            <a href="#" class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete" data-href="{{route('brands.destroy', $brand->id)}}" title="{{ translate('Delete') }}">
+		                            <a href="#" class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete" data-href="{{route('admin.brands.destroy', $brand->id)}}" title="{{ translate('Delete') }}">
 		                                <i class="las la-trash"></i>
 		                            </a>
 		                        </td>
@@ -65,7 +65,7 @@
 				<h5 class="mb-0 h6">{{ translate('Add New Brand') }}</h5>
 			</div>
 			<div class="card-body">
-				<form action="{{ route('brands.store') }}" method="POST">
+				<form action="{{ route('admin.brands.store') }}" method="POST">
 					@csrf
 					<div class="form-group mb-3">
 						<label for="name">{{translate('Name')}}</label>

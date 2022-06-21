@@ -14,7 +14,7 @@ class CreateUploadsTable extends Migration
     public function up()
     {
         Schema::create('uploads', function (Blueprint $table) {
-            $table->integer('id', true);
+            $table->id();
             $table->string('file_original_name', 255)->nullable();
             $table->string('file_name', 255)->nullable();
             $table->integer('user_id')->nullable();
@@ -22,8 +22,7 @@ class CreateUploadsTable extends Migration
             $table->string('extension', 10)->nullable();
             $table->string('type', 15)->nullable();
             $table->string('external_link', 500)->nullable();
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamps();
             $table->softDeletes();
         });
     }

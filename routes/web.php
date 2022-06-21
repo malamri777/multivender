@@ -42,7 +42,7 @@ use App\Http\Controllers\Payment\VoguepayController;
 use App\Http\Controllers\Payment\IyzicoController;
 use App\Http\Controllers\Payment\NagadController;
 use App\Http\Controllers\Payment\PaykuController;
-
+use App\Http\Controllers\WishlistController;
 
 
 /*
@@ -322,7 +322,7 @@ Route::group(['middleware' => ['auth']], function() {
     });
 });
 
-Route::resource('shops', ShopController::class);
+Route::resource('shops', \App\Http\Controllers\ShopController::class);
 
 Route::get('/instamojo/payment/pay-success', [InstamojoController::class, 'success'])->name('instamojo.success');
 

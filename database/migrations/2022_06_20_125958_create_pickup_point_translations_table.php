@@ -19,8 +19,7 @@ class CreatePickupPointTranslationsTable extends Migration
             $table->string('name', 50);
             $table->text('address');
             $table->string('lang', 100);
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamps();
         });
     }
 

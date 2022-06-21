@@ -14,7 +14,7 @@ class CreateSellersTable extends Migration
     public function up()
     {
         Schema::create('sellers', function (Blueprint $table) {
-            $table->integer('id', true);
+            $table->id();
             $table->integer('user_id')->unique('user_id');
             $table->double('rating', 3, 2)->default(0);
             $table->integer('num_of_reviews')->default(0);
@@ -28,8 +28,7 @@ class CreateSellersTable extends Migration
             $table->string('bank_acc_no', 50)->nullable();
             $table->integer('bank_routing_no')->nullable();
             $table->integer('bank_payment_status')->default(0);
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamps();
         });
     }
 

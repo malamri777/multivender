@@ -14,7 +14,7 @@ class CreateCustomerPackagePaymentsTable extends Migration
     public function up()
     {
         Schema::create('customer_package_payments', function (Blueprint $table) {
-            $table->integer('id', true);
+            $table->id();
             $table->integer('user_id');
             $table->integer('customer_package_id');
             $table->string('payment_method', 255);
@@ -23,8 +23,7 @@ class CreateCustomerPackagePaymentsTable extends Migration
             $table->integer('offline_payment')->comment('1=offline payment
 2=online paymnet');
             $table->string('reciept', 150);
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamps();
         });
     }
 

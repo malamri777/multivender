@@ -14,7 +14,7 @@ class CreateBusinessSettingsTable extends Migration
     public function up()
     {
         Schema::create('business_settings', function (Blueprint $table) {
-            $table->integer('id', true);
+            $table->id();
             $table->string('type', 30);
             $table->longText('value')->nullable();
             $table->string('lang', 30)->nullable();

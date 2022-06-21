@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
+use App\Utility\CombinationsUtility;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\ProductTranslation;
@@ -11,7 +12,6 @@ use App\Models\ProductTax;
 use App\Models\AttributeValue;
 use App\Models\Cart;
 use Carbon\Carbon;
-use Combinations;
 use CoreComponentRepository;
 use Artisan;
 use Cache;
@@ -493,7 +493,7 @@ class ProductController extends Controller
             }
         }
 
-        $combinations = Combinations::makeCombinations($options);
+        $combinations = CombinationsUtility::makeCombinations($options);
         return view('backend.product.products.sku_combinations', compact('combinations', 'unit_price', 'colors_active', 'product_name'));
     }
 
@@ -525,7 +525,7 @@ class ProductController extends Controller
             }
         }
 
-        $combinations = Combinations::makeCombinations($options);
+        $combinations = CombinationsUtility::makeCombinations($options);
         return view('backend.product.products.sku_combinations_edit', compact('combinations', 'unit_price', 'colors_active', 'product_name', 'product'));
     }
 }

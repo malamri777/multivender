@@ -14,7 +14,7 @@ class CreateTransactionsTable extends Migration
     public function up()
     {
         Schema::create('transactions', function (Blueprint $table) {
-            $table->integer('id', true);
+            $table->id();
             $table->integer('user_id');
             $table->string('gateway', 255)->nullable();
             $table->string('payment_type', 255)->nullable();
@@ -22,8 +22,7 @@ class CreateTransactionsTable extends Migration
             $table->string('mpesa_request', 255)->nullable();
             $table->string('mpesa_receipt', 255)->nullable();
             $table->integer('status')->default(0);
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamps();
         });
     }
 

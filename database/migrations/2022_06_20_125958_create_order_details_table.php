@@ -14,7 +14,7 @@ class CreateOrderDetailsTable extends Migration
     public function up()
     {
         Schema::create('order_details', function (Blueprint $table) {
-            $table->integer('id', true);
+            $table->id();
             $table->integer('order_id');
             $table->integer('seller_id')->nullable();
             $table->integer('product_id');
@@ -28,8 +28,7 @@ class CreateOrderDetailsTable extends Migration
             $table->string('shipping_type', 255)->nullable();
             $table->integer('pickup_point_id')->nullable();
             $table->string('product_referral_code', 255)->nullable();
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamps();
         });
     }
 

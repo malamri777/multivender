@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use App;
+use Modules\Translations\Entities\BrandTranslation;
 
 class Brand extends Model
 {
+    use Sluggable;
 
   protected $with = ['brand_translations'];
 
@@ -19,5 +22,14 @@ class Brand extends Model
   public function brand_translations(){
     return $this->hasMany(BrandTranslation::class);
   }
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
+    }
 
 }
