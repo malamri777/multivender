@@ -267,7 +267,7 @@ INSERT INTO business_settings
 VALUES(102, 'site_name', "Support Warehouse", NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
-VALUES(103, 'system_logo_white', 'assets/img/logo.png', NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
+VALUES(103, 'system_logo_white', 'assets/img/logo-white.png', NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
 VALUES(104, 'system_logo_black', NULL, NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
