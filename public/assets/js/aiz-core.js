@@ -496,7 +496,6 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                                 if (data[i].type === "image") {
                                     thumb =
                                         '<img src="' +
-                                        AIZ.data.fileBaseUrl +
                                         data[i].file_name +
                                         '" class="img-fit">';
                                 } else {
@@ -763,7 +762,6 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                         AIZ.data.appUrl + "/aiz-uploader/get_file_by_ids",
                         { _token: AIZ.data.csrf, ids: files },
                         function (data) {
-
                             $this.next(".file-preview").html(null);
 
                             if (data.length > 0) {
@@ -779,7 +777,6 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                                     if (data[i].type === "image") {
                                         thumb =
                                             '<img src="' +
-                                            AIZ.data.fileBaseUrl +
                                             data[i].file_name +
                                             '" class="img-fit">';
                                     } else {
@@ -1732,6 +1729,7 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                             $(this).attr("disabled", true);
                         }
                     }
+
                 } else {
                     input.val(0);
                 }
@@ -1754,6 +1752,8 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                     alert("Sorry, the maximum limit has been reached");
                     $(this).val(maxValue);
                 }
+
+                getVariantPrice();
             });
         },
         hovCategoryMenu: function(){
