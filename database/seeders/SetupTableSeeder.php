@@ -10,6 +10,7 @@ use App\Models\State;
 use App\Models\Tax;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Modules\Translations\Entities\CountryStateTranslation;
 use Modules\Translations\Entities\CountryTranslation;
 
@@ -125,5 +126,10 @@ class SetupTableSeeder extends Seeder
             'name' => 'جده',
             'lang' => 'sa'
         ]);
+
+        // Color
+        $path = base_path() . '/database/seeders/sql/Color.sql';
+        $sql = file_get_contents($path);
+        DB::unprepared($sql);
     }
 }

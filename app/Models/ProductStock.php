@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductStock extends Model
 {
-    protected $fillable = ['product_id', 'qty', 'price', 'sku'];
+    protected $fillable = ['product_id', 'qty', 'price', 'sku', 'variant'];
     //
     public function product(){
     	return $this->belongsTo(Product::class);

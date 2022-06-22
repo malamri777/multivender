@@ -59,7 +59,7 @@
                         <td>{{ $category->level }}</td>
                         <td>
                             @if($category->banner != null)
-                                <img src="{{ uploaded_asset($category->banner) }}" alt="{{translate('Banner')}}" class="h-50px">
+                                <img src="{{ uploaded_asset($category->banner) ?? asset('assets/img/banner-placeholder.png') }}" alt="{{translate('Banner')}}" class="h-50px">
                             @else
                                 —
                             @endif
@@ -67,7 +67,7 @@
                         <td>
                             @if($category->icon != null)
                                 <span class="avatar avatar-square avatar-xs">
-                                    <img src="{{ uploaded_asset($category->icon) }}" alt="{{translate('icon')}}">
+                                    <img src="{{ uploaded_asset($category->icon) ?? asset('assets/img/icon-placeholder.jpeg') }}" alt="{{translate('icon')}}">
                                 </span>
                             @else
                                 —

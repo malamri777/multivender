@@ -9,11 +9,11 @@ use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductTax;
-use App\Models\ProductTranslation;
 use Carbon\Carbon;
 use Combinations;
 use Artisan;
 use Auth;
+use Modules\Translations\Entities\ProductTranslation;
 use Str;
 
 use App\Services\ProductService;

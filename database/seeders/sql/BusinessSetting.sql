@@ -78,10 +78,10 @@ INSERT INTO business_settings
 VALUES(37, 'email_verification', '0', NULL, '2019-04-30 10:30:07', '2019-04-30 10:30:07');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
-VALUES(38, 'wallet_system', '0', NULL, '2019-05-19 11:05:44', '2019-05-19 05:11:57');
+VALUES(38, 'wallet_system', '1', NULL, '2019-05-19 11:05:44', '2019-05-19 05:11:57');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
-VALUES(39, 'coupon_system', '0', NULL, '2019-06-11 12:46:18', '2019-06-11 12:46:18');
+VALUES(39, 'coupon_system', '1', NULL, '2019-06-11 12:46:18', '2019-06-11 12:46:18');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
 VALUES(40, 'current_version', '6.0', NULL, '2019-06-11 12:46:18', '2019-06-11 12:46:18');
@@ -117,13 +117,13 @@ INSERT INTO business_settings
 VALUES(51, 'conversation_system', '1', NULL, '2020-01-21 10:23:21', '2020-01-21 10:23:21');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
-VALUES(52, 'guest_checkout_active', '1', NULL, '2020-01-22 10:36:38', '2020-01-22 10:36:38');
+VALUES(52, 'guest_checkout_active', '0', NULL, '2020-01-22 10:36:38', '2020-01-22 10:36:38');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
 VALUES(53, 'facebook_pixel', '0', NULL, '2020-01-22 14:43:58', '2020-01-22 14:43:58');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
-VALUES(55, 'classified_product', '0', NULL, '2020-05-13 16:01:05', '2020-05-13 16:01:05');
+VALUES(55, 'classified_product', '1', NULL, '2020-05-13 16:01:05', '2020-05-13 16:01:05');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
 VALUES(56, 'pos_activation_for_seller', '1', NULL, '2020-06-11 12:45:02', '2020-06-11 12:45:02');
@@ -150,31 +150,31 @@ INSERT INTO business_settings
 VALUES(63, 'ngenius', '0', NULL, '2020-09-22 13:58:21', '2020-09-22 13:58:21');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
-VALUES(64, 'header_logo', NULL, NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
+VALUES(64, 'header_logo', 'assets/img/logo-placeholder.jpeg', NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
-VALUES(65, 'show_language_switcher', 'on', NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
+VALUES(65, 'show_language_switcher', 'yes', NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
-VALUES(66, 'show_currency_switcher', 'on', NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
+VALUES(66, 'show_currency_switcher', 'yes', NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
-VALUES(67, 'header_stikcy', 'on', NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
+VALUES(67, 'header_stikcy', 'yes', NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
-VALUES(68, 'footer_logo', NULL, NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
+VALUES(68, 'footer_logo', 'assets/img/logo.png', NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
-VALUES(69, 'about_us_description', NULL, NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
+VALUES(69, 'about_us_description', 'About Us Description', NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
-VALUES(70, 'contact_address', NULL, NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
+VALUES(70, 'contact_address', '123 Main st', NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
-VALUES(71, 'contact_phone', NULL, NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
+VALUES(71, 'contact_phone', '123123', NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
-VALUES(72, 'contact_email', NULL, NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
+VALUES(72, 'contact_email', 'info@dev.com', NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
 VALUES(73, 'widget_one_labels', NULL, NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
@@ -186,7 +186,7 @@ INSERT INTO business_settings
 VALUES(75, 'widget_one', NULL, NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
-VALUES(76, 'frontend_copyright_text', NULL, NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
+VALUES(76, 'frontend_copyright_text', 'Warehouse Copyright', NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
 VALUES(77, 'show_social_links', NULL, NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
@@ -237,13 +237,13 @@ INSERT INTO business_settings
 VALUES(92, 'top10_brands', '[]', NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
-VALUES(93, 'website_name', NULL, NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
+VALUES(93, 'website_name', 'Warehouse Storage', NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
 VALUES(94, 'site_motto', NULL, NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
-VALUES(95, 'site_icon', NULL, NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
+VALUES(95, 'site_icon', 'assets/img/logo.png', NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
 VALUES(96, 'base_color', '#e62e04', NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
@@ -252,22 +252,22 @@ INSERT INTO business_settings
 VALUES(97, 'base_hov_color', '#e62e04', NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
-VALUES(98, 'meta_title', NULL, NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
+VALUES(98, 'meta_title', 'Meta Title', NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
-VALUES(99, 'meta_description', NULL, NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
+VALUES(99, 'meta_description', 'Meta Description', NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
-VALUES(100, 'meta_keywords', NULL, NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
+VALUES(100, 'meta_keywords', 'Meta Keywards', NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
 VALUES(101, 'meta_image', NULL, NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
-VALUES(102, 'site_name', NULL, NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
+VALUES(102, 'site_name', "Support Warehouse", NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
-VALUES(103, 'system_logo_white', NULL, NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
+VALUES(103, 'system_logo_white', 'assets/img/logo.png', NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
 VALUES(104, 'system_logo_black', NULL, NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
@@ -300,7 +300,7 @@ INSERT INTO business_settings
 VALUES(113, 'header_menu_labels', '["Home","Flash Sale","Blogs","All Brands","All Categories"]', NULL, '2021-02-16 05:43:11', '2021-02-16 05:52:18');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
-VALUES(114, 'header_menu_links', '["http:\\/\\/domain.com","http:\\/\\/domain.com\\/flash-deals","http:\\/\\/domain.com\\/blog","http:\\/\\/domain.com\\/brands","http:\\/\\/domain.com\\/categories"]', NULL, '2021-02-16 05:43:11', '2021-02-18 04:20:04');
+VALUES(114, 'header_menu_links', '["/","/flash-deals","/blog","/brands","/categories"]', NULL, '2021-02-16 05:43:11', '2021-02-18 04:20:04');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
 VALUES(115, 'proxypay', '1', NULL, '2021-06-20 14:25:42', '2021-06-20 14:25:42');

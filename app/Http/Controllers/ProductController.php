@@ -6,7 +6,6 @@ use App\Http\Requests\ProductRequest;
 use App\Utility\CombinationsUtility;
 use Illuminate\Http\Request;
 use App\Models\Product;
-use App\Models\ProductTranslation;
 use App\Models\Category;
 use App\Models\ProductTax;
 use App\Models\AttributeValue;
@@ -15,6 +14,7 @@ use Carbon\Carbon;
 use CoreComponentRepository;
 use Artisan;
 use Cache;
+use Modules\Translations\Entities\ProductTranslation;
 use Str;
 use App\Services\ProductService;
 use App\Services\ProductTaxService;
@@ -214,7 +214,7 @@ class ProductController extends Controller
         Artisan::call('view:clear');
         Artisan::call('cache:clear');
 
-        return redirect()->route('products.admin');
+        return redirect()->route('admin.products.admin');
     }
 
     /**
@@ -393,11 +393,11 @@ class ProductController extends Controller
 
         flash(translate('Product has been duplicated successfully'))->success();
         if ($request->type == 'In House')
-            return redirect()->route('products.admin');
+            return redirect()->route('admin.products.admin');
         elseif ($request->type == 'Seller')
-            return redirect()->route('products.seller');
+            return redirect()->route('admin.products.seller');
         elseif ($request->type == 'All')
-            return redirect()->route('products.all');
+            return redirect()->route('admin.products.all');
     }
 
     public function get_products_by_brand(Request $request)

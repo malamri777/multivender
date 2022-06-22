@@ -21,6 +21,12 @@ class UsersTableSeeder extends Seeder
             'user_type' => 'admin',
         ]);
 
+        $user = User::create([
+            'name' => 'supplier1',
+            'email' => 's1@app.com',
+            'password' => bcrypt('password'),
+        ]);
+
 //        $user->attachRole('super_admin');
 
     }//end of run
