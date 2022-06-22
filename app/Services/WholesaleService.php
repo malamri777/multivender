@@ -6,13 +6,13 @@ use App\Models\Cart;
 use App\Models\FlashDealProduct;
 use App\Models\ProductStock;
 use App\Models\ProductTax;
-use App\Models\ProductTranslation;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\WholesalePrice;
 use Artisan;
 use Auth;
 use Illuminate\Http\Request;
+use Modules\Translations\Entities\ProductTranslation;
 
 class WholesaleService
 {
@@ -399,7 +399,7 @@ class WholesaleService
             Cart::where('product_id', $id)->delete();
 
             flash(translate('Product has been deleted successfully'))->success();
-            
+
             Artisan::call('view:clear');
             Artisan::call('cache:clear');
         }

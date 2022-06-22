@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -26,6 +27,9 @@ class UsersTableSeeder extends Seeder
             'email' => 's1@dev.com',
             'password' => bcrypt('password'),
             'user_type' => 'seller'
+        ]);
+        $shop = Shop::create([
+
         ]);
 
 
