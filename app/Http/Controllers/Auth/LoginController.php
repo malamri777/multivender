@@ -10,7 +10,6 @@ use App\Models\Customer;
 use App\Models\Cart;
 use Session;
 use Illuminate\Http\Request;
-use CoreComponentRepository;
 use Illuminate\Support\Str;
 
 class LoginController extends Controller
@@ -193,7 +192,6 @@ class LoginController extends Controller
         }
 
         if (auth()->user()->user_type == 'admin' || auth()->user()->user_type == 'staff') {
-            CoreComponentRepository::instantiateShopRepository();
             return redirect()->route('admin.dashboard');
         } elseif (auth()->user()->user_type == 'seller') {
             return redirect()->route('seller.dashboard');

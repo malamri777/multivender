@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Role;
-use App\Models\RoleTranslation;
+use Modules\Translations\Entities\RoleTranslation;
 
 class RoleController extends Controller
 {
@@ -48,7 +48,7 @@ class RoleController extends Controller
             $role_translation->save();
 
             flash(translate('Role has been inserted successfully'))->success();
-            return redirect()->route('roles.index');
+            return redirect()->route('admin.roles.index');
         }
         flash(translate('Something went wrong'))->error();
         return back();
@@ -102,7 +102,7 @@ class RoleController extends Controller
             $role_translation->save();
 
             flash(translate('Role has been updated successfully'))->success();
-            return redirect()->route('roles.index');
+            return redirect()->route('admin.roles.index');
         }
         flash(translate('Something went wrong'))->error();
         return back();
@@ -123,6 +123,6 @@ class RoleController extends Controller
 
         Role::destroy($id);
         flash(translate('Role has been deleted successfully'))->success();
-        return redirect()->route('roles.index');
+        return redirect()->route('admin.roles.index');
     }
 }

@@ -17,17 +17,17 @@ class RoleTableSeeder extends Seeder
     {
         Role::create([
             'name' => 'admin',
-            'permissions' => '["1","2","3","4","5","6","8","9",10",11",12",13",14",20",21",22",23","24"]'
+            'permissions' => '[1,2,3,4,5,6,8,9,10,11,12,13,14,20,21,22,23,24,25]'
         ]);
 
         Role::create([
             'name' => 'manager',
-            'permissions' => '["1","2","4"]'
+            'permissions' => '[1,2,4]'
         ]);
 
         Role::create([
             'name' => 'accountant',
-            'permissions' => '["2","3"]'
+            'permissions' => '[2,3]'
         ]);
     }
 }
