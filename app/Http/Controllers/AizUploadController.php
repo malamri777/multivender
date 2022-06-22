@@ -120,11 +120,10 @@ class AizUploadController extends Controller
                 $size = $request->file('aiz_file')->getSize();
 
                 // Return MIME type ala mimetype extension
-                $finfo = finfo_open(FILEINFO_MIME_TYPE);
-
+                $finfo = finfo_open(FILEINFO_MIME_TYPE); 
 
                 // Get the MIME type of the file
-                $file_mime = finfo_file($finfo, storage_path('app/').$path);
+                $file_mime = finfo_file($finfo, base_path('public/').$path);
 
                 if($type[$extension] == 'image' && get_setting('disable_image_optimization') != 1){
                     try {
@@ -148,7 +147,7 @@ class AizUploadController extends Controller
                         //dd($e);
                     }
                 }
-
+                
                 if (env('FILESYSTEM_DRIVER') == 's3') {
                     Storage::disk('s3')->put(
                         $path,
@@ -205,7 +204,7 @@ class AizUploadController extends Controller
     public function destroy(Request $request,$id)
     {
         $upload = Upload::findOrFail($id);
-
+        
         if(auth()->user()->user_type == 'seller' && $upload->user_id != auth()->user()->id){
             flash(translate("You don't have permission for deleting this!"))->error();
             return back();
@@ -233,7 +232,17 @@ class AizUploadController extends Controller
     public function get_preview_files(Request $request){
         $ids = explode(',', $request->ids);
         $files = Upload::whereIn('id', $ids)->get();
-        return $files;
+        $new_file_array = [];
+        foreach($files as $file){
+            $file['file_name'] = my_asset($file->file_name);
+            if($file->external_link) {
+                $file['file_name'] = $file->external_link;
+            }
+            $new_file_array[] = $file;
+        }
+        // dd($new_file_array);
+        return $new_file_array;
+        // return $files;
     }
 
     //Download project attachment

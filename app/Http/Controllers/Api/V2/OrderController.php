@@ -97,8 +97,8 @@ class OrderController extends Controller
             foreach ($seller_product as $cartItem) {
                 $product = Product::find($cartItem['product_id']);
 
-                $subtotal += $cartItem['price'] * $cartItem['quantity'];
-                $tax += $cartItem['tax'] * $cartItem['quantity'];
+                $subtotal += cart_product_price($cartItem, $product, false, false) * $cartItem['quantity'];
+                $tax += cart_product_tax($cartItem, $product,false) * $cartItem['quantity'];
                 $coupon_discount += $cartItem['discount'];
 
                 $product_variation = $cartItem['variation'];
@@ -122,8 +122,8 @@ class OrderController extends Controller
                 $order_detail->seller_id = $product->user_id;
                 $order_detail->product_id = $product->id;
                 $order_detail->variation = $product_variation;
-                $order_detail->price = $cartItem['price'] * $cartItem['quantity'];
-                $order_detail->tax = $cartItem['tax'] * $cartItem['quantity'];
+                $order_detail->price = cart_product_price($cartItem, $product, false, false) * $cartItem['quantity'];
+                $order_detail->tax = cart_product_tax($cartItem, $product,false) * $cartItem['quantity'];
                 $order_detail->shipping_type = $cartItem['shipping_type'];
                 $order_detail->product_referral_code = $cartItem['product_referral_code'];
                 $order_detail->shipping_cost = $cartItem['shipping_cost'];

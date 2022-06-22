@@ -8,14 +8,15 @@ use App\Models\Coupon;
 use App\Models\CouponUsage;
 use Illuminate\Http\Request;
 use App\Models\Cart;
+use App\Models\Product;
 
 class CheckoutController
 {
     public function apply_coupon_code(Request $request)
     {
         $cart_items = Cart::where('user_id', auth()->user()->id)->get();
-        $coupon = Coupon::where('code', $request->coupon_code)->first();
-
+        $coupon = Coupon::where('code', $request->coupon_code)->first(); 
+        $coupon_discount = 0;
         if ($cart_items->isEmpty()) {
             return response()->json([
                 'result' => false,
@@ -55,9 +56,10 @@ class CheckoutController
             $subtotal = 0;
             $tax = 0;
             $shipping = 0;
-            foreach ($cart_items as $key => $cartItem) {
-                $subtotal += $cartItem['price'] * $cartItem['quantity'];
-                $tax += $cartItem['tax'] * $cartItem['quantity'];
+            foreach ($cart_items as $key => $cartItem) { 
+                $product = Product::find($cartItem['product_id']);
+                $subtotal += cart_product_price($cartItem, $product, false, false) * $cartItem['quantity'];
+                $tax += cart_product_tax($cartItem, $product,false) * $cartItem['quantity'];
                 $shipping += $cartItem['shipping'] * $cartItem['quantity'];
             }
             $sum = $subtotal + $tax + $shipping;
@@ -86,12 +88,12 @@ class CheckoutController
 
             }
         } elseif ($coupon->type == 'product_base') {
-            $coupon_discount = 0;
-            foreach ($cart_items as $key => $cartItem) {
+            foreach ($cart_items as $key => $cartItem) { 
+                $product = Product::find($cartItem['product_id']);
                 foreach ($coupon_details as $key => $coupon_detail) {
                     if ($coupon_detail->product_id == $cartItem['product_id']) {
                         if ($coupon->discount_type == 'percent') {
-                            $coupon_discount += $cartItem['price'] * $coupon->discount / 100;
+                            $coupon_discount += cart_product_price($cartItem, $product, false, false) * $coupon->discount / 100;
                         } elseif ($coupon->discount_type == 'amount') {
                             $coupon_discount += $coupon->discount;
                         }
@@ -111,9 +113,7 @@ class CheckoutController
                 'message' => translate('Coupon Applied')
             ]);
 
-        }
-
-
+        } 
     }
 
     public function remove_coupon_code(Request $request)

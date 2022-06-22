@@ -77,7 +77,8 @@ class PaypalController extends Controller
             // If call returns body in response, you can get the deserialized version from the result attribute of the response
             return Redirect::to($response->result->links[1]->href);
         }catch (\Exception $ex) {
-
+            flash(translate('Something was wrong'))->error();
+            return redirect()->route('home');
         }
     }
 

@@ -111,68 +111,68 @@
                           <div class="col-md-8">
                               <div class="mb-3">
                                   <select class="form-control selectpicker" data-minimum-results-for-search="Infinity" name="payment_option" data-live-search="true">
-                                      @if (get_setting('paypal_payment') == 1)
-                                          <option value="paypal">{{ translate('Paypal')}}</option>
-                                      @endif
-                                      @if (get_setting('stripe_payment') == 1)
-                                          <option value="stripe">{{ translate('Stripe')}}</option>
-                                      @endif
-                                      @if (get_setting('mercadopago_payment') == 1)
-                                            <option value="mercadopago">{{ translate('Mercadopago')}}</option>
+                                    @if (get_setting('paypal_payment') == 1)
+                                        <option value="paypal">{{ translate('Paypal')}}</option>
+                                    @endif
+                                    @if (get_setting('stripe_payment') == 1)
+                                        <option value="stripe">{{ translate('Stripe')}}</option>
+                                    @endif
+                                    @if (get_setting('mercadopago_payment') == 1)
+                                        <option value="mercadopago">{{ translate('Mercadopago')}}</option>
+                                    @endif
+                                    @if(get_setting('toyyibpay_payment') == 1)
+                                        <option value="toyyibpay">{{ translate('ToyyibPay')}}</option>
+                                    @endif
+                                    @if (get_setting('sslcommerz_payment') == 1)
+                                        <option value="sslcommerz">{{ translate('SSLCommerz')}}</option>
+                                    @endif
+                                    @if (get_setting('instamojo_payment') == 1)
+                                        <option value="instamojo">{{ translate('Instamojo')}}</option>
+                                    @endif
+                                    @if (get_setting('paystack') == 1)
+                                        <option value="paystack">{{ translate('Paystack')}}</option>
+                                    @endif
+                                    @if (get_setting('voguepay') == 1)
+                                        <option value="voguepay">{{ translate('VoguePay')}}</option>
+                                    @endif
+                                    @if (get_setting('payhere') == 1)
+                                        <option value="payhere">{{ translate('Payhere')}}</option>
+                                    @endif
+                                    @if (get_setting('ngenius') == 1)
+                                        <option value="ngenius">{{ translate('Ngenius')}}</option>
+                                    @endif
+                                    @if (get_setting('razorpay') == 1)
+                                        <option value="razorpay">{{ translate('Razorpay')}}</option>
+                                    @endif
+                                    @if (get_setting('iyzico') == 1)
+                                        <option value="iyzico">{{ translate('Iyzico')}}</option>
+                                    @endif
+                                    @if (get_setting('bkash') == 1)
+                                        <option value="bkash">{{ translate('Bkash')}}</option>
+                                    @endif
+                                    @if (get_setting('nagad') == 1)
+                                        <option value="nagad">{{ translate('Nagad')}}</option>
+                                    @endif
+                                    @if (get_setting('payku') == 1)
+                                        <option value="payku">{{ translate('Payku')}}</option>
+                                    @endif
+                                    @if(addon_is_activated('african_pg'))
+                                        @if (get_setting('mpesa') == 1)
+                                            <option value="mpesa">{{ translate('Mpesa')}}</option>
                                         @endif
-                                      @if(get_setting('toyyibpay_payment') == 1)
-                                            <option value="toyyibpay">{{ translate('ToyyibPay')}}</option>
-                                      @endif
-                                      @if (get_setting('sslcommerz_payment') == 1)
-                                          <option value="sslcommerz">{{ translate('SSLCommerz')}}</option>
-                                      @endif
-                                      @if (get_setting('instamojo_payment') == 1)
-                                          <option value="instamojo">{{ translate('Instamojo')}}</option>
-                                      @endif
-                                      @if (get_setting('paystack') == 1)
-                                          <option value="paystack">{{ translate('Paystack')}}</option>
-                                      @endif
-                                      @if (get_setting('voguepay') == 1)
-                                          <option value="voguepay">{{ translate('VoguePay')}}</option>
-                                      @endif
-                                      @if (get_setting('payhere') == 1)
-                                          <option value="payhere">{{ translate('Payhere')}}</option>
-                                      @endif
-                                      @if (get_setting('ngenius') == 1)
-                                          <option value="ngenius">{{ translate('Ngenius')}}</option>
-                                      @endif
-                                      @if (get_setting('razorpay') == 1)
-                                          <option value="razorpay">{{ translate('Razorpay')}}</option>
-                                      @endif
-                                      @if (get_setting('iyzico') == 1)
-                                          <option value="iyzico">{{ translate('Iyzico')}}</option>
-                                      @endif
-                                      @if (get_setting('bkash') == 1)
-                                          <option value="bkash">{{ translate('Bkash')}}</option>
-                                      @endif
-                                      @if (get_setting('nagad') == 1)
-                                          <option value="nagad">{{ translate('Nagad')}}</option>
-                                      @endif
-                                      @if (get_setting('payku') == 1)
-                                          <option value="payku">{{ translate('Payku')}}</option>
-                                      @endif
-                                      @if(addon_is_activated('african_pg'))
-                                          @if (get_setting('mpesa') == 1)
-                                              <option value="mpesa">{{ translate('Mpesa')}}</option>
-                                          @endif
-                                          @if (get_setting('flutterwave') == 1)
-                                              <option value="flutterwave">{{ translate('Flutterwave')}}</option>
-                                          @endif
-                                          @if (get_setting('payfast') == 1)
-                                              <option value="payfast">{{ translate('PayFast')}}</option>
-                                          @endif
-                                      @endif
-                                      @if (addon_is_activated('paytm'))
-                                          <option value="paytm">{{ translate('Paytm')}}</option>
-                                      @endif
-                                        @if(get_setting('authorizenet') == 1)
-                                            <option value="authorizenet">{{ translate('Authorize Net')}}</option>
+                                        @if (get_setting('flutterwave') == 1)
+                                            <option value="flutterwave">{{ translate('Flutterwave')}}</option>
                                         @endif
+                                        @if (get_setting('payfast') == 1)
+                                            <option value="payfast">{{ translate('PayFast')}}</option>
+                                        @endif
+                                    @endif
+                                    @if (addon_is_activated('paytm') && get_setting('paytm_payment'))
+                                        <option value="paytm">{{ translate('Paytm')}}</option>
+                                    @endif
+                                    @if(get_setting('authorizenet') == 1)
+                                        <option value="authorizenet">{{ translate('Authorize Net')}}</option>
+                                    @endif
                                   </select>
                               </div>
                           </div>

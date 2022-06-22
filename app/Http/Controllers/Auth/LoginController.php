@@ -99,9 +99,9 @@ class LoginController extends Controller
                 $newUser->save();
 
                 //make user a customer
-                $customer = new Customer;
-                $customer->user_id = $newUser->id;
-                $customer->save();
+                // $customer = new Customer;
+                // $customer->user_id = $newUser->id;
+                // $customer->save();
 
                 //proceed to login
                 auth()->login($newUser, true);
@@ -121,6 +121,9 @@ class LoginController extends Controller
         if (session('link') != null) {
             return redirect(session('link'));
         } else {
+            if(auth()->user()->user_type == 'seller') {
+                return redirect()->route('seller.dashboard');
+            }
             return redirect()->route('dashboard');
         }
     }
@@ -190,7 +193,7 @@ class LoginController extends Controller
         }
 
         if (auth()->user()->user_type == 'admin' || auth()->user()->user_type == 'staff') {
-//            CoreComponentRepository::instantiateShopRepository();
+            CoreComponentRepository::instantiateShopRepository();
             return redirect()->route('admin.dashboard');
         } elseif (auth()->user()->user_type == 'seller') {
             return redirect()->route('seller.dashboard');

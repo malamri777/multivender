@@ -6,7 +6,7 @@
                     <img class="mw-100 mb-3" src="{{ uploaded_asset(Auth::user()->shop->logo) }}"
                         class="brand-icon" alt="{{ get_setting('site_name') }}">
                 @else
-                    <img class="mw-100 mb-3" src="{{ static_asset('assets/img/logo.png') }}" class="brand-icon"
+                    <img class="mw-100 mb-3" src="{{ uploaded_asset(get_setting('header_logo')) }}" class="brand-icon"
                         alt="{{ get_setting('site_name') }}">
                 @endif
                 <h3 class="fs-16  m-0 text-primary">{{ Auth::user()->shop->name }}</h3>

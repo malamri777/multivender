@@ -64,7 +64,7 @@ class ShopController extends Controller
 
     public function verify_form ()
     {
-        if (Auth::user()->verification_info == null) {
+        if (Auth::user()->shop->verification_info == null) {
             $shop = Auth::user()->shop;
             return view('seller.verify_form', compact('shop'));
         } else {
@@ -103,7 +103,7 @@ class ShopController extends Controller
         $shop->verification_info = json_encode($data);
         if ($shop->save()) {
             flash(translate('Your shop verification request has been submitted successfully!'))->success();
-            return redirect()->route('dashboard');
+            return redirect()->route('seller.dashboard');
         }
 
         flash(translate('Sorry! Something went wrong.'))->error();

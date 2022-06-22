@@ -9,11 +9,11 @@ use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductTax;
+use App\Models\ProductTranslation;
 use Carbon\Carbon;
 use Combinations;
 use Artisan;
 use Auth;
-use Modules\Translations\Entities\ProductTranslation;
 use Str;
 
 use App\Services\ProductService;
@@ -85,12 +85,14 @@ class ProductController extends Controller
         $product = $this->productService->store($request->except([
             '_token', 'sku', 'choice', 'tax_id', 'tax', 'tax_type', 'flash_deal_id', 'flash_discount', 'flash_discount_type'
         ]));
-
-        //VAT & Tax
         $request->merge(['product_id' => $product->id]);
-        $this->productTaxService->store($request->only([
-            'tax_id', 'tax', 'tax_type', 'product_id'
-        ]));
+        
+        //VAT & Tax
+        if($request->tax_id) {
+            $this->productTaxService->store($request->only([
+                'tax_id', 'tax', 'tax_type', 'product_id'
+            ]));
+        }
 
         //Product Stock
         $this->productStockService->store($request->only([

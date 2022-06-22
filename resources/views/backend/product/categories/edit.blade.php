@@ -2,6 +2,11 @@
 
 @section('content')
 
+@php
+    CoreComponentRepository::instantiateShopRepository();
+    CoreComponentRepository::initializeCache();
+@endphp
+
 <div class="aiz-titlebar text-left mt-2 mb-3">
     <h5 class="mb-0 h6">{{translate('Category Information')}}</h5>
 </div>
@@ -102,12 +107,12 @@
                             <textarea name="meta_description" rows="5" class="form-control">{{ $category->meta_description }}</textarea>
                         </div>
                     </div>
-{{--                    <div class="form-group row">--}}
-{{--                        <label class="col-md-3 col-form-label">{{translate('Slug')}}</label>--}}
-{{--                        <div class="col-md-9">--}}
-{{--                            <input type="text" placeholder="{{translate('Slug')}}" id="slug" name="slug" value="{{ $category->slug }}" class="form-control">--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label">{{translate('Slug')}}</label>
+                        <div class="col-md-9">
+                            <input type="text" placeholder="{{translate('Slug')}}" id="slug" name="slug" value="{{ $category->slug }}" class="form-control">
+                        </div>
+                    </div>
                     @if (get_setting('category_wise_commission') == 1)
                         <div class="form-group row">
                             <label class="col-md-3 col-form-label">{{translate('Commission Rate')}}</label>

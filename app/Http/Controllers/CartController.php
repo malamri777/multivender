@@ -51,6 +51,7 @@ class CartController extends Controller
 
     public function addToCart(Request $request)
     {
+        
         $product = Product::find($request->id);
         $carts = array();
         $data = array();

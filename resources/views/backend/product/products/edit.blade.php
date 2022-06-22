@@ -87,7 +87,7 @@
                             <label class="col-lg-3 col-from-label">{{translate('Refundable')}}</label>
                             <div class="col-lg-8">
                                 <label class="aiz-switch aiz-switch-success mb-0" style="margin-top:5px;">
-                                    <input type="checkbox" name="refundable" @if ($product->refundable == 1) checked @endif>
+                                    <input type="checkbox" name="refundable" @if ($product->refundable == 1) checked @endif value="1">
                                     <span class="slider round"></span></label>
                                 </label>
                             </div>

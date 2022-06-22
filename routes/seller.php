@@ -8,7 +8,7 @@ use App\Http\Controllers\Seller\DashboardController;
 use App\Http\Controllers\Seller\ProductController;
 use App\Http\Controllers\Seller\ProductBulkUploadController;
 use App\Http\Controllers\Seller\DigitalProductController;
-use App\Http\Controllers\seller\InvoiceController;
+use App\Http\Controllers\Seller\InvoiceController;
 use App\Http\Controllers\Seller\OrderController;
 use App\Http\Controllers\Seller\PaymentController;
 use App\Http\Controllers\Seller\ProfileController;
@@ -72,7 +72,7 @@ Route::group(['prefix' => 'seller', 'middleware' => ['seller', 'verified', 'user
     Route::controller(CouponController::class)->group(function () {
         Route::post('/coupon/get_form', 'get_coupon_form')->name('coupon.get_coupon_form');
         Route::post('/coupon/get_form_edit', 'get_coupon_form_edit')->name('coupon.get_coupon_form_edit');
-//        Route::get('/coupon/destroy/{id}', 'destroy')->name('coupon.destroy');
+        // Route::get('/coupon/destroy/{id}', 'destroy')->name('coupon.destroy');
     });
 
     //Order
@@ -108,8 +108,8 @@ Route::group(['prefix' => 'seller', 'middleware' => ['seller', 'verified', 'user
     Route::controller(AddressController::class)->group(function () {
         Route::post('/get-states', 'getStates')->name('get-state');
         Route::post('/get-cities', 'getCities')->name('get-city');
-//        Route::post('/address/update/{id}', 'update')->name('addresses.update');
-//        Route::get('/addresses/destroy/{id}', 'destroy')->name('addresses.destroy');
+        // Route::post('/address/update/{id}', 'update')->name('addresses.update');
+        // Route::get('/addresses/destroy/{id}', 'destroy')->name('addresses.destroy');
         Route::get('/addresses/set_default/{id}', 'set_default')->name('addresses.set_default');
     });
 

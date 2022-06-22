@@ -66,16 +66,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
     // category
     Route::resource('categories', CategoryController::class);
     Route::controller(CategoryController::class)->group(function () {
-//        Route::get('/categories/edit/{id}', 'edit')->name('categories.edit');
-//        Route::get('/categories/destroy/{id}', 'destroy')->name('categories.destroy');
+        // Route::get('/categories/edit/{id}', 'edit')->name('categories.edit');
+        // Route::get('/categories/destroy/{id}', 'destroy')->name('categories.destroy');
         Route::post('/categories/featured', 'updateFeatured')->name('categories.featured');
     });
 
     // Brand
     Route::resource('brands', BrandController::class);
     Route::controller(BrandController::class)->group(function () {
-//        Route::get('/brands/edit/{id}', 'edit')->name('brands.edit');
-//        Route::get('/brands/destroy/{id}', 'destroy')->name('brands.destroy');
+        // Route::get('/brands/edit/{id}', 'edit')->name('brands.edit');
+        // Route::get('/brands/destroy/{id}', 'destroy')->name('brands.destroy');
     });
 
     // Products
@@ -105,8 +105,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
     // Digital Product
     Route::resource('digitalproducts', DigitalProductController::class);
     Route::controller(DigitalProductController::class)->group(function () {
-//        Route::get('/digitalproducts/edit/{id}', 'edit')->name('digitalproducts.edit');
-//        Route::get('/digitalproducts/destroy/{id}', 'destroy')->name('digitalproducts.destroy');
+        // Route::get('/digitalproducts/edit/{id}', 'edit')->name('digitalproducts.edit');
+        // Route::get('/digitalproducts/destroy/{id}', 'destroy')->name('digitalproducts.destroy');
         Route::get('/digitalproducts/download/{id}', 'download')->name('digitalproducts.download');
     });
 
@@ -130,7 +130,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
     Route::resource('sellers', SellerController::class);
     Route::controller(SellerController::class)->group(function () {
         Route::get('sellers_ban/{id}', 'ban')->name('sellers.ban');
-//        Route::get('/sellers/destroy/{id}', 'destroy')->name('sellers.destroy');
+        // Route::get('/sellers/destroy/{id}', 'destroy')->name('sellers.destroy');
         Route::post('/bulk-seller-delete', 'bulk_seller_delete')->name('bulk-seller-delete');
         Route::get('/sellers/view/{id}/verification', 'show_verification_request')->name('sellers.show_verification_request');
         Route::get('/sellers/approve/{id}', 'approve_seller')->name('sellers.approve');
@@ -160,7 +160,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
     Route::controller(CustomerController::class)->group(function () {
         Route::get('customers_ban/{customer}', 'ban')->name('customers.ban');
         Route::get('/customers/login/{id}', 'login')->name('customers.login');
-//        Route::get('/customers/destroy/{id}', 'destroy')->name('customers.destroy');
+        // Route::get('/customers/destroy/{id}', 'destroy')->name('customers.destroy');
         Route::post('/bulk-customer-delete', 'bulk_customer_delete')->name('bulk-customer-delete');
     });
 
@@ -230,20 +230,19 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
     //Tax
     Route::resource('tax', TaxController::class);
     Route::controller(TaxController::class)->group(function () {
-//        Route::get('/tax/edit/{id}', 'edit')->name('tax.edit');
-//        Route::get('/tax/destroy/{id}', 'destroy')->name('tax.destroy');
+        // Route::get('/tax/edit/{id}', 'edit')->name('tax.edit');
+        // Route::get('/tax/destroy/{id}', 'destroy')->name('tax.destroy');
         Route::post('tax-status', 'change_tax_status')->name('taxes.tax-status');
     });
 
     // Language
     Route::resource('/languages', LanguageController::class);
     Route::controller(LanguageController::class)->group(function () {
-//        Route::post('/languages/{id}/update', 'update')->name('languages.update');
-//        Route::get('/languages/destroy/{id}', 'destroy')->name('languages.destroy');
+        // Route::post('/languages/{id}/update', 'update')->name('languages.update');
+        // Route::get('/languages/destroy/{id}', 'destroy')->name('languages.destroy');
         Route::post('/languages/update_rtl_status', 'update_rtl_status')->name('languages.update_rtl_status');
         Route::post('/languages/update-status', 'update_status')->name('languages.update-status');
         Route::post('/languages/key_value_store', 'key_value_store')->name('languages.key_value_store');
-        Route::get('/languages/translations/export/{id}', 'exportLangFile')->name('translations.exportLangFile');
 
         //App Trasnlation
         Route::post('/languages/app-translations/import', 'importEnglishFile')->name('app-translations.import');
@@ -265,27 +264,27 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
         // Custom Page
         Route::resource('custom-pages', PageController::class);
         Route::controller(PageController::class)->group(function () {
-//            Route::get('/custom-pages/edit/{id}', 'edit')->name('custom-pages.edit');
-//            Route::get('/custom-pages/destroy/{id}', 'destroy')->name('custom-pages.destroy');
+            // Route::get('/custom-pages/edit/{id}', 'edit')->name('custom-pages.edit');
+            // Route::get('/custom-pages/destroy/{id}', 'destroy')->name('custom-pages.destroy');
         });
     });
 
     // Staff Roles
     Route::resource('roles', RoleController::class);
     Route::controller(RoleController::class)->group(function () {
-//        Route::get('/roles/edit/{id}', 'edit')->name('roles.edit');
-//        Route::get('/roles/destroy/{id}', 'destroy')->name('roles.destroy');
+        // Route::get('/roles/edit/{id}', 'edit')->name('roles.edit');
+        // Route::get('/roles/destroy/{id}', 'destroy')->name('roles.destroy');
     });
 
     // Staff
     Route::resource('staffs', StaffController::class);
-//    Route::get('/staffs/destroy/{id}', [StaffController::class, 'destroy'])->name('staffs.destroy');
+    // Route::get('/staffs/destroy/{id}', [StaffController::class, 'destroy'])->name('staffs.destroy');
 
     // Flash Deal
     Route::resource('flash_deals', FlashDealController::class);
     Route::controller(FlashDealController::class)->group(function () {
-//        Route::get('/flash_deals/edit/{id}', 'edit')->name('flash_deals.edit');
-//        Route::get('/flash_deals/destroy/{id}', 'destroy')->name('flash_deals.destroy');
+        // Route::get('/flash_deals/edit/{id}', 'edit')->name('flash_deals.edit');
+        // Route::get('/flash_deals/destroy/{id}', 'destroy')->name('flash_deals.destroy');
         Route::post('/flash_deals/update_status', 'update_status')->name('flash_deals.update_status');
         Route::post('/flash_deals/update_featured', 'update_featured')->name('flash_deals.update_featured');
         Route::post('/flash_deals/product_discount', 'product_discount')->name('flash_deals.product_discount');
@@ -319,9 +318,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
         Route::get('orders_by_pickup_point', 'pickup_point_order_index')->name('pick_up_point.order_index');
         Route::get('/orders_by_pickup_point/{id}/show', 'pickup_point_order_sales_show')->name('pick_up_point.order_show');
 
-//        Route::get('/orders/destroy/{id}', 'destroy')->name('orders.destroy');
+        // Route::get('/orders/destroy/{id}', 'destroy')->name('orders.destroy');
         Route::post('/bulk-order-delete', 'bulk_order_delete')->name('bulk-order-delete');
 
+        // Route::get('/orders/destroy/{id}', 'destroy')->name('orders.destroy');
         Route::post('/orders/details', 'order_details')->name('orders.details');
         Route::post('/orders/update_delivery_status', 'update_delivery_status')->name('orders.update_delivery_status');
         Route::post('/orders/update_payment_status', 'update_payment_status')->name('orders.update_payment_status');
@@ -347,19 +347,19 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
     //Blog Section
     //Blog cateory
     Route::resource('blog-category', BlogCategoryController::class);
-//    Route::get('/blog-category/destroy/{id}', [BlogCategoryController::class, 'destroy'])->name('blog-category.destroy');
+    // Route::get('/blog-category/destroy/{id}', [BlogCategoryController::class, 'destroy'])->name('blog-category.destroy');
 
     // Blog
     Route::resource('blog', BlogController::class);
     Route::controller(BlogController::class)->group(function () {
-//        Route::get('/blog/destroy/{id}', 'destroy')->name('blog.destroy');
+        // Route::get('/blog/destroy/{id}', 'destroy')->name('blog.destroy');
         Route::post('/blog/change-status', 'change_status')->name('blog.change-status');
     });
 
     //Coupons
     Route::resource('coupon', CouponController::class);
     Route::controller(CouponController::class)->group(function () {
-//        Route::get('/coupon/destroy/{id}', 'destroy')->name('coupon.destroy');
+        // Route::get('/coupon/destroy/{id}', 'destroy')->name('coupon.destroy');
 
         //Coupon Form
         Route::post('/coupon/get_form', 'get_coupon_form')->name('coupon.get_coupon_form');
@@ -382,8 +382,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
     //Pickup_Points
     Route::resource('pick_up_points', PickupPointController::class);
     Route::controller(PickupPointController::class)->group(function () {
-//        Route::get('/pick_up_points/edit/{id}', 'edit')->name('pick_up_points.edit');
-//        Route::get('/pick_up_points/destroy/{id}', 'destroy')->name('pick_up_points.destroy');
+        // Route::get('/pick_up_points/edit/{id}', 'edit')->name('pick_up_points.edit');
+        // Route::get('/pick_up_points/destroy/{id}', 'destroy')->name('pick_up_points.destroy');
     });
 
     //conversation of seller customer
@@ -395,8 +395,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
     // Product Attribute
     Route::resource('attributes', AttributeController::class );
     Route::controller(AttributeController::class)->group(function () {
-//        Route::get('/attributes/edit/{id}', 'edit')->name('attributes.edit');
-//        Route::get('/attributes/destroy/{id}', 'destroy')->name('attributes.destroy');
+        // Route::get('/attributes/edit/{id}', 'edit')->name('attributes.edit');
+        // Route::get('/attributes/destroy/{id}', 'destroy')->name('attributes.destroy');
 
         //Attribute Value
         Route::post('/store-attribute-value', 'store_attribute_value')->name('store-attribute-value');
@@ -419,8 +419,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
     //Customer Package
     Route::resource('customer_packages', CustomerPackageController::class);
     Route::controller(CustomerPackageController::class)->group(function () {
-//        Route::get('/customer_packages/edit/{id}', 'edit')->name('customer_packages.edit');
-//        Route::get('/customer_packages/destroy/{id}', 'destroy')->name('customer_packages.destroy');
+        // Route::get('/customer_packages/edit/{id}', 'edit')->name('customer_packages.edit');
+        // Route::get('/customer_packages/destroy/{id}', 'destroy')->name('customer_packages.destroy');
     });
 
     //Classified Products
@@ -439,8 +439,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
 
     Route::resource('cities', CityController::class);
     Route::controller(CityController::class)->group(function () {
-//        Route::get('/cities/edit/{id}', 'edit')->name('cities.edit');
-//        Route::get('/cities/destroy/{id}', 'destroy')->name('cities.destroy');
+        // Route::get('/cities/edit/{id}', 'edit')->name('cities.edit');
+        // Route::get('/cities/destroy/{id}', 'destroy')->name('cities.destroy');
         Route::post('/cities/status', 'updateStatus')->name('cities.status');
     });
 
@@ -451,17 +451,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
     Route::resource('/uploaded-files', AizUploadController::class);
     Route::controller(AizUploadController::class)->group(function () {
         Route::any('/uploaded-files/file-info', 'file_info')->name('uploaded-files.info');
-//        Route::get('/uploaded-files/destroy/{id}', 'destroy')->name('uploaded-files.destroy');
+        // Route::get('/uploaded-files/destroy/{id}', 'destroy')->name('uploaded-files.destroy');
     });
 
-
-    // WholeSale
-    Route::resource('wholesale-products', 'WholesaleProductController');
-//    Route::get('wholesale-products/{id}/edit', 'WholesaleProductController@edit')->name('wholesale-products.edit');
-//    Route::post('/wholesale-products/update/{id}', 'WholesaleProductController@update')->name('wholesale-products.update');
-//    Route::get('/wholesale-products/destroy/{id}', 'WholesaleProductController@destroy')->name('wholesale-products.destroy');
-
-    Route::get('/all-notification', [NotificationController::class, 'index'])->name('all-notification');
+    Route::get('/all-notification', [NotificationController::class, 'index'])->name('admin.all-notification');
 
     Route::get('/clear-cache', [AdminController::class, 'clearCache'])->name('cache.clear');
 });

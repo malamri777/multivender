@@ -11,6 +11,7 @@ use App\Models\Coupon;
 use App\Models\CouponUsage;
 use App\Models\Address;
 use App\Models\CombinedOrder;
+use App\Models\Product;
 use App\Utility\PayhereUtility;
 use App\Utility\NotificationUtility;
 use Session;
@@ -30,8 +31,9 @@ class CheckoutController extends Controller
         // Minumum order amount check
         if(get_setting('minimum_order_amount_check') == 1){
             $subtotal = 0;
-            foreach (Cart::where('user_id', Auth::user()->id)->get() as $key => $cartItem){
-                $subtotal += $cartItem['price'] * $cartItem['quantity'];
+            foreach (Cart::where('user_id', Auth::user()->id)->get() as $key => $cartItem){ 
+                $product = Product::find($cartItem['product_id']);
+                $subtotal += cart_product_price($cartItem, $product, false, false) * $cartItem['quantity'];
             }
             if ($subtotal < get_setting('minimum_order_amount')) {
                 flash(translate('You order amount is less then the minimum order amount'))->warning();
@@ -136,9 +138,9 @@ class CheckoutController extends Controller
 
         if ($carts && count($carts) > 0) {
             foreach ($carts as $key => $cartItem) {
-                $product = \App\Models\Product::find($cartItem['product_id']);
-                $tax += $cartItem['tax'] * $cartItem['quantity'];
-                $subtotal += $cartItem['price'] * $cartItem['quantity'];
+                $product = Product::find($cartItem['product_id']);
+                $tax += cart_product_tax($cartItem, $product,false) * $cartItem['quantity'];
+                $subtotal += cart_product_price($cartItem, $product, false, false) * $cartItem['quantity'];
 
                 if ($request['shipping_type_' . $product->user_id] == 'pickup_point') {
                     $cartItem['shipping_type'] = 'pickup_point';
@@ -197,17 +199,19 @@ class CheckoutController extends Controller
                                     ->where('owner_id', $coupon->user_id)
                                     ->get();
 
+                    $coupon_discount = 0;
+                    
                     if ($coupon->type == 'cart_base') {
                         $subtotal = 0;
                         $tax = 0;
                         $shipping = 0;
-                        foreach ($carts as $key => $cartItem) {
-                            $subtotal += $cartItem['price'] * $cartItem['quantity'];
-                            $tax += $cartItem['tax'] * $cartItem['quantity'];
+                        foreach ($carts as $key => $cartItem) { 
+                            $product = Product::find($cartItem['product_id']);
+                            $subtotal += cart_product_price($cartItem, $product, false, false) * $cartItem['quantity'];
+                            $tax += cart_product_tax($cartItem, $product,false) * $cartItem['quantity'];
                             $shipping += $cartItem['shipping_cost'];
                         }
                         $sum = $subtotal + $tax + $shipping;
-
                         if ($sum >= $coupon_details->min_buy) {
                             if ($coupon->discount_type == 'percent') {
                                 $coupon_discount = ($sum * $coupon->discount) / 100;
@@ -220,12 +224,12 @@ class CheckoutController extends Controller
 
                         }
                     } elseif ($coupon->type == 'product_base') {
-                        $coupon_discount = 0;
-                        foreach ($carts as $key => $cartItem) {
+                        foreach ($carts as $key => $cartItem) { 
+                            $product = Product::find($cartItem['product_id']);
                             foreach ($coupon_details as $key => $coupon_detail) {
                                 if ($coupon_detail->product_id == $cartItem['product_id']) {
                                     if ($coupon->discount_type == 'percent') {
-                                        $coupon_discount += ($cartItem['price'] * $coupon->discount / 100) * $cartItem['quantity'];
+                                        $coupon_discount += (cart_product_price($cartItem, $product, false, false) * $coupon->discount / 100) * $cartItem['quantity'];
                                     } elseif ($coupon->discount_type == 'amount') {
                                         $coupon_discount += $coupon->discount * $cartItem['quantity'];
                                     }

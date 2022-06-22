@@ -39,23 +39,23 @@
                         @foreach ($sellers as $key => $seller)
                             @if($seller != null)
                                 <tr>
-                                    <td>{{ $seller->name }}</td>
+                                    <td>{{ $seller->user->name }}</td>
                                     @if($seller->shop != null)
-                                        <td>{{ $seller->shop->name }}</td>
+                                        <td>{{ $seller->name }}</td>
                                     @else
                                         <td>--</td>
                                     @endif
                                     <td>
                                         @php
                                             $num_of_sale = 0;
-                                            foreach ($seller->products as $key => $product) {
+                                            foreach ($seller->user->products as $key => $product) {
                                                 $num_of_sale += $product->num_of_sale;
                                             }
                                         @endphp
                                         {{ $num_of_sale }}
                                     </td>
                                     <td>
-                                        {{ single_price(\App\Models\OrderDetail::where('seller_id', $seller->id)->sum('price')) }}
+                                        {{ single_price(\App\Models\OrderDetail::where('seller_id', $seller->user->id)->sum('price')) }}
                                     </td>
                                 </tr>
                             @endif

@@ -3,18 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
-use App\Utility\CombinationsUtility;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\ProductTranslation;
 use App\Models\Category;
 use App\Models\ProductTax;
 use App\Models\AttributeValue;
 use App\Models\Cart;
 use Carbon\Carbon;
+use Combinations;
 use CoreComponentRepository;
 use Artisan;
 use Cache;
-use Modules\Translations\Entities\ProductTranslation;
 use Str;
 use App\Services\ProductService;
 use App\Services\ProductTaxService;
@@ -46,7 +46,7 @@ class ProductController extends Controller
      */
     public function admin_products(Request $request)
     {
-        // CoreComponentRepository::instantiateShopRepository();
+        CoreComponentRepository::instantiateShopRepository();
 
         $type = 'In House';
         $col_name = null;
@@ -152,7 +152,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        // CoreComponentRepository::initializeCache();
+        CoreComponentRepository::initializeCache();
 
         $categories = Category::where('parent_id', 0)
             ->where('digital', 0)
@@ -186,12 +186,14 @@ class ProductController extends Controller
         $product = $this->productService->store($request->except([
             '_token', 'sku', 'choice', 'tax_id', 'tax', 'tax_type', 'flash_deal_id', 'flash_discount', 'flash_discount_type'
         ]));
+        $request->merge(['product_id' => $product->id]);
 
         //VAT & Tax
-        $request->merge(['product_id' => $product->id]);
-        $this->productTaxService->store($request->only([
-            'tax_id', 'tax', 'tax_type', 'product_id'
-        ]));
+        if($request->tax_id) {
+            $this->productTaxService->store($request->only([
+                'tax_id', 'tax', 'tax_type', 'product_id'
+            ]));
+        }
 
         //Flash Deal
         $this->productFlashDealService->store($request->only([
@@ -214,7 +216,7 @@ class ProductController extends Controller
         Artisan::call('view:clear');
         Artisan::call('cache:clear');
 
-        return redirect()->route('admin.products.admin');
+        return redirect()->route('products.admin');
     }
 
     /**
@@ -236,11 +238,11 @@ class ProductController extends Controller
      */
     public function admin_product_edit(Request $request, $id)
     {
-        // CoreComponentRepository::initializeCache();
+        CoreComponentRepository::initializeCache();
 
         $product = Product::findOrFail($id);
         if ($product->digital == 1) {
-            return redirect('digitalproducts/' . $id . '/edit');
+            return redirect('admin/digitalproducts/' . $id . '/edit');
         }
 
         $lang = $request->lang;
@@ -384,7 +386,7 @@ class ProductController extends Controller
         $product_new = $product->replicate();
         $product_new->slug = $product_new->slug . '-' . Str::random(5);
         $product_new->save();
-
+        
         //Product Stock
         $this->productStockService->product_duplicate_store($product->stocks, $product_new);
 
@@ -393,11 +395,11 @@ class ProductController extends Controller
 
         flash(translate('Product has been duplicated successfully'))->success();
         if ($request->type == 'In House')
-            return redirect()->route('admin.products.admin');
+            return redirect()->route('products.admin');
         elseif ($request->type == 'Seller')
-            return redirect()->route('admin.products.seller');
+            return redirect()->route('products.seller');
         elseif ($request->type == 'All')
-            return redirect()->route('admin.products.all');
+            return redirect()->route('products.all');
     }
 
     public function get_products_by_brand(Request $request)
@@ -432,6 +434,9 @@ class ProductController extends Controller
         }
 
         $product->save();
+        
+        Artisan::call('view:clear');
+        Artisan::call('cache:clear');
         return 1;
     }
 
@@ -452,6 +457,9 @@ class ProductController extends Controller
         }
 
         $product->save();
+        
+        Artisan::call('view:clear');
+        Artisan::call('cache:clear');
         return 1;
     }
 
@@ -493,7 +501,7 @@ class ProductController extends Controller
             }
         }
 
-        $combinations = CombinationsUtility::makeCombinations($options);
+        $combinations = Combinations::makeCombinations($options);
         return view('backend.product.products.sku_combinations', compact('combinations', 'unit_price', 'colors_active', 'product_name'));
     }
 
@@ -525,7 +533,7 @@ class ProductController extends Controller
             }
         }
 
-        $combinations = CombinationsUtility::makeCombinations($options);
+        $combinations = Combinations::makeCombinations($options);
         return view('backend.product.products.sku_combinations_edit', compact('combinations', 'unit_price', 'colors_active', 'product_name', 'product'));
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\seller;
+namespace App\Http\Controllers\Seller;
 
 use App\Models\Currency;
 use App\Models\Language;
@@ -29,7 +29,7 @@ class InvoiceController extends Controller
         }else{
             $direction = 'ltr';
             $text_align = 'left';
-            $not_text_align = 'right';
+            $not_text_align = 'right';            
         }
 
         if($currency_code == 'BDT' || $language_code == 'bd'){
@@ -54,7 +54,7 @@ class InvoiceController extends Controller
             // general for all
             $font_family = "'Roboto','sans-serif'";
         }
-
+        
         // $config = ['instanceConfigurator' => function($mpdf) {
         //     $mpdf->showImageErrors = true;
         // }];
@@ -69,7 +69,6 @@ class InvoiceController extends Controller
             'direction' => $direction,
             'text_align' => $text_align,
             'not_text_align' => $not_text_align
-        ], [], $config)->output();
-//        ->download('order-'.$order->code.'.pdf');
+        ], [], $config)->download('order-'.$order->code.'.pdf');
     }
 }

@@ -10,6 +10,16 @@ use Illuminate\Http\Request;
 
 class BkashController extends Controller
 {
+    private $base_url;
+    public function __construct()
+    {
+        if(get_setting('bkash_sandbox', 1)){
+            $this->base_url = "https://checkout.sandbox.bka.sh/v1.2.0-beta/";
+        }
+        else {
+            $this->base_url = "https://checkout.pay.bka.sh/v1.2.0-beta/";
+        }
+    }
 
     public function begin(Request $request)
     {
@@ -22,7 +32,7 @@ class BkashController extends Controller
         try {
             $request_data = array('app_key' => env('BKASH_CHECKOUT_APP_KEY'), 'app_secret' => env('BKASH_CHECKOUT_APP_SECRET'));
 
-            $url = curl_init('https://checkout.pay.bka.sh/v1.2.0-beta/checkout/token/grant');
+            $url = curl_init($this->base_url.'checkout/token/grant');
             $request_data_json = json_encode($request_data);
 
             $header = array(
@@ -81,7 +91,7 @@ class BkashController extends Controller
             'currency' => 'BDT',
             'intent' => 'sale'
         );
-        $url = curl_init('https://checkout.pay.bka.sh/v1.2.0-beta/checkout/payment/create');
+        $url = curl_init($this->base_url.'checkout/payment/create');
         $requestbodyJson = json_encode($requestbody);
 
         $header = array(
@@ -107,7 +117,7 @@ class BkashController extends Controller
         $paymentID = $request->paymentID;
         $auth = $token;
 
-        $url = curl_init('https://checkout.pay.bka.sh/v1.2.0-beta/checkout/payment/execute/' . $paymentID);
+        $url = curl_init($this->base_url.'checkout/payment/execute/' . $paymentID);
         $header = array(
             'Content-Type:application/json',
             'Authorization:' . $auth,

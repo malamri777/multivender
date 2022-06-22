@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Page;
-use Modules\Translations\Entities\PageTranslation;
+use App\Models\PageTranslation;
 
 
 class PageController extends Controller

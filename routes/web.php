@@ -13,6 +13,7 @@ use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\CustomerPackageController;
 use App\Http\Controllers\CustomerProductController;
 use App\Http\Controllers\DemoController;
+use App\Http\Controllers\DigitalProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\LanguageController;
@@ -42,8 +43,8 @@ use App\Http\Controllers\Payment\VoguepayController;
 use App\Http\Controllers\Payment\IyzicoController;
 use App\Http\Controllers\Payment\NagadController;
 use App\Http\Controllers\Payment\PaykuController;
+use App\Http\Controllers\ShopController;
 use App\Http\Controllers\WishlistController;
-
 
 /*
   |--------------------------------------------------------------------------
@@ -90,13 +91,13 @@ Route::controller(LoginController::class)->group(function () {
 });
 
 Route::controller(VerificationController::class)->group(function () {
-//    Route::get('/email/resend', 'resend')->name('verification.resend');
+    // Route::get('/email/resend', 'resend')->name('verification.resend');
     Route::get('/verification-confirmation/{code}', 'verification_confirmation')->name('email.verification.confirmation');
 });
 
 Route::controller(HomeController::class)->group(function () {
     Route::get('/email_change/callback', 'email_change_callback')->name('email_change.callback');
-//    Route::post('/password/reset/email/submit', 'reset_password_with_code')->name('password.update');
+    // Route::post('/password/reset/email/submit', 'reset_password_with_code')->name('password.update');
     Route::get('/users/login', 'login')->name('user.login');
     Route::get('/users/registration', 'registration')->name('user.registration');
     Route::post('/users/login/cart', 'cart_login')->name('cart.login.submit');
@@ -128,6 +129,7 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/sellers', 'all_seller')->name('sellers');
     Route::get('/coupons', 'all_coupons')->name('coupons.all');
     Route::get('/inhouse', 'inhouse_products')->name('inhouse.all');
+
 
     // Policies
     Route::get('/seller-policy', 'sellerpolicy')->name('sellerpolicy');
@@ -260,7 +262,7 @@ Route::group(['middleware' => ['customer', 'verified', 'unbanned']], function() 
     Route::resource('purchase_history', PurchaseHistoryController::class);
     Route::controller(PurchaseHistoryController::class)->group(function () {
         Route::get('/purchase_history/details/{id}', 'purchase_history_details')->name('purchase_history.details');
-//        Route::get('/purchase_history/destroy/{id}', 'order_cancel')->name('purchase_history.destroy');
+        // Route::get('/purchase_history/destroy/{id}', 'order_cancel')->name('purchase_history.destroy');
         Route::get('digital_purchase_history', 'digital_index')->name('digital_purchase_history.index');
     });
 
@@ -284,14 +286,19 @@ Route::group(['middleware' => ['customer', 'verified', 'unbanned']], function() 
     // Customer Product
     Route::resource('customer_products', CustomerProductController::class);
     Route::controller(CustomerProductController::class)->group(function () {
-//        Route::get('/customer_products/{id}/edit', 'edit')->name('customer_products.edit');
+        // Route::get('/customer_products/{id}/edit', 'edit')->name('customer_products.edit');
         Route::post('/customer_products/published', 'updatePublished')->name('customer_products.published');
         Route::post('/customer_products/status', 'updateStatus')->name('customer_products.update.status');
-//        Route::get('/customer_products/destroy/{id}', 'destroy')->name('customer_products.destroy');
+        // Route::get('/customer_products/destroy/{id}', 'destroy')->name('customer_products.destroy');
     });
 
     // Product Review
     Route::post('/product_review_modal', [ReviewController::class, 'product_review_modal'])->name('product_review_modal');
+
+    // Digital Product
+    Route::controller(DigitalProductController::class)->group(function () {
+        Route::get('/digital-products/download/{id}', 'download')->name('digital-products.download');
+    });
 
 });
 
@@ -305,7 +312,7 @@ Route::group(['middleware' => ['auth']], function() {
     // Product Query
     Route::resource('conversations', ConversationController::class);
     Route::controller(ConversationController::class)->group(function () {
-//        Route::get('/conversations/destroy/{id}', 'destroy')->name('conversations.destroy');
+        // Route::get('/conversations/destroy/{id}', 'destroy')->name('conversations.destroy');
         Route::post('conversations/refresh', 'refresh')->name('conversations.refresh');
     });
 
@@ -316,13 +323,13 @@ Route::group(['middleware' => ['auth']], function() {
     Route::controller(AddressController::class)->group(function () {
         Route::post('/get-states', 'getStates')->name('get-state');
         Route::post('/get-cities', 'getCities')->name('get-city');
-//        Route::post('/addresses/update/{id}', 'update')->name('addresses.update');
-//        Route::get('/addresses/destroy/{id}', 'destroy')->name('addresses.destroy');
+        // Route::post('/addresses/update/{id}', 'update')->name('addresses.update');
+        // Route::get('/addresses/destroy/{id}', 'destroy')->name('addresses.destroy');
         Route::get('/addresses/set_default/{id}', 'set_default')->name('addresses.set_default');
     });
 });
 
-Route::resource('shops', \App\Http\Controllers\ShopController::class);
+Route::resource('shops', ShopController::class);
 
 Route::get('/instamojo/payment/pay-success', [InstamojoController::class, 'success'])->name('instamojo.success');
 

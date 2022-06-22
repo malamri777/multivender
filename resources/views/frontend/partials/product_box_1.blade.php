@@ -3,7 +3,13 @@
         <span class="badge-custom">{{ translate('OFF') }}<span class="box ml-1 mr-0">&nbsp;{{discount_in_percentage($product)}}%</span></span>
     @endif
     <div class="position-relative">
-        <a href="{{ route('product', $product->slug) }}" class="d-block">
+        @php
+            $product_url = route('product', $product->slug);
+            if($product->auction_product == 1) {
+                $product_url = route('auction-product', $product->slug);
+            }
+        @endphp
+        <a href="{{ $product_url }}" class="d-block">
             <img
                 class="img-fit lazyload mx-auto h-140px h-md-210px"
                 src="{{ static_asset('assets/img/placeholder.jpg') }}"
@@ -40,7 +46,7 @@
             {{ renderStarRating($product->rating) }}
         </div>
         <h3 class="fw-600 fs-13 text-truncate-2 lh-1-4 mb-0 h-35px">
-            <a href="{{ route('product', $product->slug) }}" class="d-block text-reset">{{  $product->getTranslation('name')  }}</a>
+            <a href="{{ $product_url }}" class="d-block text-reset">{{  $product->getTranslation('name')  }}</a>
         </h3>
         @if (addon_is_activated('club_point'))
             <div class="rounded px-2 mt-2 bg-soft-primary border-soft-primary border">

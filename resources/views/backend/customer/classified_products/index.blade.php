@@ -40,7 +40,7 @@
                             </label>
                         </td>
                         <td class="text-right">
-                            <a class="btn btn-soft-primary btn-icon btn-circle btn-sm" href="{{route('admin.admin.customer.product', $product->slug)}}" title="{{ translate('Show') }}">
+                            <a class="btn btn-soft-primary btn-icon btn-circle btn-sm" href="{{route('admin.customer.product', $product->slug)}}" title="{{ translate('Show') }}">
                                 <i class="las la-eye"></i>
                             </a>
                             <a href="#" class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete" data-href="{{route('admin.customer_products.destroy', $product->id)}}}}" title="{{ translate('Delete') }}">

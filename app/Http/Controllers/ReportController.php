@@ -9,6 +9,7 @@ use App\Models\Wallet;
 use App\Models\Seller;
 use App\Models\User;
 use App\Models\Search;
+use App\Models\Shop;
 use Auth;
 
 class ReportController extends Controller
@@ -40,7 +41,8 @@ class ReportController extends Controller
     public function seller_sale_report(Request $request)
     {
         $sort_by =null;
-        $sellers = User::where('user_type', 'seller')->orderBy('created_at', 'desc');
+        // $sellers = User::where('user_type', 'seller')->orderBy('created_at', 'desc');
+        $sellers = Shop::with('user')->orderBy('created_at', 'desc');
         if ($request->has('verification_status')){
             $sort_by = $request->verification_status;
             $sellers = $sellers->where('verification_status', $sort_by);

@@ -1,11 +1,46 @@
-<div class="card border-0 shadow-sm rounded">
+<div class="card rounded border-0 shadow-sm">
     <div class="card-header">
-        <h3 class="fs-16 fw-600 mb-0">{{translate('Summary')}}</h3>
+        <h3 class="fs-16 fw-600 mb-0">{{ translate('Summary') }}</h3>
         <div class="text-right">
             <span class="badge badge-inline badge-primary">
-                {{ count($carts) }} 
-                {{translate('Items')}}
+                {{ count($carts) }}
+                {{ translate('Items') }}
             </span>
+            @php
+                $coupon_discount = 0;
+            @endphp
+            @if (Auth::check() && get_setting('coupon_system') == 1)
+                @php
+                    $coupon_code = null;
+                @endphp
+
+                @foreach ($carts as $key => $cartItem)
+                    @php
+                        $product = \App\Models\Product::find($cartItem['product_id']);
+                    @endphp
+                    @if ($cartItem->coupon_applied == 1)
+                        @php
+                            $coupon_code = $cartItem->coupon_code;
+                            break;
+                        @endphp
+                    @endif
+                @endforeach
+
+                @php
+                    $coupon_discount = carts_coupon_discount($coupon_code);
+                @endphp
+            @endif
+
+            @php $subtotal_for_min_order_amount = 0; @endphp
+            @foreach ($carts as $key => $cartItem)
+                @php $subtotal_for_min_order_amount += cart_product_price($cartItem, $cartItem->product, false, false) * $cartItem['quantity']; @endphp
+            @endforeach
+
+            @if (get_setting('minimum_order_amount_check') == 1 && $subtotal_for_min_order_amount < get_setting('minimum_order_amount'))
+                <span class="badge badge-inline badge-primary">
+                    {{ translate('Minimum Order Amount') . ' ' . single_price(get_setting('minimum_order_amount')) }}
+                </span>
+            @endif
         </div>
     </div>
 
@@ -20,17 +55,17 @@
                     $total_point += $product->earn_point * $cartItem['quantity'];
                 @endphp
             @endforeach
-            
-            <div class="rounded px-2 mb-2 bg-soft-primary border-soft-primary border">
-                {{ translate("Total Club point") }}:
+
+            <div class="bg-soft-primary border-soft-primary mb-2 rounded border px-2">
+                {{ translate('Total Club point') }}:
                 <span class="fw-700 float-right">{{ $total_point }}</span>
             </div>
         @endif
         <table class="table">
             <thead>
                 <tr>
-                    <th class="product-name">{{translate('Product')}}</th>
-                    <th class="product-total text-right">{{translate('Total')}}</th>
+                    <th class="product-name">{{ translate('Product') }}</th>
+                    <th class="product-total text-right">{{ translate('Total') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -44,15 +79,15 @@
                 @foreach ($carts as $key => $cartItem)
                     @php
                         $product = \App\Models\Product::find($cartItem['product_id']);
-                        $subtotal += $cartItem['price'] * $cartItem['quantity'];
-                        $tax += $cartItem['tax'] * $cartItem['quantity'];
+                        $subtotal += cart_product_price($cartItem, $product, false, false) * $cartItem['quantity'];
+                        $tax += cart_product_tax($cartItem, $product, false) * $cartItem['quantity'];
                         $product_shipping_cost = $cartItem['shipping_cost'];
                         
                         $shipping += $product_shipping_cost;
                         
                         $product_name_with_choice = $product->getTranslation('name');
                         if ($cartItem['variant'] != null) {
-                            $product_name_with_choice = $product->getTranslation('name').' - '.$cartItem['variant'];
+                            $product_name_with_choice = $product->getTranslation('name') . ' - ' . $cartItem['variant'];
                         }
                     @endphp
                     <tr class="cart_item">
@@ -63,7 +98,8 @@
                             </strong>
                         </td>
                         <td class="product-total text-right">
-                            <span class="pl-4 pr-0">{{ single_price($cartItem['price']*$cartItem['quantity']) }}</span>
+                            <span
+                                class="pl-4 pr-0">{{ single_price(cart_product_price($cartItem, $cartItem->product, false, false) * $cartItem['quantity']) }}</span>
                         </td>
                     </tr>
                 @endforeach
@@ -74,21 +110,21 @@
 
             <tfoot>
                 <tr class="cart-subtotal">
-                    <th>{{translate('Subtotal')}}</th>
+                    <th>{{ translate('Subtotal') }}</th>
                     <td class="text-right">
                         <span class="fw-600">{{ single_price($subtotal) }}</span>
                     </td>
                 </tr>
 
                 <tr class="cart-shipping">
-                    <th>{{translate('Tax')}}</th>
+                    <th>{{ translate('Tax') }}</th>
                     <td class="text-right">
                         <span class="font-italic">{{ single_price($tax) }}</span>
                     </td>
                 </tr>
 
                 <tr class="cart-shipping">
-                    <th>{{translate('Total Shipping')}}</th>
+                    <th>{{ translate('Total Shipping') }}</th>
                     <td class="text-right">
                         <span class="font-italic">{{ single_price($shipping) }}</span>
                     </td>
@@ -96,34 +132,34 @@
 
                 @if (Session::has('club_point'))
                     <tr class="cart-shipping">
-                        <th>{{translate('Redeem point')}}</th>
+                        <th>{{ translate('Redeem point') }}</th>
                         <td class="text-right">
                             <span class="font-italic">{{ single_price(Session::get('club_point')) }}</span>
                         </td>
                     </tr>
                 @endif
 
-                @if ($carts->sum('discount') > 0)
+                @if ($coupon_discount > 0)
                     <tr class="cart-shipping">
-                        <th>{{translate('Coupon Discount')}}</th>
+                        <th>{{ translate('Coupon Discount') }}</th>
                         <td class="text-right">
-                            <span class="font-italic">{{ single_price($carts->sum('discount')) }}</span>
+                            <span class="font-italic">{{ single_price($coupon_discount) }}</span>
                         </td>
                     </tr>
                 @endif
 
                 @php
-                    $total = $subtotal+$tax+$shipping;
-                    if(Session::has('club_point')) {
+                    $total = $subtotal + $tax + $shipping;
+                    if (Session::has('club_point')) {
                         $total -= Session::get('club_point');
                     }
-                    if ($carts->sum('discount') > 0){
-                        $total -= $carts->sum('discount');
+                    if ($coupon_discount > 0) {
+                        $total -= $coupon_discount;
                     }
                 @endphp
 
                 <tr class="cart-total">
-                    <th><span class="strong-600">{{translate('Total')}}</span></th>
+                    <th><span class="strong-600">{{ translate('Total') }}</span></th>
                     <td class="text-right">
                         <strong><span>{{ single_price($total) }}</span></strong>
                     </td>
@@ -134,12 +170,14 @@
         @if (addon_is_activated('club_point'))
             @if (Session::has('club_point'))
                 <div class="mt-3">
-                    <form class="" action="{{ route('checkout.remove_club_point') }}" method="POST" enctype="multipart/form-data">
+                    <form class="" action="{{ route('checkout.remove_club_point') }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="input-group">
-                            <div class="form-control">{{ Session::get('club_point')}}</div>
+                            <div class="form-control">{{ Session::get('club_point') }}</div>
                             <div class="input-group-append">
-                                <button type="submit" class="btn btn-primary">{{translate('Remove Redeem Point')}}</button>
+                                <button type="submit"
+                                    class="btn btn-primary">{{ translate('Remove Redeem Point') }}</button>
                             </div>
                         </div>
                     </form>
@@ -148,18 +186,6 @@
         @endif
 
         @if (Auth::check() && get_setting('coupon_system') == 1)
-            @php 
-                $coupon_discount = $carts->sum('discount'); 
-                $coupon_code = null;
-            @endphp
-            @foreach ($carts as $key => $cartItem)
-                @if($cartItem->coupon_applied == 1 && $cartItem->discount > 0)
-                    @php
-                        $coupon_code = $cartItem->coupon_code;
-                        break;
-                    @endphp
-                @endif
-            @endforeach
             @if ($coupon_discount > 0 && $coupon_code)
                 <div class="mt-3">
                     <form class="" id="remove-coupon-form" enctype="multipart/form-data">
@@ -167,7 +193,8 @@
                         <div class="input-group">
                             <div class="form-control">{{ $coupon_code }}</div>
                             <div class="input-group-append">
-                                <button type="button" id="coupon-remove" class="btn btn-primary">{{translate('Change Coupon')}}</button>
+                                <button type="button" id="coupon-remove"
+                                    class="btn btn-primary">{{ translate('Change Coupon') }}</button>
                             </div>
                         </div>
                     </form>
@@ -178,9 +205,12 @@
                         @csrf
                         <input type="hidden" name="owner_id" value="{{ $carts[0]['owner_id'] }}">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="code" onkeydown="return event.key != 'Enter';" placeholder="{{translate('Have coupon code? Enter here')}}" required>
+                            <input type="text" class="form-control" name="code"
+                                onkeydown="return event.key != 'Enter';"
+                                placeholder="{{ translate('Have coupon code? Enter here') }}" required>
                             <div class="input-group-append">
-                                <button type="button" id="coupon-apply" class="btn btn-primary">{{translate('Apply')}}</button>
+                                <button type="button" id="coupon-apply"
+                                    class="btn btn-primary">{{ translate('Apply') }}</button>
                             </div>
                         </div>
                     </form>

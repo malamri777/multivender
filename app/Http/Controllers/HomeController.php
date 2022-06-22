@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\FlashDeal;
 use App\Models\Brand;
 use App\Models\Product;
+use App\Models\CustomerProduct;
 use App\Models\PickupPoint;
 use App\Models\CustomerPackage;
 use App\Models\User;
@@ -131,7 +132,7 @@ class HomeController extends Controller
     public function dashboard()
     {
         if(Auth::user()->user_type == 'seller'){
-            return view('seller.dashboard');
+            return redirect()->route('seller.dashboard');
         }
         elseif(Auth::user()->user_type == 'customer'){
             return view('frontend.user.customer.dashboard');
@@ -146,7 +147,10 @@ class HomeController extends Controller
 
     public function profile(Request $request)
     {
-        if(Auth::user()->user_type == 'delivery_boy'){
+        if(Auth::user()->user_type == 'seller'){
+            return redirect()->route('seller.profile.index');
+        }
+        elseif(Auth::user()->user_type == 'delivery_boy'){
             return view('delivery_boys.frontend.profile');
         }
         else{
@@ -536,6 +540,9 @@ class HomeController extends Controller
                 auth()->login($user, true);
 
                 flash(translate('Email Changed successfully'))->success();
+                if($user->user_type == 'seller') {
+                    return redirect()->route('seller.dashboard');
+                }
                 return redirect()->route('dashboard');
             }
         }

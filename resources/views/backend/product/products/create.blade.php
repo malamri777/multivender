@@ -1,6 +1,12 @@
 @extends('backend.layouts.app')
 
 @section('content')
+
+@php
+    CoreComponentRepository::instantiateShopRepository();
+    CoreComponentRepository::initializeCache();
+@endphp
+
 <div class="aiz-titlebar text-left mt-2 mb-3">
     <h5 class="mb-0 h6">{{translate('Add New Product')}}</h5>
 </div>
@@ -619,9 +625,6 @@
             </div>
             <div class="col-12">
                 <div class="btn-toolbar float-right mb-3" role="toolbar" aria-label="Toolbar with button groups">
-                    <div class="btn-group mr-2" role="group" aria-label="First group">
-                        <button type="submit" name="button" value="draft" class="btn btn-warning action-btn">{{ translate('Save As Draft') }}</button>
-                    </div>
                     <div class="btn-group mr-2" role="group" aria-label="Third group">
                         <button type="submit" name="button" value="unpublish" class="btn btn-primary action-btn">{{ translate('Save & Unpublish') }}</button>
                     </div>

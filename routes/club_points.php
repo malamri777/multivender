@@ -13,10 +13,10 @@
 
 //Admin
 
-use App\Http\Controllers\ClubpointController;
+use App\Http\Controllers\ClubPointController;
 
 Route::group(['prefix' =>'admin', 'middleware' => ['auth', 'admin']], function(){
-    Route::controller(ClubpointController::class)->group(function () {
+    Route::controller(ClubPointController::class)->group(function () {
         Route::get('club-points/configuration', 'configure_index')->name('club_points.configs');
         Route::get('club-points/index', 'index')->name('club_points.index');
         Route::get('set-club-points', 'set_point')->name('set_product_points');

@@ -21,7 +21,7 @@
                       <tr>
                           <td><a href="{{ route('product', $order->product->slug) }}">{{ $order->product->getTranslation('name') }}</a></td>
                           <td>
-                            <a class="btn btn-soft-info btn-icon btn-circle btn-sm" href="{{route('digitalproducts.download', encrypt($order->product->id))}}" title="{{ translate('Download') }}">
+                            <a class="btn btn-soft-info btn-icon btn-circle btn-sm" href="{{route('digital-products.download', encrypt($order->product->id))}}" title="{{ translate('Download') }}">
                                 <i class="las la-download"></i>
                             </a>
                           </td>

@@ -45,6 +45,11 @@
     				}else{
     					$file_name = $file->file_original_name;
 	    			}
+                    $file_path = my_asset($file->file_name);
+                    if($file->external_link) {
+                        $file_path = $file->external_link;
+                    }
+
     			@endphp
     			<div class="col-auto w-140px w-lg-220px">
     				<div class="aiz-file-box">
@@ -74,7 +79,7 @@
     					<div class="card card-file aiz-uploader-select c-default" title="{{ $file_name }}.{{ $file->extension }}">
     						<div class="card-file-thumb">
     							@if($file->type == 'image')
-    								<img src="{{ my_asset($file->file_name) }}" class="img-fit">
+    								<img src="{{ $file_path }}" class="img-fit">
     							@elseif($file->type == 'video')
     								<i class="las la-file-video"></i>
     							@else

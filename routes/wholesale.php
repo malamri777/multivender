@@ -11,7 +11,7 @@
 |
 */
 
-use App\Http\Controllers\Seller\WholesaleProductController;
+use App\Http\Controllers\WholesaleProductController;
 
 //Admin
 

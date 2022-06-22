@@ -21,7 +21,7 @@
                     </li>
                       @endforeach
                 </ul>
-                <form class="p-4" action="{{ route('customer_packages.update', $customer_package->id) }}" method="POST">
+                <form class="p-4" action="{{ route('admin.customer_packages.update', $customer_package->id) }}" method="POST">
                     <input type="hidden" name="_method" value="PATCH">
                     <input type="hidden" name="lang" value="{{ $lang }}">
                   	@csrf

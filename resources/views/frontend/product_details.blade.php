@@ -142,7 +142,7 @@
 
                                 @if ($detailedProduct->brand != null)
                                     <div class="col-auto">
-                                        <a href="{{ route('products.brand',$detailedProduct->brand->slug ?? '') }}">
+                                        <a href="{{ route('products.brand',$detailedProduct->brand->slug) }}">
                                             <img src="{{ uploaded_asset($detailedProduct->brand->logo) }}" alt="{{ $detailedProduct->brand->getTranslation('name') }}" height="30">
                                         </a>
                                     </div>
@@ -406,11 +406,11 @@
                                         <div class="opacity-50 mt-2">{{ translate('Refund')}}:</div>
                                     </div>
                                     <div class="col-10">
-                                        <a href="{{ route('returnpolicy') }}" target="_blank">
-                                            @if ($refund_sticker != null)
-                                                <img src="{{ uploaded_asset($refund_sticker) }}" height="36">
-                                            @else
-                                                <img src="{{ static_asset('assets/img/refund-sticker.jpg') }}" height="36">
+                                        <a href="{{ route('returnpolicy') }}" target="_blank"> 
+                                            @if ($refund_sticker != null) 
+                                                <img src="{{ uploaded_asset($refund_sticker) }}" height="36"> 
+                                            @else 
+                                                <img src="{{ static_asset('assets/img/refund-sticker.jpg') }}" height="36"> 
                                             @endif</a>
                                         <a href="{{ route('returnpolicy') }}" class="ml-2" target="_blank">{{ translate('View Policy') }}</a>
                                     </div>
@@ -565,7 +565,7 @@
                                 <div class="p-4">
                                     <div class="embed-responsive embed-responsive-16by9">
                                         @if ($detailedProduct->video_provider == 'youtube' && isset(explode('=', $detailedProduct->video_link)[1]))
-                                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ explode('=', $detailedProduct->video_link)[1] }}"></iframe>
+                                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ get_url_params($detailedProduct->video_link, 'v') }}"></iframe>
                                         @elseif ($detailedProduct->video_provider == 'dailymotion' && isset(explode('video/', $detailedProduct->video_link)[1]))
                                             <iframe class="embed-responsive-item" src="https://www.dailymotion.com/embed/video/{{ explode('video/', $detailedProduct->video_link)[1] }}"></iframe>
                                         @elseif ($detailedProduct->video_provider == 'vimeo' && isset(explode('vimeo.com/', $detailedProduct->video_link)[1]))
