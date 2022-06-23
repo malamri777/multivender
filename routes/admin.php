@@ -440,14 +440,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
 
     Route::resource('cities', CityController::class);
     Route::controller(CityController::class)->group(function () {
-        // Route::get('/cities/edit/{id}', 'edit')->name('cities.edit');
-        // Route::get('/cities/destroy/{id}', 'destroy')->name('cities.destroy');
         Route::post('/cities/status', 'updateStatus')->name('cities.status');
+        Route::post('/cities/get-city-option-by-state-id', 'getCityOptionByStateId')->name('cities.get-city-option-by-state-id');
     });
 
-    Route::resource('districts', DistrictController::class);
-    Route::controller(DistrictController::class)->group(function () {
+    // Districts
+    Route::resource('districts', DistrictController::class)->except('destroy');
+    Route::controller(DistrictController::class)->group(function() {
         Route::post('/districts/status', 'updateStatus')->name('districts.status');
+        Route::get('/districts/destroy/{id}', 'destroy')->name('districts.destroy');
     });
 
     Route::view('/system/update', 'backend.system.update')->name('system_update');
