@@ -12,7 +12,7 @@
         <div class="card">
             <!--card body-->
             <div class="card-body">
-                <form action="{{ route('stock_report.index') }}" method="GET">
+                <form action="{{ route('admin.stock_report.index') }}" method="GET">
                     <div class="form-group row offset-lg-2">
                         <label class="col-md-3 col-form-label">{{translate('Sort by Category')}} :</label>
                         <div class="col-md-5">

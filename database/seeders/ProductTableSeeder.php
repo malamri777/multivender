@@ -5,8 +5,10 @@ namespace Database\Seeders;
 use App\Models\Attribute;
 use App\Models\AttributeTranslation;
 use App\Models\AttributeValue;
+use App\Models\Product;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Modules\Translations\Entities\ProductTranslation;
 
 class ProductTableSeeder extends Seeder
 {
@@ -33,6 +35,26 @@ class ProductTableSeeder extends Seeder
         AttributeValue::create([
             'attribute_id' => 1,
             'value' => 'Large'
+        ]);
+
+        // Product
+        $product = Product::create([
+            'name' => 'Product One',
+            'user_id' => 1,
+            'category_id' => 1,
+            'brand_id' => 1,
+            'description' => 'descriptiondescriptiondescription',
+            'unit_price' => 500,
+            'purchase_price' => 250,
+            'cash_on_delivery' => true,
+            'unit' => 1
+        ]);
+        ProductTranslation::create([
+            'product_id' => $product->id,
+            'name' => 'منتج ١',
+            'unit' => '١',
+            'description' => 'محلاظة',
+            'lang' => 'sa'
         ]);
 
 

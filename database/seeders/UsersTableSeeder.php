@@ -28,9 +28,6 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('password'),
             'user_type' => 'seller'
         ]);
-        $shop = Shop::create([
-
-        ]);
 
 
         $user = User::create([

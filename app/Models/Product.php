@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use App;
 use Modules\Translations\Entities\ProductTranslation;
 
 class Product extends Model
 {
+    use Sluggable;
 
     protected $fillable = [
         'name', 'added_by', 'user_id', 'category_id', 'brand_id', 'photos', 'thumbnail_img', 'video_provider', 'video_link',
@@ -86,5 +88,15 @@ class Product extends Model
     public function scopePhysical($query)
     {
         return $query->where('digital', 0);
+    }
+
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
     }
 }

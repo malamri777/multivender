@@ -217,7 +217,7 @@
 //                headers: {
 //                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 //                },
-//                url: "{{route('bulk-order-status')}}",
+//                url: "{{route('admin.bulk-order-status')}}",
 //                type: 'POST',
 //                data: data,
 //                cache: false,
@@ -237,7 +237,7 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url: "{{route('bulk-order-delete')}}",
+                url: "{{route('admin.bulk-order-delete')}}",
                 type: 'POST',
                 data: data,
                 cache: false,

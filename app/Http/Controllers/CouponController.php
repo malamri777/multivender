@@ -37,13 +37,13 @@ class CouponController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(CouponRequest $request)
-    {   
+    {
         $user_id = User::where('user_type', 'admin')->first()->id;
         Coupon::create($request->validated() + [
             'user_id' => $user_id,
         ]);
         flash(translate('Coupon has been saved successfully'))->success();
-        return redirect()->route('coupon.index');
+        return redirect()->route('admin.coupon.index');
     }
 
     /**
@@ -80,7 +80,7 @@ class CouponController extends Controller
     {
         $coupon->update($request->validated());
         flash(translate('Coupon has been updated successfully'))->success();
-        return redirect()->route('coupon.index');
+        return redirect()->route('admin.coupon.index');
     }
 
     /**
@@ -93,7 +93,7 @@ class CouponController extends Controller
     {
         Coupon::destroy($id);
         flash(translate('Coupon has been deleted successfully'))->success();
-        return redirect()->route('coupon.index');
+        return redirect()->route('admin.coupon.index');
     }
 
     public function get_coupon_form(Request $request)

@@ -19,6 +19,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CustomerPackageController;
 use App\Http\Controllers\CustomerProductController;
 use App\Http\Controllers\DigitalProductController;
+use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\FlashDealController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\NewsletterController;
@@ -442,6 +443,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
         // Route::get('/cities/edit/{id}', 'edit')->name('cities.edit');
         // Route::get('/cities/destroy/{id}', 'destroy')->name('cities.destroy');
         Route::post('/cities/status', 'updateStatus')->name('cities.status');
+    });
+
+    Route::resource('districts', DistrictController::class);
+    Route::controller(DistrictController::class)->group(function () {
+        Route::post('/districts/status', 'updateStatus')->name('districts.status');
     });
 
     Route::view('/system/update', 'backend.system.update')->name('system_update');

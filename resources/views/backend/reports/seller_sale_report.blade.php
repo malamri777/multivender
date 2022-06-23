@@ -11,7 +11,7 @@
     <div class="col-md-8 mx-auto">
         <div class="card">
             <div class="card-body">
-                <form action="{{ route('seller_sale_report.index') }}" method="GET">
+                <form action="{{ route('admin.seller_sale_report.index') }}" method="GET">
                     <div class="form-group row offset-lg-2">
                         <label class="col-md-3 col-form-label">{{translate('Sort by verificarion status')}} :</label>
                         <div class="col-md-5">

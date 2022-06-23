@@ -6,6 +6,7 @@ use App\Models\City;
 use App\Models\CityTranslation;
 use App\Models\Country;
 use App\Models\Currency;
+use App\Models\District;
 use App\Models\State;
 use App\Models\Tax;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -13,6 +14,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Modules\Translations\Entities\CountryStateTranslation;
 use Modules\Translations\Entities\CountryTranslation;
+use Modules\Translations\Entities\DistrictTranslation;
 
 class SetupTableSeeder extends Seeder
 {
@@ -126,6 +128,37 @@ class SetupTableSeeder extends Seeder
             'name' => 'جده',
             'lang' => 'sa'
         ]);
+
+        $district = District::create([
+           'name' => 'Alrodah',
+            'city_id' => 1,
+        ]);
+        DistrictTranslation::create([
+            'district_id' => $district->id,
+            'name' => 'الروضة',
+            'lang' => 'sa'
+        ]);
+
+        $district = District::create([
+            'name' => 'Alyarmok',
+            'city_id' => 1,
+        ]);
+        DistrictTranslation::create([
+            'district_id' => $district->id,
+            'name' => 'اليرموك',
+            'lang' => 'sa'
+        ]);
+
+        $district = District::create([
+            'name' => 'Almalga',
+            'city_id' => 1,
+        ]);
+        DistrictTranslation::create([
+            'district_id' => $district->id,
+            'name' => 'الملقا',
+            'lang' => 'sa'
+        ]);
+
 
         // Color
         $path = base_path() . '/database/seeders/sql/Color.sql';

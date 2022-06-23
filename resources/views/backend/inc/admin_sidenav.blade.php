@@ -969,6 +969,11 @@
                                             <span class="aiz-side-nav-text">{{translate('Shipping Cities')}}</span>
                                         </a>
                                     </li>
+                                    <li class="aiz-side-nav-item">
+                                        <a href="{{route('admin.districts.index')}}" class="aiz-side-nav-link {{ areActiveRoutes(['admin.districts.index','admin.districts.edit','admin.districts.update'])}}">
+                                            <span class="aiz-side-nav-text">{{translate('Shipping District')}}</span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
 

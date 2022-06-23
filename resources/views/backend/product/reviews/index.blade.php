@@ -13,10 +13,10 @@
         <div class="row flex-grow-1">
             <div class="col">
                 <h5 class="mb-0 h6">{{translate('Product Reviews')}}</h5>
-                
+
             </div>
             <div class="col-md-6 col-xl-4 ml-auto mr-0">
-                <form class="" id="sort_by_rating" action="{{ route('reviews.index') }}" method="GET">
+                <form class="" id="sort_by_rating" action="{{ route('admin.reviews.index') }}" method="GET">
                     <div class="" style="min-width: 200px;">
                         <select class="form-control aiz-selectpicker" name="rating" id="rating" onchange="filter_by_rating()">
                             <option value="">{{translate('Filter by Rating')}}</option>
@@ -79,7 +79,7 @@
             else{
                 var status = 0;
             }
-            $.post('{{ route('reviews.published') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
+            $.post('{{ route('admin.reviews.published') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
                 if(data == 1){
                     AIZ.plugins.notify('success', '{{ translate('Published reviews updated successfully') }}');
                 }
