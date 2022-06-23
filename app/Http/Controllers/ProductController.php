@@ -204,7 +204,7 @@ class ProductController extends Controller
         ]), $product);
 
         // Product Translations
-        $request->merge(['lang' => env('DEFAULT_LANGUAGE')]);
+        $request->merge(['lang' => getDefaultLanguage()]);
         ProductTranslation::create($request->only([
             'lang', 'name', 'unit', 'description', 'product_id'
         ]));
@@ -214,7 +214,7 @@ class ProductController extends Controller
         Artisan::call('view:clear');
         Artisan::call('cache:clear');
 
-        return redirect()->route('products.admin');
+        return redirect()->route('admin.products.admin');
     }
 
     /**
@@ -393,11 +393,11 @@ class ProductController extends Controller
 
         flash(translate('Product has been duplicated successfully'))->success();
         if ($request->type == 'In House')
-            return redirect()->route('products.admin');
+            return redirect()->route('admin.products.admin');
         elseif ($request->type == 'Seller')
-            return redirect()->route('products.seller');
+            return redirect()->route('admin.products.seller');
         elseif ($request->type == 'All')
-            return redirect()->route('products.all');
+            return redirect()->route('admin.products.all');
     }
 
     public function get_products_by_brand(Request $request)

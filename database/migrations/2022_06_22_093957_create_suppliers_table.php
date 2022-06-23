@@ -16,11 +16,17 @@ return new class extends Migration
         Schema::create('suppliers', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
+            $table->string('cr_no')->unique();
+            $table->string('vat_no')->unique();
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('contact_user')->nullable();
             $table->longText('description')->nullable();
             $table->longText('content')->nullable();
             $table->string('logo')->default('assets/img/logo.png');
-            $table->string('status')->nullable();
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

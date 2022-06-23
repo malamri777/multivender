@@ -31,6 +31,10 @@ class DatabaseSeeder extends Seeder
 //            LaratrustSeeder::class,
             UsersTableSeeder::class,
 
+            // Upload
+            UploadTableSeeder::class,
+            SupplierSeeder::class,
+
             // Product
             CategoryTableSeeder::class,
             BrandTableSeeder::class,

@@ -13,16 +13,7 @@
                 <input type="hidden" name="lang" value="{{ $lang }}">
                 @csrf
                 <div class="card">
-                    <ul class="nav nav-tabs nav-fill border-light">
-                        @foreach (\App\Models\Language::all() as $key => $language)
-                        <li class="nav-item">
-                            <a class="nav-link text-reset @if ($language->code == $lang) active @else bg-soft-dark border-light border-left-0 @endif py-3" href="{{ route('admin.products.admin.edit', ['id'=>$product->id, 'lang'=> $language->code] ) }}">
-                                <img src="{{ static_asset('assets/img/flags/'.$language->code.'.png') }}" height="11" class="mr-1">
-                                <span>{{$language->name}}</span>
-                            </a>
-                        </li>
-                        @endforeach
-                    </ul>
+                    @include('backend.inc.admin_lang_form_menu', ['route_name' => 'admin.products.admin.edit', 'params' => ['id'=>$product->id] ])
                     <div class="card-body">
                         <div class="form-group row">
                             <label class="col-lg-3 col-from-label">{{translate('Product Name')}} <i class="las la-language text-danger" title="{{translate('Translatable')}}"></i></label>
@@ -165,29 +156,8 @@
                         </div> --}}
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="mb-0 h6">{{translate('Product Videos')}}</h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-from-label">{{translate('Video Provider')}}</label>
-                            <div class="col-lg-8">
-                                <select class="form-control aiz-selectpicker" name="video_provider" id="video_provider">
-                                    <option value="youtube" <?php if ($product->video_provider == 'youtube') echo "selected"; ?> >{{translate('Youtube')}}</option>
-                                    <option value="dailymotion" <?php if ($product->video_provider == 'dailymotion') echo "selected"; ?> >{{translate('Dailymotion')}}</option>
-                                    <option value="vimeo" <?php if ($product->video_provider == 'vimeo') echo "selected"; ?> >{{translate('Vimeo')}}</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-from-label">{{translate('Video Link')}}</label>
-                            <div class="col-lg-8">
-                                <input type="text" class="form-control" name="video_link" value="{{ $product->video_link }}" placeholder="{{ translate('Video Link') }}">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+
                 <div class="card">
                     <div class="card-header">
                         <h5 class="mb-0 h6">{{translate('Product Variation')}}</h5>

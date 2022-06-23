@@ -62,11 +62,11 @@ class RouteServiceProvider extends ServiceProvider
 //
 //        $this->mapPosRoutes();
 
-        $this->mapSellerPackageRoutes();
+//        $this->mapSellerPackageRoutes();
 
-        $this->mapDeliveryBoyRoutes();
+//        $this->mapDeliveryBoyRoutes();
 
-        $this->mapAuctionRoutes();
+//        $this->mapAuctionRoutes();
 
         $this->mapWholesaleRoutes();
 

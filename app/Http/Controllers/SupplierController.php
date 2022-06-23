@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreSupplierRequest;
+use App\Http\Requests\SupplierRequest;
 use App\Http\Requests\UpdateSupplierRequest;
 use App\Models\Supplier;
+use Illuminate\Http\Request;
 
 class SupplierController extends Controller
 {
@@ -15,7 +17,19 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        //
+//        $suppliers = Supplier::with([
+//                'supplierWarehouses',
+//                'supplierWarehouses.warehouseWarehouseUsers',
+//                'supplierWarehouses.warehouseWarehouseDrivers'])
+//            ->paginate(10);
+
+        $suppliers = Supplier::paginate(10);
+        return view('backend.suppliers.index', compact('suppliers'));
+    }
+
+    public function create()
+    {
+        return view('backend.suppliers.create');
     }
 
     /**
@@ -24,9 +38,25 @@ class SupplierController extends Controller
      * @param  \App\Http\Requests\StoreSupplierRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreSupplierRequest $request)
+    public function store(SupplierRequest $request)
     {
-        //
+        $supplier = new Supplier();
+        $supplier->name = $request->name;
+        $supplier->cr_no = $request->cr_no;
+        $supplier->vat_no = $request->vat_no;
+        $supplier->email = $request->email;
+        $supplier->phone = $request->phone;
+        $supplier->contact_user = $request->contact_user;
+        $supplier->description = $request->description;
+        $supplier->content = $request->content;
+        $supplier->logo = $request->logo;
+        if ($supplier->save()) {
+            flash(translate('Supplier has been created successfully'))->success();
+            return redirect()->route('admin.suppliers.index');
+        }
+
+        flash(translate('Error Creating Supplier'))->error();
+        return back();
     }
 
     /**
@@ -41,15 +71,43 @@ class SupplierController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Show the form for editing the specified resource.
      *
-     * @param  \App\Http\Requests\UpdateSupplierRequest  $request
-     * @param  \App\Models\Supplier  $supplier
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSupplierRequest $request, Supplier $supplier)
+    public function edit($id)
     {
-        //
+        $supplier = Supplier::findOrFail(decrypt($id));
+
+        return view('backend.suppliers.edit', compact('supplier'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  SupplierRequest  $request
+     * @param  Supplier  $supplier
+     * @return Response
+     */
+    public function update(SupplierRequest $request, Supplier $supplier)
+    {
+        $supplier->name = $request->name;
+        $supplier->cr_no = $request->cr_no;
+        $supplier->vat_no = $request->vat_no;
+        $supplier->email = $request->email;
+        $supplier->phone = $request->phone;
+        $supplier->contact_user = $request->contact_user;
+        $supplier->description = $request->description;
+        $supplier->content = $request->content;
+        $supplier->logo = $request->logo;
+        if ($supplier->save()) {
+            flash(translate('Supplier has been updated successfully'))->success();
+            return redirect()->route('admin.suppliers.index');
+        }
+
+        flash(translate('Error updating Supplier'))->error();
+        return back();
     }
 
     /**
@@ -61,5 +119,15 @@ class SupplierController extends Controller
     public function destroy(Supplier $supplier)
     {
         //
+    }
+
+    public function updateStatus(Request $request)
+    {
+        $supplier = Supplier::findOrFail($request->id);
+        $supplier->status = $request->status;
+
+
+        $supplier->save();
+        return 1;
     }
 }

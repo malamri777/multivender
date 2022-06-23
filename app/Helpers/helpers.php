@@ -680,7 +680,7 @@ function hex2rgba($color, $opacity = false)
 if (!function_exists('isAdmin')) {
     function isAdmin()
     {
-        if (Auth::check() && (Auth::user()->user_type == 'admin' || Auth::user()->user_type == 'staff')) {
+        if (Auth::check() && (Auth::user()->user_type == 'super_admin' || Auth::user()->user_type == 'admin' || Auth::user()->user_type == 'staff')) {
             return true;
         }
         return false;
@@ -866,5 +866,22 @@ if (!function_exists('seller_package_validity_check')) {
         return $package_validation;
         // Ture = Seller package is valid and seller has the product upload limit
         // False = Seller package is invalid or seller product upload limit exists.
+    }
+}
+
+if (!function_exists('getDefaultLanguage')) {
+    function getDefaultLanguage()
+    {
+        return env('DEFAULT_LANGUAGE') ?? 'en';
+    }
+}
+
+if (!function_exists('isEditMethod')) {
+    function isEditMethod($request)
+    {
+        if ($request->get('_method') === 'PATCH' or $request->get('_method') === 'PUT') {
+            return true;
+        }
+        return false;
     }
 }

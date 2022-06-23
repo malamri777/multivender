@@ -45,7 +45,7 @@
                                 <span class="fs-16 text-info">{{ translate('Rating') }}</span>
                             </p>
                             <h3 class="mb-0 text-white fs-30">
-                                {{ Auth::user()->shop->rating }}
+                                {{ Auth::user()->shop->rating ?? 0 }}
                             </h3>
 
                         </div>
@@ -179,7 +179,7 @@
                     $date = date('Y-m-d');
                     $days_ago_30 = date('Y-m-d', strtotime('-30 days', strtotime($date)));
                     $days_ago_60 = date('Y-m-d', strtotime('-60 days', strtotime($date)));
-                    
+
                     $orderTotal = \App\Models\Order::where('seller_id', Auth::user()->id)
                         ->where('payment_status', 'paid')
                         ->where('created_at', '>=', $days_ago_30)

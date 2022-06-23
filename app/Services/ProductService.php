@@ -62,10 +62,10 @@ class ProductService
                 unset($collection['flat_shipping_cost']);
             }
         }
-        $slug = Str::slug($collection['name']);
-        $same_slug_count = Product::where('slug', 'LIKE', $slug . '%')->count();
-        $slug_suffix = $same_slug_count ? '-' . $same_slug_count + 1 : '';
-        $slug .= $slug_suffix;
+//        $slug = Str::slug($collection['name']);
+//        $same_slug_count = Product::where('slug', 'LIKE', $slug . '%')->count();
+//        $slug_suffix = $same_slug_count ? '-' . $same_slug_count + 1 : '';
+//        $slug .= $slug_suffix;
 
         $colors = json_encode(array());
         if (
@@ -134,7 +134,7 @@ class ProductService
             'discount_start_date',
             'discount_end_date',
             'shipping_cost',
-            'slug',
+//            'slug',
             'colors',
             'choice_options',
             'attributes',
@@ -148,11 +148,11 @@ class ProductService
     {
         $collection = collect($data);
 
-        $slug = Str::slug($collection['name']);
-        $slug = $collection['slug'] ? Str::slug($collection['slug']) : Str::slug($collection['name']);
-        $same_slug_count = Product::where('slug', 'LIKE', $slug . '%')->count();
-        $slug_suffix = $same_slug_count > 1 ? '-' . $same_slug_count + 1 : '';
-        $slug .= $slug_suffix;
+//        $slug = Str::slug($collection['name']);
+//        $slug = $collection['slug'] ? Str::slug($collection['slug']) : Str::slug($collection['name']);
+//        $same_slug_count = Product::where('slug', 'LIKE', $slug . '%')->count();
+//        $slug_suffix = $same_slug_count > 1 ? '-' . $same_slug_count + 1 : '';
+//        $slug .= $slug_suffix;
 
         if ($collection['lang'] != env("DEFAULT_LANGUAGE")) {
             unset($collection['name']);
@@ -261,7 +261,7 @@ class ProductService
             'discount_start_date',
             'discount_end_date',
             'shipping_cost',
-            'slug',
+//            'slug',
             'colors',
             'choice_options',
             'attributes',

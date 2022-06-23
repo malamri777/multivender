@@ -2,6 +2,9 @@
 
 namespace App\Observers;
 
+use App\Notifications\DataChangeEmailNotification;
+use Notification;
+
 class SupplierActionObserver
 {
     public function created(Supplier $model)

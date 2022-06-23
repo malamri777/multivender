@@ -32,6 +32,9 @@ class Supplier extends Model
 
     protected $fillable = [
         'name',
+        'email',
+        'phone',
+        'contact_user',
         'description',
         'content',
         'status',
@@ -43,7 +46,7 @@ class Supplier extends Model
     public static function boot()
     {
         parent::boot();
-        Supplier::observe(new \App\Observers\SupplierActionObserver());
+//        Supplier::observe(new \App\Observers\SupplierActionObserver());
     }
 
     // public function registerMediaConversions(Media $media = null): void
@@ -57,10 +60,10 @@ class Supplier extends Model
         return $this->hasMany(Warehouse::class, 'supplier_id', 'id');
     }
 
-    public function getLogoAttribute()
-    {
-        return $this->getMedia('logo')->last();
-    }
+//    public function getLogoAttribute()
+//    {
+//        return $this->getMedia('logo')->last();
+//    }
 
     protected function serializeDate(DateTimeInterface $date)
     {

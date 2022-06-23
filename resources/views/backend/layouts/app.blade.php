@@ -89,6 +89,8 @@
 	        AIZ.plugins.notify('{{ $message['level'] }}', '{{ $message['message'] }}');
 	    @endforeach
 
+        $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+
 
         if ($('#lang-change').length > 0) {
             $('#lang-change .dropdown-menu a').each(function() {

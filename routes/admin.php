@@ -39,6 +39,7 @@ use App\Http\Controllers\SellerWithdrawRequestController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\SubscriberController;
+use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\SupportTicketController;
 use App\Http\Controllers\TaxController;
 use App\Http\Controllers\UpdateController;
@@ -450,6 +451,20 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
         Route::post('/districts/status', 'updateStatus')->name('districts.status');
         Route::get('/districts/destroy/{id}', 'destroy')->name('districts.destroy');
     });
+
+    // Supplier
+    Route::resource('suppliers', SupplierController::class);
+    Route::controller(SupplierController::class)->as('suppliers.')->group(function () {
+        Route::post('update_status', 'updateStatus')->name('update_status');
+//        Route::get('/currency', 'currency')->name('currency.index');
+//        Route::post('/currency/update', 'updateCurrency')->name('currency.update');
+//        Route::post('/your-currency/update', 'updateYourCurrency')->name('your_currency.update');
+//        Route::get('/currency/create', 'create')->name('currency.create');
+//        Route::post('/currency/store', 'store')->name('currency.store');
+//        Route::post('/currency/currency_edit', 'edit')->name('currency.edit');
+//        Route::post('/currency/update_status', 'update_status')->name('currency.update_status');
+    });
+    // Warehouse
 
     Route::view('/system/update', 'backend.system.update')->name('system_update');
     Route::view('/system/server-status', 'backend.system.server_status')->name('system_server');
