@@ -67,6 +67,10 @@
             @include('backend.inc.admin_nav')
 			<div class="aiz-main-content">
 				<div class="px-15px px-lg-25px">
+                    <div class="col-md-6">
+                        @include('flash::message')
+                    </div>
+
                     @yield('content')
 				</div>
 				<div class="bg-white text-center py-3 px-15px px-lg-25px mt-auto">

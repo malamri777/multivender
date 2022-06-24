@@ -29,14 +29,6 @@ class UsersTableSeeder extends Seeder
             'user_type' => 'admin',
         ]);
 
-        $user = User::create([
-            'name' => 'supplier1',
-            'email' => 's1@dev.com',
-            'password' => bcrypt('password'),
-            'user_type' => 'seller',
-            'email_verified_at' => now()
-        ]);
-
 
         $user = User::create([
             'name' => 'rustorant',

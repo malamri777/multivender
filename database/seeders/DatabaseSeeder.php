@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
             // Upload
             UploadTableSeeder::class,
             SupplierSeeder::class,
+            WarehouseTableSeeder::class,
 
             // Product
             CategoryTableSeeder::class,

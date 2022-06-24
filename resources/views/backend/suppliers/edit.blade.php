@@ -8,7 +8,6 @@
             <div class="card-header">
                 <h5 class="mb-0 h6">{{translate('Supplier Information')}}</h5>
             </div>
-            @include('flash::message')
 
             <form class="form-horizontal" action="{{ route('admin.suppliers.update', $supplier->id) }}" method="POST" enctype="multipart/form-data">
                 <input name="_method" type="hidden" value="PATCH">

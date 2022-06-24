@@ -38,6 +38,7 @@ class Supplier extends Model
         'description',
         'content',
         'status',
+        'admin_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -54,6 +55,11 @@ class Supplier extends Model
     //     $this->addMediaConversion('thumb')->fit('crop', 50, 50);
     //     $this->addMediaConversion('preview')->fit('crop', 120, 120);
     // }
+
+    public function admin()
+    {
+        return $this->belongsTo(User::class, 'admin_id');
+    }
 
     public function supplierWarehouses()
     {

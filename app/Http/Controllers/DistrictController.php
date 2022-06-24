@@ -149,4 +149,25 @@ class DistrictController extends Controller
 
         return 1;
     }
+
+    public function getDistrictOptionByCityId(Request $request)
+    {
+        if ($request->city_id) {
+            $districts = District::where('city_id', $request->city_id)->get();
+
+            $html = '';
+
+            if($districts->count() > 0) {
+                $html .= '<option value=""></option>';
+            }
+
+            foreach ($districts as $row) {
+                $html .= '<option value="' . $row->id . '">' . $row->name . '</option>';
+            }
+
+            echo json_encode($html);
+        } else {
+            echo json_encode('');
+        }
+    }
 }

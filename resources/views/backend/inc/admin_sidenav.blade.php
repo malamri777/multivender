@@ -44,6 +44,16 @@
                                     <span class="aiz-side-nav-text">{{translate('Supplier List')}}</span>
                                 </a>
                             </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="{{route('admin.warehouses.index')}}" class="aiz-side-nav-link {{ areActiveRoutes(['admin.warehouses.index', 'admin.warehouses.create'])}}">
+                                    <span class="aiz-side-nav-text">{{translate('Warehouse List')}}</span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="{{route('admin.suppliers.users')}}" class="aiz-side-nav-link {{ areActiveRoutes(['admin.suppliers.users'])}}">
+                                    <span class="aiz-side-nav-text">{{translate('Supplier User List')}}</span>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 @endif

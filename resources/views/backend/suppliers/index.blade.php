@@ -28,7 +28,7 @@
                     <th>{{translate('Name')}}</th>
                     <th data-breakpoints="lg">{{translate('logo')}}</th>
                     <th data-breakpoints="lg">{{translate('status')}}</th>
-                    <th width="10%">{{translate('Options')}}</th>
+                    <th data-breakpoints="sm" class="text-right">{{translate('Options')}}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -49,7 +49,7 @@
                             </a>
                             @if(Auth::user()->user_type == 'super_admin')
                                 <a href="#" class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete" data-href="{{route('admin.suppliers.destroy', $supplier->id)}}" title="{{ translate('Delete') }}">
-                                    <i class="fa fa-ban text-danger"></i>
+                                    <i class="las la-trash"></i>
                                 </a>
                             @endif
                         </td>

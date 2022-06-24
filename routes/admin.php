@@ -43,6 +43,7 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\SupportTicketController;
 use App\Http\Controllers\TaxController;
 use App\Http\Controllers\UpdateController;
+use App\Http\Controllers\WarehouseController;
 use App\Http\Controllers\WebsiteController;
 
 /*
@@ -279,8 +280,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
     });
 
     // Staff
-    Route::resource('staffs', StaffController::class);
-    // Route::get('/staffs/destroy/{id}', [StaffController::class, 'destroy'])->name('staffs.destroy');
+    Route::resource('staffs', StaffController::class)->except('destroy');
+    Route::get('/staffs/destroy/{id}', [StaffController::class, 'destroy'])->name('staffs.destroy');
 
     // Flash Deal
     Route::resource('flash_deals', FlashDealController::class);
@@ -447,24 +448,40 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
 
     // Districts
     Route::resource('districts', DistrictController::class)->except('destroy');
-    Route::controller(DistrictController::class)->group(function() {
-        Route::post('/districts/status', 'updateStatus')->name('districts.status');
-        Route::get('/districts/destroy/{id}', 'destroy')->name('districts.destroy');
+    Route::controller(DistrictController::class)
+        ->as('districts.')
+        ->prefix('districts')
+        ->group(function() {
+            Route::post('status', 'updateStatus')->name('status');
+            Route::get('destroy/{id}', 'destroy')->name('destroy');
+            Route::post('get-districts-option-by-city-id', 'getDistrictOptionByCityId')->name('get-districts-option-by-city-id');
     });
 
     // Supplier
-    Route::resource('suppliers', SupplierController::class);
-    Route::controller(SupplierController::class)->as('suppliers.')->group(function () {
+    Route::resource('suppliers', SupplierController::class)->except('destroy');
+    Route::controller(SupplierController::class)
+        ->as('suppliers.')
+        ->prefix('suppliers')
+        ->group(function () {
         Route::post('update_status', 'updateStatus')->name('update_status');
-//        Route::get('/currency', 'currency')->name('currency.index');
-//        Route::post('/currency/update', 'updateCurrency')->name('currency.update');
-//        Route::post('/your-currency/update', 'updateYourCurrency')->name('your_currency.update');
-//        Route::get('/currency/create', 'create')->name('currency.create');
-//        Route::post('/currency/store', 'store')->name('currency.store');
-//        Route::post('/currency/currency_edit', 'edit')->name('currency.edit');
-//        Route::post('/currency/update_status', 'update_status')->name('currency.update_status');
+        Route::get('users', 'getUsers')->name('users');
+        Route::get('destroy/{id}', 'destroy')->name('destroy');
     });
+
     // Warehouse
+    Route::resource('warehouses', WarehouseController::class)->except('destroy');
+    Route::controller(WarehouseController::class)
+        ->as('warehouses.')
+        ->prefix('warehouses')
+        ->group(function () {
+        Route::post('update_status', 'updateStatus')->name('update_status');
+        Route::get('users', 'getUsers')->name('users');
+        Route::get('destroy/{id}', 'destroy')->name('destroy');
+    });
+
+
+
+
 
     Route::view('/system/update', 'backend.system.update')->name('system_update');
     Route::view('/system/server-status', 'backend.system.server_status')->name('system_server');

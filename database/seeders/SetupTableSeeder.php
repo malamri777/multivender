@@ -129,6 +129,7 @@ class SetupTableSeeder extends Seeder
             'lang' => 'sa'
         ]);
 
+        // District
         $district = District::create([
            'name' => 'Alrodah',
             'city_id' => 1,
@@ -152,6 +153,16 @@ class SetupTableSeeder extends Seeder
         $district = District::create([
             'name' => 'Almalga',
             'city_id' => 1,
+        ]);
+        DistrictTranslation::create([
+            'district_id' => $district->id,
+            'name' => 'الملقا',
+            'lang' => 'sa'
+        ]);
+
+        $district = District::create([
+            'name' => 'Almalga',
+            'city_id' => 2,
         ]);
         DistrictTranslation::create([
             'district_id' => $district->id,

@@ -41,7 +41,7 @@ class Warehouse extends Model
     public static function boot()
     {
         parent::boot();
-        Warehouse::observe(new \App\Observers\WarehouseActionObserver());
+//        Warehouse::observe(new \App\Observers\WarehouseActionObserver());
     }
 
     public function warehouseOrders()
@@ -52,6 +52,11 @@ class Warehouse extends Model
     public function warehouseWarehouseProducts()
     {
         return $this->hasMany(WarehouseProduct::class, 'warehouse_id', 'id');
+    }
+
+    public function admin()
+    {
+        return $this->belongsTo(User::class, 'admin_id');
     }
 
     public function warehouseWarehouseUsers()
@@ -72,6 +77,11 @@ class Warehouse extends Model
     public function country()
     {
         return $this->belongsTo(Country::class, 'country_id');
+    }
+
+    public function state()
+    {
+        return $this->belongsTo(State::class, 'state_id');
     }
 
     public function city()

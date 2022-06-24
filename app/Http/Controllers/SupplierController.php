@@ -6,6 +6,7 @@ use App\Http\Requests\StoreSupplierRequest;
 use App\Http\Requests\SupplierRequest;
 use App\Http\Requests\UpdateSupplierRequest;
 use App\Models\Supplier;
+use App\Models\WarehouseUser;
 use Illuminate\Http\Request;
 
 class SupplierController extends Controller
@@ -17,12 +18,6 @@ class SupplierController extends Controller
      */
     public function index()
     {
-//        $suppliers = Supplier::with([
-//                'supplierWarehouses',
-//                'supplierWarehouses.warehouseWarehouseUsers',
-//                'supplierWarehouses.warehouseWarehouseDrivers'])
-//            ->paginate(10);
-
         $suppliers = Supplier::paginate(10);
         return view('backend.suppliers.index', compact('suppliers'));
     }
@@ -116,9 +111,15 @@ class SupplierController extends Controller
      * @param  \App\Models\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Supplier $supplier)
+    public function destroy($id)
     {
-        //
+        if(Supplier::destroy($id)){
+            flash(translate('Supplier has been deleted successfully'))->success();
+            return redirect()->route('admin.suppliers.index');
+        }
+
+        flash(translate('Error deleting Supplier'))->error();
+        return back();
     }
 
     public function updateStatus(Request $request)
@@ -129,5 +130,25 @@ class SupplierController extends Controller
 
         $supplier->save();
         return 1;
+    }
+
+    /**
+     * Update the supplier status
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function getUsers($id = null)
+    {
+        if ($id) {
+            $supplier = Supplier::with(['supplierWarehouses', 'supplierWarehouses.warehouseWarehouseUsers'])
+                ->paginate(10);
+        }
+
+        $supplierUser = WarehouseUser::with('user')->paginate(10);
+        // TODO: getUsers for suppliers
+        dd($supplierUser);
+
+        dd($supplier);
     }
 }

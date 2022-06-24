@@ -25,6 +25,8 @@ return new class extends Migration
             $table->longText('content')->nullable();
             $table->string('logo')->default('assets/img/logo.png');
             $table->tinyInteger('status')->default(0);
+
+            $table->foreignIdFor(\App\Models\User::class, 'admin_id' )->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

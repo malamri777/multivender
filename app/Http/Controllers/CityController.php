@@ -133,15 +133,23 @@ class CityController extends Controller
 
     public function getCityOptionByStateId(Request $request)
     {
+        if ($request->state_id) {
+            $cities = City::where('state_id', $request->state_id)->get();
 
-        $cities = City::where('state_id', $request->state_id)->get();
+            $html = '';
 
-        $html = '';
+            if ($cities->count() > 0) {
+                $html .= '<option value=""></option>';
+            }
 
-        foreach ($cities as $row) {
-            $html .= '<option value="' . $row->id . '">' . $row->name . '</option>';
+            foreach ($cities as $row) {
+                $html .= '<option value="' . $row->id . '">' . $row->name . '</option>';
+            }
+
+            echo json_encode($html);
+        } else {
+            echo json_encode('');
         }
 
-        echo json_encode($html);
     }
 }
