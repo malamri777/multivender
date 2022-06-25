@@ -458,26 +458,26 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
     });
 
     // Supplier
-    Route::resource('suppliers', SupplierController::class)->except('destroy');
-    Route::controller(SupplierController::class)
-        ->as('suppliers.')
-        ->prefix('suppliers')
-        ->group(function () {
+    Route::group(['prefix' => 'suppliers', 'as' => 'suppliers.', 'controller' => SupplierController::class], function(){
         Route::post('update_status', 'updateStatus')->name('update_status');
-        Route::get('users', 'getUsers')->name('users');
+        Route::get('query-users-selector/{supplier?}', 'queryUsersForSupplier')->name('query-users-selector');
+        Route::get('get-users/{supplier?}', 'getUsersBySupplierId')->name('get-users');
         Route::get('destroy/{id}', 'destroy')->name('destroy');
-    });
 
-    // Warehouse
-    Route::resource('warehouses', WarehouseController::class)->except('destroy');
-    Route::controller(WarehouseController::class)
+        // Warehouse
+        Route::controller(WarehouseController::class)
         ->as('warehouses.')
         ->prefix('warehouses')
         ->group(function () {
-        Route::post('update_status', 'updateStatus')->name('update_status');
-        Route::get('users', 'getUsers')->name('users');
-        Route::get('destroy/{id}', 'destroy')->name('destroy');
+            Route::post('update_status', 'updateStatus')->name('update_status');
+            Route::get('users', 'getUsers')->name('users');
+            Route::get('destroy/{id}', 'destroy')->name('destroy');
+        });
+        Route::resource('warehouses', WarehouseController::class)->except('destroy');
     });
+    Route::resource('suppliers', SupplierController::class)->except('destroy');
+
+
 
 
 

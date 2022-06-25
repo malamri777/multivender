@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Shop;
 use App\Models\User;
+use Database\Factories\UserFactory;
 use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
@@ -36,6 +37,8 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('password'),
             'user_type' => 'customer'
         ]);
+
+        \App\Models\User::factory(100)->create();
 
     }//end of run
 

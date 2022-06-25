@@ -27,6 +27,7 @@
                     <th data-breakpoints="lg" width="10%">#</th>
                     <th>{{translate('Name')}}</th>
                     <th data-breakpoints="lg">{{translate('logo')}}</th>
+                    <th data-breakpoints="lg">{{translate('admin')}}</th>
                     <th data-breakpoints="lg">{{translate('status')}}</th>
                     <th data-breakpoints="sm" class="text-right">{{translate('Options')}}</th>
                 </tr>
@@ -37,6 +38,7 @@
                         <td>{{ ($key+1) + ($suppliers->currentPage() - 1)*$suppliers->perPage() }}</td>
                         <td>{{$supplier->name}}</td>
                         <td><img src="{{ uploaded_asset($supplier->logo) }}" class="img-fluid mb-2" style="height: 50px"></td>
+                        <td>{{$supplier->admin?->name ?? _('No Admin')}}</td>
                         <td>
                             <label class="aiz-switch aiz-switch-success mb-0">
                                 <input onchange="update_status(this)" value="{{ $supplier->id }}" type="checkbox" <?php if ($supplier->status == 1) echo "checked"; ?> >

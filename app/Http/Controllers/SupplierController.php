@@ -6,6 +6,7 @@ use App\Http\Requests\StoreSupplierRequest;
 use App\Http\Requests\SupplierRequest;
 use App\Http\Requests\UpdateSupplierRequest;
 use App\Models\Supplier;
+use App\Models\User;
 use App\Models\WarehouseUser;
 use Illuminate\Http\Request;
 
@@ -138,17 +139,66 @@ class SupplierController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function getUsers($id = null)
+    public function getUsersBySupplierId($id = null)
     {
         if ($id) {
-            $supplier = Supplier::with(['supplierWarehouses', 'supplierWarehouses.warehouseWarehouseUsers'])
-                ->paginate(10);
+            $userSupplier = User::where('user_type', 'supplier_admin')
+                ->where('name', 'like', "")
+            // ->where(with(['supplierWarehouses', 'supplierWarehouses.warehouseWarehouseUsers'])
+            ->paginate(10);
+            // return $userSupplier;
+
+            $html = '';
+
+            if ($userSupplier->count() > 0) {
+                $html .= '<option value=""></option>';
+            }
+
+            foreach ($userSupplier as $row) {
+                $html .= '<option value="' . $row->id . '">' . $row->name . '</option>';
+            }
+
+            echo json_encode($html);
         }
+        echo json_encode('');
 
-        $supplierUser = WarehouseUser::with('user')->paginate(10);
+        // $supplierUser = WarehouseUser::with('user')->paginate(10);
         // TODO: getUsers for suppliers
-        dd($supplierUser);
+        // dd($supplierUser);
 
-        dd($supplier);
+        // dd($supplier);
+    }
+
+    /**
+     * Update the supplier status
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function queryUsersForSupplier(Request $request, Supplier $supplier)
+    {
+        $term = $request->get('term');
+        if($request->ajax()){
+            $userSupplier = User::where('provider_id', $supplier->id)
+                ->where('user_type', 'supplier_admin')
+                ->where('name', 'like', "%$term%")
+                ->select('id', 'name')
+                ->paginate(10);
+
+            $morePages = true;
+            $pagination_obj = json_encode($userSupplier);
+            if (empty($userSupplier->nextPageUrl())) {
+                $morePages = true;
+            }
+
+            $results = array(
+                "results" => $pagination_obj,
+                "pagination" => array(
+                    "more" => $morePages
+                )
+            );
+
+            return \Response::json($results);
+        }
     }
 }

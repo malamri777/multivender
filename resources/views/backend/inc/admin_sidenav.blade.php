@@ -45,12 +45,12 @@
                                 </a>
                             </li>
                             <li class="aiz-side-nav-item">
-                                <a href="{{route('admin.warehouses.index')}}" class="aiz-side-nav-link {{ areActiveRoutes(['admin.warehouses.index', 'admin.warehouses.create'])}}">
+                                <a href="{{route('admin.suppliers.warehouses.index')}}" class="aiz-side-nav-link {{ areActiveRoutes(['admin.suppliers.warehouses.index', 'admin.suppliers.warehouses.create'])}}">
                                     <span class="aiz-side-nav-text">{{translate('Warehouse List')}}</span>
                                 </a>
                             </li>
                             <li class="aiz-side-nav-item">
-                                <a href="{{route('admin.suppliers.users')}}" class="aiz-side-nav-link {{ areActiveRoutes(['admin.suppliers.users'])}}">
+                                <a href="{{route('admin.suppliers.get-users')}}" class="aiz-side-nav-link {{ areActiveRoutes(['admin.suppliers.get-users'])}}">
                                     <span class="aiz-side-nav-text">{{translate('Supplier User List')}}</span>
                                 </a>
                             </li>

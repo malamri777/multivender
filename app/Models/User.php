@@ -8,10 +8,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Cart;
 use App\Notifications\EmailVerificationNotification;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable, HasApiTokens;
+    use Notifiable, HasApiTokens, HasFactory;
 
     public function sendEmailVerificationNotification()
     {
@@ -64,6 +65,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function shop()
     {
     return $this->hasOne(Shop::class);
+    }
+
+    public function supplier()
+    {
+    return $this->hasOne(Supplier::class, 'id', 'provider_id');
     }
 
     public function staff()

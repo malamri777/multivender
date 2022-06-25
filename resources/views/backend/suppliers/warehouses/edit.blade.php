@@ -8,7 +8,7 @@
                     <h5 class="mb-0 h6">{{ translate('Warehouse Information') }}</h5>
                 </div>
 
-                <form class="form-horizontal" action="{{ route('admin.warehouses.update', $warehouse->id) }}" method="POST"
+                <form class="form-horizontal" action="{{ route('admin.suppliers.warehouses.update', $warehouse->id) }}" method="POST"
                     enctype="multipart/form-data">
                     <input name="_method" type="hidden" value="PATCH">
                     <input type="hidden" name="id" value="{{ $warehouse->id }}">

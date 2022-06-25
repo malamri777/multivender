@@ -32,6 +32,7 @@
             font-size: 12px;
         }
     </style>
+    @stack('styles')
 	<script>
     	var AIZ = AIZ || {};
         AIZ.local = {

@@ -25,7 +25,7 @@ class SupplierSeeder extends Seeder
             'user_type' => 'supplier_admin',
             'email_verified_at' => now()
         ]);
-        Supplier::create([
+        $supplier = Supplier::create([
             'id' => 1,
             'name' => 'balubaid',
             'cr_no' => '11111111',
@@ -39,6 +39,8 @@ class SupplierSeeder extends Seeder
             'status' => 1,
             'admin_id'    => $admin->id,
         ]);
+        $admin->provider_id = $supplier->id;
+        $admin->save();
 
         // Supplier 2
         $admin = User::create([
@@ -48,7 +50,7 @@ class SupplierSeeder extends Seeder
             'user_type' => 'supplier_admin',
             'email_verified_at' => now()
         ]);
-        Supplier::create([
+        $supplier = Supplier::create([
             'id' => 2,
             'name' => 'almunajem',
             'cr_no' => '222222222',
@@ -62,6 +64,8 @@ class SupplierSeeder extends Seeder
             'status' => 1,
             'admin_id'    => $admin->id,
         ]);
+        $admin->provider_id = $supplier->id;
+        $admin->save();
 
         // Supplier 3
         Supplier::create([
