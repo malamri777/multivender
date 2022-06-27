@@ -18,7 +18,7 @@ class Restaurant extends Model
         'block'     => 'Block',
     ];
 
-    public $table = 'suppliers';
+    public $table = 'restaurants';
 
     protected $appends = [
         'logo',

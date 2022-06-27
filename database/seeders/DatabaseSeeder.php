@@ -43,6 +43,10 @@ class DatabaseSeeder extends Seeder
 
             // Page
             PageTableSeeder::class,
+
+            // Restaurant
+            RestaurantSeeder::class,
+            BranchTableSeeder::class,
         ]);
 
     }

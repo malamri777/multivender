@@ -19,16 +19,16 @@ class BranchTableSeeder extends Seeder
     {
          // 1 => balubaid
          $admin = User::create([
-            'name' => 's1_w1_admin',
-            'email' => 's1_w1_admin@dev.com',
+            'name' => 'r1_b1_admin',
+            'email' => 'r1_b1_admin@dev.com',
             'password' => bcrypt('password'),
-            'user_type' => 'supplier_branch_admin',
+            'user_type' => 'restaurant_branch_admin',
             'email_verified_at' => now()
         ]);
         Branch::create([
-            'name'           => 'branch 1 balubaid',
+            'name'           => 'Branch 1 Restaurant 1',
             'admin_id'    => $admin->id,
-            'supplier_id'    => 1,
+            'restaurant_id'    => 1,
             'country_id'    => 1,
             'state_id'    => 1,
             'city_id'    => 1,
@@ -36,16 +36,16 @@ class BranchTableSeeder extends Seeder
         ]);
 
         $admin = User::create([
-            'name' => 's1_w2_admin',
-            'email' => 's1_w2_admin@dev.com',
+            'name' => 'r1_b2_admin',
+            'email' => 'r1_b2_admin@dev.com',
             'password' => bcrypt('password'),
-            'user_type' => 'supplier_branch_admin',
+            'user_type' => 'restaurant_branch_admin',
             'email_verified_at' => now()
         ]);
         Branch::create([
-            'name'           => 'branch 2 balubaid',
+            'name'           => 'Branch 2 Restaurant 1',
             'admin_id'    => $admin->id,
-            'supplier_id'    => 1,
+            'restaurant_id'    => 1,
             'country_id'    => 1,
             'state_id'    => 1,
             'city_id'    => 1,
@@ -53,16 +53,16 @@ class BranchTableSeeder extends Seeder
         ]);
 
         $admin = User::create([
-            'name' => 's1_w3_admin',
-            'email' => 's1_w3_admin@dev.com',
+            'name' => 'r1_b3_admin',
+            'email' => 'r1_b3_admin@dev.com',
             'password' => bcrypt('password'),
-            'user_type' => 'supplier_branch_admin',
+            'user_type' => 'restaurant_branch_admin',
             'email_verified_at' => now()
         ]);
         Branch::create([
-            'name'           => 'branch 3 balubaid',
+            'name'           => 'Branch 3 Restaurant 1',
             'admin_id'    => $admin->id,
-            'supplier_id'    => 1,
+            'restaurant_id'    => 1,
             'country_id'    => 1,
             'state_id'    => 1,
             'city_id'    => 1,
@@ -71,16 +71,16 @@ class BranchTableSeeder extends Seeder
 
         // 2 => almunajem
         $admin = User::create([
-            'name' => 's2_w1_admin',
-            'email' => 's2_w1_admin@dev.com',
+            'name' => 'r2_b1_admin',
+            'email' => 'r2_b1_admin@dev.com',
             'password' => bcrypt('password'),
-            'user_type' => 'supplier_branch_admin',
+            'user_type' => 'restaurant_branch_admin',
             'email_verified_at' => now()
         ]);
         Branch::create([
-            'name'           => 'branch 1 almunajem',
+            'name'           => 'Branch 1 Restaurant 2',
             'admin_id'    => $admin->id,
-            'supplier_id'    => 2,
+            'restaurant_id'    => 2,
             'country_id'    => 1,
             'state_id'    => 1,
             'city_id'    => 1,
@@ -88,16 +88,16 @@ class BranchTableSeeder extends Seeder
         ]);
 
         $admin = User::create([
-            'name' => 's2_w2_admin',
-            'email' => 's2_w2_admin@dev.com',
+            'name' => 'r2_b2_admin',
+            'email' => 'r2_b2_admin@dev.com',
             'password' => bcrypt('password'),
-            'user_type' => 'supplier_branch_admin',
+            'user_type' => 'restaurant_branch_admin',
             'email_verified_at' => now()
         ]);
         Branch::create([
-            'name'           => 'branch 2 almunajem',
+            'name'           => 'Branch 2 Restaurant 2',
             'admin_id'    => $admin->id,
-            'supplier_id'    => 2,
+            'restaurant_id'    => 2,
             'country_id'    => 1,
             'state_id'    => 1,
             'city_id'    => 1,
@@ -105,25 +105,25 @@ class BranchTableSeeder extends Seeder
         ]);
 
         $admin = User::create([
-            'name' => 's2_w3_admin',
-            'email' => 's2_w3_admin@dev.com',
+            'name' => 'r2_b3_admin',
+            'email' => 'r2_b3_admin@dev.com',
             'password' => bcrypt('password'),
-            'user_type' => 'supplier_branch_admin',
+            'user_type' => 'restaurant_branch_admin',
             'email_verified_at' => now()
         ]);
         Branch::create([
-            'name'           => 'branch 3 almunajem',
+            'name'           => 'Branch 3 Restaurant 2',
             'admin_id'    => $admin->id,
-            'supplier_id'    => 2,
+            'restaurant_id'    => 2,
             'country_id'    => 1,
             'state_id'    => 1,
             'city_id'    => 1,
             'district_id'    => 3,
         ]);
         Branch::create([
-            'name'           => 'branch 3 almunajem',
+            'name'           => 'Branch 3 Restaurant 2',
             'admin_id'    => $admin->id,
-            'supplier_id'    => 2,
+            'restaurant_id'    => 2,
             'country_id'    => 1,
             'state_id'    => 2,
             'city_id'    => 2,
@@ -132,16 +132,16 @@ class BranchTableSeeder extends Seeder
 
         // 3 => almunajem
         $admin = User::create([
-            'name' => 's3_w1_admin',
-            'email' => 's3_w1_admin@dev.com',
+            'name' => 'r3_b1_admin',
+            'email' => 'r3_b1_admin@dev.com',
             'password' => bcrypt('password'),
-            'user_type' => 'supplier_branch_admin',
+            'user_type' => 'restaurant_branch_admin',
             'email_verified_at' => now()
         ]);
         Branch::create([
-            'name'           => 'branch 1 almunajem',
+            'name'           => 'Branch 1 Restaurant 3',
             'admin_id'    => $admin->id,
-            'supplier_id'    => 3,
+            'restaurant_id'    => 3,
             'country_id'    => 1,
             'state_id'    => 1,
             'city_id'    => 1,
@@ -149,9 +149,9 @@ class BranchTableSeeder extends Seeder
         ]);
 
         Branch::create([
-            'name'           => 'branch 2 almunajem',
+            'name'           => 'Branch 2 Restaurant 3',
             'admin_id'    => $admin->id,
-            'supplier_id'    => 3,
+            'restaurant_id'    => 3,
             'country_id'    => 1,
             'state_id'    => 1,
             'city_id'    => 1,
@@ -159,9 +159,9 @@ class BranchTableSeeder extends Seeder
         ]);
 
         Branch::create([
-            'name'           => 'branch 3 almunajem',
+            'name'           => 'Branch 3 Restaurant 3',
             'admin_id'    => $admin->id,
-            'supplier_id'    => 3,
+            'restaurant_id'    => 3,
             'country_id'    => 1,
             'state_id'    => 1,
             'city_id'    => 1,

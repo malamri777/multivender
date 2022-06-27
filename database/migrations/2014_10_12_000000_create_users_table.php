@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Restaurant;
+use App\Models\Supplier;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,7 +18,6 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->integer('referred_by')->nullable();
-            $table->string('provider_id', 50)->nullable();
             $table->string('user_type', 50)->default('customer');
             $table->string('name');
             $table->string('email')->nullable()->unique();
@@ -39,6 +40,12 @@ return new class extends Migration
             $table->string('referral_code', 255)->nullable();
             $table->integer('customer_package_id')->nullable();
             $table->integer('remaining_uploads')->nullable()->default(0);
+
+            // $table->string('provider_id', 50)->nullable();
+            // $table->string('restaurant_id', 50)->nullable();
+
+            $table->foreignIdFor(Supplier::class, 'provider_id')->nullable();
+            $table->foreignIdFor(Restaurant::class, 'restaurant_id')->nullable();
             $table->timestamps();
         });
     }

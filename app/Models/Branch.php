@@ -19,7 +19,7 @@ class Branch extends Model
         'block'     => 'Block',
     ];
 
-    public $table = 'warehouses';
+    public $table = 'branches';
 
     protected $dates = [
         'created_at',
@@ -30,7 +30,7 @@ class Branch extends Model
     protected $fillable = [
         'name',
         'status',
-        'supplier_id',
+        'restaurant_id',
         'country_id',
         'city_id',
         'district_id',
