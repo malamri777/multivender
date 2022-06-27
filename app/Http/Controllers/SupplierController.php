@@ -98,9 +98,19 @@ class SupplierController extends Controller
         $supplier->content = $request->content;
         $supplier->logo = $request->logo;
         if ($supplier->save()) {
+            $oldSupplierUser = $supplier->admin;
+            if($oldSupplierUser->provider_id !== $request->admin_id) {
+                $newSupplierUser = User::findOrFail($request->admin_id);
+                $newSupplierUser->provider_id = $supplier->id;
+                $newSupplierUser->save();
+                $oldSupplierUser->provider_id = null;
+                $oldSupplierUser->save();
+                flash(translate('Admin Supplier has been updated successfully'))->success();
+            }
             flash(translate('Supplier has been updated successfully'))->success();
             return redirect()->route('admin.suppliers.index');
         }
+
 
         flash(translate('Error updating Supplier'))->error();
         return back();
@@ -142,31 +152,17 @@ class SupplierController extends Controller
     public function getUsersBySupplierId($id = null)
     {
         if ($id) {
-            $userSupplier = User::where('user_type', 'supplier_admin')
+            $usersSupplier = User::whereIn('user_type', ['supplier_admin', 'supplier_warehouse_admin'])
                 ->where('name', 'like', "")
-            // ->where(with(['supplierWarehouses', 'supplierWarehouses.warehouseWarehouseUsers'])
-            ->paginate(10);
-            // return $userSupplier;
-
-            $html = '';
-
-            if ($userSupplier->count() > 0) {
-                $html .= '<option value=""></option>';
-            }
-
-            foreach ($userSupplier as $row) {
-                $html .= '<option value="' . $row->id . '">' . $row->name . '</option>';
-            }
-
-            echo json_encode($html);
+                ->paginate(10);
         }
-        echo json_encode('');
 
-        // $supplierUser = WarehouseUser::with('user')->paginate(10);
-        // TODO: getUsers for suppliers
-        // dd($supplierUser);
+        $usersSupplier = User::whereIn('user_type', ['supplier_admin', 'supplier_warehouse_admin'])
+            ->paginate(10);
 
-        // dd($supplier);
+            return view('backend.suppliers.users.index', [
+                'users' => $usersSupplier
+            ]);
     }
 
     /**
@@ -177,18 +173,19 @@ class SupplierController extends Controller
      */
     public function queryUsersForSupplier(Request $request, Supplier $supplier)
     {
-        $term = $request->get('term');
+        $term = $request->get('q');
         if($request->ajax()){
             $userSupplier = User::where('provider_id', $supplier->id)
                 ->where('user_type', 'supplier_admin')
                 ->where('name', 'like', "%$term%")
+                ->orWhere('email', 'like', "%$term%")
                 ->select('id', 'name')
                 ->paginate(10);
 
             $morePages = true;
             $pagination_obj = json_encode($userSupplier);
             if (empty($userSupplier->nextPageUrl())) {
-                $morePages = true;
+                $morePages = false;
             }
 
             $results = array(

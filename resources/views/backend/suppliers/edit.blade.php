@@ -41,10 +41,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-sm-3 col-from-label" for="name">{{ translate('Name') }}</label>
+                            <label class="col-sm-3 col-from-label" for="admin_id">{{ translate('Supplier Admin') }}</label>
                             <div class="col-sm-9">
                                 <select class="form-control aiz-selectpicker-ajax with-ajax" data-abs-cache="true"
-                                data-live-search="true" id="sort_supplier" name="sort_supplier"></select>
+                                data-live-search="true" id="admin_id" name="admin_id"></select>
                             </div>
                         </div>
 
@@ -151,7 +151,6 @@ var options = {
     //  as a placeholder and Ajax Bootstrap Select will
     // automatically replace it with the value of the search query.
     data: {
-        q: '-'
     }
   },
   locale: {

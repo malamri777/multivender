@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('referred_by')->nullable();
             $table->string('provider_id', 50)->nullable();
-            $table->string('user_type', 20)->default('customer');
+            $table->string('user_type', 50)->default('customer');
             $table->string('name');
             $table->string('email')->nullable()->unique();
             $table->timestamp('email_verified_at')->nullable();

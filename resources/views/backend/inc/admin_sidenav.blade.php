@@ -50,7 +50,7 @@
                                 </a>
                             </li>
                             <li class="aiz-side-nav-item">
-                                <a href="{{route('admin.suppliers.get-users')}}" class="aiz-side-nav-link {{ areActiveRoutes(['admin.suppliers.get-users'])}}">
+                                <a href="{{route('admin.suppliers.users.index')}}" class="aiz-side-nav-link {{ areActiveRoutes(['admin.suppliers.users.index'])}}">
                                     <span class="aiz-side-nav-text">{{translate('Supplier User List')}}</span>
                                 </a>
                             </li>

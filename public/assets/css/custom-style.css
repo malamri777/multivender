@@ -1,1 +1,5 @@
 /*your custom css goes here*/
+.error {
+    color: #D8030D;
+    margin-top: 10px;
+}

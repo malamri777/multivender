@@ -40,6 +40,7 @@ use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\SupplierUserController;
 use App\Http\Controllers\SupportTicketController;
 use App\Http\Controllers\TaxController;
 use App\Http\Controllers\UpdateController;
@@ -461,7 +462,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
     Route::group(['prefix' => 'suppliers', 'as' => 'suppliers.', 'controller' => SupplierController::class], function(){
         Route::post('update_status', 'updateStatus')->name('update_status');
         Route::get('query-users-selector/{supplier?}', 'queryUsersForSupplier')->name('query-users-selector');
-        Route::get('get-users/{supplier?}', 'getUsersBySupplierId')->name('get-users');
         Route::get('destroy/{id}', 'destroy')->name('destroy');
 
         // Warehouse
@@ -474,6 +474,26 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
             Route::get('destroy/{id}', 'destroy')->name('destroy');
         });
         Route::resource('warehouses', WarehouseController::class)->except('destroy');
+
+        // Users
+        Route::group(['prefix' => 'users', 'as' => 'users.', 'controller' => SupplierUserController::class], function () {
+            Route::get('ban/{id}', 'ban')->name('ban');
+            Route::get('destroy/{id}', 'destroy')->name('destroy');
+            // Route::get('/sellers/destroy/{id}', 'destroy')->name('destroy');
+            // Route::post('bulk-delete', 'bulk_seller_delete')->name('bulk-delete');
+            // Route::get('view/{id}/verification', 'show_verification_request')->name('show_verification_request');
+            // Route::get('approve/{id}', 'approve_seller')->name('approve');
+            // Route::get('reject/{id}', 'reject_seller')->name('reject');
+            // Route::get('login/{id}', 'login')->name('login');
+            // Route::post('payment_modal', 'payment_modal')->name('payment_modal');
+            // Route::post('profile_modal', 'profile_modal')->name('profile_modal');
+            // Route::post('approved', 'updateApproved')->name('approved');
+            // TODO: To be delete
+            // Route::get('', 'index')->name('index');
+            // Route::get('create', 'create')->name('create');
+            // Route::post('', 'store')->name('store');
+        });
+        Route::resource('users', SupplierUserController::class)->except('destroy');
     });
     Route::resource('suppliers', SupplierController::class)->except('destroy');
 

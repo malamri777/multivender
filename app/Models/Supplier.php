@@ -58,7 +58,7 @@ class Supplier extends Model
 
     public function admin()
     {
-        return $this->belongsTo(User::class, 'admin_id');
+        return $this->hasOne(User::class,'provider_id');
     }
 
     public function supplierWarehouses()
