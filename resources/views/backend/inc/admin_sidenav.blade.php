@@ -24,7 +24,7 @@
                 </li>
 
                 <!-- Supplier -->
-                @if(isAdmin() || in_array('1', json_decode(Auth::user()->staff->role->permissions)))
+                @if(isAdmin() || in_array('26', json_decode(Auth::user()->staff->role->permissions)))
                     <li class="aiz-side-nav-item">
                         <a href="#" class="aiz-side-nav-link">
                             <i class="las la-tasks aiz-side-nav-icon"></i>
@@ -52,6 +52,41 @@
                             <li class="aiz-side-nav-item">
                                 <a href="{{route('admin.suppliers.users.index')}}" class="aiz-side-nav-link {{ areActiveRoutes(['admin.suppliers.users.index'])}}">
                                     <span class="aiz-side-nav-text">{{translate('Supplier User List')}}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
+
+                <!-- Restaurant -->
+                @if(isAdmin() || in_array('27', json_decode(Auth::user()->staff->role->permissions)))
+                    <li class="aiz-side-nav-item">
+                        <a href="#" class="aiz-side-nav-link">
+                            <i class="las la-tasks aiz-side-nav-icon"></i>
+                            <span class="aiz-side-nav-text">{{translate('Restaurant')}}</span>
+                            <span class="aiz-side-nav-arrow"></span>
+                        </a>
+                        <ul class="aiz-side-nav-list level-2">
+                            @if(Auth::user()->user_type == 'super_admin')
+                                <li class="aiz-side-nav-item">
+                                    <a class="aiz-side-nav-link" href="{{route('admin.restaurants.create')}}">
+                                        <span class="aiz-side-nav-text">{{translate('Add New Restaurants')}}</span>
+                                    </a>
+                                </li>
+                            @endif
+                            <li class="aiz-side-nav-item">
+                                <a href="{{route('admin.restaurants.index')}}" class="aiz-side-nav-link {{ areActiveRoutes(['admin.restaurants.index', 'admin.restaurants.create'])}}">
+                                    <span class="aiz-side-nav-text">{{translate('Restaurant List')}}</span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="{{route('admin.restaurants.branches.index')}}" class="aiz-side-nav-link {{ areActiveRoutes(['admin.restaurants.branches.index', 'admin.restaurants.branches.create'])}}">
+                                    <span class="aiz-side-nav-text">{{translate('Branch List')}}</span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="{{route('admin.restaurants.users.index')}}" class="aiz-side-nav-link {{ areActiveRoutes(['admin.restaurants.users.index'])}}">
+                                    <span class="aiz-side-nav-text">{{translate('Restaurant User List')}}</span>
                                 </a>
                             </li>
                         </ul>

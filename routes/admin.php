@@ -6,6 +6,7 @@ use App\Http\Controllers\AizUploadController;
 use App\Http\Controllers\AttributeController;
 use App\Http\Controllers\BlogCategoryController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\BranchController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\BusinessSettingsController;
 use App\Http\Controllers\CategoryController;
@@ -32,6 +33,7 @@ use App\Http\Controllers\ProductBulkUploadController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SellerController;
@@ -496,6 +498,46 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
         Route::resource('users', SupplierUserController::class)->except('destroy');
     });
     Route::resource('suppliers', SupplierController::class)->except('destroy');
+
+
+    // Restaurant
+    Route::group(['prefix' => 'restaurants', 'as' => 'restaurants.', 'controller' => RestaurantController::class], function(){
+        Route::post('update_status', 'updateStatus')->name('update_status');
+        Route::get('query-users-selector/{restaurant?}', 'queryUsersForRestaurantr')->name('query-users-selector');
+        Route::get('destroy/{id}', 'destroy')->name('destroy');
+
+        // Branchs
+        Route::controller(BranchController::class)
+        ->as('branches.')
+        ->prefix('branches')
+        ->group(function () {
+            Route::post('update_status', 'updateStatus')->name('update_status');
+            Route::get('users', 'getUsers')->name('users');
+            Route::get('destroy/{id}', 'destroy')->name('destroy');
+        });
+        Route::resource('branches', BranchController::class)->except('destroy');
+
+        // Users
+        Route::group(['prefix' => 'users', 'as' => 'users.', 'controller' => RestaurantUserController::class], function () {
+            Route::get('ban/{id}', 'ban')->name('ban');
+            Route::get('destroy/{id}', 'destroy')->name('destroy');
+            // Route::get('/sellers/destroy/{id}', 'destroy')->name('destroy');
+            // Route::post('bulk-delete', 'bulk_seller_delete')->name('bulk-delete');
+            // Route::get('view/{id}/verification', 'show_verification_request')->name('show_verification_request');
+            // Route::get('approve/{id}', 'approve_seller')->name('approve');
+            // Route::get('reject/{id}', 'reject_seller')->name('reject');
+            // Route::get('login/{id}', 'login')->name('login');
+            // Route::post('payment_modal', 'payment_modal')->name('payment_modal');
+            // Route::post('profile_modal', 'profile_modal')->name('profile_modal');
+            // Route::post('approved', 'updateApproved')->name('approved');
+            // TODO: To be delete
+            // Route::get('', 'index')->name('index');
+            // Route::get('create', 'create')->name('create');
+            // Route::post('', 'store')->name('store');
+        });
+        Route::resource('users', RestaurantUserController::class)->except('destroy');
+    });
+    Route::resource('restaurants', RestaurantController::class)->except('destroy');
 
 
 
