@@ -13,8 +13,7 @@ class CreateDistrictsTable extends Migration
             $table->string('name');
             $table->tinyInteger('status')->default(1);
 
-            $table->unsignedBigInteger('city_id')->nullable();
-            $table->foreign('city_id', 'city_fk_6815018')->references('id')->on('cities');
+            $table->foreignIdFor(\App\Models\City::class, 'city_id')->nullable();
 
             $table->timestamps();
             $table->softDeletes();
