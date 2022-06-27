@@ -5,31 +5,31 @@
         <div class="col-lg-6 mx-auto">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="mb-0 h6">{{ translate('Warehouse Information') }}</h5>
+                    <h5 class="mb-0 h6">{{ translate('Branch Information') }}</h5>
                 </div>
 
-                <form class="form-horizontal" action="{{ route('admin.suppliers.warehouses.update', $warehouse->id) }}" method="POST"
+                <form class="form-horizontal" action="{{ route('admin.restaurants.branches.update', $branch->id) }}" method="POST"
                     enctype="multipart/form-data">
                     <input name="_method" type="hidden" value="PATCH">
-                    <input type="hidden" name="id" value="{{ $warehouse->id }}">
+                    <input type="hidden" name="id" value="{{ $branch->id }}">
                     @csrf
                     <div class="card-body">
                         <div class="form-group row">
                             <label class="col-sm-3 col-from-label" for="name">{{ translate('Name') }}</label>
                             <div class="col-sm-9">
                                 <input type="text" placeholder="{{ translate('Name') }}" id="name" name="name"
-                                    value="{{ $warehouse->name }}" class="form-control" required>
+                                    value="{{ $branch->name }}" class="form-control" required>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-sm-3 col-from-label" for="supplier_id">{{ translate('Supplier') }}</label>
+                            <label class="col-sm-3 col-from-label" for="restaurant_id">{{ translate('Restaurant') }}</label>
                             <div class="col-sm-9">
-                                <select class="select2 form-control aiz-selectpicker" name="supplier_id" id="supplier_id"
-                                    data-selected="{{ $warehouse->supplier_id }}" data-toggle="select2" data-placeholder="Choose ..." data-live-search="true">
+                                <select class="select2 form-control aiz-selectpicker" name="restaurant_id" id="restaurant_id"
+                                    data-selected="{{ $branch->restaurantr_id }}" data-toggle="select2" data-placeholder="Choose ..." data-live-search="true">
                                         <option value=""></option>
-                                        @foreach ($suppliers as $supplier)
-                                            <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
+                                        @foreach ($restaurants as $restaurant)
+                                            <option value="{{ $restaurant->id }}">{{ $restaurant->name }}</option>
                                         @endforeach
                                 </select>
                             </div>
@@ -39,7 +39,7 @@
                             <label class="col-sm-3 col-from-label" for="state_id">{{ translate('State') }}</label>
                             <div class="col-sm-9">
                                 <select class="select2 form-control aiz-selectpicker" name="state_id" id="state_id"
-                                    data-selected="{{ $warehouse->state_id }}" data-toggle="select2" data-placeholder="Choose ..." data-live-search="true">
+                                    data-selected="{{ $branch->state_id }}" data-toggle="select2" data-placeholder="Choose ..." data-live-search="true">
                                         <option value=""></option>
                                         @foreach ($states as $state)
                                             <option value="{{ $state->id }}">{{ $state->name }}</option>
@@ -52,7 +52,7 @@
                             <label class="col-sm-3 col-from-label" for="city_id">{{ translate('City') }}</label>
                             <div class="col-sm-9">
                                 <select class="select2 form-control aiz-selectpicker" name="city_id" id="city_id"
-                                    data-selected="{{ $warehouse->city_id }}" data-toggle="select2" data-placeholder="Choose ..." data-live-search="true">
+                                    data-selected="{{ $branch->city_id }}" data-toggle="select2" data-placeholder="Choose ..." data-live-search="true">
                                         <option value=""></option>
                                         @foreach ($cities as $city)
                                             <option value="{{ $city->id }}">{{ $city->name }}</option>
@@ -65,7 +65,7 @@
                             <label class="col-sm-3 col-from-label" for="district_id">{{ translate('District') }}</label>
                             <div class="col-sm-9">
                                 <select class="select2 form-control aiz-selectpicker" name="district_id" id="district_id"
-                                    data-selected="{{ $warehouse->district_id }}" data-toggle="select2" data-placeholder="Choose ..." data-live-search="true">
+                                    data-selected="{{ $branch->district_id }}" data-toggle="select2" data-placeholder="Choose ..." data-live-search="true">
                                         <option value=""></option>
                                         @foreach ($districts as $district)
                                             <option value="{{ $district->id }}">{{ $district->name }}</option>

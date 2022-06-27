@@ -6,10 +6,10 @@
     <div class="col-lg-6 mx-auto">
         <div class="card">
             <div class="card-header">
-                <h5 class="mb-0 h6">{{translate('User Supplier Information')}}</h5>
+                <h5 class="mb-0 h6">{{translate('User Restaurant Information')}}</h5>
             </div>
 
-            <form class="form-horizontal" action="{{ route('admin.suppliers.users.store') }}" method="POST" enctype="multipart/form-data">
+            <form class="form-horizontal" action="{{ route('admin.restaurants.users.store') }}" method="POST" enctype="multipart/form-data">
             	@csrf
                 <div class="card-body">
                     <div class="form-group row">
@@ -47,15 +47,15 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-3 col-from-label" for="name">{{translate('Supplier')}}</label>
+                        <label class="col-sm-3 col-from-label" for="name">{{translate('Restaurant')}}</label>
                         <div class="col-sm-9">
-                            <select name="supplier_id" required class="form-control aiz-selectpicker" data-selected="{{ old('supplier_id', null) }}">
+                            <select name="restaurant_id" required class="form-control aiz-selectpicker" data-selected="{{ old('restaurant_id', null) }}">
                                 <option value=""></option>
-                                @foreach($suppliers as $supplier)
-                                    <option value="{{$supplier->id}}">{{$supplier->name}}</option>
+                                @foreach($restaurants as $restaurant)
+                                    <option value="{{$restaurant->id}}">{{$restaurant->name}}</option>
                                 @endforeach
                             </select>
-                            @include('backend.inc.form-span-error', ['field' => 'supplier_id'])
+                            @include('backend.inc.form-span-error', ['field' => 'restaurant'])
                         </div>
                     </div>
                     <div class="form-group row">
@@ -63,10 +63,10 @@
                         <div class="col-sm-9">
                             <select name="user_type" required class="form-control aiz-selectpicker" data-selected="{{ old('user_type', '') }}">
                                 <option value=""></option>
-                                <option value="supplier_admin">{{ _('Supplier Admin') }}</option>
-                                <option value="supplier_warehouse_admin">{{ _('Supplier Warehouse Admin') }}</option>
-                                <option value="supplier_warehouse_user">{{ _('Supplier Warehouse User') }}</option>
-                                <option value="supplier_warehouse_driver">{{ _('Supplier Warehouse Driver') }}</option>
+                                <option value="restaurant_admin">{{ _('Restaurant Admin') }}</option>
+                                <option value="restaurant_branch_admin">{{ _('Restaurant Branch Admin') }}</option>
+                                <option value="restaurant_branch_user">{{ _('Restaurant Branch User') }}</option>
+                                <option value="restaurant_branch_driver">{{ _('Restaurant Branch Driver') }}</option>
                             </select>
                             @include('backend.inc.form-span-error', ['field' => 'user_type'])
                         </div>

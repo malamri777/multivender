@@ -4,12 +4,12 @@
     <div class="aiz-titlebar text-left mt-2 mb-3">
         <div class="row align-items-center">
             <div class="col-md-6">
-                <h1 class="h3">{{translate('All Supplier')}}</h1>
+                <h1 class="h3">{{translate('All Restaurant')}}</h1>
             </div>
             @if(Auth::user()->user_type == 'super_admin')
                 <div class="col-md-6 text-md-right">
-                    <a href="{{ route('admin.suppliers.create') }}" class="btn btn-circle btn-info">
-                        <span>{{translate('Add New Supplier')}}</span>
+                    <a href="{{ route('admin.restaurants.create') }}" class="btn btn-circle btn-info">
+                        <span>{{translate('Add New Restaurant')}}</span>
                     </a>
                 </div>
             @endif
@@ -18,7 +18,7 @@
 
     <div class="card">
         <div class="card-header">
-            <h5 class="mb-0 h6">{{translate('Suppliers')}}</h5>
+            <h5 class="mb-0 h6">{{translate('Restaurants')}}</h5>
         </div>
         <div class="card-body">
             <table class="table aiz-table mb-0">
@@ -33,24 +33,24 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($suppliers as $key => $supplier)
+                @foreach($restaurants as $key => $restaurant)
                     <tr>
-                        <td>{{ ($key+1) + ($suppliers->currentPage() - 1)*$suppliers->perPage() }}</td>
-                        <td>{{$supplier->name}}</td>
-                        <td><img src="{{ uploaded_asset($supplier->logo) }}" class="img-fluid mb-2" style="height: 50px"></td>
-                        <td>{{$supplier->admin?->name ?? _('No Admin')}}</td>
+                        <td>{{ ($key+1) + ($restaurants->currentPage() - 1)*$restaurants->perPage() }}</td>
+                        <td>{{$restaurant->name}}</td>
+                        <td><img src="{{ uploaded_asset($restaurant->logo) }}" class="img-fluid mb-2" style="height: 50px"></td>
+                        <td>{{$restaurant->admin?->name ?? _('No Admin')}}</td>
                         <td>
                             <label class="aiz-switch aiz-switch-success mb-0">
-                                <input onchange="update_status(this)" value="{{ $supplier->id }}" type="checkbox" <?php if ($supplier->status == 1) echo "checked"; ?> >
+                                <input onchange="update_status(this)" value="{{ $restaurant->id }}" type="checkbox" <?php if ($restaurant->status == 1) echo "checked"; ?> >
                                 <span class="slider round"></span>
                             </label>
                         </td>
                         <td class="text-right">
-                            <a class="btn btn-soft-primary btn-icon btn-circle btn-sm" href="{{route('admin.suppliers.edit', encrypt($supplier->id))}}" title="{{ translate('Edit') }}">
+                            <a class="btn btn-soft-primary btn-icon btn-circle btn-sm" href="{{route('admin.restaurants.edit', encrypt($restaurant->id))}}" title="{{ translate('Edit') }}">
                                 <i class="las la-edit"></i>
                             </a>
                             @if(Auth::user()->user_type == 'super_admin')
-                                <a href="#" class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete" data-href="{{route('admin.suppliers.destroy', $supplier->id)}}" title="{{ translate('Delete') }}">
+                                <a href="#" class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete" data-href="{{route('admin.restaurants.destroy', $restaurant->id)}}" title="{{ translate('Delete') }}">
                                     <i class="las la-trash"></i>
                                 </a>
                             @endif
@@ -60,7 +60,7 @@
                 </tbody>
             </table>
             <div class="aiz-pagination">
-                {{ $suppliers->appends(request()->input())->links() }}
+                {{ $restaurants->appends(request()->input())->links() }}
             </div>
         </div>
     </div>
@@ -83,7 +83,7 @@
             else{
                 var status = 0;
             }
-            $.post('{{ route('admin.suppliers.update_status') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
+            $.post('{{ route('admin.restaurants.update_status') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
                 if(data == 1){
                     AIZ.plugins.notify('success', '{{ translate('Status updated successfully') }}');
                 }

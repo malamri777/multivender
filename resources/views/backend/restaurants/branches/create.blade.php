@@ -5,10 +5,10 @@
         <div class="col-lg-6 mx-auto">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="mb-0 h6">{{ translate('Warehouse Information') }}</h5>
+                    <h5 class="mb-0 h6">{{ translate('Branch Information') }}</h5>
                 </div>
 
-                <form class="form-horizontal" action="{{ route('admin.suppliers.warehouses.store') }}" method="POST"
+                <form class="form-horizontal" action="{{ route('admin.restaurants.branches.store') }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
@@ -21,13 +21,13 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-sm-3 col-from-label" for="supplier_id">{{ translate('Supplier') }}</label>
+                            <label class="col-sm-3 col-from-label" for="restaurant_id">{{ translate('Restaurant') }}</label>
                             <div class="col-sm-9">
-                                <select class="select2 form-control aiz-selectpicker" name="supplier_id" id="supplier_id"
+                                <select class="select2 form-control aiz-selectpicker" name="restaurant_id" id="restaurant_id"
                                     data-toggle="select2" data-placeholder="Choose ..." data-live-search="true">
                                     <option value=""></option>
-                                    @foreach ($suppliers as $supplier)
-                                        <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
+                                    @foreach ($restaurants as $restaurant)
+                                        <option value="{{ $restaurant->id }}">{{ $restaurant->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
