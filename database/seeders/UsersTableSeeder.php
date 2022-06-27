@@ -19,23 +19,19 @@ class UsersTableSeeder extends Seeder
         $user = User::create([
             'name' => 'super_admin',
             'email' => 'super_admin@app.com',
+            'phone' => '000000000',
             'password' => bcrypt('password'),
             'user_type' => 'super_admin',
+            'email_verified_at' => now()
         ]);
 
         $user = User::create([
             'name' => 'admin',
             'email' => 'admin@app.com',
+            'phone' => '000000001',
             'password' => bcrypt('password'),
             'user_type' => 'admin',
-        ]);
-
-
-        $user = User::create([
-            'name' => 'rustorant',
-            'email' => 'r1@dev.com',
-            'password' => bcrypt('password'),
-            'user_type' => 'customer'
+            'email_verified_at' => now()
         ]);
 
         \App\Models\User::factory(100)->create();
