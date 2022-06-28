@@ -40,17 +40,17 @@
                                 </li>
                             @endif
                             <li class="aiz-side-nav-item">
-                                <a href="{{route('admin.suppliers.index')}}" class="aiz-side-nav-link {{ areActiveRoutes(['admin.suppliers.index', 'admin.suppliers.create'])}}">
+                                <a href="{{route('admin.suppliers.index')}}" class="aiz-side-nav-link {{ areActiveRoutes(['admin.suppliers.index', 'admin.suppliers.create', 'admin.suppliers.edit'])}}">
                                     <span class="aiz-side-nav-text">{{translate('Supplier List')}}</span>
                                 </a>
                             </li>
                             <li class="aiz-side-nav-item">
-                                <a href="{{route('admin.suppliers.warehouses.index')}}" class="aiz-side-nav-link {{ areActiveRoutes(['admin.suppliers.warehouses.index', 'admin.suppliers.warehouses.create'])}}">
+                                <a href="{{route('admin.suppliers.warehouses.index')}}" class="aiz-side-nav-link {{ areActiveRoutes(['admin.suppliers.warehouses.index', 'admin.suppliers.warehouses.create', 'admin.suppliers.warehouses.edit'])}}">
                                     <span class="aiz-side-nav-text">{{translate('Warehouse List')}}</span>
                                 </a>
                             </li>
                             <li class="aiz-side-nav-item">
-                                <a href="{{route('admin.suppliers.users.index')}}" class="aiz-side-nav-link {{ areActiveRoutes(['admin.suppliers.users.index'])}}">
+                                <a href="{{route('admin.suppliers.users.index')}}" class="aiz-side-nav-link {{ areActiveRoutes(['admin.suppliers.users.index','admin.suppliers.users.create','admin.suppliers.users.edit'])}}">
                                     <span class="aiz-side-nav-text">{{translate('Supplier User List')}}</span>
                                 </a>
                             </li>
@@ -75,17 +75,17 @@
                                 </li>
                             @endif
                             <li class="aiz-side-nav-item">
-                                <a href="{{route('admin.restaurants.index')}}" class="aiz-side-nav-link {{ areActiveRoutes(['admin.restaurants.index', 'admin.restaurants.create'])}}">
+                                <a href="{{route('admin.restaurants.index')}}" class="aiz-side-nav-link {{ areActiveRoutes(['admin.restaurants.index', 'admin.restaurants.create','admin.restaurants.edit'])}}">
                                     <span class="aiz-side-nav-text">{{translate('Restaurant List')}}</span>
                                 </a>
                             </li>
                             <li class="aiz-side-nav-item">
-                                <a href="{{route('admin.restaurants.branches.index')}}" class="aiz-side-nav-link {{ areActiveRoutes(['admin.restaurants.branches.index', 'admin.restaurants.branches.create'])}}">
+                                <a href="{{route('admin.restaurants.branches.index')}}" class="aiz-side-nav-link {{ areActiveRoutes(['admin.restaurants.branches.index', 'admin.restaurants.branches.create', 'admin.restaurants.branches.edit'])}}">
                                     <span class="aiz-side-nav-text">{{translate('Branch List')}}</span>
                                 </a>
                             </li>
                             <li class="aiz-side-nav-item">
-                                <a href="{{route('admin.restaurants.users.index')}}" class="aiz-side-nav-link {{ areActiveRoutes(['admin.restaurants.users.index'])}}">
+                                <a href="{{route('admin.restaurants.users.index')}}" class="aiz-side-nav-link {{ areActiveRoutes(['admin.restaurants.users.index','admin.restaurants.users.create','admin.restaurants.users.edit'])}}">
                                     <span class="aiz-side-nav-text">{{translate('Restaurant User List')}}</span>
                                 </a>
                             </li>

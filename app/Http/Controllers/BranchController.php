@@ -102,7 +102,7 @@ class BranchController extends Controller
     {
         $branch = Branch::findOrFail(decrypt($id));
 
-        $restaurant = Restaurant::get();
+        $restaurants = Restaurant::get();
         $states = State::where('country_id', 1)->get();
         $cities = City::where('state_id', $branch->state_id)->get();
         $districts = District::where('city_id', $branch->city_id)->get();
@@ -151,7 +151,7 @@ class BranchController extends Controller
     }
 
     /**
-     * Update the brance status
+     * Update the branch status
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response

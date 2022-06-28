@@ -37,6 +37,7 @@
                             <div class="col-sm-9">
                                 <input type="text" placeholder="{{ translate('Name') }}" id="name" name="name"
                                     value="{{ $restaurant->name }}" class="form-control" required>
+                                    @include('backend.inc.form-span-error', ['field' => 'name'])
                             </div>
                         </div>
 
@@ -45,6 +46,7 @@
                             <div class="col-sm-9">
                                 <select class="form-control aiz-selectpicker-ajax with-ajax" data-abs-cache="true"
                                 data-live-search="true" id="admin_id" name="admin_id"></select>
+                                @include('backend.inc.form-span-error', ['field' => 'admin_id'])
                             </div>
                         </div>
 
@@ -53,6 +55,7 @@
                             <div class="col-sm-9">
                                 <input type="text" placeholder="{{ translate('CR Number') }}" id="cr_no"
                                     name="cr_no" value="{{ $restaurant->cr_no }}" class="form-control" required>
+                                    @include('backend.inc.form-span-error', ['field' => 'cr_no'])
                             </div>
                         </div>
 
@@ -61,6 +64,7 @@
                             <div class="col-sm-9">
                                 <input type="text" placeholder="{{ translate('VAT Number') }}" id="vat_no"
                                     name="vat_no" value="{{ $restaurant->vat_no }}" class="form-control" required>
+                                    @include('backend.inc.form-span-error', ['field' => 'vat_no'])
                             </div>
                         </div>
 
@@ -76,6 +80,7 @@
                                     <div class="form-control file-amount">{{ translate('Choose File') }}</div>
                                     <input type="hidden" name="logo" value="{{ $restaurant->logo }}"
                                         class="selected-files">
+                                        @include('backend.inc.form-span-error', ['field' => 'logo'])
                                 </div>
                                 <div class="file-preview box sm">
                                 </div>
@@ -89,6 +94,7 @@
                             <div class="col-sm-9">
                                 <input type="email" placeholder="{{ translate('Email') }}" id="email" name="email"
                                     value="{{ $restaurant->email }}" class="form-control" required>
+                                    @include('backend.inc.form-span-error', ['field' => 'email'])
                             </div>
                         </div>
                         <div class="form-group row">
@@ -96,6 +102,7 @@
                             <div class="col-sm-9">
                                 <input type="text" placeholder="{{ translate('Phone') }}" id="phone" name="phone"
                                     value="{{ $restaurant->phone }}" class="form-control" required>
+                                    @include('backend.inc.form-span-error', ['field' => 'phone'])
                             </div>
                         </div>
                         <div class="form-group row">
@@ -105,6 +112,7 @@
                                 <input type="text" placeholder="{{ translate('Contact Name') }}" id="contact_user"
                                     name="contact_user" value="{{ $restaurant->contact_user }}" class="form-control"
                                     required>
+                                    @include('backend.inc.form-span-error', ['field' => 'contact_user'])
                             </div>
                         </div>
 
@@ -114,6 +122,7 @@
                                 <textarea class="aiz-text-editor" name="description">
                                 {{ $restaurant->description }}
                             </textarea>
+                            @include('backend.inc.form-span-error', ['field' => 'description'])
                             </div>
                         </div>
 
@@ -123,6 +132,7 @@
                                 <textarea class="aiz-text-editor" name="content">
                                 {{ $restaurant->content }}
                             </textarea>
+                            @include('backend.inc.form-span-error', ['field' => 'content'])
                             </div>
                         </div>
 

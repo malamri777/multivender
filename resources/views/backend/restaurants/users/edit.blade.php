@@ -64,7 +64,7 @@
                                 <select name="restaurant_id" required class="form-control aiz-selectpicker"
                                     data-selected="{{ $restaurant->provider_id }}">
                                     <option value=""></option>
-                                    @foreach ($restaurant as $item)
+                                    @foreach ($restaurants as $item)
                                         <option value="{{ $item->id }}">{{ $item->name }}</option>
                                     @endforeach
                                 </select>
