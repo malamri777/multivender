@@ -504,7 +504,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
     // Restaurant
     Route::group(['prefix' => 'restaurants', 'as' => 'restaurants.', 'controller' => RestaurantController::class], function(){
         Route::post('update_status', 'updateStatus')->name('update_status');
-        Route::get('query-users-selector/{restaurant?}', 'queryUsersForRestaurantr')->name('query-users-selector');
+        Route::get('query-users-selector/{restaurant?}', 'queryUsersForRestaurant')->name('query-users-selector');
         Route::get('destroy/{id}', 'destroy')->name('destroy');
 
         // Branchs

@@ -19,6 +19,7 @@
                             <div class="col-sm-9">
                                 <input type="text" placeholder="{{ translate('Name') }}" id="name" name="name"
                                     value="{{ $warehouse->name }}" class="form-control" required>
+                                    @include('backend.inc.form-span-error', ['field' => 'name'])
                             </div>
                         </div>
 
@@ -32,6 +33,7 @@
                                             <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
                                         @endforeach
                                 </select>
+                                @include('backend.inc.form-span-error', ['field' => 'supplier_id'])
                             </div>
                         </div>
 
@@ -45,6 +47,7 @@
                                             <option value="{{ $state->id }}">{{ $state->name }}</option>
                                         @endforeach
                                 </select>
+                                @include('backend.inc.form-span-error', ['field' => 'state_id'])
                             </div>
                         </div>
 
@@ -58,6 +61,7 @@
                                             <option value="{{ $city->id }}">{{ $city->name }}</option>
                                         @endforeach
                                 </select>
+                                @include('backend.inc.form-span-error', ['field' => 'city_id'])
                             </div>
                         </div>
 
@@ -71,6 +75,7 @@
                                             <option value="{{ $district->id }}">{{ $district->name }}</option>
                                         @endforeach
                                 </select>
+                                @include('backend.inc.form-span-error', ['field' => 'district_id'])
                             </div>
                         </div>
 

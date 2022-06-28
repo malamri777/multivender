@@ -17,6 +17,7 @@
                             <div class="col-sm-9">
                                 <input type="text" placeholder="{{ translate('Name') }}" id="name" name="name"
                                     class="form-control" required>
+                                    @include('backend.inc.form-span-error', ['field' => 'name'])
                             </div>
                         </div>
 
@@ -30,6 +31,7 @@
                                         <option value="{{ $restaurant->id }}">{{ $restaurant->name }}</option>
                                     @endforeach
                                 </select>
+                                @include('backend.inc.form-span-error', ['field' => 'restaurant_id'])
                             </div>
                         </div>
 
@@ -43,6 +45,7 @@
                                         <option value="{{ $state->id }}">{{ $state->name }}</option>
                                     @endforeach
                                 </select>
+                                @include('backend.inc.form-span-error', ['field' => 'state_id'])
                             </div>
                         </div>
 
@@ -52,6 +55,7 @@
                                 <select class="select2 form-control aiz-selectpicker" name="city_id" id="city_id"
                                     data-toggle="select2" data-placeholder="Choose ..." data-live-search="true">
                                 </select>
+                                @include('backend.inc.form-span-error', ['field' => 'city_id'])
                             </div>
                         </div>
 
@@ -61,6 +65,7 @@
                                 <select class="select2 form-control aiz-selectpicker" name="district_id" id="district_id"
                                     data-toggle="select2" data-placeholder="Choose ..." data-live-search="true">
                                 </select>
+                                @include('backend.inc.form-span-error', ['field' => 'district_id'])
                             </div>
                         </div>
 

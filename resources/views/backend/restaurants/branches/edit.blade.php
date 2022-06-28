@@ -19,6 +19,7 @@
                             <div class="col-sm-9">
                                 <input type="text" placeholder="{{ translate('Name') }}" id="name" name="name"
                                     value="{{ $branch->name }}" class="form-control" required>
+                                    @include('backend.inc.form-span-error', ['field' => 'name'])
                             </div>
                         </div>
 
@@ -26,12 +27,13 @@
                             <label class="col-sm-3 col-from-label" for="restaurant_id">{{ translate('Restaurant') }}</label>
                             <div class="col-sm-9">
                                 <select class="select2 form-control aiz-selectpicker" name="restaurant_id" id="restaurant_id"
-                                    data-selected="{{ $branch->restaurantr_id }}" data-toggle="select2" data-placeholder="Choose ..." data-live-search="true">
+                                    data-selected="{{ $branch->restaurant_id }}" data-toggle="select2" data-placeholder="Choose ..." data-live-search="true">
                                         <option value=""></option>
                                         @foreach ($restaurants as $restaurant)
                                             <option value="{{ $restaurant->id }}">{{ $restaurant->name }}</option>
                                         @endforeach
                                 </select>
+                                @include('backend.inc.form-span-error', ['field' => 'restaurant_id'])
                             </div>
                         </div>
 
@@ -45,6 +47,7 @@
                                             <option value="{{ $state->id }}">{{ $state->name }}</option>
                                         @endforeach
                                 </select>
+                                @include('backend.inc.form-span-error', ['field' => 'state_id'])
                             </div>
                         </div>
 
@@ -58,6 +61,7 @@
                                             <option value="{{ $city->id }}">{{ $city->name }}</option>
                                         @endforeach
                                 </select>
+                                @include('backend.inc.form-span-error', ['field' => 'city_id'])
                             </div>
                         </div>
 
@@ -71,6 +75,7 @@
                                             <option value="{{ $district->id }}">{{ $district->name }}</option>
                                         @endforeach
                                 </select>
+                                @include('backend.inc.form-span-error', ['field' => 'district_id'])
                             </div>
                         </div>
 
