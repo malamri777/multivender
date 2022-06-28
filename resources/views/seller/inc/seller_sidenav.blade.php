@@ -2,14 +2,14 @@
     <div class="aiz-sidebar left c-scrollbar">
         <div class="aiz-side-nav-logo-wrap">
             <div class="d-block text-center my-3">
-                @if (Auth::user()->shop->logo != null)
-                    <img class="mw-100 mb-3" src="{{ uploaded_asset(Auth::user()->shop->logo) }}"
+                @if (Auth::user()->supplier->logo != null)
+                    <img class="mw-100 mb-3" src="{{ uploaded_asset(Auth::user()->supplier->logo) }}"
                         class="brand-icon" alt="{{ get_setting('site_name') }}">
                 @else
                     <img class="mw-100 mb-3" src="{{ uploaded_asset(get_setting('header_logo')) }}" class="brand-icon"
                         alt="{{ get_setting('site_name') }}">
                 @endif
-                <h3 class="fs-16  m-0 text-primary">{{ Auth::user()->shop->name }}</h3>
+                <h3 class="fs-16  m-0 text-primary">{{ Auth::user()->supplier->name }}</h3>
                 <p class="text-primary">{{ Auth::user()->email }}</p>
             </div>
         </div>
@@ -170,7 +170,7 @@
                         </a>
                     </li>
                 @endif
-                
+
 
                 <li class="aiz-side-nav-item">
                     <a href="{{ route('seller.shop.index') }}" class="aiz-side-nav-link {{ areActiveRoutes(['seller.shop.index']) }}">
