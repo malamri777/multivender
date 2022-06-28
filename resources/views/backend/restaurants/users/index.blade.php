@@ -4,12 +4,12 @@
     <div class="aiz-titlebar text-left mt-2 mb-3">
         <div class="row align-items-center">
             <div class="col-md-6">
-                <h1 class="h3">{{ translate('All Supplier Users') }}</h1>
+                <h1 class="h3">{{ translate('All Restaurant Users') }}</h1>
             </div>
             @if(Auth::user()->user_type == 'super_admin')
                 <div class="col-md-6 text-md-right">
-                    <a href="{{ route('admin.suppliers.users.create') }}" class="btn btn-circle btn-info">
-                        <span>{{ translate('Add New Supplier User') }}</span>
+                    <a href="{{ route('admin.restaurants.users.create') }}" class="btn btn-circle btn-info">
+                        <span>{{ translate('Add New Restaurant User') }}</span>
                     </a>
                 </div>
             @endif
@@ -20,7 +20,7 @@
         <form class="" id="sort_sellers" action="" method="GET">
             <div class="card-header row gutters-5">
                 <div class="col">
-                    <h5 class="mb-md-0 h6">{{ translate('Supplier Users') }}</h5>
+                    <h5 class="mb-md-0 h6">{{ translate('Restaurant Users') }}</h5>
                 </div>
 
                 <div class="dropdown mb-2 mb-md-0">
@@ -33,13 +33,13 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <select class="form-control aiz-selectpicker" data-live-search="true" id="sort_supplier"
-                        name="sort_supplier">
-                        <option value="">{{ translate('Select Supplier') }}</option>
-                        @foreach (\App\Models\Supplier::where('status', 1)->get() as $supplier)
-                            <option value="{{ $supplier->id }}" @if ($sort_supplier == $supplier->id) selected @endif
-                                {{ $sort_supplier }}>
-                                {{ $supplier->name }}
+                    <select class="form-control aiz-selectpicker" data-live-search="true" id="sort_restaurant"
+                        name="sort_restaurant">
+                        <option value="">{{ translate('Select Restaurant') }}</option>
+                        @foreach (\App\Models\Restaurant::where('status', 1)->get() as $restaurant)
+                            <option value="{{ $restaurant->id }}" @if ($sort_restaurant == $restaurant->id) selected @endif
+                                {{ $sort_restaurant }}>
+                                {{ $restaurant->name }}
                             </option>
                         @endforeach
                     </select>
@@ -79,7 +79,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($usersSupplier as $key => $user)
+                    @foreach ($usersRestaurant as $key => $user)
                         <tr>
                             <td>
                                 <div class="form-group">
@@ -121,7 +121,7 @@
                                             class="dropdown-item">
                                             {{ translate('Payment History') }}
                                         </a>
-                                        <a href="{{ route('admin.suppliers.users.edit', ['user' => $user->id]) }}"
+                                        <a href="{{ route('admin.restaurants.users.edit', ['user' => $user->id]) }}"
                                             class="dropdown-item">
                                             {{ translate('Edit') }}
                                         </a>
@@ -141,7 +141,7 @@
                                             </a>
                                         @endif
                                         <a href="#" class="dropdown-item confirm-delete"
-                                            data-href="{{ route('admin.suppliers.users.destroy', $user->id) }}" class="">
+                                            data-href="{{ route('admin.restaurants.users.destroy', $user->id) }}" class="">
                                             {{ translate('Delete') }}
                                         </a>
                                     </div>
@@ -152,7 +152,7 @@
                 </tbody>
             </table>
             <div class="aiz-pagination">
-                {{ $usersSupplier->appends(request()->input())->links() }}
+                {{ $usersRestaurant->appends(request()->input())->links() }}
             </div>
         </div>
     </div>

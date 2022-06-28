@@ -23,25 +23,25 @@
         <div class="col-lg-6 mx-auto">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="mb-0 h6">{{ translate('Supplier Information') }}</h5>
+                    <h5 class="mb-0 h6">{{ translate('restaurant Information') }}</h5>
                 </div>
 
-                <form class="form-horizontal" action="{{ route('admin.suppliers.update', $supplier->id) }}" method="POST"
+                <form class="form-horizontal" action="{{ route('admin.restaurants.update', $restaurant->id) }}" method="POST"
                     enctype="multipart/form-data">
                     <input name="_method" type="hidden" value="PATCH">
-                    <input type="hidden" name="id" value="{{ $supplier->id }}">
+                    <input type="hidden" name="id" value="{{ $restaurant->id }}">
                     @csrf
                     <div class="card-body">
                         <div class="form-group row">
                             <label class="col-sm-3 col-from-label" for="name">{{ translate('Name') }}</label>
                             <div class="col-sm-9">
                                 <input type="text" placeholder="{{ translate('Name') }}" id="name" name="name"
-                                    value="{{ $supplier->name }}" class="form-control" required>
+                                    value="{{ $restaurant->name }}" class="form-control" required>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-sm-3 col-from-label" for="admin_id">{{ translate('Supplier Admin') }}</label>
+                            <label class="col-sm-3 col-from-label" for="admin_id">{{ translate('Restaurant Admin') }}</label>
                             <div class="col-sm-9">
                                 <select class="form-control aiz-selectpicker-ajax with-ajax" data-abs-cache="true"
                                 data-live-search="true" id="admin_id" name="admin_id"></select>
@@ -52,7 +52,7 @@
                             <label class="col-sm-3 col-from-label" for="cr_no">{{ translate('CR Number') }}</label>
                             <div class="col-sm-9">
                                 <input type="text" placeholder="{{ translate('CR Number') }}" id="cr_no"
-                                    name="cr_no" value="{{ $supplier->cr_no }}" class="form-control" required>
+                                    name="cr_no" value="{{ $restaurant->cr_no }}" class="form-control" required>
                             </div>
                         </div>
 
@@ -60,12 +60,12 @@
                             <label class="col-sm-3 col-from-label" for="vat_no">{{ translate('VAT Number') }}</label>
                             <div class="col-sm-9">
                                 <input type="text" placeholder="{{ translate('VAT Number') }}" id="vat_no"
-                                    name="vat_no" value="{{ $supplier->vat_no }}" class="form-control" required>
+                                    name="vat_no" value="{{ $restaurant->vat_no }}" class="form-control" required>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-md-3 col-form-label" for="signinSrEmail">{{ translate('Supplier Logo') }}
+                            <label class="col-md-3 col-form-label" for="signinSrEmail">{{ translate('Restaurant Logo') }}
                                 <small>(250x250)</small></label>
                             <div class="col-md-8">
                                 <div class="input-group" data-toggle="aizuploader" data-type="image">
@@ -74,13 +74,13 @@
                                             {{ translate('Browse') }}</div>
                                     </div>
                                     <div class="form-control file-amount">{{ translate('Choose File') }}</div>
-                                    <input type="hidden" name="logo" value="{{ $supplier->logo }}"
+                                    <input type="hidden" name="logo" value="{{ $restaurant->logo }}"
                                         class="selected-files">
                                 </div>
                                 <div class="file-preview box sm">
                                 </div>
                                 <small
-                                    class="text-muted">{{ translate('Logo of the supplier. Use 250x250 sizes images.') }}</small>
+                                    class="text-muted">{{ translate('Logo of the restaurant. Use 250x250 sizes images.') }}</small>
                             </div>
                         </div>
 
@@ -88,14 +88,14 @@
                             <label class="col-sm-3 col-from-label" for="email">{{ translate('Email') }}</label>
                             <div class="col-sm-9">
                                 <input type="email" placeholder="{{ translate('Email') }}" id="email" name="email"
-                                    value="{{ $supplier->email }}" class="form-control" required>
+                                    value="{{ $restaurant->email }}" class="form-control" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-3 col-from-label" for="phone">{{ translate('Phone') }}</label>
                             <div class="col-sm-9">
                                 <input type="text" placeholder="{{ translate('Phone') }}" id="phone" name="phone"
-                                    value="{{ $supplier->phone }}" class="form-control" required>
+                                    value="{{ $restaurant->phone }}" class="form-control" required>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -103,7 +103,7 @@
                                 for="contact_user">{{ translate('Contact Name') }}</label>
                             <div class="col-sm-9">
                                 <input type="text" placeholder="{{ translate('Contact Name') }}" id="contact_user"
-                                    name="contact_user" value="{{ $supplier->contact_user }}" class="form-control"
+                                    name="contact_user" value="{{ $restaurant->contact_user }}" class="form-control"
                                     required>
                             </div>
                         </div>
@@ -112,7 +112,7 @@
                             <label class="col-md-3 col-from-label">{{ translate('Description') }}</label>
                             <div class="col-md-8">
                                 <textarea class="aiz-text-editor" name="description">
-                                {{ $supplier->description }}
+                                {{ $restaurant->description }}
                             </textarea>
                             </div>
                         </div>
@@ -121,7 +121,7 @@
                             <label class="col-md-3 col-from-label">{{ translate('Content') }}</label>
                             <div class="col-md-8">
                                 <textarea class="aiz-text-editor" name="content">
-                                {{ $supplier->content }}
+                                {{ $restaurant->content }}
                             </textarea>
                             </div>
                         </div>
@@ -145,7 +145,7 @@
 var options = {
   values: "a, b, c",
   ajax: {
-    url: "{{ route('admin.suppliers.query-users-selector', ['supplier' => $supplier->id])}}",
+    url: "{{ route('admin.restaurants.query-users-selector', ['restaurant' => $restaurant->id])}}",
     type: "GET",
     dataType: "json",
     //  as a placeholder and Ajax Bootstrap Select will
