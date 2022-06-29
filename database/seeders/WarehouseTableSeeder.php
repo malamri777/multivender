@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Warehouse;
+use App\Models\WarehouseProduct;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -166,6 +167,16 @@ class WarehouseTableSeeder extends Seeder
             'state_id'    => 1,
             'city_id'    => 1,
             'district_id'    => 3,
+        ]);
+
+        WarehouseProduct::create([
+            'price' => 20,
+            'sale_price' => 2,
+            'quantity' => 100,
+            'warehouse_id' => 1,
+            'product_id' => 1,
+            'create_by_id' => 1,
+            'updated_by_id' => 1
         ]);
     }
 }

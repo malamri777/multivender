@@ -35,6 +35,7 @@ class CreateProductsTable extends Migration
             $table->text('variations')->nullable();
             $table->integer('todays_deal')->default(0);
             $table->integer('published')->default(1);
+            $table->string('sku', 255)->nullable();
             $table->boolean('approved')->default(true);
             $table->string('stock_visibility_state', 10)->default('quantity');
             $table->boolean('cash_on_delivery')->default(false)->comment('1 = On, 0 = Off');

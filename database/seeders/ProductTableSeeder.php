@@ -48,6 +48,7 @@ class ProductTableSeeder extends Seeder
             'user_id' => 1,
             'category_id' => 1,
             'brand_id' => 1,
+            'sku' => 'sku1',
             'photos' => 5,
             'thumbnail_img' => 5,
             'tags' => 'product',
@@ -59,6 +60,26 @@ class ProductTableSeeder extends Seeder
             'cash_on_delivery' => true,
             'unit' => 1
         ]);
+
+        Product::create([
+            'name' => 'Product Two',
+            'added_by' => 'admin',
+            'user_id' => 1,
+            'category_id' => 1,
+            'brand_id' => 1,
+            'sku' => 'sku2',
+            'photos' => 5,
+            'thumbnail_img' => 5,
+            'tags' => 'product',
+            'description' => '<p>Vivamus elementum semper nisi. Maecenas ullamcorper, dui et placerat feugiat, eros pede varius nisi, condimentum viverra felis nunc et lorem. Nulla consequat massa quis enim. Cras risus ipsum, faucibus ut, ullamcorper id, varius ac, leo.</p><p><br></p><p>Nam ipsum risus, rutrum vitae, vestibulum eu, molestie vel, lacus. Vivamus quis mi. Nunc interdum lacus sit amet orci. Aliquam erat volutpat.</p><p><br></p><p>Vivamus laoreet. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. Curabitur vestibulum aliquam leo.</p><p><br></p><p>Donec mi odio, faucibus at, scelerisque quis, convallis in, nisi. Maecenas egestas arcu quis ligula mattis placerat. Pellentesque ut neque. Sed augue ipsum, egestas nec, vestibulum et, malesuada adipiscing, dui.</p>',
+            'unit_price' => 500,
+            'purchase_price' => 250,
+            'choice_options' => '[{"attribute_id":"1","values":["Small"]}]',
+            'colors' => '[]',
+            'cash_on_delivery' => true,
+            'unit' => 1
+        ]);
+
         ProductTranslation::create([
             'product_id' => $product->id,
             'name' => 'منتج ١',
