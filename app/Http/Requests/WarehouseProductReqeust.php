@@ -25,12 +25,12 @@ class WarehouseProductReqeust extends FormRequest
     {
         return [
             'price' => 'required|numeric',
-            'sale_price' => 'numeric',
+            'sale_price' => 'sometimes|numeric',
             'quantity' => 'required|numeric',
             'warehouse_id' => 'required|numeric',
             'product_id' => 'required|numeric',
-            'create_by_id' => 'sometime|numeric',
-            'updated_by_id' =>  'sometime|numeric'
+            'create_by_id' => 'sometimes|numeric',
+            'updated_by_id' =>  'sometimes|numeric'
         ];
     }
 }

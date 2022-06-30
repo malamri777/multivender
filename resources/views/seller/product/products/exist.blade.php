@@ -35,8 +35,7 @@
                     <div id="product_name_input" class="form-group row">
                         <label class="col-md-3 col-from-label">{{translate('Name')}}</label>
                         <div class="col-md-8">
-                            <input id="product_name" type="text" class="form-control" name="name">
-                            @include('backend.inc.form-span-error', ['field' => 'name'])
+                            <input id="product_name" type="text" class="form-control" name="name" disabled>
                         </div>
                     </div>
                     <div id="product_warehouse_input" class="form-group row">
@@ -74,8 +73,7 @@
 
         <div class="col-12">
             <div class="mar-all text-center mb-2">
-                <button type="submit" name="button" value="publish"
-                    class="btn btn-primary">{{ translate('Save Product') }}</button>
+                <button type="submit" class="btn btn-primary">{{ translate('Save Product') }}</button>
             </div>
         </div>
     </div>
