@@ -6,14 +6,14 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class WarehouseProductReqeust extends FormRequest
 {
-    /**
+   /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,8 +29,8 @@ class WarehouseProductReqeust extends FormRequest
             'quantity' => 'required|numeric',
             'warehouse_id' => 'required|numeric',
             'product_id' => 'required|numeric',
-            'create_by_id' => 'required|numeric',
-            'updated_by_id' =>  'required|numeric'
+            'create_by_id' => 'sometime|numeric',
+            'updated_by_id' =>  'sometime|numeric'
         ];
     }
 }

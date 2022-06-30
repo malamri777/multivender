@@ -13,6 +13,8 @@
     <div class="row gutters-5">
         <div class="col-lg-12">
             @csrf
+            <input type="hidden" name="product_id" value="">
+            <input type="hidden" name="warehouse_product_id" value="">
             <input type="hidden" name="added_by" value="seller">
             <div class="card">
                 <div class="card-header">
@@ -23,6 +25,7 @@
                         <label class="col-md-3 col-from-label">{{translate('SKU')}}</label>
                         <div class="col-md-6">
                             <input type="text" class="form-control" name="sku" id="sku" required>
+                            @include('backend.inc.form-span-error', ['field' => 'sku'])
                         </div>
                         <div class="col-md-2">
                             <button id="sku_btn" type="button" class="btn btn-dark">Search</button>
@@ -33,6 +36,7 @@
                         <label class="col-md-3 col-from-label">{{translate('Name')}}</label>
                         <div class="col-md-8">
                             <input id="product_name" type="text" class="form-control" name="name">
+                            @include('backend.inc.form-span-error', ['field' => 'name'])
                         </div>
                     </div>
                     <div id="product_warehouse_input" class="form-group row">
@@ -40,26 +44,29 @@
                         <div class="col-md-8">
                             <select class="form-control aiz-selectpicker" name="warehouse_id" id="warehouse_option"
                                 data-live-search="true" required="true">
-
                             </select>
+                            @include('backend.inc.form-span-error', ['field' => 'warehouse_id'])
                         </div>
                     </div>
                     <div id="product_input" class="form-group row">
                         <label class="col-md-3 col-from-label">{{translate('Price')}}</label>
                         <div class="col-md-8">
                             <input type="text" class="form-control" name="price">
+                            @include('backend.inc.form-span-error', ['field' => 'price'])
                         </div>
                     </div>
                     <div id="product_input" class="form-group row">
                         <label class="col-md-3 col-from-label">{{translate('Sale Price')}}</label>
                         <div class="col-md-8">
                             <input type="text" class="form-control" name="sale_price">
+                            @include('backend.inc.form-span-error', ['field' => 'sale_price'])
                         </div>
                     </div>
                     <div id="product_input" class="form-group row">
                         <label class="col-md-3 col-from-label">{{translate('Quantity')}}</label>
                         <div class="col-md-8">
                             <input type="text" class="form-control" name="quantity">
+                            @include('backend.inc.form-span-error', ['field' => 'quantity'])
                         </div>
                     </div>
                 </div>
@@ -72,9 +79,6 @@
             </div>
         </div>
     </div>
-
-    <input type="hidden" name="product_id" value="">
-    <input type="hidden" name="warehouse_product_id" value="">
 </form>
 
 @endsection
@@ -114,6 +118,7 @@
                     sku: $('#sku').val()
                 },
                 success: function(result) {
+                    console.log("success");
                     if(result.product != null && result.product != false){
                         $("#product_warehouse_input").show();
                         $("#product_name_input").show();
@@ -146,6 +151,9 @@
                         $("#product_name_input").hide();
                     }
 
+                },
+                catch: (e) => {
+                    console.log("error", e);
                 }
             });
         }
