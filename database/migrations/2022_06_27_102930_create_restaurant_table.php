@@ -25,6 +25,8 @@ return new class extends Migration
             $table->longText('content')->nullable();
             $table->string('logo')->default('assets/img/logo.png');
             $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('restaurant_waiting_for_upload_file')->default(0);
+            $table->integer('restaurant_waiting_for_admin_approve')->default(0);
 
             $table->foreignIdFor(\App\Models\User::class, 'admin_id' )->nullable();
             $table->timestamps();

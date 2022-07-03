@@ -56,8 +56,8 @@ class AuthController extends Controller
                 } catch (\Exception $e) {
                 }
             } else {
-                $otpController = new OTPVerificationController();
-                $otpController->send_code($user);
+                // $otpController = new App\Http\Controllers\Api\V2\OTPVerificationController();
+                // $otpController->send_code($user);
             }
         }
 
@@ -129,11 +129,11 @@ class AuthController extends Controller
             $user = User::whereIn('user_type', ['customer', 'seller'])->where('email', $request->email)->orWhere('phone', $request->email)->first();
         }
 
-        if (!$delivery_boy_condition) {
-            if (\App\Utility\PayhereUtility::create_wallet_reference($request->identity_matrix) == false) {
-                return response()->json(['result' => false, 'message' => 'Identity matrix error', 'user' => null], 401);
-            }
-        }
+        // if (!$delivery_boy_condition) {
+        //     if (\App\Utility\PayhereUtility::create_wallet_reference($request->identity_matrix) == false) {
+        //         return response()->json(['result' => false, 'message' => 'Identity matrix error', 'user' => null], 401);
+        //     }
+        // }
 
 
         if ($user != null) {
