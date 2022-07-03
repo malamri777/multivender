@@ -2,24 +2,29 @@
 
 namespace App\Http\Controllers\Seller;
 
-use App\Http\Requests\ProductRequest;
+use Str;
+use Auth;
+use Artisan;
+use Combinations;
+use Carbon\Carbon;
+use App\Models\Cart;
+use App\Models\User;
+use App\Models\Product;
+use App\Models\Category;
+use App\Models\Supplier;
+use App\Models\Warehouse;
+use App\Models\ProductTax;
 use Illuminate\Http\Request;
 use App\Models\AttributeValue;
-use App\Models\Cart;
-use App\Models\Category;
-use App\Models\Product;
-use App\Models\ProductTax;
-use App\Models\ProductTranslation;
-use Carbon\Carbon;
-use Combinations;
-use Artisan;
-use Auth;
-use Str;
-
+use App\Models\WarehouseProduct;
 use App\Services\ProductService;
+
 use App\Services\ProductTaxService;
-use App\Services\ProductFlashDealService;
+use App\Services\ProductTranslation;
+use App\Http\Requests\ProductRequest;
 use App\Services\ProductStockService;
+use App\Services\ProductFlashDealService;
+use App\Http\Requests\WarehouseProductReqeust;
 
 class ProductController extends Controller
 {
@@ -73,6 +78,88 @@ class ProductController extends Controller
         return view('seller.product.products.create', compact('categories'));
     }
 
+    public function exist(Request $request)
+    {
+        return view('seller.product.products.exist');
+    }
+
+    public function find_sku(Request $request)
+    {
+        if($request->input('sku')){
+            $product = Product::where('sku',$request->input('sku'))->first();
+            if($product){
+                $warehouse_product = WarehouseProduct::where('product_id',$product->id)->first();
+                if($warehouse_product){
+                    $warehouse = Warehouse::find($warehouse_product->warehouse_id);
+
+                    $warehouses = Warehouse::where('supplier_id', Auth::user()->provider_id)->get();
+
+                    $html = '';
+                    $html .= '<option selected value="'.$warehouse->id .'">' . $warehouse->name . '</option>';
+
+                    foreach ($warehouses as $row) {
+                        if($row->id != $warehouse->id){
+                            $html .= '<option value="' . $row->id . '">' . $row->name . '</option>';
+                        }
+                    }
+
+                    return response()->json(['product' => $product,'warehouse_product' => $warehouse_product,'warehouse' => $warehouse, 'html' => $html]);
+                }else{
+                    $warehouses = Warehouse::where('supplier_id', Auth::user()->provider_id)->get();
+
+                    $html = '';
+                    $html .= '<option selected label="Please Select">Please Select</option>';
+                    foreach ($warehouses as $row) {
+                        $html .= '<option value="'.$row->id .'">'.$row->name.'</option>';
+                    }
+                    return response()->json(['product' => $product, 'warehouses' => $warehouses, 'html' => $html]);
+                }
+            }else{
+                // no product found
+                return response()->json(['product' => false, 'message' => 'not_found']);
+            }
+        }else{
+            // no sku enterd
+            return response()->json(['product' => false, 'message' => 'no_sku']);
+        }
+    }
+
+    public function store_exist(WarehouseProductReqeust $request)
+    {
+
+        $result = WarehouseProduct::updateOrCreate([
+            'id' => $request->warehouse_product_id,
+        ],[
+            "name" => $request->name,
+            "warehouse_id" => $request->warehouse_id,
+            "price" => $request->price,
+            "sale_price" => $request->sale_price,
+            "quantity" => $request->quantity,
+            "product_id" => $request->product_id,
+            "warehouse_product_id" => $request->warehouse_product_id,
+            'updated_by_id' =>  Auth::user()->id,
+            'created_by_id' =>  Auth::user()->id,
+        ]);
+
+        if(!$result->wasRecentlyCreated && $result->wasChanged()){
+            // updateOrCreate performed an update
+            flash(translate('Warehouse Product Updated'))->success();
+        }
+
+        if(!$result->wasRecentlyCreated && !$result->wasChanged()){
+            // updateOrCreate performed nothing, row did not change
+            flash(translate('Nothing Changed'))->success();
+        }
+
+        if($result->wasRecentlyCreated){
+           // updateOrCreate performed create
+           flash(translate('Warehouse Product Moved'))->success();
+        }
+
+        return redirect()->route('seller.products');
+    }
+
+
     public function store(ProductRequest $request)
     {
         if (addon_is_activated('seller_subscription')) {
@@ -86,7 +173,7 @@ class ProductController extends Controller
             '_token', 'sku', 'choice', 'tax_id', 'tax', 'tax_type', 'flash_deal_id', 'flash_discount', 'flash_discount_type'
         ]));
         $request->merge(['product_id' => $product->id]);
-        
+
         //VAT & Tax
         if($request->tax_id) {
             $this->productTaxService->store($request->only([

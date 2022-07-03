@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Warehouse;
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,14 +16,10 @@ class CreateWarehouseProductsTable extends Migration
             $table->decimal('price', 15, 2);
             $table->decimal('sale_price', 15, 2)->nullable();
             $table->integer('quantity')->nullable();
-            $table->unsignedBigInteger('warehouse_id')->nullable();
-            $table->foreign('warehouse_id', 'warehouse_fk_6822270')->references('id')->on('warehouses');
-            $table->unsignedBigInteger('product_id')->nullable();
-            $table->foreign('product_id', 'product_fk_6822271')->references('id')->on('products');
-            $table->unsignedBigInteger('create_by_id')->nullable();
-            $table->foreign('create_by_id', 'create_by_fk_6822272')->references('id')->on('users');
-            $table->unsignedBigInteger('updated_by_id')->nullable();
-            $table->foreign('updated_by_id', 'updated_by_fk_6822273')->references('id')->on('users');
+            $table->foreignIdFor(Warehouse::class, 'warehouse_id');
+            $table->foreignIdFor(Product::class, 'product_id');
+            $table->foreignIdFor(User::class, 'create_by_id')->nullable();
+            $table->foreignIdFor(User::class, 'updated_by_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -28,6 +28,9 @@ Route::group(['prefix' => 'seller', 'middleware' => ['seller', 'verified', 'user
         Route::get('/product/create', 'create')->name('products.create');
         Route::post('/products/store/', 'store')->name('products.store');
         Route::get('/product/{id}/edit', 'edit')->name('products.edit');
+        Route::get('/products/exist', 'exist')->name('products.exist');
+        Route::post('/products/sku', 'find_sku')->name('products.sku');
+        Route::post('/products/exist/store', 'store_exist')->name('products.exist.store');
         Route::post('/products/update/{product}', 'update')->name('products.update');
         Route::get('/products/duplicate/{id}', 'duplicate')->name('products.duplicate');
         Route::post('/products/sku_combination', 'sku_combination')->name('products.sku_combination');
