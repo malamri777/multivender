@@ -9,10 +9,12 @@ use Laravel\Sanctum\HasApiTokens;
 use App\Models\Cart;
 use App\Notifications\EmailVerificationNotification;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Str;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable, HasApiTokens, HasFactory;
+    use Notifiable, HasApiTokens, HasFactory, SoftDeletes;
 
     public function sendEmailVerificationNotification()
     {
@@ -36,6 +38,16 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public static function boot()
+    {
+
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->uuid = Str::uuid();
+        });
+    }
 
     public function wishlists()
     {
@@ -69,7 +81,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function supplier()
     {
-    return $this->belongsTo(Supplier::class, 'provider_id');
+        return $this->belongsTo(Supplier::class, 'provider_id');
     }
 
     public function staff()

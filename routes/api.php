@@ -1,6 +1,15 @@
 <?php
 
 
+Route::group([
+    'prefix'     => 'v2/restaurant',
+    'as'         => 'v2/restaurant.',
+], function() {
+    Route::post('auth/login', 'V2\RestaurantAuthController@login');
+    Route::post('auth/signup', 'V2\RestaurantAuthController@signup');
+    Route::post('auth/confirm_code', 'V2\RestaurantAuthController@confirmCode')->middleware('throttle:60,3');
+});
+
 Route::group(['prefix' => 'v2/auth', 'middleware' => ['app_language']], function() {
     Route::post('login', 'V2\AuthController@login');
     Route::post('signup', 'V2\AuthController@signup');

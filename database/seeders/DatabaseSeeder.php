@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             BusinessSettingTableSeeder::class,
+            OTPTableSeeder::class,
             LanguageTableSeeder::class,
             SetupTableSeeder::class,
             TranslationTableSeeder::class,

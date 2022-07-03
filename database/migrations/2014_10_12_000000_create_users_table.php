@@ -17,15 +17,17 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->string('uuid')->unique();
             $table->integer('referred_by')->nullable();
             $table->string('user_type', 50)->default('customer');
             $table->string('name');
             $table->string('email')->nullable()->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->text('verification_code')->nullable();
-            $table->text('new_email_verificiation_code')->nullable();
+            $table->string('verification_code')->nullable();
+            $table->string('verification_code_count')->default(0);
+            $table->string('verification_code_time_amount_left')->nullable();
+            $table->string('new_email_verificiation_code')->nullable();
             $table->string('password')->nullable();
-            $table->rememberToken();
             $table->string('device_token', 255)->nullable();
             $table->string('avatar', 256)->nullable();
             $table->string('avatar_original', 256)->nullable();
@@ -41,12 +43,11 @@ return new class extends Migration
             $table->integer('customer_package_id')->nullable();
             $table->integer('remaining_uploads')->nullable()->default(0);
 
-            // $table->string('provider_id', 50)->nullable();
-            // $table->string('restaurant_id', 50)->nullable();
-
             $table->foreignIdFor(Supplier::class, 'provider_id')->nullable();
             $table->foreignIdFor(Restaurant::class, 'restaurant_id')->nullable();
             $table->timestamps();
+            $table->rememberToken();
+            $table->softDeletes();
         });
     }
 

@@ -23,5 +23,14 @@ class AddonTableSeeder extends Seeder
             "activated" => 1,
             "purchase_code" => "lskdfjlsdkjf"
         ]);
+
+        Addon::create([
+            'name' => 'OTP System',
+            "unique_identifier" => "otp_system",
+            "version" => "1.0",
+            "image" => "addons/otp_system.png",
+            "activated" => 1,
+            "purchase_code" => "lskdfjlsdkjf"
+        ]);
     }
 }

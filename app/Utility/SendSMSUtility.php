@@ -3,14 +3,70 @@
 namespace App\Utility;
 
 use App\Models\OtpConfiguration;
+use App\Models\User;
 use App\Utility\MimoUtility;
+use Cache;
+use Carbon\Carbon;
 use Twilio\Rest\Client;
 
 class SendSMSUtility
 {
+    const TOO_MANY_TRY = 'Too Many Tries';
+    const TIME_OUT = 'Time Out';
+    const OK = 'OK';
+
+    public static function isOTPVaild(User $user) : string {
+        if ($user->verification_code_count > config('myenv.DEFAULT_COUNT')) {
+            return self::TOO_MANY_TRY;
+        }
+
+        if (Carbon::now()->addMinute(config('myenv.DEFAULT_TIME_AMOUNT'))->lte($user->verification_code_time_amount_left)) {
+            return self::TIME_OUT;
+        }
+
+        return self::OK;
+    }
+
+    public static function userHasVaildOTP(User $user) : bool {
+        return Carbon::now()->addMinute(config('myenv.DEFAULT_TIME_AMOUNT'))->gt($user->verification_code_time_amount_left);
+    }
+
     public static function sendSMS($to, $from, $text, $template_id)
-    {        
-        if (OtpConfiguration::where('type', 'nexmo')->first()->value == 1) {
+    {
+        $otpConfiguration = Cache::pull('UNIFONIC');
+
+        if ($otpConfiguration->value == 1) {
+            $api_key = config("myenv.UNIFONIC_KEY"); //put ssl provided api_token here
+            $api_secret = config("myenv.UNIFONIC_SECRET"); // put ssl provided sid here
+
+            $params = [
+                "api_key" => $api_key,
+                "api_secret" => $api_secret,
+                "from" => $from,
+                "text" => $text,
+                "to" => $to
+            ];
+
+            $url = "https://rest.nexmo.com/sms/json";
+            $params = json_encode($params);
+
+            $ch = curl_init(); // Initialize cURL
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                'Content-Type: application/json',
+                'Content-Length: ' . strlen($params),
+                'accept:application/json'
+            ));
+            $response = curl_exec($ch);
+            curl_close($ch);
+
+            return $response;
+        } elseif (OtpConfiguration::where('type', 'nexmo')->first()->value == 1) {
             $api_key = env("NEXMO_KEY"); //put ssl provided api_token here
             $api_secret = env("NEXMO_SECRET"); // put ssl provided sid here
 

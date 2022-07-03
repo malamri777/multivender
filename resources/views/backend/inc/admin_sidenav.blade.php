@@ -590,7 +590,7 @@
                                 </li>
                                 @if (addon_is_activated('otp_system'))
                                     <li class="aiz-side-nav-item">
-                                        <a href="{{route('sms.index')}}" class="aiz-side-nav-link">
+                                        <a href="{{route('admin.sms.index')}}" class="aiz-side-nav-link">
                                             <span class="aiz-side-nav-text">{{ translate('Bulk SMS') }}</span>
                                             @if (env("DEMO_MODE") == "On")
                                                 <span class="badge badge-inline badge-danger">Addon</span>
@@ -819,17 +819,17 @@
                             </a>
                             <ul class="aiz-side-nav-list level-2">
                                 <li class="aiz-side-nav-item">
-                                    <a href="{{ route('otp.configconfiguration') }}" class="aiz-side-nav-link">
+                                    <a href="{{ route('admin.otp.configconfiguration') }}" class="aiz-side-nav-link">
                                         <span class="aiz-side-nav-text">{{translate('OTP Configurations')}}</span>
                                     </a>
                                 </li>
                                 <li class="aiz-side-nav-item">
-                                    <a href="{{route('sms-templates.index')}}" class="aiz-side-nav-link">
+                                    <a href="{{route('admin.sms-templates.index')}}" class="aiz-side-nav-link">
                                         <span class="aiz-side-nav-text">{{translate('SMS Templates')}}</span>
                                     </a>
                                 </li>
                                 <li class="aiz-side-nav-item">
-                                    <a href="{{route('otp_credentials.index')}}" class="aiz-side-nav-link">
+                                    <a href="{{route('admin.otp_credentials.index')}}" class="aiz-side-nav-link">
                                         <span class="aiz-side-nav-text">{{translate('Set OTP Credentials')}}</span>
                                     </a>
                                 </li>
