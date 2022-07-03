@@ -105,6 +105,10 @@
                             </label>
                         </td>
                         <td class="text-right">
+                            {{-- Malak --}}
+                            <a class="btn btn-soft-primary btn-icon btn-circle btn-sm" href="{{route('admin.suppliers.users.index', ['sort_supplier'=>$warehouse->supplier->id, 'sort_warehouse'=>$warehouse->id])}}" title="{{ translate('Users') }}">
+                                <i class="lar la-user"></i>
+                            </a>
                             <a class="btn btn-soft-primary btn-icon btn-circle btn-sm" href="{{route('admin.suppliers.warehouses.edit', encrypt($warehouse->id))}}" title="{{ translate('Edit') }}">
                                 <i class="las la-edit"></i>
                             </a>
