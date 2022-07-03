@@ -26,7 +26,14 @@ class WarehouseTableSeeder extends Seeder
             'user_type' => 'supplier_warehouse_admin',
             'email_verified_at' => now()
         ]);
-        Warehouse::create([
+        $user = User::create([
+            'name' => 's1_w1_user',
+            'email' => 's1_w1_user@dev.com',
+            'password' => bcrypt('password'),
+            'user_type' => 'supplier_warehouse_user',
+            'email_verified_at' => now()
+        ]);
+        $w1 = Warehouse::create([
             'name'           => 'WareHouse 1 balubaid',
             'admin_id'    => $admin->id,
             'supplier_id'    => 1,
@@ -35,6 +42,7 @@ class WarehouseTableSeeder extends Seeder
             'city_id'    => 1,
             'district_id'    => 1,
         ]);
+        $w1->warehouseWarehouseUsers()->attach([$user->id]);
 
         $admin = User::create([
             'name' => 's1_w2_admin',
