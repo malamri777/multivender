@@ -46,6 +46,10 @@
                             </label>
                         </td>
                         <td class="text-right">
+                                                            {{-- Malak --}}
+                            <a class="btn btn-soft-primary btn-icon btn-circle btn-sm" href="{{route('admin.suppliers.warehouses.index', ['sort_supplier'=>$supplier->id])}}" title="{{ translate('warehouse') }}">
+                                <i class="las la-warehouse"></i>
+                            </a>
                             <a class="btn btn-soft-primary btn-icon btn-circle btn-sm" href="{{route('admin.suppliers.edit', encrypt($supplier->id))}}" title="{{ translate('Edit') }}">
                                 <i class="las la-edit"></i>
                             </a>
