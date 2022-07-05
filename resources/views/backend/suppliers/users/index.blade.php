@@ -46,6 +46,19 @@
                 </div>
 
                 <div class="col-md-3">
+                    <select class="form-control aiz-selectpicker" data-live-search="true" id="sort_warehouse"
+                        name="sort_warehouse">
+                        <option value="">{{ translate('Select Warehouse') }}</option>
+                        @foreach (\App\Models\Warehouse::where([['status', 1]])->get() as $warehouse)
+                            <option value="{{ $warehouse->id}}" @if ($sort_warehouse == $warehouse->id) selected @endif
+                                {{ $sort_warehouse }}>
+                                {{ $warehouse->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="col-md-2">
                     <div class="form-group mb-0">
                         <input type="text" class="form-control" id="search"
                             name="search"@isset($sort_search) value="{{ $sort_search }}" @endisset
