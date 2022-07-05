@@ -885,3 +885,46 @@ if (!function_exists('isEditMethod')) {
         return false;
     }
 }
+
+if (!function_exists('fileExtenstionType')) {
+    function fileExtenstionType($extention)
+    {
+        $type = array(
+            "jpg" => "image",
+            "jpeg" => "image",
+            "png" => "image",
+            "svg" => "image",
+            "webp" => "image",
+            "gif" => "image",
+            "mp4" => "video",
+            "mpg" => "video",
+            "mpeg" => "video",
+            "webm" => "video",
+            "ogg" => "video",
+            "avi" => "video",
+            "mov" => "video",
+            "flv" => "video",
+            "swf" => "video",
+            "mkv" => "video",
+            "wmv" => "video",
+            "wma" => "audio",
+            "aac" => "audio",
+            "wav" => "audio",
+            "mp3" => "audio",
+            "zip" => "archive",
+            "rar" => "archive",
+            "7z" => "archive",
+            "doc" => "document",
+            "txt" => "document",
+            "docx" => "document",
+            "pdf" => "document",
+            "csv" => "document",
+            "xml" => "document",
+            "ods" => "document",
+            "xlr" => "document",
+            "xls" => "document",
+            "xlsx" => "document"
+        );
+        return $type[$extention];
+    }
+}

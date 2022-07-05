@@ -39,6 +39,8 @@ class RestaurantSeeder extends Seeder
             'logo' => 1,
             'status' => 1,
             'admin_id'    => $admin->id,
+            'cr_file'    => 5,
+            'vat_file'    => 5,
         ]);
         $admin->restaurant_id = $restaurant->id;
         $admin->save();
@@ -65,6 +67,8 @@ class RestaurantSeeder extends Seeder
             'logo' => 2,
             'status' => 1,
             'admin_id'    => $admin->id,
+            'cr_file'    => 5,
+            'vat_file'    => 5,
         ]);
         $admin->restaurant_id = $restaurant->id;
         $admin->save();
@@ -81,7 +85,9 @@ class RestaurantSeeder extends Seeder
             'description' => 'descriptiondescriptiondescriptiondescription',
             'content' => 'contentcontentcontentcontent',
             'logo' => 3,
-            'status' => 1
+            'status' => 1,
+            'cr_file'    => 5,
+            'vat_file'    => 5,
         ]);
 
         // restaurant 4
@@ -96,7 +102,9 @@ class RestaurantSeeder extends Seeder
             'description' => 'description descripti ondescri ption descri ption',
             'content' => 'contentco ntentconten tcontent',
             'logo' => 4,
-            'status' => 1
+            'status' => 1,
+            'cr_file'    => 5,
+            'vat_file'    => 5,
         ]);
 
     }

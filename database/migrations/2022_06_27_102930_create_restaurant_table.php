@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Upload;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -24,11 +25,15 @@ return new class extends Migration
             $table->longText('description')->nullable();
             $table->longText('content')->nullable();
             $table->string('logo')->default('assets/img/logo.png');
+            $table->integer('cr_file');
+            $table->integer('vat_file');
             $table->tinyInteger('status')->default(0);
             $table->tinyInteger('restaurant_waiting_for_upload_file')->default(0);
-            $table->integer('restaurant_waiting_for_admin_approve')->default(0);
+            $table->tinyInteger('restaurant_waiting_for_admin_approve')->default(0);
 
             $table->foreignIdFor(\App\Models\User::class, 'admin_id' )->nullable();
+            // $table->foreignIdFor(Upload::class, 'cr_file');
+            // $table->foreignIdFor(Upload::class, 'vat_file');
             $table->timestamps();
             $table->softDeletes();
         });

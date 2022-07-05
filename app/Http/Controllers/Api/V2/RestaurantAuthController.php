@@ -29,7 +29,7 @@ class RestaurantAuthController extends Controller
                 'email' => $request->email,
                 'user_type' => 'restaurant',
                 'password' => bcrypt($request->password),
-                'verification_code' => rand(100000, 999999)
+                'otp_code' => rand(100000, 999999)
             ]);
         } else {
             return response()->json([
@@ -73,11 +73,11 @@ class RestaurantAuthController extends Controller
         $result = [
             'result' => true,
             'message' => translate('Registration Successful. Please verify and log in to your account.'),
-            // 'user_id' => $user->id
+            'uuid' => $user->uuid
         ];
 
         if(config('myenv.OTP_DEBUG_ENABLE') == 'on') {
-            $result['otp_code'] = $user->verification_code;
+            $result['otp_code'] = $user->otp_code;
         }
 
         return response()->json($result, 201);
@@ -86,7 +86,7 @@ class RestaurantAuthController extends Controller
     public function resendCode(Request $request)
     {
         $user = User::where('id', $request->user_id)->first();
-        $user->verification_code = rand(100000, 999999);
+        $user->otp_code = rand(100000, 999999);
 
         if ($request->verify_by == 'email') {
             $user->notify(new AppEmailVerificationNotification());
@@ -107,12 +107,12 @@ class RestaurantAuthController extends Controller
     {
         $request->validate([
             'uuid' => 'required',
-            'verification_code' => 'required'
+            'otp_code' => 'required'
         ]);
         $user = User::where('uuid', $request->uuid)
             ->first();
 
-        if ($user->verification_code == null) {
+        if ($user->otp_code == null) {
             return response()->json([
                 'result' => false,
                 'message' => translate('Pleae Login again.'),
@@ -120,7 +120,7 @@ class RestaurantAuthController extends Controller
         }
 
         if($user && SendSMSUtility::isOTPVaild($user) == SendSMSUtility::OK) {
-            if ($user->verification_code == $request->verification_code) {
+            if ($user->otp_code == $request->otp_code) {
                 $user->email_verified_at = date('Y-m-d H:i:s');
                 $user->save();
 
@@ -130,7 +130,7 @@ class RestaurantAuthController extends Controller
                 //     'message' => translate('Your account is now verified.Please login'),
                 // ], 200);
             } else {
-                $user->increment('verification_code_count', 1);
+                $user->increment('otp_code_count', 1);
                 return response()->json([
                     'result' => false,
                     'message' => translate('Code does not match, you can request for resending the code'),
@@ -161,9 +161,9 @@ class RestaurantAuthController extends Controller
                     return response()->json(['message' => translate('Please verify your account'), 'user' => null], 401);
                 }
 
-                $user->verification_code = rand(100000, 999999);
-                $user->verification_code_count = 0;
-                $user->verification_code_time_amount_left = now();
+                $user->otp_code = rand(100000, 999999);
+                $user->otp_code_count = 0;
+                $user->otp_code_time_amount_left = now();
                 $user->save();
                 // return $this->loginSuccess($user);
                 $result = [
@@ -171,7 +171,7 @@ class RestaurantAuthController extends Controller
                     'uuid' => $user->uuid
                 ];
                 if (config('myenv.OTP_DEBUG_ENABLE') == 'on') {
-                    $result['otp_code'] = $user->verification_code;
+                    $result['otp_code'] = $user->otp_code;
                 }
                 return response()->json($result);
 
@@ -210,18 +210,18 @@ class RestaurantAuthController extends Controller
         ];
 
         if (config('myenv.OTP_DEBUG_ENABLE') == 'on') {
-            $result['otp_code'] = $user->verification_code;
+            $result['otp_code'] = $user->otp_code;
         }
 
-        $user->verification_code = null;
-        $user->verification_code_count = 0;
-        $user->verification_code_time_amount_left = null;
+        $user->otp_code = null;
+        $user->otp_code_count = 0;
+        $user->otp_code_time_amount_left = null;
         $user->save();
 
         return response()->json([
             "status" => true,
             "data" => $result
-        ], 301);
+        ], 200);
     }
 
     public function logout(Request $request)

@@ -22,19 +22,19 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-    * The attributes that are mass assignable.
-    *
-    * @var array
-    */
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
-        'name', 'email', 'password', 'address', 'city', 'postal_code', 'phone', 'country', 'provider_id', 'email_verified_at', 'verification_code', 'user_type'
+        'name', 'email', 'password', 'address', 'city', 'postal_code', 'phone', 'country', 'provider_id', 'email_verified_at', 'otp_code', 'user_type'
     ];
 
     /**
-    * The attributes that should be hidden for arrays.
-    *
-    * @var array
-    */
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
     protected $hidden = [
         'password', 'remember_token',
     ];
@@ -51,32 +51,32 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function wishlists()
     {
-    return $this->hasMany(Wishlist::class);
+        return $this->hasMany(Wishlist::class);
     }
 
     public function customer()
     {
-    return $this->hasOne(Customer::class);
+        return $this->hasOne(Customer::class);
     }
 
     public function affiliate_user()
     {
-    return $this->hasOne(AffiliateUser::class);
+        return $this->hasOne(AffiliateUser::class);
     }
 
     public function affiliate_withdraw_request()
     {
-    return $this->hasMany(AffiliateWithdrawRequest::class);
+        return $this->hasMany(AffiliateWithdrawRequest::class);
     }
 
     public function products()
     {
-    return $this->hasMany(Product::class);
+        return $this->hasMany(Product::class);
     }
 
     public function shop()
     {
-    return $this->hasOne(Shop::class);
+        return $this->hasOne(Shop::class);
     }
 
     public function supplier()
@@ -86,22 +86,22 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function staff()
     {
-    return $this->hasOne(Staff::class);
+        return $this->hasOne(Staff::class);
     }
 
     public function orders()
     {
-    return $this->hasMany(Order::class);
+        return $this->hasMany(Order::class);
     }
 
     public function wallets()
     {
-    return $this->hasMany(Wallet::class)->orderBy('created_at', 'desc');
+        return $this->hasMany(Wallet::class)->orderBy('created_at', 'desc');
     }
 
     public function club_point()
     {
-    return $this->hasOne(ClubPoint::class);
+        return $this->hasOne(ClubPoint::class);
     }
 
     public function customer_package()
@@ -144,7 +144,13 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(AffiliateLog::class);
     }
 
-    public function product_bids() {
+    public function product_bids()
+    {
         return $this->hasMany(AuctionProductBid::class);
+    }
+
+    public function uploadable()
+    {
+        return $this->morphOne(Upload::class, 'uploadable');
     }
 }

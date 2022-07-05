@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Supplier;
 use App\Models\Upload;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -25,6 +26,9 @@ class UploadTableSeeder extends Seeder
                 'extension' => 'jpeg',
                 'type' => 'image',
                 'file_size' => '28070',
+                'uploadable_id' => 1,
+                'uploadable_type' => Supplier::class,
+                'kind' => 'logo'
             ],
             [
                 'id' => 2,
@@ -34,6 +38,9 @@ class UploadTableSeeder extends Seeder
                 'extension' => 'webp',
                 'type' => 'image',
                 'file_size' => '28070',
+                'uploadable_id' => 2,
+                'uploadable_type' => Supplier::class,
+                'kind' => 'logo'
             ],
             [
                 'id' => 3,
@@ -43,6 +50,9 @@ class UploadTableSeeder extends Seeder
                 'extension' => 'jpeg',
                 'type' => 'image',
                 'file_size' => '28070',
+                'uploadable_id' => 3,
+                'uploadable_type' => Supplier::class,
+                'kind' => 'logo'
             ],
             [
                 'id' => 4,
@@ -52,6 +62,9 @@ class UploadTableSeeder extends Seeder
                 'extension' => 'webp',
                 'type' => 'image',
                 'file_size' => '28070',
+                'uploadable_id' => 3,
+                'uploadable_type' => Supplier::class,
+                'kind' => 'logo'
             ],
             [
                 'id' => 5,
@@ -61,6 +74,9 @@ class UploadTableSeeder extends Seeder
                 'extension' => 'jpg',
                 'type' => 'image',
                 'file_size' => '28070',
+                'uploadable_id' => 4,
+                'uploadable_type' => Supplier::class,
+                'kind' => 'logo'
             ],
         ];
 

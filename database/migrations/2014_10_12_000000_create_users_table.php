@@ -23,9 +23,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->nullable()->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('verification_code')->nullable();
-            $table->string('verification_code_count')->default(0);
-            $table->string('verification_code_time_amount_left')->nullable();
+            $table->string('otp_code')->nullable();
+            $table->string('otp_code_count')->default(0);
+            $table->string('otp_code_time_amount_left')->nullable();
             $table->string('new_email_verificiation_code')->nullable();
             $table->string('password')->nullable();
             $table->string('device_token', 255)->nullable();

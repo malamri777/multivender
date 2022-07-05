@@ -16,11 +16,11 @@ class SendSMSUtility
     const OK = 'OK';
 
     public static function isOTPVaild(User $user) : string {
-        if ($user->verification_code_count > config('myenv.DEFAULT_COUNT')) {
+        if ($user->otp_code_count > config('myenv.DEFAULT_COUNT')) {
             return self::TOO_MANY_TRY;
         }
 
-        if (Carbon::now()->addMinute(config('myenv.DEFAULT_TIME_AMOUNT'))->lte($user->verification_code_time_amount_left)) {
+        if (Carbon::now()->addMinute(config('myenv.DEFAULT_TIME_AMOUNT'))->lte($user->otp_code_time_amount_left)) {
             return self::TIME_OUT;
         }
 
@@ -28,7 +28,7 @@ class SendSMSUtility
     }
 
     public static function userHasVaildOTP(User $user) : bool {
-        return Carbon::now()->addMinute(config('myenv.DEFAULT_TIME_AMOUNT'))->gt($user->verification_code_time_amount_left);
+        return Carbon::now()->addMinute(config('myenv.DEFAULT_TIME_AMOUNT'))->gt($user->otp_code_time_amount_left);
     }
 
     public static function sendSMS($to, $from, $text, $template_id)

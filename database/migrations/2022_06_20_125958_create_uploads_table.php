@@ -22,6 +22,9 @@ class CreateUploadsTable extends Migration
             $table->string('extension', 10)->nullable();
             $table->string('type', 15)->nullable();
             $table->string('external_link', 500)->nullable();
+            $table->unsignedBigInteger('uploadable_id');
+            $table->string('uploadable_type');
+            $table->string('kind')->nullable()->comment('logo, avater, image, doucment');
             $table->timestamps();
             $table->softDeletes();
         });
