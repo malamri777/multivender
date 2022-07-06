@@ -25,9 +25,9 @@ class ProductCollection extends ResourceCollection
                     'rating' => (double) $data->rating,
                     'sales' => (integer) $data->num_of_sale,
                     'links' => [
-                        // 'details' => route('products.show', $data->id),
+                        'details' => route('api.public.products.show', $data->id),
                         // 'reviews' => route('api.reviews.index', $data->id),
-                        // 'related' => route('products.related', $data->id),
+                        'related' => route('api.public.products.related', $data->id),
                         // 'top_from_seller' => route('products.topFromSeller', $data->id)
                     ]
                 ];

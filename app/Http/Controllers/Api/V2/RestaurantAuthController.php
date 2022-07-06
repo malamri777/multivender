@@ -5,6 +5,8 @@
 namespace App\Http\Controllers\Api\V2;
 
 use App\Http\Controllers\OTPVerificationController;
+use App\Http\Requests\Api\Auth\RestaurantSignUpRequest;
+use App\Http\Resources\V2\RestaurantUserResource;
 use App\Models\BusinessSetting;
 use App\Models\Customer;
 use Illuminate\Http\Request;
@@ -19,7 +21,7 @@ use Socialite;
 
 class RestaurantAuthController extends Controller
 {
-    public function signup(Request $request)
+    public function signup(RestaurantSignUpRequest $request)
     {
         $existingUser = User::where('phone', $request->phone)->first();
         if (!$existingUser) {
@@ -185,7 +187,9 @@ class RestaurantAuthController extends Controller
 
     public function user(Request $request)
     {
-        return response()->json($request->user());
+        $user = User::with('restaurant')->where('id', $request->user()->id)->first();
+        $restaurantUser = new RestaurantUserResource($user);
+        return $restaurantUser;
     }
 
 
