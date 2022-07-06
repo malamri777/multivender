@@ -78,7 +78,7 @@ class ProductController extends Controller
         return view('seller.product.products.create', compact('categories'));
     }
 
-    public function exist(Request $request)
+    public function exist()
     {
         return view('seller.product.products.exist');
     }

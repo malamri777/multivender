@@ -47,7 +47,9 @@
                             @include('backend.inc.form-span-error', ['field' => 'warehouse_id'])
                         </div>
                     </div>
-                    <h3 id="new_product">Create New Product</h3>
+                    <div id="new_product" style="text-align: center; font-family: Poppins, Helvetica, sans-serif; color: #1b1b28; margin: 20px;">
+                        Create New Product
+                    </div>
                     <div id="product_input" class="form-group row">
                         <label class="col-md-3 col-from-label">{{translate('Price')}}</label>
                         <div class="col-md-8">
