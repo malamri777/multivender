@@ -46,6 +46,12 @@
                             </label>
                         </td>
                         <td class="text-right">
+                            <a class="btn btn-soft-primary btn-icon btn-circle btn-sm" href="{{route('admin.suppliers.users.index', ['sort_supplier'=>$supplier->id])}}" title="{{ translate('Users') }}">
+                                <i class="lar la-user"></i>
+                            </a>
+                            <a class="btn btn-soft-primary btn-icon btn-circle btn-sm" href="{{route('admin.suppliers.warehouses.index', ['sort_supplier'=>$supplier->id])}}" title="{{ translate('warehouse') }}">
+                                <i class="las la-warehouse"></i>
+                            </a>
                             <a class="btn btn-soft-primary btn-icon btn-circle btn-sm" href="{{route('admin.suppliers.edit', encrypt($supplier->id))}}" title="{{ translate('Edit') }}">
                                 <i class="las la-edit"></i>
                             </a>

@@ -120,7 +120,7 @@ class AizUploadController extends Controller
                 $size = $request->file('aiz_file')->getSize();
 
                 // Return MIME type ala mimetype extension
-                $finfo = finfo_open(FILEINFO_MIME_TYPE); 
+                $finfo = finfo_open(FILEINFO_MIME_TYPE);
 
                 // Get the MIME type of the file
                 $file_mime = finfo_file($finfo, base_path('public/').$path);
@@ -147,7 +147,7 @@ class AizUploadController extends Controller
                         //dd($e);
                     }
                 }
-                
+
                 if (env('FILESYSTEM_DRIVER') == 's3') {
                     Storage::disk('s3')->put(
                         $path,
@@ -204,7 +204,7 @@ class AizUploadController extends Controller
     public function destroy(Request $request,$id)
     {
         $upload = Upload::findOrFail($id);
-        
+
         if(auth()->user()->user_type == 'seller' && $upload->user_id != auth()->user()->id){
             flash(translate("You don't have permission for deleting this!"))->error();
             return back();

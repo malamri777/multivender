@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             BusinessSettingTableSeeder::class,
+            OTPTableSeeder::class,
             LanguageTableSeeder::class,
             SetupTableSeeder::class,
             TranslationTableSeeder::class,
@@ -31,10 +32,11 @@ class DatabaseSeeder extends Seeder
 //            LaratrustSeeder::class,
             UsersTableSeeder::class,
 
-            // Upload
-            UploadTableSeeder::class,
+
             SupplierSeeder::class,
             WarehouseTableSeeder::class,
+            // Upload
+            UploadTableSeeder::class,
 
             // Product
             CategoryTableSeeder::class,

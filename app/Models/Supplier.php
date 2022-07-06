@@ -20,9 +20,9 @@ class Supplier extends Model
 
     public $table = 'suppliers';
 
-    protected $appends = [
-        'logo',
-    ];
+    // protected $appends = [
+    //     'logo',
+    // ];
 
     protected $dates = [
         'created_at',
@@ -66,6 +66,11 @@ class Supplier extends Model
         return $this->hasMany(Warehouse::class, 'supplier_id', 'id');
     }
 
+    public function warehouseProudct()
+    {
+        return $this->hasManyThrough(WarehouseProduct::class, Warehouse::class);
+    }
+
 //    public function getLogoAttribute()
 //    {
 //        return $this->getMedia('logo')->last();
@@ -74,5 +79,14 @@ class Supplier extends Model
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
+    }
+
+    public function logoUpload()
+    {
+        return $this->morphOne(Upload::class, 'uploadable')->where('kind', 'logo');
+    }
+
+    public function logoUploadFilePath() {
+        return uploaded_asset($this->logoUpload()->first()->id);
     }
 }

@@ -37,6 +37,8 @@ class SupplierSeeder extends Seeder
             'content' => 'contentcontentcontentcontent',
             'logo' => 1,
             'status' => 1,
+            'supplier_waiting_for_upload_file' => 1,
+            'supplier_waiting_for_admin_approve' => 1,
             'admin_id'    => $admin->id,
         ]);
         $admin->provider_id = $supplier->id;
@@ -62,6 +64,8 @@ class SupplierSeeder extends Seeder
             'content' => 'contentcontentcontentcontent',
             'logo' => 2,
             'status' => 1,
+            'supplier_waiting_for_upload_file' => 1,
+            'supplier_waiting_for_admin_approve' => 1,
             'admin_id'    => $admin->id,
         ]);
         $admin->provider_id = $supplier->id;
@@ -79,7 +83,9 @@ class SupplierSeeder extends Seeder
             'description' => 'descriptiondescriptiondescriptiondescription',
             'content' => 'contentcontentcontentcontent',
             'logo' => 3,
-            'status' => 1
+            'status' => 1,
+            'supplier_waiting_for_upload_file' => 1,
+            'supplier_waiting_for_admin_approve' => 1,
         ]);
 
         // Supplier 4
@@ -94,7 +100,9 @@ class SupplierSeeder extends Seeder
             'description' => 'descriptiondescriptiondescriptiondescription',
             'content' => 'contentcontentcontentcontent',
             'logo' => 4,
-            'status' => 1
+            'status' => 1,
+            'supplier_waiting_for_upload_file' => 1,
+            'supplier_waiting_for_admin_approve' => 1,
         ]);
 
 //        Supplier::insert($suppliers);

@@ -31,7 +31,8 @@ class RestaurantRequest extends FormRequest
                 'vat_no'        => 'required|unique:restaurants,vat_no,' . $id,
                 'email'         => 'required|email',
                 'logo'          => 'required',
-
+                'cr_file'    => 'required',
+                'vat_file'   => 'required',
             ];
         }
 
@@ -41,6 +42,8 @@ class RestaurantRequest extends FormRequest
             'vat_no'        => 'required|unique:restaurants',
             'email'         => 'required|email',
             'logo'          => 'required',
+            'cr_file'    => 'required',
+            'vat_file'   => 'required',
 
         ];
 

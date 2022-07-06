@@ -21,9 +21,13 @@ class SupplierUserController extends Controller
     {
         $sort_search = null;
         $sort_supplier = null;
+        $sort_warehouse = null;
 
         $usersSupplier = User::query()
             ->whereIn('user_type', ['supplier_admin', 'supplier_warehouse_admin']);
+
+        $usersWarehouser = User::query()
+        ->whereIn('user_type', ['supplier_admin', 'supplier_warehouse_admin']);
 
         if (!empty($request->input('search'))) {
             $sort_search = $request->search;
@@ -37,10 +41,19 @@ class SupplierUserController extends Controller
             $usersSupplier = $usersSupplier->where('provider_id', $sort_supplier);
         }
 
+        if(!empty($request->input('sort_warehouse'))) {
+            $sort_warehouse = $request->input('sort_warehouse');
+            // $usersWarehouser=  $usersWarehouser->whereHas("user", function($q) use ($sort_supplier) {
+            //     return $q->where('provider_id', $sort_supplier);
+            // });
+        }
+
 
         $usersSupplier = $usersSupplier->paginate(15);
-        return view('backend.suppliers.users.index', compact('usersSupplier', 'sort_search', 'sort_supplier'));
+        return view('backend.suppliers.users.index', compact('usersSupplier', 'sort_search', 'sort_supplier','sort_warehouse'));
     }
+
+
 
     /**
      * Show the form for creating a new resource.

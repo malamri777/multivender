@@ -90,6 +90,19 @@ class Product extends Model
         return $query->where('digital', 0);
     }
 
+    public function warehouse()
+    {
+        // return $this->belongsToMany(WarehouseProduct::class);
+        return $this->hasManyThrough(
+            warehouse::class,
+            WarehouseProduct::class,
+            'warehouse_id',
+            'id',
+            'id',
+            'product_id'
+        );
+    }
+
 
     public function sluggable(): array
     {

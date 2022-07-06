@@ -60,9 +60,9 @@ class Branch extends Model
         return $this->hasMany(BranchProduct::class, 'branch_id', 'id');
     }
 
-    public function BranchUsers()
+    public function branchUsers()
     {
-        return $this->belongsToMany(BranchUser::class);
+        return $this->belongsToMany(User::class);
     }
 
     public function branchDrivers()

@@ -11,7 +11,6 @@ use App\Http\Middleware\IsUnbanned;
 use App\Http\Middleware\AppLanguage;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
-
 class Kernel extends HttpKernel
 {
     /**
@@ -22,6 +21,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middleware = [
+        \Illuminate\Http\Middleware\HandleCors::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,

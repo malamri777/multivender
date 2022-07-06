@@ -51,9 +51,9 @@ class RouteServiceProvider extends ServiceProvider
 //        $this->mapRefundRoutes();
 //
 //        $this->mapClubPointsRoutes();
-//
-//        $this->mapOtpRoutes();
-//
+
+       $this->mapOtpRoutes();
+
 //        $this->mapOfflinePaymentRoutes();
 //
 //        $this->mapAfricanPaymentGatewayRoutes();
@@ -325,7 +325,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapApiRoutes()
     {
-        $namespace = 'App\Http\Controllers\Api';
+        $namespace = 'App\Http\Controllers\Api\V2';
         Route::prefix('api')
         ->middleware('api')
         ->namespace($namespace)

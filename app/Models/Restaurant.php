@@ -20,9 +20,9 @@ class Restaurant extends Model
 
     public $table = 'restaurants';
 
-    protected $appends = [
-        'logo',
-    ];
+    // protected $appends = [
+    //     'logo',
+    // ];
 
     protected $dates = [
         'created_at',
@@ -35,10 +35,15 @@ class Restaurant extends Model
         'email',
         'phone',
         'contact_user',
+        'cr_no',
+        'vat_no',
         'description',
         'content',
+        'logo',
         'status',
         'admin_id',
+        'cr_file_id',
+        'vat_file_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -58,18 +63,43 @@ class Restaurant extends Model
 
     public function admin()
     {
-        return $this->hasOne(User::class,'provider_id');
+        return $this->belongsTo(User::class,'admin_id');
     }
 
     public function restaurantBranches()
     {
-        return $this->hasMany(Branches::class, 'restaurant_id', 'id');
+        return $this->hasMany(Branch::class, 'restaurant_id', 'id');
     }
 
-//    public function getLogoAttribute()
-//    {
-//        return $this->getMedia('logo')->last();
-//    }
+    public function logoUpload()
+    {
+        return $this->morphOne(Upload::class, 'uploadable');
+    }
+
+    public function logoUploadFilePath()
+    {
+        return uploaded_asset($this->logoUpload()->first()->id);
+    }
+
+    public function crUpload()
+    {
+        return $this->morphOne(Upload::class, 'uploadable')->where('kind', 'cr');
+    }
+
+    public function crUploadFilePath()
+    {
+        return uploaded_asset($this->crUpload()->first()->id);
+    }
+
+    public function vatUpload()
+    {
+        return $this->morphOne(Upload::class, 'uploadable')->where('kind', 'vat');
+    }
+
+    public function vatUploadFilePath()
+    {
+        return uploaded_asset($this->vatUpload()->first()->id);
+    }
 
     protected function serializeDate(DateTimeInterface $date)
     {
