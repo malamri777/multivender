@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use \DateTimeInterface;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Warehouse extends Model
 {
@@ -59,9 +60,9 @@ class Warehouse extends Model
         return $this->belongsTo(User::class, 'admin_id');
     }
 
-    public function warehouseWarehouseUsers()
+    public function warehouseUsers()
     {
-        return $this->belongsToMany(WarehouseUser::class);
+        return $this->belongsToMany(User::class, 'warehouse_users');
     }
 
     public function warehouseWarehouseDrivers()

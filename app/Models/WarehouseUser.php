@@ -29,12 +29,12 @@ class WarehouseUser extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class);
     }
 
     public function warehouses()
     {
-        return $this->belongsToMany(Warehouse::class);
+        return $this->belongsTo(Warehouse::class);
     }
 
     protected function serializeDate(DateTimeInterface $date)

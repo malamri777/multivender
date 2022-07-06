@@ -2,53 +2,19 @@
 
 use App\Http\Controllers\AddonController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\AizUploadController;
-use App\Http\Controllers\AttributeController;
-use App\Http\Controllers\BlogCategoryController;
-use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BranchController;
-use App\Http\Controllers\BrandController;
-use App\Http\Controllers\BusinessSettingsController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\CityController;
-use App\Http\Controllers\CommissionController;
-use App\Http\Controllers\ConversationController;
-use App\Http\Controllers\CountryController;
-use App\Http\Controllers\CouponController;
 use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\CustomerPackageController;
-use App\Http\Controllers\CustomerProductController;
-use App\Http\Controllers\DigitalProductController;
 use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\FlashDealController;
-use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\WarehouseController;
 use App\Http\Controllers\NewsletterController;
-use App\Http\Controllers\NotificationController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\PageController;
-use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\PickupPointController;
-use App\Http\Controllers\ProductBulkUploadController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ReportController;
 use App\Http\Controllers\RestaurantController;
-use App\Http\Controllers\RestaurantUserController;
-use App\Http\Controllers\ReviewController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\SellerController;
-use App\Http\Controllers\SellerWithdrawRequestController;
-use App\Http\Controllers\StaffController;
-use App\Http\Controllers\StateController;
 use App\Http\Controllers\SubscriberController;
-use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\SupplierUserController;
 use App\Http\Controllers\SupportTicketController;
-use App\Http\Controllers\TaxController;
-use App\Http\Controllers\UpdateController;
-use App\Http\Controllers\WarehouseController;
-use App\Http\Controllers\WebsiteController;
+use App\Http\Controllers\WarehouseUserController;
 
 /*
   |--------------------------------------------------------------------------
@@ -475,10 +441,27 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
             Route::post('update_status', 'updateStatus')->name('update_status');
             Route::get('users', 'getUsers')->name('users');
             Route::get('destroy/{id}', 'destroy')->name('destroy');
+            // Add here
+            Route::controller(WarehouseUserController::class)
+                ->as('users.')
+                ->prefix('users')
+                ->group(function () {
+                    Route::get('/', 'index')->name('ndex');
+                    Route::get('/create', 'create')->name('create');
+                    Route::post('/', 'store')->name('store');
+
+                    Route::get('/', 'edit')->name('edit');
+
+                });
+                Route::resource('users', WarehouseUserController::class)->except('destroy');
+
         });
+
         Route::resource('warehouses', WarehouseController::class)->except('destroy');
 
-        // Users
+
+
+        // Supplier Users
         Route::group(['prefix' => 'users', 'as' => 'users.', 'controller' => SupplierUserController::class], function () {
             Route::get('ban/{id}', 'ban')->name('ban');
             Route::get('destroy/{id}', 'destroy')->name('destroy');

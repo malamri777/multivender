@@ -42,7 +42,7 @@ class WarehouseTableSeeder extends Seeder
             'city_id'    => 1,
             'district_id'    => 1,
         ]);
-        $w1->warehouseWarehouseUsers()->attach([$user->id]);
+        $w1->warehouseUsers()->attach([$user->id]);
 
         $admin = User::create([
             'name' => 's1_w2_admin',
