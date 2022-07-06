@@ -2,15 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Laravel\Sanctum\HasApiTokens;
+use Str;
 use App\Models\Cart;
+use App\Models\Warehouse;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Notifications\EmailVerificationNotification;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Str;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -82,6 +83,17 @@ class User extends Authenticatable implements MustVerifyEmail
     public function supplier()
     {
         return $this->belongsTo(Supplier::class, 'provider_id');
+    }
+
+    public function warehouses()
+    {
+        return $this->belongsToMany(Warehouse::class);
+        // return $this->belongsToMany(Warehouse::class, 'warehouse_warehouse_user', 'warehouse_user_id', 'warehouse_id');
+    }
+
+    public function warehouseUsers()
+    {
+        return $this->belongsToMany(Warehouse::class, 'warehouse_users');
     }
 
     public function staff()
