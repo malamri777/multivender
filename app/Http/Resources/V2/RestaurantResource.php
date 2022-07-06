@@ -34,4 +34,12 @@ class RestaurantResource extends JsonResource
             "vat_file" => uploaded_asset($this->vat_file_id),
         ];
     }
+
+    public function with($request)
+    {
+        return [
+            'success' => true,
+            'status' => 200
+        ];
+    }
 }

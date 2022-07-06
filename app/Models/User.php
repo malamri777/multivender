@@ -27,7 +27,9 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'address', 'city', 'postal_code', 'phone', 'country', 'provider_id', 'email_verified_at', 'otp_code', 'user_type'
+        'name', 'email', 'password', 'address', 'city', 'postal_code', 'phone',
+        'country', 'provider_id', 'email_verified_at', 'otp_code', 'user_type',
+        'country_code'
     ];
 
     /**
@@ -82,6 +84,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function supplier()
     {
         return $this->belongsTo(Supplier::class, 'provider_id');
+    }
+
+    public function restaurant()
+    {
+        return $this->belongsTo(Restaurant::class, 'restaurant_id');
     }
 
     public function staff()

@@ -41,15 +41,17 @@ class RestaurantController extends Controller {
             'logo'                  => $request->logo,
             'cr_file'          => $request->cr_file,
             'vat_file'          => $request->vat_file,
+            'admin_id'             => Auth::id(),
         ]);
         $user = Auth::user();
         $user->restaurant_id = $restaurant->id;
-        $restaurantResource = new RestaurantResource($restaurant);
-        return $this->successResponse($restaurantResource);
+        $user->save();
+
+        return (new RestaurantResource($restaurant));
+        // return $this->successResponse($restaurantResource);
     }
 
     public function show() {
-
         $restaurant = Restaurant::whereHas('admin', function($q) {
             $q->where('id', Auth::id());
         })->orWhereHas('restaurantBranches', function($q) {

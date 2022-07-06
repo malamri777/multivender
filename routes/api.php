@@ -1,5 +1,17 @@
 <?php
 
+Route::group([
+    'prefix'     => '',
+    'as'         => 'api.public.',
+    'middleware' => ['app_language', 'throttle:60,10']
+], function () {
+    Route::get('suppliers', 'RestaurantPublicController@supplierList');
+    Route::group(['prefix' => 'products', 'middleware' => 'throttle:60,10', 'as' => 'products.'], function () {
+        Route::get('supplier/{supplier}', 'RestaurantPublicController@productBySupplier');
+        Route::get('related/{id}', 'RestaurantPublicController@related')->name('related');
+        Route::get('show/{id}', 'RestaurantPublicController@show')->name('show');
+    });
+});
 
 Route::group([
     'prefix'     => 'v2/restaurant',
@@ -9,8 +21,17 @@ Route::group([
     Route::post('auth/login', 'RestaurantAuthController@login');
     Route::post('auth/signup', 'RestaurantAuthController@signup');
     Route::post('auth/confirm_code', 'RestaurantAuthController@confirmCode')->middleware('throttle:60,3');
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::get('auth/logout', 'RestaurantAuthController@logout');
+        Route::get('auth/user', 'RestaurantAuthController@user');
+    });
     Route::get('suppliers', 'RestaurantPublicController@supplierList')->middleware('throttle:60,3');
-    Route::get('productsBySupplier/{supplier}', 'RestaurantPublicController@productBySupplier')->middleware('throttle:60,3');
+    Route::group(['prefix' => 'products', 'middleware' => 'throttle:60,10', 'public.products.'], function() {
+        Route::get('supplier/{supplier}', 'RestaurantPublicController@productBySupplier');
+        Route::get('related/{id}', 'RestaurantPublicController@related')->name('related');
+        Route::get('show/{id}', 'RestaurantPublicController@show')->name('show');
+    });
+
 
     Route::group(['middleware' => ['auth:sanctum']], function() {
         Route::post('upload', 'UploadController@upload');

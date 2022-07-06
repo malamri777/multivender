@@ -21,8 +21,10 @@ return new class extends Migration
             $table->integer('referred_by')->nullable();
             $table->string('user_type', 50)->default('customer');
             $table->string('name');
-            $table->string('email')->nullable()->unique();
+            $table->string('email')->unique()->index();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('phone', 20)->nullable();
+            $table->string('country_code')->default("966");
             $table->string('otp_code')->nullable();
             $table->string('otp_code_count')->default(0);
             $table->string('otp_code_time_amount_left')->nullable();
@@ -36,7 +38,6 @@ return new class extends Migration
             $table->string('state', 30)->nullable();
             $table->string('city', 30)->nullable();
             $table->string('postal_code', 20)->nullable();
-            $table->string('phone', 20)->nullable();
             $table->double('balance', 20, 2)->default(0);
             $table->tinyInteger('banned')->default(0);
             $table->string('referral_code', 255)->nullable();

@@ -63,7 +63,7 @@ class Restaurant extends Model
 
     public function admin()
     {
-        return $this->hasOne(User::class,'provider_id');
+        return $this->belongsTo(User::class,'admin_id');
     }
 
     public function restaurantBranches()
