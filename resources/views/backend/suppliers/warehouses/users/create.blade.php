@@ -46,27 +46,40 @@
                             <input type="password" placeholder="{{translate('Password')}}" id="password_confirmation" name="password_confirmation" class="form-control" required>
                         </div>
                     </div>
+
                     <div class="form-group row">
-                        <label class="col-sm-3 col-from-label" for="name">{{translate('Warehouse')}}</label>
+                        <label class="col-sm-3 col-from-label" for="name">{{ translate('Supplier') }}</label>
                         <div class="col-sm-9">
-                            <select name="warehouse_id" required class="form-control aiz-selectpicker" data-selected="{{ old('warehouse_id', null) }}">
+                            <select name="supplier_id" id="supplier_id" required class="form-control aiz-selectpicker"
+                                data-selected="{{ old('supplier_id') }}">
                                 <option value=""></option>
-                                @foreach($warehouses as $warehouse)
-                                    <option value="{{$warehouse->id}}">{{$warehouse->name}}</option>
+                                @foreach ($suppliers as $item)
+                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
                                 @endforeach
                             </select>
-                            @include('backend.inc.form-span-error', ['field' => 'warehouse_id'])
+                            @include('backend.inc.form-span-error', ['field' => 'supplier_id'])
                         </div>
                     </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-from-label" for="warehouses">{{ translate('Warehouse') }}</label>
+                        <div class="col-sm-9">
+                            <select class="select2 form-control aiz-selectpicker" name="warehouses[]" id="warehouses"
+                                data-toggle="select2" data-placeholder="Choose ..." data-live-search="true" multiple>
+                            </select>
+                            @include('backend.inc.form-span-error', ['field' => 'warehouses'])
+                        </div>
+                    </div>
+
                     <div class="form-group row">
                         <label class="col-sm-3 col-from-label" for="user_type">{{translate('Role')}}</label>
                         <div class="col-sm-9">
                             <select name="user_type" required class="form-control aiz-selectpicker" data-selected="{{ old('user_type', '') }}">
                                 <option value=""></option>
                                 <option value="warehouse_admin">{{ _('Warehouse Admin') }}</option>
-                                <option value="warehouse_warehouse_admin">{{ _('Supplier Warehouse Admin') }}</option>
-                                <option value="warehouse_warehouse_user">{{ _('Supplier Warehouse User') }}</option>
-                                <option value="warehouse_warehouse_driver">{{ _('Supplier Warehouse Driver') }}</option>
+                                <option value="supplier_warehouse_admin">{{ _('Supplier Warehouse Admin') }}</option>
+                                <option value="supplier_warehouse_user">{{ _('Supplier Warehouse User') }}</option>
+                                <option value="supplier_warehouse_driver">{{ _('Supplier Warehouse Driver') }}</option>
                             </select>
                             @include('backend.inc.form-span-error', ['field' => 'user_type'])
                         </div>
@@ -81,4 +94,29 @@
     </div>
 </div>
 
+@endsection
+
+@section('script')
+    <script type="text/javascript">
+        let supplierSelector = $('#supplier_id');
+        supplierSelector.change(e => {
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: "POST",
+                url: '{{ route('admin.suppliers.warehouses.get-warehouse-option-by-supplier-id') }}',
+                data: {
+                    supplier_id: supplierSelector.val()
+                },
+                success: function(data) {
+                    var obj = JSON.parse(data);
+                    let warehousesSelector = $('#warehouses');
+                    warehousesSelector.empty();
+                    warehousesSelector.append(obj);
+                    AIZ.plugins.bootstrapSelect('refresh');
+                }
+            });
+        });
+    </script>
 @endsection

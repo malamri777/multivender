@@ -7,7 +7,7 @@ use App\Models\Warehouse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\WarehouseUserRequest;
-
+use App\Models\Supplier;
 
 class WarehouseUserController extends Controller
 {
@@ -21,9 +21,9 @@ class WarehouseUserController extends Controller
         $usersWarehouse = User::query()
             ->whereIn('user_type', [
                 'warehouse_admin',
-                'warehouse_warehouse_admin',
-                'warehouse_warehouse_user',
-                'warehouse_warehouse_driver',
+                'supplier_warehouse_admin',
+                'supplier_warehouse_user',
+                'supplier_warehouse_driver',
             ]);
 
         if (!empty($request->input('search'))) {
@@ -53,39 +53,39 @@ class WarehouseUserController extends Controller
 
     public function create()
     {
-        $warehouses = Warehouse::get();
-        return view('backend.suppliers.warehouses.users.create', compact('warehouses'));
+        $suppliers = Supplier::get();
+        return view('backend.suppliers.warehouses.users.create', compact('suppliers'));
     }
 
 
     public function store(WarehouseUserRequest $request)
     {
-        // try {
-            $warehouse = Warehouse::find($request->warehouse_id);
+        try {
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'phone' => $request->mobile,
                 'password' => bcrypt($request->password),
-                'provider_id' => $warehouse->supplier_id,
+                'provider_id' => $request->supplier_id,
                 'user_type' => $request->user_type
             ]);
-            $user->warehouseUsers()->attach($warehouse);
+            $user->warehouseUsers()->sync($request->warehouses);
 
             flash(translate('User has been created successfully'))->success();
             return redirect()->route('admin.suppliers.warehouses.users.index');
-        // } catch (\Exception $e) {
-        //     flash(translate('Failed Created User'))->error();
-        //     return back();
-        // }
+        } catch (\Exception $e) {
+            flash(translate('Failed Created User'))->error();
+            return back();
+        }
     }
 
 
     public function edit($id)
     {
-        $warehouse = User::findOrFail($id);
-        $warehouses = Warehouse::get();
-        return view('backend.suppliers.warehouses.users.edit', compact('warehouse', 'warehouses'));
+        $warehouseUser = User::with(["warehouses", 'supplier', 'supplier.supplierWarehouses'])->findOrFail($id);
+        $warehouseIds = $warehouseUser->warehouses->pluck('id') ?? [];
+        $suppliers = Supplier::get();
+        return view('backend.suppliers.warehouses.users.edit', compact('warehouseUser', 'suppliers', 'warehouseIds'));
     }
 
     public function update(WarehouseUserRequest $request, User $user)
@@ -99,7 +99,7 @@ class WarehouseUserController extends Controller
         if (strlen($request->password) > 0) {
             $user->password = Hash::make($request->password);
         }
-        $user->warehouseUsers()->sync($warehouse);
+        $user->warehouseUsers()->sync($request->warehouses);
         if ($user->save()) {
             flash(translate('User has been updated successfully'))->success();
             return redirect()->route('admin.suppliers.warehouses.users.index');

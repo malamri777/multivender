@@ -150,6 +150,5 @@ class CityController extends Controller
         } else {
             echo json_encode('');
         }
-
     }
 }

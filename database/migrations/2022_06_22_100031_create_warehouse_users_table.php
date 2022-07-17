@@ -12,12 +12,9 @@ class CreateWarehouseUsersTable extends Migration
     public function up()
     {
         Schema::create('warehouse_users', function (Blueprint $table) {
-            $table->id();
             $table->foreignIdFor(User::class, 'user_id');
             // ->constrained()->onDelete('cascade');
             $table->foreignIdFor(Warehouse::class, 'warehouse_id');
-            $table->timestamps();
-            $table->softDeletes();
         });
     }
 

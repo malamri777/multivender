@@ -165,4 +165,25 @@ class WarehouseController extends Controller
         $warehouse->save();
         return 1;
     }
+
+    public function getWarehouseOptionBySupplierId(Request $request)
+    {
+        if ($request->supplier_id) {
+            $items = Warehouse::where('supplier_id', $request->supplier_id)->get();
+
+            $html = '';
+
+            if ($items->count() > 0) {
+                $html .= '<option value=""></option>';
+            }
+
+            foreach ($items as $row) {
+                $html .= '<option value="' . $row->id . '">' . $row->name . '</option>';
+            }
+
+            echo json_encode($html);
+        } else {
+            echo json_encode('');
+        }
+    }
 }

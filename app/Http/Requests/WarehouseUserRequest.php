@@ -30,7 +30,7 @@ class WarehouseUserRequest extends FormRequest
             return [
                 'name' => 'required|max:255|unique:users,name,' . $id,
                 'email' => 'required|max:255|unique:users,email,' . $id,
-                'warehouse_id' => 'required',
+                'warehouses' => 'required',
                 'user_type' => 'required',
                 'password' => 'confirmed',
             ];
@@ -40,7 +40,7 @@ class WarehouseUserRequest extends FormRequest
             'name'          => 'required',
             'email'          => 'required|unique:users|max:255',
             'password'      => 'required|confirmed',
-            'warehouse_id' => 'required',
+            'warehouses' => 'required',
             'user_type' => 'required'
         ];
     }

@@ -4,6 +4,7 @@ use App\Http\Controllers\AddonController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CityController;
 use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DistrictController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\WarehouseController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\SubscriberController;
+use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\SupplierUserController;
 use App\Http\Controllers\SupportTicketController;
 use App\Http\Controllers\WarehouseUserController;
@@ -410,7 +412,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
     Route::resource('states', StateController::class);
 	Route::post('/states/status', [StateController::class, 'updateStatus'])->name('states.status');
 
-    Route::resource('cities', CityController::class);
+    Route::resource('cities', CityController::class)->except('show');
     Route::controller(CityController::class)->group(function () {
         Route::post('/cities/status', 'updateStatus')->name('cities.status');
         Route::post('/cities/get-city-option-by-state-id', 'getCityOptionByStateId')->name('cities.get-city-option-by-state-id');
@@ -441,6 +443,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
             Route::post('update_status', 'updateStatus')->name('update_status');
             Route::get('users', 'getUsers')->name('users');
             Route::get('destroy/{id}', 'destroy')->name('destroy');
+            Route::post('get-warehouse-option-by-supplier-id', 'getWarehouseOptionBySupplierId')->name('get-warehouse-option-by-supplier-id');
             // Add here
             Route::controller(WarehouseUserController::class)
                 ->as('users.')

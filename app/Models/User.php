@@ -89,13 +89,15 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function warehouses()
     {
-        return $this->belongsToMany(Warehouse::class);
+        return $this->belongsToMany(Warehouse::class, 'warehouse_users');
         // return $this->belongsToMany(Warehouse::class, 'warehouse_warehouse_user', 'warehouse_user_id', 'warehouse_id');
     }
 
     public function warehouseUsers()
     {
         return $this->belongsToMany(Warehouse::class, 'warehouse_users');
+    }
+
     public function restaurant()
     {
         return $this->belongsTo(Restaurant::class, 'restaurant_id');
