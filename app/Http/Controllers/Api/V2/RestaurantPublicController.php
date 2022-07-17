@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Api\V2;
 
+use App\Http\Resources\V2\CategoryCollection;
 use App\Http\Resources\V2\ProductCollection;
 use App\Http\Resources\V2\ProductMiniCollection;
 use App\Http\Resources\V2\ProductResource;
 use App\Http\Resources\V2\SupplierCollection;
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\Supplier;
 use Cache;
@@ -44,6 +46,13 @@ class RestaurantPublicController extends Controller
             $product = Product::find($id);
             $productResource = new ProductResource($product);
             return $productResource;
+        });
+    }
+
+    public function categoryList() {
+        return Cache::remember("app.product-category", 86400, function () use ($id) {
+            $categories = Category::get();
+            return CategoryCollection::make($categories);
         });
     }
 }

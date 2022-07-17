@@ -118,7 +118,7 @@
             else{
                 var status = 0;
             }
-            $.post('{{ route('taxes.tax-status') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
+            $.post('{{ route('admin.taxes.tax-status') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
                 if(data == 1){
                     AIZ.plugins.notify('success', '{{ translate('Tax status updated successfully') }}');
                 }
