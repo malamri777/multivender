@@ -78,85 +78,99 @@ class ProductController extends Controller
         return view('seller.product.products.create', compact('categories'));
     }
 
-    public function exist(Request $request)
+    public function exist()
     {
         return view('seller.product.products.exist');
     }
 
     public function find_sku(Request $request)
     {
-        if($request->input('sku')){
+        if($request->input('sku') && !$request->input('warehouse')){
+
             $product = Product::where('sku',$request->input('sku'))->first();
             if($product){
-                $warehouse_product = WarehouseProduct::where('product_id',$product->id)->first();
-                if($warehouse_product){
-                    $warehouse = Warehouse::find($warehouse_product->warehouse_id);
+                $warehouses = Warehouse::where('supplier_id', Auth::user()->provider_id)->get();
+                $html = '';
+                $html .= '<option selected label="Please Select">Please Select</option>';
+                foreach ($warehouses as $row) {
+                    $html .= '<option value="'.$row->id .'">'.$row->name.'</option>';
+                }
+                return response()->json(['product' => $product, 'warehouses' => $warehouses,'html' => $html]);
+            }else{
+                return response()->json(['product' => null, 'message' => 'not_found']);
+            }
 
-                    $warehouses = Warehouse::where('supplier_id', Auth::user()->provider_id)->get();
+        }elseif($request->input('sku') && $request->input('warehouse')){
 
-                    $html = '';
-                    $html .= '<option selected value="'.$warehouse->id .'">' . $warehouse->name . '</option>';
-
-                    foreach ($warehouses as $row) {
-                        if($row->id != $warehouse->id){
-                            $html .= '<option value="' . $row->id . '">' . $row->name . '</option>';
-                        }
-                    }
-
-                    return response()->json(['product' => $product,'warehouse_product' => $warehouse_product,'warehouse' => $warehouse, 'html' => $html]);
+            $warehouses = Warehouse::where('supplier_id', Auth::user()->provider_id)->get();
+            $html = '';
+            foreach ($warehouses as $row) {
+                if($row->id == $request->input('warehouse')){
+                    $html .= '<option selected value="'.$row->id .'">'.$row->name.'</option>';
                 }else{
-                    $warehouses = Warehouse::where('supplier_id', Auth::user()->provider_id)->get();
+                    $html .= '<option value="'.$row->id .'">'.$row->name.'</option>';
+                }
+            }
 
-                    $html = '';
-                    $html .= '<option selected label="Please Select">Please Select</option>';
-                    foreach ($warehouses as $row) {
-                        $html .= '<option value="'.$row->id .'">'.$row->name.'</option>';
-                    }
-                    return response()->json(['product' => $product, 'warehouses' => $warehouses, 'html' => $html]);
+            $product = Product::where('sku',$request->input('sku'))->first();
+            if($product){
+                $warehouse_product = WarehouseProduct::where('product_id',$product->id)->where('warehouse_id',$request->input('warehouse'))->first();
+                if($warehouse_product){
+                    return response()->json(['product' => $product, 'warehouse_product' => $warehouse_product, 'html' => $html]);
+                }else{
+                    return response()->json(['product' => $product, 'warehouse_product' => false, 'html' => $html]);
                 }
             }else{
-                // no product found
                 return response()->json(['product' => false, 'message' => 'not_found']);
             }
         }else{
             // no sku enterd
-            return response()->json(['product' => false, 'message' => 'no_sku']);
+            return response()->json(['product' => null, 'message' => 'no_sku']);
         }
     }
 
     public function store_exist(WarehouseProductReqeust $request)
     {
 
-        $result = WarehouseProduct::updateOrCreate([
-            'id' => $request->warehouse_product_id,
-        ],[
-            "name" => $request->name,
-            "warehouse_id" => $request->warehouse_id,
-            "price" => $request->price,
-            "sale_price" => $request->sale_price,
-            "quantity" => $request->quantity,
-            "product_id" => $request->product_id,
-            "warehouse_product_id" => $request->warehouse_product_id,
-            'updated_by_id' =>  Auth::user()->id,
-            'created_by_id' =>  Auth::user()->id,
-        ]);
 
-        if(!$result->wasRecentlyCreated && $result->wasChanged()){
-            // updateOrCreate performed an update
-            flash(translate('Warehouse Product Updated'))->success();
+        if($request->warehouse_product_id){
+
+            $warehouseProduct = WarehouseProduct::where('id', $request->warehouse_product_id)->where('warehouse_id', $request->warehouse_id);
+            if($warehouseProduct){
+                $warehouseProduct = WarehouseProduct::where('id', $request->warehouse_product_id)
+                ->update([
+                    'price' => $request->price ,
+                    'sale_price' => $request->sale_price ,
+                    'quantity' => $request->quantity
+                ]);
+
+                if($warehouseProduct){
+                    flash(translate('Warehouse Product Updated Successfully'))->success();
+                }else{
+                    flash(translate('Something Went Wrong'))->success();
+                }
+            }else{
+                flash(translate('Something Went Wrong'))->success();
+            }
+        }else{
+            $warehouseProduct = WarehouseProduct::create([
+                "warehouse_id" => $request->warehouse_id,
+                "price" => $request->price,
+                "sale_price" => $request->sale_price,
+                "quantity" => $request->quantity,
+                "product_id" => $request->product_id,
+                'updated_by_id' =>  Auth::user()->id,
+                'created_by_id' =>  Auth::user()->id,
+            ]);
+
+            if($warehouseProduct){
+                flash(translate('Warehouse Product Created Successfully'))->success();
+            }else{
+                flash(translate('Something Went Wrong'))->success();
+            }
         }
 
-        if(!$result->wasRecentlyCreated && !$result->wasChanged()){
-            // updateOrCreate performed nothing, row did not change
-            flash(translate('Nothing Changed'))->success();
-        }
-
-        if($result->wasRecentlyCreated){
-           // updateOrCreate performed create
-           flash(translate('Warehouse Product Moved'))->success();
-        }
-
-        return redirect()->route('seller.products');
+        return redirect()->route('seller.products.exist');
     }
 
 

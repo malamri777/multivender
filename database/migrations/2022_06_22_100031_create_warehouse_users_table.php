@@ -1,9 +1,11 @@
 
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\User;
+use App\Models\Warehouse;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateWarehouseUsersTable extends Migration
 {
@@ -11,8 +13,9 @@ class CreateWarehouseUsersTable extends Migration
     {
         Schema::create('warehouse_users', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id', 'user_fk_6815002')->references('id')->on('users');
+            $table->foreignIdFor(User::class, 'user_id');
+            // ->constrained()->onDelete('cascade');
+            $table->foreignIdFor(Warehouse::class, 'warehouse_id');
             $table->timestamps();
             $table->softDeletes();
         });

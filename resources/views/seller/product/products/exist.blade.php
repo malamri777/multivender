@@ -47,6 +47,9 @@
                             @include('backend.inc.form-span-error', ['field' => 'warehouse_id'])
                         </div>
                     </div>
+                    <div id="new_product" style="text-align: center; font-family: Poppins, Helvetica, sans-serif; color: #1b1b28; margin: 20px;">
+                        Create New Product
+                    </div>
                     <div id="product_input" class="form-group row">
                         <label class="col-md-3 col-from-label">{{translate('Price')}}</label>
                         <div class="col-md-8">
@@ -102,10 +105,22 @@
             $("[id='product_input']").hide();
             $("#product_warehouse_input").hide();
             $("#product_name_input").hide();
-        });
+            $('#new_product').hide()
+        })
+
+        $('#warehouse_option').change(function(){
+            get_product_by_sku($('#warehouse_option').val())
+        })
+
+        function loadWarehouses(html){
+            $('#warehouse_option').empty();
+            $('#warehouse_option').append(html);
+            AIZ.plugins.bootstrapSelect('refresh');
+        }
 
 
-        function get_product_by_sku(){
+
+        function get_product_by_sku(warehouse){
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -113,28 +128,31 @@
                 type:"POST",
                 url:'{{ route('seller.products.sku') }}',
                 data:{
-                    sku: $('#sku').val()
+                    sku: $('#sku').val(),
+                    warehouse: warehouse
                 },
                 success: function(result) {
-                    console.log("success");
-                    if(result.product != null && result.product != false){
+                    console.log(result);
+                    if(result.product){
                         $("#product_warehouse_input").show();
                         $("#product_name_input").show();
-                        $('#product_name').val(result.product.name)
-
+                        $('#product_name').val(result.product.name);
                         $('#form input[name=product_id]').val(result.product.id);
+                        $("[id='product_input']").hide();
+                        $('#new_product').hide()
+                        loadWarehouses(result.html)
 
-                        $('#warehouse_option').empty();
-                        $('#warehouse_option').append(result.html);
-                        AIZ.plugins.bootstrapSelect('refresh');
-
-                        if(result.warehouse_product){
+                        if(result.warehouse_product != false && result.warehouse_product != null){
+                            loadWarehouses(result.html)
+                            $('#new_product').hide()
                             $('#form input[name=warehouse_product_id]').val(result.warehouse_product.id);
                             $("[id='product_input']").show();
                             $('#form input[name=price]').val(result.warehouse_product.price)
                             $('#form input[name=sale_price]').val(result.warehouse_product.sale_price)
                             $('#form input[name=quantity]').val(result.warehouse_product.quantity)
-                        }else{
+                        }else if(result.warehouse_product == false){
+                            $('#new_product').show()
+                            $('#form input[name=warehouse_product_id]').val('');
                             $('#form input[name=price]').val('')
                             $('#form input[name=sale_price]').val('')
                             $('#form input[name=quantity]').val('')
@@ -143,7 +161,7 @@
                             $('#form input[name=quantity]').prop('required',true);
                         }
 
-                    }else if(result.product == false){
+                    }else{
                         $("[id='product_input']").hide();
                         $("#product_warehouse_input").hide();
                         $("#product_name_input").hide();
