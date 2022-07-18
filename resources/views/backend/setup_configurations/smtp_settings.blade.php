@@ -15,9 +15,9 @@
                         <label class="col-md-3 col-form-label">{{translate('Type')}}</label>
                         <div class="col-md-9">
                             <select class="form-control aiz-selectpicker mb-2 mb-md-0" name="MAIL_DRIVER" onchange="checkMailDriver()">
-                                <option value="sendmail" @if (env('MAIL_DRIVER') == "sendmail") selected @endif>{{ translate('Sendmail') }}</option>
-                                <option value="smtp" @if (env('MAIL_DRIVER') == "smtp") selected @endif>{{ translate('SMTP') }}</option>
-                                <option value="mailgun" @if (env('MAIL_DRIVER') == "mailgun") selected @endif>{{ translate('Mailgun') }}</option>
+                                <option value="sendmail" @if (config('myenv.MAIL_DRIVER') == "sendmail") selected @endif>{{ translate('Sendmail') }}</option>
+                                <option value="smtp" @if (config('myenv.MAIL_DRIVER') == "smtp") selected @endif>{{ translate('SMTP') }}</option>
+                                <option value="mailgun" @if (config('myenv.MAIL_DRIVER') == "mailgun") selected @endif>{{ translate('Mailgun') }}</option>
                             </select>
                         </div>
                     </div>
@@ -28,7 +28,7 @@
                                 <label class="col-from-label">{{translate('MAIL HOST')}}</label>
                             </div>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" name="MAIL_HOST" value="{{  env('MAIL_HOST') }}" placeholder="{{ translate('MAIL HOST') }}">
+                                <input type="text" class="form-control" name="MAIL_HOST" value="{{  config('myenv.MAIL_HOST') }}" placeholder="{{ translate('MAIL HOST') }}">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -37,7 +37,7 @@
                                 <label class="col-from-label">{{translate('MAIL PORT')}}</label>
                             </div>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" name="MAIL_PORT" value="{{  env('MAIL_PORT') }}" placeholder="{{ translate('MAIL PORT') }}">
+                                <input type="text" class="form-control" name="MAIL_PORT" value="{{  config('myenv.MAIL_PORT') }}" placeholder="{{ translate('MAIL PORT') }}">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -46,7 +46,7 @@
                                 <label class="col-from-label">{{translate('MAIL USERNAME')}}</label>
                             </div>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" name="MAIL_USERNAME" value="{{  env('MAIL_USERNAME') }}" placeholder="{{ translate('MAIL USERNAME') }}">
+                                <input type="text" class="form-control" name="MAIL_USERNAME" value="{{  config('myenv.MAIL_USERNAME') }}" placeholder="{{ translate('MAIL USERNAME') }}">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -55,7 +55,7 @@
                                 <label class="col-from-label">{{translate('MAIL PASSWORD')}}</label>
                             </div>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" name="MAIL_PASSWORD" value="{{  env('MAIL_PASSWORD') }}" placeholder="{{ translate('MAIL PASSWORD') }}">
+                                <input type="text" class="form-control" name="MAIL_PASSWORD" value="{{  config('myenv.MAIL_PASSWORD') }}" placeholder="{{ translate('MAIL PASSWORD') }}">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -64,7 +64,7 @@
                                 <label class="col-from-label">{{translate('MAIL ENCRYPTION')}}</label>
                             </div>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" name="MAIL_ENCRYPTION" value="{{  env('MAIL_ENCRYPTION') }}" placeholder="{{ translate('MAIL ENCRYPTION') }}">
+                                <input type="text" class="form-control" name="MAIL_ENCRYPTION" value="{{  config('myenv.MAIL_ENCRYPTION') }}" placeholder="{{ translate('MAIL ENCRYPTION') }}">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -73,7 +73,7 @@
                                 <label class="col-from-label">{{translate('MAIL FROM ADDRESS')}}</label>
                             </div>
                             <div class="col-md-9">
-                                <input type="email" class="form-control" name="MAIL_FROM_ADDRESS" value="{{  env('MAIL_FROM_ADDRESS') }}" placeholder="{{ translate('MAIL FROM ADDRESS') }}">
+                                <input type="email" class="form-control" name="MAIL_FROM_ADDRESS" value="{{  config('myenv.MAIL_FROM_ADDRESS') }}" placeholder="{{ translate('MAIL FROM ADDRESS') }}">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -82,7 +82,7 @@
                                 <label class="col-from-label">{{translate('MAIL FROM NAME')}}</label>
                             </div>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" name="MAIL_FROM_NAME" value="{{  env('MAIL_FROM_NAME') }}" placeholder="{{ translate('MAIL FROM NAME') }}">
+                                <input type="text" class="form-control" name="MAIL_FROM_NAME" value="{{  config('myenv.MAIL_FROM_NAME') }}" placeholder="{{ translate('MAIL FROM NAME') }}">
                             </div>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
                                 <label class="col-from-label">{{translate('MAILGUN DOMAIN')}}</label>
                             </div>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" name="MAILGUN_DOMAIN" value="{{  env('MAILGUN_DOMAIN') }}" placeholder="{{ translate('MAILGUN DOMAIN') }}">
+                                <input type="text" class="form-control" name="MAILGUN_DOMAIN" value="{{  config('myenv.MAILGUN_DOMAIN') }}" placeholder="{{ translate('MAILGUN DOMAIN') }}">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -102,7 +102,7 @@
                                 <label class="col-from-label">{{translate('MAILGUN SECRET')}}</label>
                             </div>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" name="MAILGUN_SECRET" value="{{  env('MAILGUN_SECRET') }}" placeholder="{{ translate('MAILGUN SECRET') }}">
+                                <input type="text" class="form-control" name="MAILGUN_SECRET" value="{{  config('myenv.MAILGUN_SECRET') }}" placeholder="{{ translate('MAILGUN SECRET') }}">
                             </div>
                         </div>
                     </div>

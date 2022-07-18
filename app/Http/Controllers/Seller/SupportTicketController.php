@@ -53,7 +53,7 @@ class SupportTicketController extends Controller
         $array['subject'] = 'Support ticket Code is:- '.$ticket->code;
         $array['from'] = env('MAIL_FROM_ADDRESS');
         $array['content'] = 'Hi. A ticket has been created. Please check the ticket.';
-        $array['link'] = route('support_ticket.admin_show', encrypt($ticket->id));
+        $array['link'] = route('admin.support_ticket.admin_show', encrypt($ticket->id));
         $array['sender'] = $ticket->user->name;
         $array['details'] = $ticket->details;
 

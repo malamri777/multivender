@@ -10,7 +10,7 @@
             </div>
             <div class="col-md-2">
                 <div class="input-group input-group-sm">
-                    <input type="text" class="form-control" id="search" name="search"@isset($sort_search) value="{{ $sort_search }}" @endisset placeholder="{{ translate('Type ticket code & Enter') }}">
+                    <input type="text" class="form-control" id="search" name="search" @isset($sort_search) value="{{ $sort_search }}" @endisset placeholder="{{ translate('Type ticket code & Enter') }}">
                 </div>
             </div>
         </div>
@@ -54,7 +54,7 @@
                                 @endif
                             </td>
                             <td class="text-right">
-                                <a href="{{route('support_ticket.admin_show', encrypt($ticket->id))}}" class="btn btn-soft-primary btn-icon btn-circle btn-sm" title="{{ translate('View Details') }}">
+                                <a href="{{route('admin.support_ticket.admin_show', encrypt($ticket->id))}}" class="btn btn-soft-primary btn-icon btn-circle btn-sm" title="{{ translate('View Details') }}">
                                     <i class="las la-eye"></i>
                                 </a>
                             </td>
