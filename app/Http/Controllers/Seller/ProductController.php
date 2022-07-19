@@ -51,7 +51,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $search = null;
-        $products = Product::where('user_id', Auth::user()->id)->where('digital', 0)->orderBy('created_at', 'desc');
+        $products = Product::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc');
         if ($request->has('search')) {
             $search = $request->search;
             $products = $products->where('name', 'like', '%' . $search . '%');
