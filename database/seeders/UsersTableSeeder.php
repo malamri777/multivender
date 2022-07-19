@@ -21,9 +21,10 @@ class UsersTableSeeder extends Seeder
             'email' => 'super_admin@app.com',
             'phone' => '000000000',
             'password' => bcrypt('password'),
-            'user_type' => 'super_admin',
+//            'user_type' => 'super_admin',
             'email_verified_at' => now()
         ]);
+
 
         $user = User::create([
             'name' => 'admin',

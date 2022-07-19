@@ -27,10 +27,10 @@ class DatabaseSeeder extends Seeder
             LanguageTableSeeder::class,
             SetupTableSeeder::class,
             TranslationTableSeeder::class,
-            RoleTableSeeder::class,
             AddonTableSeeder::class,
-//            LaratrustSeeder::class,
             UsersTableSeeder::class,
+            LaratrustSeeder::class,
+            RoleTableSeeder::class,
 
 
             SupplierSeeder::class,

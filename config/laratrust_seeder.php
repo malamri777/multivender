@@ -13,12 +13,30 @@ return [
 
     'roles_structure' => [
         'super_admin' => [
-            'users' => 'c,r,u,d',
-            'payments' => 'c,r,u,d',
-            'profile' => 'r,u'
+            'admin_dashboard' => 'v',
+            'profile' => 'r,u',
+            'users' => 'c,r,u,d,l',
+            'suppliers' => 'c,r,u,d,l',
+            'restaurants' => 'c,r,u,d,l',
+            'pos' => 'r,l',
+            'products' => 'c,r,u,d,l',
+            'delivers' => 'c,r,u,d,l',
+            'sales' => 'c,r,u,d,l',
+            'refunds' => 'c,r,u,d,l',
+            'uploads' => 'c,r,u,d,l',
+            'reports' => 'c,r,u,d,l',
+            'blogs' => 'c,r,u,d,l',
+            'marketings' => 'c,r,u,d,l',
+            'supports' => 'c,r,u,d,l',
+            'otps' => 'c,r,u,d,l',
+            'setups' => 'c,r,u,d,l',
+            'infos' => 'c,r,u,d,l',
+            'addons' => 'c,r,u,d,l',
+
         ],
         'admin' => [
-            'users' => 'c,r,u,d',
+            'users' => 'c,r,u,d,l',
+            'admin_dashboard' => 'v',
             'profile' => 'r,u'
         ],
         'supplier' => [
@@ -39,6 +57,8 @@ return [
         'c' => 'create',
         'r' => 'read',
         'u' => 'update',
-        'd' => 'delete'
+        'd' => 'delete',
+        'l' => 'link',
+        'v' => 'view'
     ]
 ];
