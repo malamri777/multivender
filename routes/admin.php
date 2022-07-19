@@ -78,10 +78,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
     });
 
     // Brand
-    Route::resource('brands', BrandController::class);
+    Route::resource('brands', BrandController::class)->except('destroy');
     Route::controller(BrandController::class)->group(function () {
         // Route::get('/brands/edit/{id}', 'edit')->name('brands.edit');
-        // Route::get('/brands/destroy/{id}', 'destroy')->name('brands.destroy');
+        Route::get('/brands/destroy/{id}', 'destroy')->name('brands.destroy');
     });
 
     // Products
@@ -399,10 +399,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
     });
 
     // Product Attribute
-    Route::resource('attributes', AttributeController::class );
+    Route::resource('attributes', AttributeController::class )->except('destroy');
     Route::controller(AttributeController::class)->group(function () {
         // Route::get('/attributes/edit/{id}', 'edit')->name('attributes.edit');
-        // Route::get('/attributes/destroy/{id}', 'destroy')->name('attributes.destroy');
+        Route::get('/attributes/destroy/{id}', 'destroy')->name('attributes.destroy');
 
         //Attribute Value
         Route::post('/store-attribute-value', 'store_attribute_value')->name('store-attribute-value');

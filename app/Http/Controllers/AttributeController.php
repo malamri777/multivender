@@ -120,7 +120,7 @@ class AttributeController extends Controller
 
         Attribute::destroy($id);
         flash(translate('Attribute has been deleted successfully'))->success();
-        return redirect()->route('attributes.index');
+        return redirect()->route('admin.attributes.index');
 
     }
 
