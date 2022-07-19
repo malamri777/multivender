@@ -1,16 +1,1 @@
-{
-    "/public/assets/admin/js/app.js": "/public/assets/admin/js/app.js",
-    "/public/assets/admin/js/core.js": "/public/assets/admin/js/core.js",
-    "/public/assets/admin/js/editor.js": "/public/assets/admin/js/editor.js",
-    "/public/assets/admin/js/cache.js": "/public/assets/admin/js/cache.js",
-    "/public/assets/admin/js/tags.js": "/public/assets/admin/js/tags.js",
-    "/public/assets/admin/js/system-info.js": "/public/assets/admin/js/system-info.js",
-    "/public/assets/admin/js/repeater-field.js": "/public/assets/admin/js/repeater-field.js",
-    "/public/assets/admin/js/tree-category.js": "/public/assets/admin/js/tree-category.js",
-    "/assets/admin/css/error-pages.css": "/assets/admin/css/error-pages.css",
-    "/assets/admin/css/email.css": "/assets/admin/css/email.css",
-    "/assets/admin/css/system-info.css": "/assets/admin/css/system-info.css",
-    "/assets/admin/css/core.css": "/assets/admin/css/core.css",
-    "/assets/admin/css/tree-category.css": "/assets/admin/css/tree-category.css",
-    "/assets/admin/css/rtl.css": "/assets/admin/css/rtl.css"
-}
+{}

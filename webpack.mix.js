@@ -34,7 +34,7 @@ const mix = require('laravel-mix');
 //     .js('resources/assets/admin/js/system-info.js', '/public/assets/admin/js')
 //     .js('resources/assets/admin/js/repeater-field.js', '/public/assets/admin/js')
 //     .js('resources/assets/admin/js/tree-category.js', '/public/assets/admin/js')
-    .vue()
+//     .vue()
 // ========== &Admin ====================
 
 
