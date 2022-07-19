@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\App;
 use Laratrust\Models\LaratrustRole;
 use Modules\Translations\Entities\RoleTranslation;
 
