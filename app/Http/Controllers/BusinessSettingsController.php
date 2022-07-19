@@ -292,30 +292,46 @@ class BusinessSettingsController extends Controller
                 $this->overWriteEnvFile($type, $request[$type]);
         }
 
-        flash(translate("Settings updated successfully"))->success();
+        flash("Settings updated successfully")->success();
+        flash("If the value has not change, wait and refresh the page.")->warning();
+        Artisan::call('config:clear');
+        Artisan::call('config:cache');
+        sleep(3);
         return back();
     }
 
     /**
-     * overWrite the Env File values.
-     * @param  String type
-     * @param  String value
-     * @return \Illuminate\Http\Response
+     *.env file overwrite
      */
     public function overWriteEnvFile($type, $val)
     {
-        if(env('DEMO_MODE') != 'On'){
-            $path = base_path('.env');
-            if (file_exists($path)) {
-                $val = '"'.trim($val).'"';
-                if(is_numeric(strpos(file_get_contents($path), $type)) && strpos(file_get_contents($path), $type) >= 0){
+        $isInt = false;
+        $path = base_path('.env');
+        if (file_exists($path)) {
+            if (intval($val)) {
+                $val = $val;
+                $isInt = true;
+            } else {
+                $val = '"' . trim($val) . '"';
+            }
+
+            if(is_numeric(strpos(file_get_contents($path), $type)) && strpos(file_get_contents($path), $type) >= 0){
+                if($isInt) {
                     file_put_contents($path, str_replace(
-                        $type.'="'.env($type).'"', $type.'='.$val, file_get_contents($path)
+                        $type . '=' . config("myenv." . $type),
+                        $type . '=' . $val,
+                        file_get_contents($path)
+                    ));
+                } else {
+                    file_put_contents($path, str_replace(
+                        $type . '="' . config("myenv." . $type) . '"',
+                        $type . '=' . $val,
+                        file_get_contents($path)
                     ));
                 }
-                else{
-                    file_put_contents($path, file_get_contents($path)."\r\n".$type.'='.$val);
-                }
+
+            } else {
+                file_put_contents($path, file_get_contents($path)."\r\n".$type.'='.$val);
             }
         }
     }

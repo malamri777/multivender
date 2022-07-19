@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-use Laratrust\Models\LaratrustRole;
+use Illuminate\Database\Eloquent\Model;
+use App;
 use Modules\Translations\Entities\RoleTranslation;
 
-class Role extends LaratrustRole
+class Role extends Model
 {
-    public $guarded = [];
-
     protected $with = ['role_translations'];
 
     public function getTranslation($field = '', $lang = false){
@@ -18,7 +17,6 @@ class Role extends LaratrustRole
     }
 
     public function role_translations(){
-        return $this->hasMany(RoleTranslation::class);
+      return $this->hasMany(RoleTranslation::class);
     }
-
 }
