@@ -105,6 +105,12 @@
                                 <span class="aiz-side-nav-text">{{translate('Restaurant User List')}}</span>
                             </a>
                         </li>
+                        <li class="aiz-side-nav-item">
+                            <a href="{{route('admin.restaurants.branches.users.index')}}"
+                                class="aiz-side-nav-link {{ areActiveRoutes(['admin.restaurants.branches.users.index','admin.restaurants.branches.users.create','admin.restaurants.branches.users.edit'])}}">
+                                <span class="aiz-side-nav-text">{{translate('Branch User List')}}</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 @endpermission

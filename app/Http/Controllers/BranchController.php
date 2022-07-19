@@ -165,5 +165,26 @@ class BranchController extends Controller
         $branch->save();
         return 1;
     }
+
+    public function getBranchOptionByRestaurantId(Request $request)
+    {
+        if ($request->restaurant_id) {
+            $items = Branch::where('restaurant_id', $request->restaurant_id)->get();
+
+            $html = '';
+
+            if ($items->count() > 0) {
+                $html .= '<option value=""></option>';
+            }
+
+            foreach ($items as $row) {
+                $html .= '<option value="' . $row->id . '">' . $row->name . '</option>';
+            }
+
+            echo json_encode($html);
+        } else {
+            echo json_encode('');
+        }
+    }
 }
 

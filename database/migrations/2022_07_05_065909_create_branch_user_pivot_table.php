@@ -15,8 +15,8 @@ class CreateBranchUserPivotTable extends Migration
 
     public function up()
     {
-        Schema::create('branch_branch_user', function (Blueprint $table) {
-            $table->foreignIdFor(User::class, 'branch_user_id');
+        Schema::create('branch_user', function (Blueprint $table) {
+            $table->foreignIdFor(User::class, 'user_id');
             $table->foreignIdFor(Branch::class, 'branch_id');
 
         });
@@ -29,6 +29,6 @@ class CreateBranchUserPivotTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('branch_branch_user');
+        Schema::dropIfExists('branch_user');
     }
 }

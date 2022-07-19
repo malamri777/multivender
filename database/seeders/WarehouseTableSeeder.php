@@ -24,14 +24,16 @@ class WarehouseTableSeeder extends Seeder
             'email' => 's1_w1_admin@dev.com',
             'password' => bcrypt('password'),
             'user_type' => 'supplier_warehouse_admin',
-            'email_verified_at' => now()
+            'email_verified_at' => now(),
+            'provider_id' => 1
         ]);
         $user = User::create([
             'name' => 's1_w1_user',
             'email' => 's1_w1_user@dev.com',
             'password' => bcrypt('password'),
             'user_type' => 'supplier_warehouse_user',
-            'email_verified_at' => now()
+            'email_verified_at' => now(),
+            'provider_id' => 1
         ]);
         $w1 = Warehouse::create([
             'name'           => 'WareHouse 1 balubaid',
@@ -49,7 +51,8 @@ class WarehouseTableSeeder extends Seeder
             'email' => 's1_w2_admin@dev.com',
             'password' => bcrypt('password'),
             'user_type' => 'supplier_warehouse_admin',
-            'email_verified_at' => now()
+            'email_verified_at' => now(),
+            'provider_id' => 1
         ]);
         Warehouse::create([
             'name'           => 'WareHouse 2 balubaid',
@@ -66,7 +69,8 @@ class WarehouseTableSeeder extends Seeder
             'email' => 's1_w3_admin@dev.com',
             'password' => bcrypt('password'),
             'user_type' => 'supplier_warehouse_admin',
-            'email_verified_at' => now()
+            'email_verified_at' => now(),
+            'provider_id' => 1
         ]);
         Warehouse::create([
             'name'           => 'WareHouse 3 balubaid',
@@ -84,7 +88,8 @@ class WarehouseTableSeeder extends Seeder
             'email' => 's2_w1_admin@dev.com',
             'password' => bcrypt('password'),
             'user_type' => 'supplier_warehouse_admin',
-            'email_verified_at' => now()
+            'email_verified_at' => now(),
+            'provider_id' => 2
         ]);
         Warehouse::create([
             'name'           => 'WareHouse 1 almunajem',
@@ -101,7 +106,8 @@ class WarehouseTableSeeder extends Seeder
             'email' => 's2_w2_admin@dev.com',
             'password' => bcrypt('password'),
             'user_type' => 'supplier_warehouse_admin',
-            'email_verified_at' => now()
+            'email_verified_at' => now(),
+            'provider_id' => 2
         ]);
         Warehouse::create([
             'name'           => 'WareHouse 2 almunajem',
@@ -118,7 +124,8 @@ class WarehouseTableSeeder extends Seeder
             'email' => 's2_w3_admin@dev.com',
             'password' => bcrypt('password'),
             'user_type' => 'supplier_warehouse_admin',
-            'email_verified_at' => now()
+            'email_verified_at' => now(),
+            'provider_id' => 2
         ]);
         Warehouse::create([
             'name'           => 'WareHouse 3 almunajem',
@@ -145,7 +152,8 @@ class WarehouseTableSeeder extends Seeder
             'email' => 's3_w1_admin@dev.com',
             'password' => bcrypt('password'),
             'user_type' => 'supplier_warehouse_admin',
-            'email_verified_at' => now()
+            'email_verified_at' => now(),
+            'provider_id' => 3
         ]);
         Warehouse::create([
             'name'           => 'WareHouse 1 almunajem',
