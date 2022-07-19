@@ -49,7 +49,7 @@ class AttributeController extends Controller
         $attribute_translation->save();
 
         flash(translate('Attribute has been inserted successfully'))->success();
-        return redirect()->route('attributes.index');
+        return redirect()->route('admin.attributes.index');
     }
 
     /**
@@ -132,7 +132,7 @@ class AttributeController extends Controller
         $attribute_value->save();
 
         flash(translate('Attribute value has been inserted successfully'))->success();
-        return redirect()->route('attributes.show', $request->attribute_id);
+        return redirect()->route('admin.attributes.show', $request->attribute_id);
     }
 
     public function edit_attribute_value(Request $request, $id)
@@ -160,7 +160,7 @@ class AttributeController extends Controller
         AttributeValue::destroy($id);
 
         flash(translate('Attribute value has been deleted successfully'))->success();
-        return redirect()->route('attributes.show', $attribute_values->attribute_id);
+        return redirect()->route('admin.attributes.show', $attribute_values->attribute_id);
 
     }
 
@@ -189,7 +189,7 @@ class AttributeController extends Controller
         $color->save();
 
         flash(translate('Color has been inserted successfully'))->success();
-        return redirect()->route('colors');
+        return redirect()->route('admin.colors');
     }
 
     public function edit_color(Request $request, $id)
@@ -227,7 +227,7 @@ class AttributeController extends Controller
         Color::destroy($id);
 
         flash(translate('Color has been deleted successfully'))->success();
-        return redirect()->route('colors');
+        return redirect()->route('admin.colors');
 
     }
 

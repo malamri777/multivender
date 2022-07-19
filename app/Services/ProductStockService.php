@@ -34,12 +34,12 @@ class ProductStockService
             }
         } else {
             unset($collection['colors_active'], $collection['colors'], $collection['choice_no']);
-            $qty = $collection['current_stock'];
-            $price = $collection['unit_price'];
+            // $qty = $collection['current_stock'];
+            // $price = $collection['unit_price'];
             $variant = ProductUtility::get_combination_string($combinations[0], $collection);
-            unset($collection['current_stock']);
+            // unset($collection['current_stock']);
 
-            $data = $collection->merge(compact('variant', 'qty', 'price'))->toArray();
+            $data = $collection->merge(compact('variant'))->toArray();
 
             ProductStock::create($data);
         }

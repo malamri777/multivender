@@ -26,11 +26,11 @@ class ProductRequest extends FormRequest
         return [
             'name'          => 'required|max:255',
             'category_id'   => 'required',
-            'unit'          => 'required',
-            'min_qty'       => 'required|numeric',
-            'unit_price'    => 'required|numeric',
-            'discount'      => 'required|numeric',
-            'current_stock' => 'required|numeric',
+            // 'unit'          => 'required',
+            // 'min_qty'       => 'required|numeric',
+            // 'unit_price'    => 'required|numeric',
+            // 'discount'      => 'required|numeric',
+            // 'current_stock' => 'required|numeric',
         ];
     }
 

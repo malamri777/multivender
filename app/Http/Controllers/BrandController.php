@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Brand;
-use App\Models\BrandTranslation;
+use Modules\Translations\Entities\BrandTranslation;
 use App\Models\Product;
 use Illuminate\Support\Str;
 
