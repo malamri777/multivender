@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Nexmo;
 use Twilio\Rest\Client;
 use App\OtpConfiguration;
-use App\User;
 
 class SmsController extends Controller
 {

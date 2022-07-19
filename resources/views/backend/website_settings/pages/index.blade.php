@@ -30,7 +30,7 @@
         		<td>{{ $key+1 }}</td>
 
 				@if($page->type == 'home_page')
-        			<td><a href="{{ route('admin.custom-pages.show_custom_page', $page->slug) }}" class="text-reset">{{ $page->getTranslation('title') }}</a></td>
+        			<td><a href="{{ route('custom-pages.show_custom_page', $page->slug) }}" class="text-reset">{{ $page->getTranslation('title') }}</a></td>
 					<td>{{ route('home') }}</td>
 				@else
         			<td><a href="{{ route('custom-pages.show_custom_page', $page->slug) }}" class="text-reset">{{ $page->getTranslation('title') }}</a></td>
@@ -39,7 +39,7 @@
 
         		<td class="text-right">
 					@if($page->type == 'home_page')
-						<a href="{{route('admin.custom-pages.edit', ['id'=>$page->slug, 'lang'=>env('DEFAULT_LANGUAGE'), 'page'=>'home'] )}}" class="btn btn-icon btn-circle btn-sm btn-soft-primary" title="Edit">
+						<a href="{{route('admin.custom-pages.edit', ['custom_page'=>$page->slug, 'lang'=>env('DEFAULT_LANGUAGE'), 'page'=>'home'] )}}" class="btn btn-icon btn-circle btn-sm btn-soft-primary" title="Edit">
 							<i class="las la-pen"></i>
 						</a>
 					@else

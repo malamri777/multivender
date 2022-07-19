@@ -8,7 +8,7 @@
             <div class="card-header">
                 <h3 class="fs-18 mb-0">{{translate('Send Bulk SMS')}}</h3>
             </div>
-            <form class="form-horizontal" action="{{ route('sms.send') }}" method="POST" enctype="multipart/form-data">
+            <form class="form-horizontal" action="{{ route('admin.sms.send') }}" method="POST" enctype="multipart/form-data">
             	@csrf
                 <div class="card-body">
                     <div class="form-group row">

@@ -183,7 +183,7 @@ return [
              * Aborts the execution with a 403 code and allows you to provide the response text
              */
             'abort' => [
-                'code' => 403,
+                'code' => 404,
                 'message' => 'User does not have any of the necessary access rights.'
             ],
 
@@ -268,7 +268,7 @@ return [
         | Turn this value to false if you don't want to use Laratrust admin panel
         |
         */
-        'register' => false,
+        'register' => true,
 
         /*
         |--------------------------------------------------------------------------
@@ -279,7 +279,7 @@ return [
         | will be accessible from.
         |
         */
-        'path' => 'laratrust',
+        'path' => 'admin/roles',
 
         /*
         |--------------------------------------------------------------------------
@@ -289,7 +289,7 @@ return [
         | The route where the go back link should point
         |
         */
-        'go_back_route' => '/',
+        'go_back_route' => '/admin',
 
         /*
         |--------------------------------------------------------------------------
@@ -299,7 +299,7 @@ return [
         | These middleware will get attached onto each Laratrust panel route.
         |
         */
-        'middleware' => ['web'],
+        'middleware' => ['web', 'admin'],
 
         /*
         |--------------------------------------------------------------------------
@@ -332,13 +332,13 @@ return [
         */
         'roles_restrictions' => [
             // The user won't be able to remove roles already assigned to users.
-            'not_removable' => [],
+            'not_removable' => ['super_admin', 'admin', 'supplier', 'restaurant', 'driver'],
 
             // The user won't be able to edit the role and the permissions assigned.
-            'not_editable' => [],
+            'not_editable' => ['super_admin', 'admin', 'supplier', 'restaurant', 'driver'],
 
             // The user won't be able to delete the role.
-            'not_deletable' => [],
+            'not_deletable' => ['super_admin', 'admin', 'supplier', 'restaurant', 'driver'],
         ],
     ]
 ];

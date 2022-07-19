@@ -9,7 +9,7 @@
         </div>
     </div>
 @endif
-@if(isAdmin() || in_array('25', json_decode(Auth::user()->staff->role->permissions)))
+@permission('admin_dashboard-view')
 <div class="row gutters-10">
     <div class="col-lg-6">
         <div class="row gutters-10">
@@ -99,10 +99,10 @@
         </div>
     </div>
 </div>
-@endif
+@endpermission
 
 
-@if(isAdmin() || in_array('25', json_decode(Auth::user()->staff->role->permissions)))
+@permission('admin_dashboard-view')
     <div class="row gutters-10">
         <div class="col-md-6">
             <div class="card">
@@ -125,7 +125,7 @@
             </div>
         </div>
     </div>
-@endif
+@endpermission
 
 <div class="card">
     <div class="card-header">
