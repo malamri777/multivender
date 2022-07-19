@@ -1,24 +1,25 @@
 <?php
 
+use App\Http\Controllers\CityController;
 use App\Http\Controllers\AddonController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BranchController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\CityController;
 use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DistrictController;
+use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\BranchUserControlle;
 use App\Http\Controllers\FlashDealController;
 use App\Http\Controllers\WarehouseController;
 use App\Http\Controllers\NewsletterController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RestaurantController;
-use App\Http\Controllers\RestaurantUserController;
 use App\Http\Controllers\SubscriberController;
-use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\SupplierUserController;
 use App\Http\Controllers\SupportTicketController;
 use App\Http\Controllers\WarehouseUserController;
+use App\Http\Controllers\RestaurantUserController;
 
 /*
   |--------------------------------------------------------------------------
@@ -503,8 +504,24 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
             Route::post('update_status', 'updateStatus')->name('update_status');
             Route::get('users', 'getUsers')->name('users');
             Route::get('destroy/{id}', 'destroy')->name('destroy');
+
+                        // Add here
+                        Route::controller(BranchUserControlle::class)
+                        ->as('users.')
+                        ->prefix('users')
+                        ->group(function () {
+                            Route::get('/', 'index')->name('ndex');
+                            Route::get('/create', 'create')->name('create');
+                            Route::post('/', 'store')->name('store');
+
+                            Route::get('/', 'edit')->name('edit');
+
+                        });
+                        Route::resource('users', BranchUserControlle::class)->except('destroy');
         });
+
         Route::resource('branches', BranchController::class)->except('destroy');
+
 
         // Users
         Route::group(['prefix' => 'users', 'as' => 'users.', 'controller' => RestaurantUserController::class], function () {

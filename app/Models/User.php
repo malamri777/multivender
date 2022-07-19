@@ -17,6 +17,7 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable, HasApiTokens, HasFactory, SoftDeletes;
 
+
     public function sendEmailVerificationNotification()
     {
         $this->notify(new EmailVerificationNotification());
@@ -32,6 +33,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'country', 'provider_id', 'email_verified_at', 'otp_code', 'user_type',
         'country_code'
     ];
+
 
     /**
      * The attributes that should be hidden for arrays.
@@ -101,6 +103,17 @@ class User extends Authenticatable implements MustVerifyEmail
     public function restaurant()
     {
         return $this->belongsTo(Restaurant::class, 'restaurant_id');
+    }
+
+    public function branches()
+    {
+        return $this->belongsToMany(Branch::class ,'branch_user');
+        // return $this->belongsToMany(Warehouse::class, 'warehouse_warehouse_user', 'warehouse_user_id', 'warehouse_id');
+    }
+
+    public function branchUsers()
+    {
+        return $this->belongsToMany(Branch::class,'branch_user');
     }
 
     public function staff()
