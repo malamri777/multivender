@@ -39,7 +39,7 @@
                                 @include('backend.inc.form-span-error', ['field' => 'mobile'])
                             </div>
                         </div>
-                        @if (Auth::user()->user_type == 'super_admin' or Auth::user()->user_type == 'admin')
+                        @if(Auth::user()->hasRole(['super_admin', 'admin']))
                             <div class="form-group row">
                                 <label class="col-sm-3 col-from-label"
                                     for="password">{{ translate('New Password') }}</label>

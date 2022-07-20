@@ -6,13 +6,13 @@
             <div class="col-md-6">
                 <h1 class="h3">{{ translate('All Restaurant Users') }}</h1>
             </div>
-            @if(Auth::user()->user_type == 'super_admin')
+            @permission('restaurants-create')
                 <div class="col-md-6 text-md-right">
                     <a href="{{ route('admin.restaurants.users.create') }}" class="btn btn-circle btn-info">
                         <span>{{ translate('Add New Restaurant User') }}</span>
                     </a>
                 </div>
-            @endif
+            @endpermission
         </div>
     </div>
 
@@ -121,10 +121,12 @@
                                             class="dropdown-item">
                                             {{ translate('Payment History') }}
                                         </a>
+                                        @permission('restaurants-update')
                                         <a href="{{ route('admin.restaurants.users.edit', ['user' => $user->id]) }}"
                                             class="dropdown-item">
                                             {{ translate('Edit') }}
                                         </a>
+                                        @endpermission
                                         @if ($user->banned != 1)
                                             <a href="#"
                                                 onclick="confirm_ban('{{ route('admin.sellers.ban', $user->id) }}');"
@@ -140,10 +142,12 @@
                                                 <i class="fa fa-check text-success" aria-hidden="true"></i>
                                             </a>
                                         @endif
+                                        @permission('restaurants-delete')
                                         <a href="#" class="dropdown-item confirm-delete"
                                             data-href="{{ route('admin.restaurants.users.destroy', $user->id) }}" class="">
                                             {{ translate('Delete') }}
                                         </a>
+                                        @endpermission
                                     </div>
                                 </div>
                             </td>
