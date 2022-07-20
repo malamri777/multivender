@@ -186,7 +186,13 @@ class WarehouseTableSeeder extends Seeder
             'warehouse_id' => 1,
             'product_id' => 1,
             'create_by_id' => 1,
-            'updated_by_id' => 1
+            'updated_by_id' => 1,
+            'sale_price_type' => 'percent',
+            'sale_price_start_date' => '18-07-2022',
+            'sale_price_end_date' => '20-07-2022',
+            'low_stock_quantity' => 1,
+
+
         ]);
     }
 }

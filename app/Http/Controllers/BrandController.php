@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Brand;
-use App\Models\BrandTranslation;
+use Modules\Translations\Entities\BrandTranslation;
 use App\Models\Product;
 use Illuminate\Support\Str;
 
@@ -140,7 +140,7 @@ class BrandController extends Controller
         Brand::destroy($id);
 
         flash(translate('Brand has been deleted successfully'))->success();
-        return redirect()->route('brands.index');
+        return redirect()->route('admin.brands.index');
 
     }
 }

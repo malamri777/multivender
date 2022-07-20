@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
+use Modules\Translations\Entities\CategoryTranslation;
 use App\Utility\CategoryUtility;
 use Illuminate\Support\Str;
 use Cache;
-use Modules\Translations\Entities\CategoryTranslation;
 
 class CategoryController extends Controller
 {

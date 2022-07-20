@@ -26,18 +26,21 @@ use App\Services\ProductStockService;
 use App\Services\ProductFlashDealService;
 use App\Http\Requests\WarehouseProductReqeust;
 
+
+
 class ProductController extends Controller
 {
     protected $productService;
     protected $productTaxService;
     protected $productFlashDealService;
     protected $productStockService;
+    protected $ProductSupplierService;
 
     public function __construct(
         ProductService $productService,
         ProductTaxService $productTaxService,
         ProductFlashDealService $productFlashDealService,
-        ProductStockService $productStockService
+        ProductStockService $productStockService,
     ) {
         $this->productService = $productService;
         $this->productTaxService = $productTaxService;
@@ -48,7 +51,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $search = null;
-        $products = Product::where('user_id', Auth::user()->id)->where('digital', 0)->orderBy('created_at', 'desc');
+        $products = Product::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc');
         if ($request->has('search')) {
             $search = $request->search;
             $products = $products->where('name', 'like', '%' . $search . '%');
@@ -133,6 +136,10 @@ class ProductController extends Controller
     {
 
 
+        info($request->all());
+        info(explode(' to ',$request->date_range)[0]);
+        info(explode(' to ',$request->date_range)[1]);
+
         if($request->warehouse_product_id){
 
             $warehouseProduct = WarehouseProduct::where('id', $request->warehouse_product_id)->where('warehouse_id', $request->warehouse_id);
@@ -141,8 +148,14 @@ class ProductController extends Controller
                 ->update([
                     'price' => $request->price ,
                     'sale_price' => $request->sale_price ,
-                    'quantity' => $request->quantity
+                    'quantity' => $request->quantity,
+                    "sale_price_type" => $request->sale_price_type,
+                    "sale_price_start_date" => explode(' to ',$request->date_range)[0],
+                    "sale_price_end_date" => explode(' to ',$request->date_range)[1],
+                    "low_stock_quantity" => $request->low_stock_quantity
                 ]);
+
+
 
                 if($warehouseProduct){
                     flash(translate('Warehouse Product Updated Successfully'))->success();
@@ -158,10 +171,15 @@ class ProductController extends Controller
                 "price" => $request->price,
                 "sale_price" => $request->sale_price,
                 "quantity" => $request->quantity,
+                "sale_price_type" => $request->sale_price_type,
+                "sale_price_start_date" => explode(' to ',$request->date_range)[0],
+                "sale_price_end_date" => explode(' to ',$request->date_range)[1],
+                "low_stock_quantity" => $request->low_stock_quantity,
                 "product_id" => $request->product_id,
                 'updated_by_id' =>  Auth::user()->id,
-                'created_by_id' =>  Auth::user()->id,
+                'created_by_id' =>  Auth::user()->id
             ]);
+
 
             if($warehouseProduct){
                 flash(translate('Warehouse Product Created Successfully'))->success();

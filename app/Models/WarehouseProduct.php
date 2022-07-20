@@ -31,6 +31,10 @@ class WarehouseProduct extends Model
         'created_at',
         'updated_at',
         'deleted_at',
+        "sale_price_type",
+        "sale_price_start_date",
+        "sale_price_end_date",
+        "low_stock_quantity"
     ];
 
     public function warehouse()
