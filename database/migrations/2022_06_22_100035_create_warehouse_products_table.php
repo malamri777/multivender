@@ -16,6 +16,12 @@ class CreateWarehouseProductsTable extends Migration
             $table->decimal('price', 15, 2);
             $table->decimal('sale_price', 15, 2)->nullable();
             $table->integer('quantity')->nullable();
+
+            $table->string('sale_price_type', 10)->nullable();
+            $table->string('sale_price_start_date')->nullable();
+            $table->string('sale_price_end_date')->nullable();
+            $table->integer('low_stock_quantity')->nullable();
+
             $table->foreignIdFor(Warehouse::class, 'warehouse_id');
             $table->foreignIdFor(Product::class, 'product_id');
             $table->foreignIdFor(User::class, 'create_by_id')->nullable();

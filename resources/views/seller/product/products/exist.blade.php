@@ -28,7 +28,7 @@
                             @include('backend.inc.form-span-error', ['field' => 'sku'])
                         </div>
                         <div class="col-md-2">
-                            <button id="sku_btn" type="button" class="btn btn-dark">Search</button>
+                            <button id="sku_btn" type="button" class="btn btn-dark">{{ translate('Search') }}</button>
                         </div>
 
                     </div>
@@ -50,27 +50,53 @@
                     <div id="new_product" style="text-align: center; font-family: Poppins, Helvetica, sans-serif; color: #1b1b28; margin: 20px;">
                         Create New Product
                     </div>
+
                     <div id="product_input" class="form-group row">
-                        <label class="col-md-3 col-from-label">{{translate('Price')}}</label>
+                        <label class="col-md-3 col-from-label">{{translate('Unit price')}} <span class="text-danger">*</span></label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" name="price">
+                            <input type="number" lang="en" min="0" value="0" step="0.01" placeholder="{{ translate('Unit price') }}" name="price" class="form-control" required>
                             @include('backend.inc.form-span-error', ['field' => 'price'])
                         </div>
                     </div>
+
                     <div id="product_input" class="form-group row">
-                        <label class="col-md-3 col-from-label">{{translate('Sale Price')}}</label>
+                        <label class="col-sm-3 control-label" for="start_date">{{translate('Sale Price Date Range')}}</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" name="sale_price">
-                            @include('backend.inc.form-span-error', ['field' => 'sale_price'])
+                          <input type="text" class="form-control aiz-date-range" name="date_range" placeholder="{{translate('Select Date')}}" data-time-picker="true" data-format="DD-MM-Y" data-separator=" to " autocomplete="off">
                         </div>
                     </div>
+
                     <div id="product_input" class="form-group row">
-                        <label class="col-md-3 col-from-label">{{translate('Quantity')}}</label>
+                        <label class="col-md-3 col-from-label">{{translate('Sale Price')}} <span class="text-danger">*</span></label>
+                        <div class="col-md-5">
+                            <input type="number" lang="en" min="0" value="0" step="0.01" placeholder="{{ translate('Sale Price') }}" name="sale_price" class="form-control" required>
+                            @include('backend.inc.form-span-error', ['field' => 'sale_price'])
+                        </div>
+                        <div class="col-md-3">
+                            <select id="type_option" class="form-control aiz-selectpicker" name="sale_price_type">
+                                <option value="amount">{{translate('Flat')}}</option>
+                                <option value="percent">{{translate('Percent')}}</option>
+                            </select>
+                            @include('backend.inc.form-span-error', ['field' => 'sale_price_type'])
+                        </div>
+                    </div>
+
+                    <div id="product_input" class="form-group row">
+                        <label class="col-md-3 col-from-label">{{translate('Quantity')}} <span class="text-danger">*</span></label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" name="quantity">
+                            <input type="number" lang="en" min="0" value="0" step="1" placeholder="{{ translate('Quantity') }}" name="quantity" class="form-control" required>
                             @include('backend.inc.form-span-error', ['field' => 'quantity'])
                         </div>
                     </div>
+
+                    <div id="product_input" class="form-group row">
+                        <label class="col-md-3 col-from-label">{{translate('Low Stock Quantity Warning')}} <span class="text-danger">*</span></label>
+                        <div class="col-md-8">
+                            <input type="number" lang="en" min="0" value="0" step="1" placeholder="{{ translate('Low Stock Quantity') }}" name="low_stock_quantity" class="form-control" required>
+                            @include('backend.inc.form-span-error', ['field' => 'low_stock_quantity'])
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
@@ -150,15 +176,25 @@
                             $('#form input[name=price]').val(result.warehouse_product.price)
                             $('#form input[name=sale_price]').val(result.warehouse_product.sale_price)
                             $('#form input[name=quantity]').val(result.warehouse_product.quantity)
+                            $('#form input[name=low_stock_quantity]').val(result.warehouse_product.low_stock_quantity)
+                            $('#form input[name=date_range]').val(result.warehouse_product.sale_price_start_date+' to '+result.warehouse_product.sale_price_end_date)
+                            $('#type_option').val(result.warehouse_product.sale_price_type)
+                            $('#type_option').selectpicker('refresh');
                         }else if(result.warehouse_product == false){
                             $('#new_product').show()
                             $('#form input[name=warehouse_product_id]').val('');
                             $('#form input[name=price]').val('')
                             $('#form input[name=sale_price]').val('')
                             $('#form input[name=quantity]').val('')
+                            $('#form input[name=low_stock_quantity]').val('')
+                            $('#form input[name=date_range]').val('')
                             $("[id='product_input']").show();
                             $('#form input[name=price]').prop('required',true);
-                            $('#form input[name=quantity]').prop('required',true);
+                            $('#form input[name=low_stock_quantity]').prop('required',true);
+                            $('#form input[name=date_range]').prop('required',true);
+                            $('#type_option').prop('required',true);
+                            $('#type_option').val('')
+                            $('#type_option').selectpicker('refresh');
                         }
 
                     }else{
