@@ -377,10 +377,10 @@ class BusinessSettingsController extends Controller
             if($type == 'site_name'){
                 $this->overWriteEnvFile('APP_NAME', $request[$type]);
             }
+
             if($type == 'timezone'){
                 $this->overWriteEnvFile('APP_TIMEZONE', $request[$type]);
-            }
-            else {
+            } else {
                 $lang = null;
                 if(gettype($type) == 'array'){
                     $lang = array_key_first($type);
@@ -399,14 +399,12 @@ class BusinessSettingsController extends Controller
                     }
                     $business_settings->lang = $lang;
                     $business_settings->save();
-                }
-                else{
+                } else {
                     $business_settings = new BusinessSetting;
                     $business_settings->type = $type;
                     if(gettype($request[$type]) == 'array'){
                         $business_settings->value = json_encode($request[$type]);
-                    }
-                    else {
+                    } else {
                         $business_settings->value = $request[$type];
                     }
                     $business_settings->lang = $lang;

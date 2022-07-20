@@ -25,6 +25,14 @@ class PageTableSeeder extends Seeder
             'meta_description' => 'Home Page',
             'keywords' => 'Home Page',
         ]);
+        Page::create([
+            'type' => 'mobile_home_page',
+            'title' => 'Mobile Home Page',
+            'content' => 'Mobile Home Page',
+            'meta_title' => 'Mobile Home Page',
+            'meta_description' => 'Mobile Home Page',
+            'keywords' => 'Mobile Home Page',
+        ]);
         PageTranslation::create([
             'page_id' => 1,
             'title' => 'الصفحة الرئيسة',

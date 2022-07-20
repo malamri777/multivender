@@ -15,6 +15,33 @@ use Illuminate\Http\Request;
 
 class RestaurantPublicController extends Controller
 {
+    public function app()
+    {
+        $mobile_home_slider = Cache::rememberForever('mobile_home_slider', function () {
+            $mobile_slider_images = json_decode(get_setting('mobile_home_slider_images'), true);
+            $mobile_slider_links = json_decode(get_setting('mobile_home_slider_links'), true);
+            $sliders = [];
+
+            foreach ($mobile_slider_images ?? [] as $key => $image) {
+                $slider['image'] = uploaded_asset($image);
+                $slider['link'] = $mobile_slider_links[$key];
+                $sliders[] = $slider;
+            }
+
+            return $sliders;
+        });
+
+        $categories = Cache::remember('mobile_home_categories', 86400, function () {
+            return new CategoryCollection(Category::orderBy('order_level', 'desc')->get());
+        });
+
+        return response()->json([
+            'result' => true,
+            'slider' => $mobile_home_slider,
+            'categories' => $categories,
+        ]);
+    }
+
     public function supplierList() {
         $suppliers = Supplier::where('supplier_waiting_for_upload_file', 1)
             ->where('supplier_waiting_for_admin_approve', 1)

@@ -87,8 +87,9 @@ class PageController extends Controller
         if($page != null){
           if ($page_name == 'home') {
             return view('backend.website_settings.pages.home_page_edit', compact('page','lang'));
-          }
-          else{
+          }  else if($page_name == 'mobile_home') {
+            return view('backend.website_settings.pages.mobile_home_page_edit', compact('page', 'lang'));
+          } else {
             return view('backend.website_settings.pages.edit', compact('page','lang'));
           }
         }

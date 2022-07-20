@@ -1,15 +1,15 @@
 <div class="aiz-sidebar-wrap">
     <div class="aiz-sidebar left c-scrollbar">
         <div class="aiz-side-nav-logo-wrap">
-            {{-- <a href="{{ route('admin.dashboard') }}" class="d-block text-left">--}}
-                {{-- @if(get_setting('system_logo_white') != null)--}}
-                {{-- <img class="mw-100"
+             <a href="{{ route('admin.dashboard') }}" class="d-block text-left">
+                 @if(get_setting('system_logo_white') != null)
+                 <img class="mw-100"
                     src="{{ uploaded_asset(get_setting('system_logo_white', static_asset('assets/img/logo.png'))) }}"
-                    class="brand-icon" alt="{{ get_setting('site_name') }}">--}}
-                {{-- @else--}}
-                {{-- <img class="mw-100" src="{{ static_asset('assets/img/logo.png') }}" class="brand-icon"
-                    alt="{{ get_setting('site_name') }}">--}}
-                {{-- @endif--}}
+                    class="brand-icon text-white" alt="{{ get_setting('site_name') }}">
+                 @else
+                 <img class="mw-100 text-white" src="{{ static_asset('assets/img/logo.png') }}" class="brand-icon"
+                    alt="{{ get_setting('site_name') }}">
+                 @endif
             </a>
         </div>
         <div class="aiz-side-nav-wrap">
@@ -519,7 +519,7 @@
                     </ul>
                 </li>
                 @endif
-                @permission('uploads-link')
+                @permission('admin_uploads-link')
                 <li class="aiz-side-nav-item">
                     <a href="{{ route('admin.uploaded-files.index') }}"
                         class="aiz-side-nav-link {{ areActiveRoutes(['admin.uploaded-files.create'])}}">
@@ -935,6 +935,22 @@
                         <li class="aiz-side-nav-item">
                             <a href="{{ route('admin.website.appearance') }}" class="aiz-side-nav-link">
                                 <span class="aiz-side-nav-text">{{translate('Appearance')}}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="aiz-side-nav-item">
+                    <a href="#" class="aiz-side-nav-link {{ areActiveRoutes([
+                        '/admin/website/custom-pages/mobile-home-page/edit?page=mobile_home',
+                        ])}}">
+                        <i class="las la-desktop aiz-side-nav-icon"></i>
+                        <span class="aiz-side-nav-text">{{translate('Mobile Website Setup')}}</span>
+                        <span class="aiz-side-nav-arrow"></span>
+                    </a>
+                    <ul class="aiz-side-nav-list level-2">
+                        <li class="aiz-side-nav-item">
+                            <a href="/admin/website/custom-pages/mobile-home-page/edit?page=mobile_home" class="aiz-side-nav-link">
+                                <span class="aiz-side-nav-text">{{translate('Banner')}}</span>
                             </a>
                         </li>
                     </ul>

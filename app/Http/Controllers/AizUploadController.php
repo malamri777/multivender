@@ -15,16 +15,28 @@ class AizUploadController extends Controller
 
     public function index(Request $request){
 
-
-        $all_uploads = (auth()->user()->user_type == 'seller') ? Upload::where('user_id',auth()->user()->id) : Upload::query();
         $search = null;
         $sort_by = null;
+        $folder_id = null;
+        if (Auth::user()->hasRole(adminRolesList())) {
+            $all_uploads = Upload::query();
+        } else if (Auth::user()->hasRole(supplierRolesList())) {
+            $all_uploads = Upload::where('user_id',auth()->user()->id);
+        }
+
+        if ($request->folder_id != null) {
+            $folder_id = $request->folder_id;
+            $all_uploads = $all_uploads->where('folder_id', $request->folder_id);
+        } else {
+            $all_uploads = $all_uploads->where('folder_id', 1);
+        }
 
         if ($request->search != null) {
             $search = $request->search;
-            $all_uploads->where('file_original_name', 'like', '%'.$request->search.'%');
+            $all_uploads = $all_uploads->where('file_original_name', 'like', '%'.$request->search.'%');
         }
 
+        $all_uploads = $all_uploads->orderBy('order')->orderBy('folder_name');
         $sort_by = $request->sort;
         switch ($request->sort) {
             case 'newest':
@@ -46,22 +58,51 @@ class AizUploadController extends Controller
 
         $all_uploads = $all_uploads->paginate(60)->appends(request()->query());
 
-
         return (auth()->user()->user_type == 'seller')
-            ? view('seller.uploads.index', compact('all_uploads', 'search', 'sort_by'))
-            : view('backend.uploaded_files.index', compact('all_uploads', 'search', 'sort_by'));
+            ? view('seller.uploads.index', compact('all_uploads', 'search', 'sort_by', 'folder_id'))
+            : view('backend.uploaded_files.index', compact('all_uploads', 'search', 'sort_by', 'folder_id'));
     }
 
     public function create(){
-        return (auth()->user()->user_type == 'seller')
-            ? view('seller.uploads.create')
-            : view('backend.uploaded_files.create');
+        if (Auth::user()->hasPermission('admin_uploads-create')) {
+            return view('backend.uploaded_files.create');
+        } else if (Auth::user()->hasPermission('supplier_uploads-create')) {
+            return view('seller.uploads.create');
+        } else {
+            abort(404);
+        }
     }
 
+    public function createFolder(Request $request)
+    {
+        $upload = new Upload();
+
+        if ($request->folder_id) {
+            $upload->folder_id = $request->folder_id;
+        } else {
+            $upload->folder_id = 1;
+        }
+
+        $upload->folder_name = $request->name;
+        $upload->type = 'folder';
+        $upload->save();
+
+        return response()->json([
+            'result' => true,
+            'message' => translate('Folder Created'),
+        ], 200);
+
+//        return response()->json([
+//            'result' => false,
+//            'message' => translate('Error Creating User'),
+//            'user_id' => 0
+//        ], 401);
+    }
 
     public function show_uploader(Request $request){
         return view('uploader.aiz-uploader');
     }
+
     public function upload(Request $request){
         $type = array(
             "jpg"=>"image",
@@ -100,6 +141,7 @@ class AizUploadController extends Controller
             "xlsx"=>"document"
         );
 
+
         if($request->hasFile('aiz_file')){
             $upload = new Upload;
             $extension = strtolower($request->file('aiz_file')->getClientOriginalExtension());
@@ -116,7 +158,20 @@ class AizUploadController extends Controller
                     }
                 }
 
-                $path = $request->file('aiz_file')->store('uploads/all', 'local');
+                if($request->folder_id) {
+                    $folder = Upload::find($request->folder_id);
+                    $folderPath = $folder->folder_name;
+                    $folderTemp = $folder;
+                    while($folderTemp->parent) {
+                        $folderPath = $folderTemp->parent->folder_name . "/" . $folderPath;
+                        $folderTemp = $folderTemp->parent;
+                    }
+                    $path = $request->file('aiz_file')->store('uploads/all/' . $folderPath, 'local');
+                } else {
+                    $folder = Upload::find(1);
+                    $path = $request->file('aiz_file')->store('uploads/all', 'local');
+                }
+
                 $size = $request->file('aiz_file')->getSize();
 
                 // Return MIME type ala mimetype extension
@@ -163,6 +218,7 @@ class AizUploadController extends Controller
                 }
 
                 $upload->extension = $extension;
+                $upload->folder_id = $folder->id;
                 $upload->file_name = $path;
                 $upload->user_id = Auth::user()->id;
                 $upload->type = $type[$upload->extension];

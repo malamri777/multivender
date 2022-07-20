@@ -24,21 +24,23 @@ class RestaurantAuthController extends Controller
     public function signup(RestaurantSignUpRequest $request)
     {
         $existingUser = User::where('phone', $request->phone)->first();
-        if (!$existingUser) {
+        if ($existingUser or !checkerCountryCode($request)) {
+            return response()->json([
+                'result' => false,
+                'message' => translate('Error Creating User'),
+                'user_id' => 0
+            ], 401);
+        } else {
             $user = new User([
                 'name' => $request->name,
                 'phone' => $request->phone,
+                'country_dial_code' => $request->country_dial_code,
+                'country_code' => $request->country_code,
                 'email' => $request->email,
                 'user_type' => 'restaurant',
                 'password' => bcrypt($request->password),
                 'otp_code' => rand(100000, 999999)
             ]);
-        } else {
-            return response()->json([
-                'result' => false,
-                'message' => translate('User already exists.'),
-                'user_id' => 0
-            ], 201);
         }
 
         // if (User::where('email', $request->email_or_phone)->orWhere('phone', $request->email_or_phone)->first() != null) {
@@ -199,18 +201,9 @@ class RestaurantAuthController extends Controller
         $result = [
             'result' => true,
             'message' => translate('Successfully logged in'),
-            'access_token' => $token,
-            'token_type' => 'Bearer',
+            'access_token' => 'Bearer ' . $token,
             'expires_at' => null,
-            'user' => [
-                'id' => $user->id,
-                'type' => $user->user_type,
-                'name' => $user->name,
-                'email' => $user->email,
-                'avatar' => $user->avatar,
-                'avatar_original' => uploaded_asset($user->avatar_original),
-                'phone' => $user->phone
-            ]
+            'user' => RestaurantUserResource::make($user)
         ];
 
         if (config('myenv.OTP_DEBUG_ENABLE') == 'on') {
