@@ -131,45 +131,54 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                 var elem = $(this);
                 elem.on("click", function (e) {
                     var value = $(this).data("value");
-                    var valueObject =
-                        AIZ.uploader.data.allFiles[
-                            AIZ.uploader.data.allFiles.findIndex(
-                                (x) => x.id === value
-                            )
-                        ];
-                    // console.log(valueObject);
+                    let type = $(this).data("type");
 
-                    elem.closest(".aiz-file-box-wrap").toggleAttr(
-                        "data-selected",
-                        "true",
-                        "false"
-                    );
-                    if (!AIZ.uploader.data.multiple) {
-                        elem.closest(".aiz-file-box-wrap")
-                            .siblings()
-                            .attr("data-selected", "false");
-                    }
-                    if (!AIZ.uploader.data.selectedFiles.includes(value)) {
-                        if (!AIZ.uploader.data.multiple) {
-                            AIZ.uploader.data.selectedFiles = [];
-                            AIZ.uploader.data.selectedFilesObject = [];
-                        }
-                        AIZ.uploader.data.selectedFiles.push(value);
-                        AIZ.uploader.data.selectedFilesObject.push(valueObject);
+                    if (type === "folder") {
+                        AIZ.uploader.getAllUploads(
+                            AIZ.data.appUrl +
+                            `/aiz-uploader/get_uploaded_files?folder_id=${value}`
+                        );
                     } else {
-                        AIZ.uploader.data.selectedFiles = AIZ.uploader.data.selectedFiles.filter(
-                            function (item) {
-                                return item !== value;
-                            }
+                        var valueObject =
+                            AIZ.uploader.data.allFiles[
+                                AIZ.uploader.data.allFiles.findIndex(
+                                    (x) => x.id === value
+                                )
+                            ];
+                        // console.log(valueObject);
+
+                        elem.closest(".aiz-file-box-wrap").toggleAttr(
+                            "data-selected",
+                            "true",
+                            "false"
                         );
-                        AIZ.uploader.data.selectedFilesObject = AIZ.uploader.data.selectedFilesObject.filter(
-                            function (item) {
-                                return item !== valueObject;
+                        if (!AIZ.uploader.data.multiple) {
+                            elem.closest(".aiz-file-box-wrap")
+                                .siblings()
+                                .attr("data-selected", "false");
+                        }
+                        if (!AIZ.uploader.data.selectedFiles.includes(value)) {
+                            if (!AIZ.uploader.data.multiple) {
+                                AIZ.uploader.data.selectedFiles = [];
+                                AIZ.uploader.data.selectedFilesObject = [];
                             }
-                        );
+                            AIZ.uploader.data.selectedFiles.push(value);
+                            AIZ.uploader.data.selectedFilesObject.push(valueObject);
+                        } else {
+                            AIZ.uploader.data.selectedFiles = AIZ.uploader.data.selectedFiles.filter(
+                                function (item) {
+                                    return item !== value;
+                                }
+                            );
+                            AIZ.uploader.data.selectedFilesObject = AIZ.uploader.data.selectedFilesObject.filter(
+                                function (item) {
+                                    return item !== valueObject;
+                                }
+                            );
+                        }
+                        AIZ.uploader.addSelectedValue();
+                        AIZ.uploader.updateUploaderSelected();
                     }
-                    AIZ.uploader.addSelectedValue();
-                    AIZ.uploader.updateUploaderSelected();
                 });
             });
         },
@@ -398,66 +407,68 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                     for (var i = 0; i < data.length; i++) {
                         var thumb = "";
                         var hidden = "";
-                        if (data[i].type === "image") {
+                        var html = "";
+                        if (data[i].type === "folder") {
                             thumb =
-                                '<img src="' +
-                                AIZ.data.fileBaseUrl +
-                                data[i].file_name +
-                                '" class="img-fit">';
+                                '<img src="/assets/img/folder.svg" class="w-110px">';
+                            html = `<div class="aiz-file-box-wrap" aria-hidden="${data[i].aria_hidden}" data-selected="${data[i].selected}">
+                                        <div class="aiz-file-box">
+                                            <div class="dropdown-file">
+                                                <a class="dropdown-link" data-toggle="dropdown">
+                                                    <i class="la la-ellipsis-v"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <i class="la la-trash mr-2"></i>Delete</a>
+                                                </div>
+                                            </div>
+                                            <div class="card card-file aiz-uploader-select" title="${data[i].folder_name}" data-value="${data[i].id}" data-type="folder">
+                                                <div class="card-file-thumb">${thumb}</div>
+                                                <div class="card-body">
+                                                    <h6 class="d-flex">
+                                                        <span class="text-truncate title">${data[i].folder_name}</span>
+                                                    </h6>
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>`;
                         } else {
-                            thumb = '<i class="la la-file-text"></i>';
+                            if (data[i].type === "image") {
+                                thumb =
+                                    '<img src="' +
+                                    AIZ.data.fileBaseUrl +
+                                    data[i].file_name +
+                                    '" class="img-fit">';
+                            } else {
+                                thumb = '<i class="la la-file-text"></i>';
+                            }
+                            html = `<div class="aiz-file-box-wrap" aria-hidden="${data[i].aria_hidden}" data-selected="${data[i].selected}">
+                                        <div class="aiz-file-box">
+                                            <div class="dropdown-file">
+                                                <a class="dropdown-link" data-toggle="dropdown">
+                                                    <i class="la la-ellipsis-v"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a href="${AIZ.data.fileBaseUrl + data[i].file_name}" target="_blank" download="${data[i].file_original_name}.${data[i].extension}" class="dropdown-item">
+                                                        <i class="la la-download mr-2"></i>
+                                                    Download</a>
+                                                    <a href="#" class="dropdown-item aiz-uploader-delete" data-id="${data[i].id}">
+                                                    <i class="la la-trash mr-2"></i>Delete</a>
+                                                </div>
+                                            </div>
+                                            <div class="card card-file aiz-uploader-select" title="${data[i].file_original_name}.${data[i].extension}" data-value="${data[i].id}" data-type="other">
+                                                <div class="card-file-thumb">${thumb}</div>
+                                                <div class="card-body">
+                                                    <h6 class="d-flex">
+                                                        <span class="text-truncate title">${data[i].file_original_name}</span>
+                                                        <span class="ext flex-shrink-0">.${data[i].extension}</span>
+                                                    </h6>
+                                                    <p>${AIZ.extra.bytesToSize(data[i].file_size)}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>`;
                         }
-                        var html =
-                            '<div class="aiz-file-box-wrap" aria-hidden="' +
-                            data[i].aria_hidden +
-                            '" data-selected="' +
-                            data[i].selected +
-                            '">' +
-                            '<div class="aiz-file-box">' +
-                            '<div class="dropdown-file">' +
-                            '<a class="dropdown-link" data-toggle="dropdown">' +
-                            '<i class="la la-ellipsis-v"></i>' +
-                            "</a>" +
-                            '<div class="dropdown-menu dropdown-menu-right">' +
-                            '<a href="' +
-                            AIZ.data.fileBaseUrl +
-                            data[i].file_name +
-                            '" target="_blank" download="' +
-                            data[i].file_original_name +
-                            "." +
-                            data[i].extension +
-                            '" class="dropdown-item"><i class="la la-download mr-2"></i>Download</a>' +
-                            '<a href="#" class="dropdown-item aiz-uploader-delete" data-id="' +
-                            data[i].id +
-                            '"><i class="la la-trash mr-2"></i>Delete</a>' +
-                            "</div>" +
-                            "</div>" +
-                            '<div class="card card-file aiz-uploader-select" title="' +
-                            data[i].file_original_name +
-                            "." +
-                            data[i].extension +
-                            '" data-value="' +
-                            data[i].id +
-                            '">' +
-                            '<div class="card-file-thumb">' +
-                            thumb +
-                            "</div>" +
-                            '<div class="card-body">' +
-                            '<h6 class="d-flex">' +
-                            '<span class="text-truncate title">' +
-                            data[i].file_original_name +
-                            "</span>" +
-                            '<span class="ext flex-shrink-0">.' +
-                            data[i].extension +
-                            "</span>" +
-                            "</h6>" +
-                            "<p>" +
-                            AIZ.extra.bytesToSize(data[i].file_size) +
-                            "</p>" +
-                            "</div>" +
-                            "</div>" +
-                            "</div>" +
-                            "</div>";
 
                         $(".aiz-uploader-all").append(html);
                     }
@@ -493,7 +504,10 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                                 i++
                             ) {
                                 var thumb = "";
-                                if (data[i].type === "image") {
+                                if (data[i].type === "folder") {
+                                    thumb =
+                                        '<img src="/assets/img/folder.svg" class="w-110px">';
+                                } else if (data[i].type === "image") {
                                     thumb =
                                         '<img src="' +
                                         data[i].file_name +
@@ -774,7 +788,10 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                                     i++
                                 ) {
                                     var thumb = "";
-                                    if (data[i].type === "image") {
+                                    if (data[i].type === "folder") {
+                                        thumb =
+                                            '<img src="/assets/img/folder.svg" class="w-110px">';
+                                    } else if (data[i].type === "image") {
                                         thumb =
                                             '<img src="' +
                                             data[i].file_name +
@@ -1140,7 +1157,7 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                     }
                 });
                 uppy.use(Uppy.XHRUpload, {
-                    endpoint: AIZ.data.appUrl + "/aiz-uploader/upload" + `?folder_id=${upload_id}`,
+                    endpoint: AIZ.data.appUrl + "/aiz-uploader/upload" + `?folder_id=${folder_id}`,
                     fieldName: "aiz_file",
                     formData: true,
                     headers: {

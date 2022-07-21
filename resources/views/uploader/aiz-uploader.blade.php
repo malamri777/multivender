@@ -10,6 +10,16 @@
 						<li class="nav-item">
 							<a class="nav-link font-weight-medium text-dark" data-toggle="tab" href="#aiz-upload-new">{{ translate('Upload New') }}</a>
 						</li>
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-medium text-dark" id="back-to-main-upload-page">
+                                <i class="las la-home text-danger" style="font-size: 20px" title="{{translate('Back to main upload page')}}"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-medium text-dark">
+                                <i class="las la-arrow-circle-left text-danger" style="font-size: 20px" title="{{translate('Previous Folder')}}"></i>
+                            </a>
+                        </li>
 					</ul>
 				</div>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -25,7 +35,8 @@
 									<div class="">
 										<!-- Input -->
 										<select class="form-control form-control-xs aiz-selectpicker" name="aiz-uploader-sort">
-											<option value="newest" selected>{{ translate('Sort by newest') }}</option>
+											<option value="all" selected>{{ translate('All') }}</option>
+											<option value="newest">{{ translate('Sort by newest') }}</option>
 											<option value="oldest">{{ translate('Sort by oldest') }}</option>
 											<option value="smallest">{{ translate('Sort by smallest') }}</option>
 											<option value="largest">{{ translate('Sort by largest') }}</option>

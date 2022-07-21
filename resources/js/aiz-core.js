@@ -6,6 +6,7 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
         else self.attr(attr, attr1);
     });
 };
+
 (function ($) {
     // USE STRICT
     "use strict";

@@ -42,7 +42,6 @@
 
 @section('script')
 	<script type="text/javascript">
-        var upload_id = "{{ Request::get('folder_id') }}"
 		$(document).ready(function() {
 			AIZ.plugins.aizUppy();
 		});

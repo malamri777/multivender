@@ -73,7 +73,7 @@
 					</div>
 					<div class="form-group mb-3">
 						<label for="name">{{translate('Logo')}} <small>({{ translate('120x80') }})</small></label>
-						<div class="input-group" data-toggle="aizuploader" data-type="image">
+						<div class="input-group" data-toggle="aizuploader" data-type="folder,image">
 							<div class="input-group-prepend">
 									<div class="input-group-text bg-soft-secondary font-weight-medium">{{ translate('Browse')}}</div>
 							</div>

@@ -151,8 +151,10 @@
     			</div>
     		@endforeach
             @else
-                <div class="d-block text-center">
-                    <h2 class="text-center">No Files</h2>
+                <div class="align-items-center d-flex h-100 justify-content-center w-100 mt-4">
+                    <div class="text-center">
+                        <h3>{{ translate('No files found') }}</h3>
+                    </div>
                 </div>
             @endif
     	</div>

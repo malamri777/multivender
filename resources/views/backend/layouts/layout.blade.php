@@ -33,6 +33,7 @@
         }
     </style>
 	<script>
+        var folder_id = "{{ Request::get('folder_id') }}"
     	var AIZ = AIZ || {};
         AIZ.local = {
             nothing_selected: '{{ translate('Nothing selected') }}',

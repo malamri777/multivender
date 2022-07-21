@@ -231,7 +231,20 @@ class AizUploadController extends Controller
 
     public function get_uploaded_files(Request $request)
     {
-        $uploads = Upload::where('user_id', Auth::user()->id);
+        $folder_id = null;
+        if (Auth::user()->hasRole(adminRolesList())) {
+            $uploads = Upload::query();
+        } else if (Auth::user()->hasRole(supplierRolesList())) {
+            $uploads = Upload::where('user_id', auth()->user()->id);
+        }
+
+        if ($request->folder_id != null) {
+            // $folder_id = $request->folder_id;
+            $uploads = $uploads->where('folder_id', $request->folder_id);
+        } else {
+            $uploads = $uploads->where('folder_id', 1);
+        }
+
         if ($request->search != null) {
             $uploads->where('file_original_name', 'like', '%'.$request->search.'%');
         }
