@@ -48,7 +48,7 @@
                         </div>
                     </div>
                     <div id="new_product" style="text-align: center; font-family: Poppins, Helvetica, sans-serif; color: #1b1b28; margin: 20px;">
-                        Create New Product
+                        Create New Warehouse Product
                     </div>
 
                     <div id="product_input" class="form-group row">
@@ -60,6 +60,14 @@
                     </div>
 
                     <div id="product_input" class="form-group row">
+                        <label class="col-md-3 col-from-label">{{translate('Quantity')}} <span class="text-danger">*</span></label>
+                        <div class="col-md-8">
+                            <input type="number" lang="en" min="0" value="0" step="1" placeholder="{{ translate('Quantity') }}" name="quantity" class="form-control" required>
+                            @include('backend.inc.form-span-error', ['field' => 'quantity'])
+                        </div>
+                    </div>
+
+                    <div id="product_input" class="form-group row">
                         <label class="col-sm-3 control-label" for="start_date">{{translate('Sale Price Date Range')}}</label>
                         <div class="col-md-8">
                           <input type="text" class="form-control aiz-date-range" name="date_range" placeholder="{{translate('Select Date')}}" data-time-picker="true" data-format="DD-MM-Y" data-separator=" to " autocomplete="off">
@@ -67,7 +75,7 @@
                     </div>
 
                     <div id="product_input" class="form-group row">
-                        <label class="col-md-3 col-from-label">{{translate('Sale Price')}} <span class="text-danger">*</span></label>
+                        <label class="col-md-3 col-from-label">{{translate('Sale Price')}} </label>
                         <div class="col-md-5">
                             <input type="number" lang="en" min="0" value="0" step="0.01" placeholder="{{ translate('Sale Price') }}" name="sale_price" class="form-control" required>
                             @include('backend.inc.form-span-error', ['field' => 'sale_price'])
@@ -82,15 +90,7 @@
                     </div>
 
                     <div id="product_input" class="form-group row">
-                        <label class="col-md-3 col-from-label">{{translate('Quantity')}} <span class="text-danger">*</span></label>
-                        <div class="col-md-8">
-                            <input type="number" lang="en" min="0" value="0" step="1" placeholder="{{ translate('Quantity') }}" name="quantity" class="form-control" required>
-                            @include('backend.inc.form-span-error', ['field' => 'quantity'])
-                        </div>
-                    </div>
-
-                    <div id="product_input" class="form-group row">
-                        <label class="col-md-3 col-from-label">{{translate('Low Stock Quantity Warning')}} <span class="text-danger">*</span></label>
+                        <label class="col-md-3 col-from-label">{{translate('Low Stock Quantity Warning')}}</label>
                         <div class="col-md-8">
                             <input type="number" lang="en" min="0" value="0" step="1" placeholder="{{ translate('Low Stock Quantity') }}" name="low_stock_quantity" class="form-control" required>
                             @include('backend.inc.form-span-error', ['field' => 'low_stock_quantity'])
