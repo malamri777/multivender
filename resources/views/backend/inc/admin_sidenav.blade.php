@@ -912,43 +912,6 @@
                     </li>
                     @endif
 
-<<<<<<< HEAD
-                    <!-- Website Setup -->
-                    @permission('setups-link')
-                    <li class="aiz-side-nav-item">
-                        <a href="#"
-                            class="aiz-side-nav-link {{ areActiveRoutes(['admin.website.footer', 'admin.website.header'])}}">
-                            <i class="las la-desktop aiz-side-nav-icon"></i>
-                            <span class="aiz-side-nav-text">{{translate('Website Setup')}}</span>
-                            <span class="aiz-side-nav-arrow"></span>
-                        </a>
-                        <ul class="aiz-side-nav-list level-2">
-                            <li class="aiz-side-nav-item">
-                                <a href="{{ route('admin.website.header') }}" class="aiz-side-nav-link">
-                                    <span class="aiz-side-nav-text">{{translate('Header')}}</span>
-                                </a>
-                            </li>
-                            <li class="aiz-side-nav-item">
-                                <a href="{{ route('admin.website.footer', ['lang'=>  App::getLocale()] ) }}"
-                                    class="aiz-side-nav-link {{ areActiveRoutes(['admin.website.footer'])}}">
-                                    <span class="aiz-side-nav-text">{{translate('Footer')}}</span>
-                                </a>
-                            </li>
-                            <li class="aiz-side-nav-item">
-                                <a href="{{ route('admin.website.pages') }}"
-                                    class="aiz-side-nav-link {{ areActiveRoutes(['admin.website.pages', 'admin.custom-pages.create' ,'admin.custom-pages.edit'])}}">
-                                    <span class="aiz-side-nav-text">{{translate('Pages')}}</span>
-                                </a>
-                            </li>
-                            <li class="aiz-side-nav-item">
-                                <a href="{{ route('admin.website.appearance') }}" class="aiz-side-nav-link">
-                                    <span class="aiz-side-nav-text">{{translate('Appearance')}}</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    @endpermission
-=======
                 <!-- Website Setup -->
                 @permission('setups-link')
                 <li class="aiz-side-nav-item">
@@ -1000,7 +963,6 @@
                     </ul>
                 </li>
                 @endpermission
->>>>>>> 8545d2339e5484d09f93dd9fddc71d77df970c5e
 
                     <!-- Setup & Configurations -->
                     @permission('setups-link')
