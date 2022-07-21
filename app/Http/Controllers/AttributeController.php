@@ -44,7 +44,7 @@ class AttributeController extends Controller
         $attribute->name = $request->name;
         $attribute->save();
 
-        $attribute_translation = AttributeTranslation::firstOrNew(['lang' => env('DEFAULT_LANGUAGE'), 'attribute_id' => $attribute->id]);
+        $attribute_translation = AttributeTranslation::firstOrNew(['lang' => config('myenv.DEFAULT_LANGUAGE'), 'attribute_id' => $attribute->id]);
         $attribute_translation->name = $request->name;
         $attribute_translation->save();
 

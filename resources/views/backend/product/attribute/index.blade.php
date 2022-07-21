@@ -38,7 +38,7 @@
 									<a class="btn btn-soft-info btn-icon btn-circle btn-sm" href="{{route('admin.attributes.show', $attribute->id)}}" title="{{ translate('Attribute values') }}">
 										<i class="las la-cog"></i>
 									</a>
-									<a class="btn btn-soft-primary btn-icon btn-circle btn-sm" href="{{route('admin.attributes.edit', ['attribute'=>$attribute->id, 'lang'=>env('DEFAULT_LANGUAGE')] )}}" title="{{ translate('Edit') }}">
+									<a class="btn btn-soft-primary btn-icon btn-circle btn-sm" href="{{route('admin.attributes.edit', ['attribute'=>$attribute->id, 'lang'=>config('myenv.DEFAULT_LANGUAGE')] )}}" title="{{ translate('Edit') }}">
 										<i class="las la-edit"></i>
 									</a>
 									<a href="#" class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete" data-href="{{route('admin.attributes.destroy', $attribute->id)}}" title="{{ translate('Delete') }}">

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BranchUserControlle;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaxController;
 use App\Http\Controllers\BlogController;

@@ -40,7 +40,7 @@
                                     <td>{{ $color->name }}</td>
                                     <td class="text-right">
                                         <a class="btn btn-soft-primary btn-icon btn-circle btn-sm"
-                                            href="{{ route('admin.colors.edit', ['id' => $color->id, 'lang' => env('DEFAULT_LANGUAGE')]) }}"
+                                            href="{{ route('admin.colors.edit', ['id' => $color->id, 'lang' => config('myenv.DEFAULT_LANGUAGE')]) }}"
                                             title="{{ translate('Edit') }}">
                                             <i class="las la-edit"></i>
                                         </a>

@@ -16,6 +16,7 @@ class UploadTableSeeder extends Seeder
      */
     public function run()
     {
+
         Upload::create([
             'folder_name' => 'parent',
             'type' => 'folder',

@@ -26,7 +26,7 @@
                         <span class="text-bold">{{$customer_package->product_upload}}</span>
                     </p>
                     <div class="mar-top">
-                        <a href="{{route('admin.customer_packages.edit', ['id'=>$customer_package->id, 'lang'=>env('DEFAULT_LANGUAGE')] )}}" class="btn btn-sm btn-info">{{translate('Edit')}}</a>
+                        <a href="{{route('admin.customer_packages.edit', ['id'=>$customer_package->id, 'lang'=>config('myenv.DEFAULT_LANGUAGE')] )}}" class="btn btn-sm btn-info">{{translate('Edit')}}</a>
                         <a href="#" data-href="{{route('admin.customer_packages.destroy', $customer_package->id)}}" class="btn btn-sm btn-danger confirm-delete" >{{translate('Delete')}}</a>
                     </div>
                 </div>

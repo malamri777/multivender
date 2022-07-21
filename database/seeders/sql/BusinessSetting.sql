@@ -162,7 +162,7 @@ INSERT INTO business_settings
 VALUES(67, 'header_stikcy', 'yes', NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
-VALUES(68, 'footer_logo', 'assets/img/logo.png', NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
+VALUES(68, 'footer_logo', 7, NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
 VALUES(69, 'about_us_description', 'About Us Description', NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
@@ -243,7 +243,7 @@ INSERT INTO business_settings
 VALUES(94, 'site_motto', NULL, NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
-VALUES(95, 'site_icon', 'assets/img/logo.png', NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
+VALUES(95, 'site_icon', 9, NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
 VALUES(96, 'base_color', '#e62e04', NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
@@ -267,10 +267,10 @@ INSERT INTO business_settings
 VALUES(102, 'site_name', "Support Warehouse", NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
-VALUES(103, 'system_logo_white', 'assets/img/logo-white.png', NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
+VALUES(103, 'system_logo_white', 7, NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
-VALUES(104, 'system_logo_black', NULL, NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
+VALUES(104, 'system_logo_black', 8, NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
 VALUES(105, 'timezone', NULL, NULL, '2020-11-16 10:26:36', '2020-11-16 10:26:36');

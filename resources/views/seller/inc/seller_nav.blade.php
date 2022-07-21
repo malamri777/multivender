@@ -88,7 +88,7 @@
                     $locale = Session::get('locale', Config::get('app.locale'));
                 }
                 else{
-                    $locale = env('DEFAULT_LANGUAGE');
+                    $locale = config('myenv.DEFAULT_LANGUAGE');
                 }
             @endphp
             <div class="aiz-topbar-item ml-2">

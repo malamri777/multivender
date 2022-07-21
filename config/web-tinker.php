@@ -31,8 +31,7 @@ return [
     'middleware' => [
         Illuminate\Cookie\Middleware\EncryptCookies::class,
         Illuminate\Session\Middleware\StartSession::class,
-        Spatie\WebTinker\Http\Middleware\Authorize::class,
-        App\Http\Middleware\IsAdmin::class
+        Spatie\WebTinker\Http\Middleware\Authorize::class
     ],
 
     /*

@@ -42,7 +42,7 @@
 		                            <img src="{{ uploaded_asset($brand->logo) ?? asset($brand->logo) }}" alt="{{translate('Brand')}}" class="h-50px">
 		                        </td>
 		                        <td class="text-right">
-		                            <a class="btn btn-soft-primary btn-icon btn-circle btn-sm" href="{{route('admin.brands.edit', ['brand'=>$brand->id, 'lang'=>env('DEFAULT_LANGUAGE')] )}}" title="{{ translate('Edit') }}">
+		                            <a class="btn btn-soft-primary btn-icon btn-circle btn-sm" href="{{route('admin.brands.edit', ['brand'=>$brand->id, 'lang'=>config('myenv.DEFAULT_LANGUAGE')] )}}" title="{{ translate('Edit') }}">
 		                                <i class="las la-edit"></i>
 		                            </a>
 		                            <a href="#" class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete" data-href="{{route('admin.brands.destroy', $brand->id)}}" title="{{ translate('Delete') }}">

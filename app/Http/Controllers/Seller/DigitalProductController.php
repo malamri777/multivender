@@ -93,7 +93,7 @@ class DigitalProductController  extends Controller
         $product->slug = preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '-', $request->name)).'-'.rand(10000,99999);
 
         if($product->save()){
-            
+
             $product_stock              = new ProductStock;
             $product_stock->product_id  = $product->id;
             $product_stock->variant     = '';
@@ -103,7 +103,7 @@ class DigitalProductController  extends Controller
             $product_stock->save();
 
             // Product Translations
-            $product_translation                = ProductTranslation::firstOrNew(['lang' => env('DEFAULT_LANGUAGE'), 'product_id' => $product->id]);
+            $product_translation                = ProductTranslation::firstOrNew(['lang' => config('myenv.DEFAULT_LANGUAGE'), 'product_id' => $product->id]);
             $product_translation->name          = $request->name;
             $product_translation->description   = $request->description;
             $product_translation->save();
@@ -183,7 +183,7 @@ class DigitalProductController  extends Controller
         foreach ($product->stocks as $key => $stock) {
             $stock->delete();
         }
-        
+
         if($product->save()){
             // Insert Into Product Stock
             $product_stock              = new ProductStock;
@@ -193,7 +193,7 @@ class DigitalProductController  extends Controller
             $product_stock->sku         = '';
             $product_stock->qty         = 0;
             $product_stock->save();
-            
+
             // Product Translations
             $product_translation                = ProductTranslation::firstOrNew(['lang' => $request->lang, 'product_id' => $product->id]);
             $product_translation->name          = $request->name;

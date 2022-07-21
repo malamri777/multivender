@@ -874,7 +874,7 @@ if (!function_exists('seller_package_validity_check')) {
 if (!function_exists('getDefaultLanguage')) {
     function getDefaultLanguage()
     {
-        return env('DEFAULT_LANGUAGE') ?? 'en';
+        return config('myenv.DEFAULT_LANGUAGE') ?? 'en';
     }
 }
 

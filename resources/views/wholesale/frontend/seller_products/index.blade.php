@@ -70,7 +70,7 @@
                 </div>
             </div>
         </div>
-    
+
         <div class="card-body">
             <table class="table aiz-table mb-0">
                 <thead>
@@ -149,7 +149,7 @@
                             <a class="btn btn-soft-success btn-icon btn-circle btn-sm"  href="{{ route('product', $product->slug) }}" target="_blank" title="{{ translate('View') }}">
                                 <i class="las la-eye"></i>
                             </a>
-                            <a class="btn btn-soft-info btn-icon btn-circle btn-sm" href="{{route('wholesale_product_edit.seller', ['id'=>$product->id, 'lang'=>env('DEFAULT_LANGUAGE')] )}}" title="{{ translate('Edit') }}">
+                            <a class="btn btn-soft-info btn-icon btn-circle btn-sm" href="{{route('wholesale_product_edit.seller', ['id'=>$product->id, 'lang'=>config('myenv.DEFAULT_LANGUAGE')] )}}" title="{{ translate('Edit') }}">
                                 <i class="las la-edit"></i>
                             </a>
                             <a href="#" class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete" data-href="{{route('wholesale_product_destroy.seller', $product->id)}}" title="{{ translate('Delete') }}">
@@ -176,7 +176,7 @@
 
 @section('script')
     <script type="text/javascript">
-        
+
         function update_published(el){
             if(el.checked){
                 var status = 1;
@@ -193,7 +193,7 @@
                 }
             });
         }
-        
+
 
         function update_featured(el){
             if(el.checked){

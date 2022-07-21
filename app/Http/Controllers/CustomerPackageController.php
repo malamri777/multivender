@@ -55,7 +55,7 @@ class CustomerPackageController extends Controller
 
         $customer_package->save();
 
-        $customer_package_translation = CustomerPackageTranslation::firstOrNew(['lang' => env('DEFAULT_LANGUAGE'), 'customer_package_id' => $customer_package->id]);
+        $customer_package_translation = CustomerPackageTranslation::firstOrNew(['lang' => config('myenv.DEFAULT_LANGUAGE'), 'customer_package_id' => $customer_package->id]);
         $customer_package_translation->name = $request->name;
         $customer_package_translation->save();
 

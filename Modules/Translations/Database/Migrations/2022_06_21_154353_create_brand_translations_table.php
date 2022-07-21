@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('brand_id');
             $table->string('name', 50);
-            $table->string('lang', 100);
+            $table->string('lang', 100)->default(default_language());
             $table->timestamps();
         });
     }

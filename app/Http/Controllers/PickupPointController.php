@@ -51,7 +51,7 @@ class PickupPointController extends Controller
         $pickup_point->staff_id = $request->staff_id;
         if ($pickup_point->save()) {
 
-            $pickup_point_translation = PickupPointTranslation::firstOrNew(['lang' => env('DEFAULT_LANGUAGE'), 'pickup_point_id' => $pickup_point->id]);
+            $pickup_point_translation = PickupPointTranslation::firstOrNew(['lang' => config('myenv.DEFAULT_LANGUAGE'), 'pickup_point_id' => $pickup_point->id]);
             $pickup_point_translation->name = $request->name;
             $pickup_point_translation->address = $request->address;
             $pickup_point_translation->save();

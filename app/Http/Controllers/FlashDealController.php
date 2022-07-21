@@ -72,7 +72,7 @@ class FlashDealController extends Controller
                 $root_product->save();
             }
 
-            $flash_deal_translation = FlashDealTranslation::firstOrNew(['lang' => env('DEFAULT_LANGUAGE'), 'flash_deal_id' => $flash_deal->id]);
+            $flash_deal_translation = FlashDealTranslation::firstOrNew(['lang' => config('myenv.DEFAULT_LANGUAGE'), 'flash_deal_id' => $flash_deal->id]);
             $flash_deal_translation->title = $request->title;
             $flash_deal_translation->save();
 

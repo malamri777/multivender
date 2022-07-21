@@ -99,7 +99,7 @@ class CustomerProductController extends Controller
             $user->remaining_uploads -= 1;
             $user->save();
 
-            $customer_product_translation               = CustomerProductTranslation::firstOrNew(['lang' => env('DEFAULT_LANGUAGE'), 'customer_product_id' => $customer_product->id]);
+            $customer_product_translation               = CustomerProductTranslation::firstOrNew(['lang' => config('myenv.DEFAULT_LANGUAGE'), 'customer_product_id' => $customer_product->id]);
             $customer_product_translation->name         = $request->name;
             $customer_product_translation->unit         = $request->unit;
             $customer_product_translation->description  = $request->description;

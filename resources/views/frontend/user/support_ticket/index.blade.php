@@ -99,7 +99,7 @@
                       <div class="form-group row">
                           <label class="col-md-2 col-form-label">{{ translate('Photo') }}</label>
                           <div class="col-md-10">
-                              <div class="input-group" data-toggle="aizuploader" data-type="image" data-multiple="true">
+                              <div class="input-group" data-toggle="aizuploader" data-type="folder,image" data-multiple="true">
                                   <div class="input-group-prepend">
                                       <div class="input-group-text bg-soft-secondary font-weight-medium">{{ translate('Browse')}}</div>
                                   </div>

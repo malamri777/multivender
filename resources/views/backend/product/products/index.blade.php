@@ -184,11 +184,11 @@
                                 <i class="las la-eye"></i>
                             </a>
                             @if ($type == 'Seller')
-                            <a class="btn btn-soft-primary btn-icon btn-circle btn-sm" href="{{route('admin.products.seller.edit', ['id'=>$product->id, 'lang'=>env('DEFAULT_LANGUAGE')] )}}" title="{{ translate('Edit') }}">
+                            <a class="btn btn-soft-primary btn-icon btn-circle btn-sm" href="{{route('admin.products.seller.edit', ['id'=>$product->id, 'lang'=>config('myenv.DEFAULT_LANGUAGE')] )}}" title="{{ translate('Edit') }}">
                                 <i class="las la-edit"></i>
                             </a>
                             @else
-                            <a class="btn btn-soft-primary btn-icon btn-circle btn-sm" href="{{route('admin.products.admin.edit', ['id'=>$product->id, 'lang'=>env('DEFAULT_LANGUAGE')] )}}" title="{{ translate('Edit') }}">
+                            <a class="btn btn-soft-primary btn-icon btn-circle btn-sm" href="{{route('admin.products.admin.edit', ['id'=>$product->id, 'lang'=>config('myenv.DEFAULT_LANGUAGE')] )}}" title="{{ translate('Edit') }}">
                                 <i class="las la-edit"></i>
                             </a>
                             @endif

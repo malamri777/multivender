@@ -35,7 +35,7 @@
     							@csrf
     							<div class="form-group">
     			                    <label class="form-label" for="signinSrEmail">{{ translate('Footer Logo') }}</label>
-    			                    <div class="input-group " data-toggle="aizuploader" data-type="image">
+    			                    <div class="input-group " data-toggle="aizuploader" data-type="folder,image">
     			                        <div class="input-group-prepend">
     			                            <div class="input-group-text bg-soft-secondary font-weight-medium">{{ translate('Browse') }}</div>
     			                        </div>
@@ -258,7 +258,7 @@
                   <div class="card-body">
                       <div class="form-group">
                           <label>{{ translate('Payment Methods') }}</label>
-                          <div class="input-group" data-toggle="aizuploader" data-type="image" data-multiple="true">
+                          <div class="input-group" data-toggle="aizuploader" data-type="folder,image" data-multiple="true">
                               <div class="input-group-prepend">
                                   <div class="input-group-text bg-soft-secondary font-weight-medium">{{ translate('Browse')}}</div>
                               </div>

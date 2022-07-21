@@ -26,7 +26,7 @@
 									<div class="row gutters-5">
 										<div class="col-md-5">
 											<div class="form-group">
-												<div class="input-group" data-toggle="aizuploader" data-type="image">
+												<div class="input-group" data-toggle="aizuploader" data-type="folder,image">
 					                                <div class="input-group-prepend">
 					                                    <div class="input-group-text bg-soft-secondary font-weight-medium">{{ translate('Browse')}}</div>
 					                                </div>
@@ -63,7 +63,7 @@
 							<div class="row gutters-5">
 								<div class="col-md-5">
 									<div class="form-group">
-										<div class="input-group" data-toggle="aizuploader" data-type="image">
+										<div class="input-group" data-toggle="aizuploader" data-type="folder,image">
 											<div class="input-group-prepend">
 												<div class="input-group-text bg-soft-secondary font-weight-medium">{{ translate('Browse')}}</div>
 											</div>
@@ -118,7 +118,7 @@
 									<div class="row gutters-5">
 										<div class="col-md-5">
 											<div class="form-group">
-												<div class="input-group" data-toggle="aizuploader" data-type="image">
+												<div class="input-group" data-toggle="aizuploader" data-type="folder,image">
 					                                <div class="input-group-prepend">
 					                                    <div class="input-group-text bg-soft-secondary font-weight-medium">{{ translate('Browse')}}</div>
 					                                </div>
@@ -155,7 +155,7 @@
 							<div class="row gutters-5">
 								<div class="col-md-5">
 									<div class="form-group">
-										<div class="input-group" data-toggle="aizuploader" data-type="image">
+										<div class="input-group" data-toggle="aizuploader" data-type="folder,image">
 											<div class="input-group-prepend">
 												<div class="input-group-text bg-soft-secondary font-weight-medium">{{ translate('Browse')}}</div>
 											</div>
@@ -210,7 +210,7 @@
 									<div class="row gutters-5">
 										<div class="col-md-5">
 											<div class="form-group">
-												<div class="input-group" data-toggle="aizuploader" data-type="image">
+												<div class="input-group" data-toggle="aizuploader" data-type="folder,image">
 					                                <div class="input-group-prepend">
 					                                    <div class="input-group-text bg-soft-secondary font-weight-medium">{{ translate('Browse')}}</div>
 					                                </div>
@@ -247,7 +247,7 @@
 							<div class="row gutters-5">
 								<div class="col-md-5">
 									<div class="form-group">
-										<div class="input-group" data-toggle="aizuploader" data-type="image">
+										<div class="input-group" data-toggle="aizuploader" data-type="folder,image">
 											<div class="input-group-prepend">
 												<div class="input-group-text bg-soft-secondary font-weight-medium">{{ translate('Browse')}}</div>
 											</div>
@@ -370,7 +370,7 @@
 									<div class="row gutters-5">
 										<div class="col-md-5">
 											<div class="form-group">
-												<div class="input-group" data-toggle="aizuploader" data-type="image">
+												<div class="input-group" data-toggle="aizuploader" data-type="folder,image">
 					                                <div class="input-group-prepend">
 					                                    <div class="input-group-text bg-soft-secondary font-weight-medium">{{ translate('Browse')}}</div>
 					                                </div>
@@ -407,7 +407,7 @@
 							<div class="row gutters-5">
 								<div class="col-md-5">
 									<div class="form-group">
-										<div class="input-group" data-toggle="aizuploader" data-type="image">
+										<div class="input-group" data-toggle="aizuploader" data-type="folder,image">
 											<div class="input-group-prepend">
 												<div class="input-group-text bg-soft-secondary font-weight-medium">{{ translate('Browse')}}</div>
 											</div>

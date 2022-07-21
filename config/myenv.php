@@ -2,6 +2,8 @@
 
 return [
 
+    'DEFAULT_LANGUAGE' => env('DEFAULT_LANGUAGE', 'en'), // en, ar
+
     'MAIL_DRIVER' => env('MAIL_DRIVER', 'smtp'), // sendmail, smtp, mailgun
     'MAIL_HOST' => env('MAIL_HOST', 'http://127.0.0.1'),
     'MAIL_PORT' => env('MAIL_PORT', 8025),
