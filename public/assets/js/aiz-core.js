@@ -1140,7 +1140,7 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                     }
                 });
                 uppy.use(Uppy.XHRUpload, {
-                    endpoint: AIZ.data.appUrl + "/aiz-uploader/upload",
+                    endpoint: AIZ.data.appUrl + "/aiz-uploader/upload" + `?folder_id=${upload_id}`,
                     fieldName: "aiz_file",
                     formData: true,
                     headers: {

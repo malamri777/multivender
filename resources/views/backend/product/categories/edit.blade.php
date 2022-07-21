@@ -10,16 +10,7 @@
     <div class="col-lg-8 mx-auto">
         <div class="card">
             <div class="card-body p-0">
-                <ul class="nav nav-tabs nav-fill border-light">
-                    @foreach (\App\Models\Language::all() as $key => $language)
-                    <li class="nav-item">
-                        <a class="nav-link text-reset @if ($language->code == $lang) active @else bg-soft-dark border-light border-left-0 @endif py-3" href="{{ route('admin.categories.edit', ['category'=>$category->id, 'lang'=> $language->code] ) }}">
-                            <img src="{{ static_asset('assets/img/flags/'.$language->code.'.png') }}" height="11" class="mr-1">
-                            <span>{{$language->name}}</span>
-                        </a>
-                    </li>
-                    @endforeach
-                </ul>
+                @include('backend.inc.admin_lang_form_menu', ['route_name' => 'admin.categories.edit', 'params' => ['category'=>$category->id] ])
                 <form class="p-4" action="{{ route('admin.categories.update', $category->id) }}" method="POST" enctype="multipart/form-data">
                     <input name="_method" type="hidden" value="PATCH">
     	            <input type="hidden" name="lang" value="{{ $lang }}">

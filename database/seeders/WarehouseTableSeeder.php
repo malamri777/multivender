@@ -24,14 +24,16 @@ class WarehouseTableSeeder extends Seeder
             'email' => 's1_w1_admin@dev.com',
             'password' => bcrypt('password'),
             'user_type' => 'supplier_warehouse_admin',
-            'email_verified_at' => now()
+            'email_verified_at' => now(),
+            'provider_id' => 1
         ]);
         $user = User::create([
             'name' => 's1_w1_user',
             'email' => 's1_w1_user@dev.com',
             'password' => bcrypt('password'),
             'user_type' => 'supplier_warehouse_user',
-            'email_verified_at' => now()
+            'email_verified_at' => now(),
+            'provider_id' => 1
         ]);
         $w1 = Warehouse::create([
             'name'           => 'WareHouse 1 balubaid',

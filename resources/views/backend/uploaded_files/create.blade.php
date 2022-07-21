@@ -7,10 +7,24 @@
 			<h1 class="h3">{{translate('Upload New File')}}</h1>
 		</div>
 		<div class="col-md-6 text-md-right">
-			<a href="{{ route('admin.uploaded-files.index') }}" class="btn btn-link text-reset">
-				<i class="las la-angle-left"></i>
-				<span>{{translate('Back to uploaded files')}}</span>
-			</a>
+            @if(Request::get('folder_id'))
+                @php
+                    $folder_id = (int) Request::get('folder_id');
+                    $folder = \App\Models\Upload::with('parent')->find($folder_id);
+                @endphp
+                <a href="{{ route('admin.uploaded-files.index', ['folder_id' => $folder->parent?->id]) }}" class="btn btn-link text-reset">
+                    <i class="las la-angle-left"></i>
+                    <span>{{translate('Previous Folder')}}</span>
+                </a>
+                <a href="{{ route('admin.uploaded-files.index', ['folder_id' => $folder->id]) }}" class="btn btn-link text-reset">
+                    <i class="las la-angle-left"></i>
+                    <span>{{translate('Back to the Folder')}}</span>
+                </a>
+            @endif
+                <a href="{{ route('admin.uploaded-files.index') }}" class="btn btn-link text-reset">
+                    <i class="las la-angle-left"></i>
+                    <span>{{translate('Back to main upload page')}}</span>
+                </a>
 		</div>
 	</div>
 </div>
@@ -28,6 +42,7 @@
 
 @section('script')
 	<script type="text/javascript">
+        var upload_id = "{{ Request::get('folder_id') }}"
 		$(document).ready(function() {
 			AIZ.plugins.aizUppy();
 		});

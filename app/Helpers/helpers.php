@@ -35,7 +35,8 @@ if (!function_exists('areActiveRoutes')) {
     function areActiveRoutes(array $routes, $output = "active")
     {
         foreach ($routes as $route) {
-            if (Route::currentRouteName() == $route) return $output;
+            if (url()->full() == $route) return $output;
+            else if (Route::currentRouteName() == $route) return $output;
         }
     }
 }
@@ -566,6 +567,7 @@ if (!function_exists('uploaded_asset')) {
             return $asset->external_link == null ? my_asset($asset->file_name) : $asset->external_link;
         }
         return null;
+//        return asset('assets/img/placeholder.jpg');
     }
 }
 
@@ -926,5 +928,43 @@ if (!function_exists('fileExtenstionType')) {
             "xlsx" => "document"
         );
         return $type[$extention];
+    }
+}
+
+if (!function_exists('checkerCountryCode')) {
+    function checkerCountryCode($request)
+    {
+        $countries = Cache::rememberForever('users', function () {
+            return json_decode(file_get_contents(storage_path() . "/app/country.json"), true);
+        });
+        foreach($countries as $country) {
+            if ($request->country_dial_code === $country['dialCode']) {
+                if ($request->country_code != $country['iso2']) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        }
+        return true;
+    }
+}
+
+if (!function_exists('supplierRolesList')) {
+    function supplierRolesList()
+    {
+        return [
+            'supplier',
+        ];
+    }
+}
+
+if (!function_exists('adminRolesList')) {
+    function adminRolesList()
+    {
+        return [
+            'super_admin',
+            'admin'
+        ];
     }
 }
