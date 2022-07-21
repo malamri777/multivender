@@ -231,23 +231,27 @@ class AizUploadController extends Controller
 
     public function get_uploaded_files(Request $request)
     {
-        $folder_id = null;
+        $parentFolderId = null;
         if (Auth::user()->hasRole(adminRolesList())) {
             $uploads = Upload::query();
         } else if (Auth::user()->hasRole(supplierRolesList())) {
             $uploads = Upload::where('user_id', auth()->user()->id);
         }
 
+        $uploads = $uploads->with(['parent:id']);
+
         if ($request->folder_id != null) {
-            // $folder_id = $request->folder_id;
+            $parentFolderId = Upload::with('parent')->find($request->folder_id)->parent?->id;
             $uploads = $uploads->where('folder_id', $request->folder_id);
         } else {
             $uploads = $uploads->where('folder_id', 1);
         }
 
         if ($request->search != null) {
-            $uploads->where('file_original_name', 'like', '%'.$request->search.'%');
+            $uploads = $uploads->where('file_original_name', 'like', '%'.$request->search.'%');
         }
+
+        $uploads = $uploads->orderBy('order')->orderBy('folder_name');
         if ($request->sort != null) {
             switch ($request->sort) {
                 case 'newest':
@@ -267,7 +271,10 @@ class AizUploadController extends Controller
                     break;
             }
         }
-        return $uploads->paginate(60)->appends(request()->query());
+        return [
+            'uploads' => $uploads->paginate(60)->appends(request()->query()),
+            'parentId' => $parentFolderId
+        ];
     }
 
     public function destroy(Request $request,$id)

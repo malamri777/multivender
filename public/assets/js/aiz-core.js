@@ -21,6 +21,7 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
             selectedFilesObject: [],
             clickedForDelete: null,
             allFiles: [],
+            parentId: null,
             multiple: false,
             type: "all",
             next_page_url: null,
@@ -233,7 +234,8 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                 if(typeof data == 'string'){
                     data = JSON.parse(data);
                 }
-                AIZ.uploader.data.allFiles = data.data;
+                AIZ.uploader.data.allFiles = data.uploads.data;
+                AIZ.uploader.data.parentId = data.parentId;
                 AIZ.uploader.allowedFileType();
                 AIZ.uploader.addSelectedValue();
                 AIZ.uploader.addHiddenValue();
@@ -737,6 +739,28 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                                 callback(AIZ.uploader.data.selectedFiles);
                             }
                             $("#aizUploaderModal").modal("hide");
+                        }
+                    );
+                    $('[data-click="backToMainUploadPage"]').on(
+                        "click",
+                        function () {
+                            AIZ.uploader.getAllUploads(
+                                AIZ.data.appUrl + "/aiz-uploader/get_uploaded_files"
+                            );
+                        }
+                    );
+                    $('[data-click="previousFolder"]').on(
+                        "click",
+                        function () {
+                            if (AIZ.uploader.data.parentId != null) {
+                                AIZ.uploader.getAllUploads(
+                                    AIZ.data.appUrl + "/aiz-uploader/get_uploaded_files?folder_id=" + AIZ.uploader.data.parentId
+                                );
+                            } else {
+                                AIZ.uploader.getAllUploads(
+                                    AIZ.data.appUrl + "/aiz-uploader/get_uploaded_files"
+                                );
+                            }
                         }
                     );
                 }
