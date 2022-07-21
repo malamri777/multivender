@@ -4,12 +4,12 @@
     <div class="aiz-titlebar text-left mt-2 mb-3">
         <div class="row align-items-center">
             <div class="col-md-6">
-                <h1 class="h3">{{ translate('All Warehouse  Users') }}</h1>
+                <h1 class="h3">{{ translate('All Branch  Users') }}</h1>
             </div>
-            @permission('suppliers-create')
+            @permission('restaurants-create')
                 <div class="col-md-6 text-md-right">
-                    <a href="{{ route('admin.suppliers.warehouses.users.create') }}" class="btn btn-circle btn-info">
-                        <span>{{ translate('Add New Warehouse User') }}</span>
+                    <a href="{{ route('admin.restaurants.branches.users.create') }}" class="btn btn-circle btn-info">
+                        <span>{{ translate('Add New Branch User') }}</span>
                     </a>
                 </div>
             @endpermission
@@ -20,7 +20,7 @@
         <form class="" id="sort_sellers" action="" method="GET">
             <div class="card-header row gutters-5">
                 <div class="col">
-                    <h5 class="mb-md-0 h6">{{ translate('Warehouse Users') }}</h5>
+                    <h5 class="mb-md-0 h6">{{ translate('Branch Users') }}</h5>
                 </div>
 
                 <div class="dropdown mb-2 mb-md-0">
@@ -34,13 +34,13 @@
                 </div>
 
                 <div class="col-md-3">
-                    <select class="form-control aiz-selectpicker" data-live-search="true" id="sort_warehouse"
-                        name="sort_warehouse">
-                        <option value="">{{ translate('Select Warehouse') }}</option>
-                        @foreach (\App\Models\Warehouse::where('status', 1)->get() as $warehouse)
-                            <option value="{{ $warehouse->id }}" @if ($sort_warehouse == $warehouse->id) selected @endif
-                                {{ $sort_warehouse }}>
-                                {{ $warehouse->name }}
+                    <select class="form-control aiz-selectpicker" data-live-search="true" id="sort_branch"
+                        name="sort_branch">
+                        <option value="">{{ translate('Select Branch User') }}</option>
+                        @foreach (\App\Models\Branch::where('status', 1)->get() as $branch)
+                            <option value="{{ $branch->id }}" @if ($sort_branch == $branch->id) selected @endif
+                                {{ $sort_branch}}>
+                                {{ $branch->name }}
                             </option>
                         @endforeach
                     </select>
@@ -80,7 +80,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($usersWarehouse as $key => $user)
+                    @foreach ($usersBranch as $key => $user)
                         <tr>
                             <td>
                                 <div class="form-group">
@@ -123,8 +123,8 @@
                                             class="dropdown-item">
                                             {{ translate('Payment History') }}
                                         </a>
-                                        @permission('suppliers-update')
-                                        <a href="{{ route('admin.suppliers.warehouses.users.edit', ['user' => $user->id]) }}"
+                                        @permission('restaurants-update')
+                                        <a href="{{ route('admin.restaurants.branches.users.edit', ['user' => $user->id]) }}"
                                             class="dropdown-item">
                                             {{ translate('Edit') }}
                                         </a>
@@ -144,9 +144,9 @@
                                                 <i class="fa fa-check text-success" aria-hidden="true"></i>
                                             </a>
                                         @endif
-                                        @permission('suppliers-delete')
+                                        @permission('restaurants-delete')
                                         <a href="#" class="dropdown-item confirm-delete"
-                                            data-href="{{ route('admin.suppliers.users.destroy', $user->id) }}" class="">
+                                            data-href="{{ route('admin.restaurants.users.destroy', $user->id) }}" class="">
                                             {{ translate('Delete') }}
                                         </a>
                                         @endpermission
@@ -158,7 +158,7 @@
                 </tbody>
             </table>
             <div class="aiz-pagination">
-                {{ $usersWarehouse->appends(request()->input())->links() }}
+                {{ $usersBranch->appends(request()->input())->links() }}
             </div>
         </div>
     </div>

@@ -6,13 +6,13 @@
             <div class="col-md-6">
                 <h1 class="h3">{{translate('All Warehouse')}}</h1>
             </div>
-            @if(Auth::user()->user_type == 'super_admin')
+            @permission('suppliers-create')
                 <div class="col-md-6 text-md-right">
                     <a href="{{ route('admin.suppliers.warehouses.create') }}" class="btn btn-circle btn-info">
                         <span>{{translate('Add New Warehouse')}}</span>
                     </a>
                 </div>
-            @endif
+                @endpermission
         </div>
     </div>
 
@@ -105,17 +105,21 @@
                             </label>
                         </td>
                         <td class="text-right">
+                            @permission('suppliers-read')
                             <a class="btn btn-soft-primary btn-icon btn-circle btn-sm" href="{{route('admin.suppliers.warehouses.users.index', ['sort_warehouse'=>$warehouse->id])}}" title="{{ translate('Users') }}">
                                 <i class="lar la-user"></i>
                             </a>
+                            @endpermission
+                            @permission('suppliers-update')
                             <a class="btn btn-soft-primary btn-icon btn-circle btn-sm" href="{{route('admin.suppliers.warehouses.edit', encrypt($warehouse->id))}}" title="{{ translate('Edit') }}">
                                 <i class="las la-edit"></i>
                             </a>
-                            @if(Auth::user()->user_type == 'super_admin')
+                            @endpermission
+                            @permission('suppliers-delete')
                                 <a href="#" class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete" data-href="{{route('admin.suppliers.warehouses.destroy', $warehouse->id)}}" title="{{ translate('Delete') }}">
                                     <i class="las la-trash"></i>
                                 </a>
-                            @endif
+                            @endpermission
                         </td>
                     </tr>
                 @endforeach

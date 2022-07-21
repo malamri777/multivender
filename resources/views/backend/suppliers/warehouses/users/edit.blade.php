@@ -39,7 +39,7 @@
                                 @include('backend.inc.form-span-error', ['field' => 'mobile'])
                             </div>
                         </div>
-                        @if (Auth::user()->user_type == 'super_admin' or Auth::user()->user_type == 'admin')
+                        @if(Auth::user()->hasRole(['super_admin', 'admin']))
                             <div class="form-group row">
                                 <label class="col-sm-3 col-from-label"
                                     for="password">{{ translate('New Password') }}</label>
@@ -76,9 +76,11 @@
                             <div class="col-sm-9">
                                 <select class="select2 form-control aiz-selectpicker" name="warehouses[]" id="warehouses"
                                     data-toggle="select2" data-placeholder="Choose ..." data-live-search="true" data-selected="{{ $warehouseIds }}" multiple>
-                                    @foreach ($warehouseUser->supplier->supplierWarehouses as $item)
-                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                    @endforeach
+                                    @if($warehouseUser->supplier->supplierWarehouses ?? null )
+                                        @foreach ($warehouseUser->supplier->supplierWarehouses as $item)
+                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
                                 @include('backend.inc.form-span-error', ['field' => 'warehouses'])
                             </div>

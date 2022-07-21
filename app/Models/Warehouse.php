@@ -42,7 +42,8 @@ class Warehouse extends Model
     public static function boot()
     {
         parent::boot();
-//        Warehouse::observe(new \App\Observers\WarehouseActionObserver());
+        // TODO: Fix the Observer for warehouse
+    //    Warehouse::observe(new \App\Observers\WarehouseActionObserver());
     }
 
     public function warehouseOrders()

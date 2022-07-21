@@ -549,8 +549,24 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
             Route::post('update_status', 'updateStatus')->name('update_status');
             Route::get('users', 'getUsers')->name('users');
             Route::get('destroy/{id}', 'destroy')->name('destroy');
+
+                        // Add here
+                        Route::controller(BranchUserControlle::class)
+                        ->as('users.')
+                        ->prefix('users')
+                        ->group(function () {
+                            Route::get('/', 'index')->name('ndex');
+                            Route::get('/create', 'create')->name('create');
+                            Route::post('/', 'store')->name('store');
+
+                            Route::get('/', 'edit')->name('edit');
+
+                        });
+                        Route::resource('users', BranchUserControlle::class)->except('destroy');
         });
+
         Route::resource('branches', BranchController::class)->except('destroy');
+
 
         // Users
         Route::group(['prefix' => 'users', 'as' => 'users.', 'controller' => RestaurantUserController::class], function () {

@@ -24,7 +24,8 @@ class RestaurantSeeder extends Seeder
             'phone' => '111111110',
             'password' => bcrypt('password'),
             'user_type' => 'restaurant_admin',
-            'email_verified_at' => now()
+            'email_verified_at' => now(),
+            'restaurant_id' => 1
         ]);
         $restaurant = Restaurant::create([
             'id' => 1,
@@ -52,7 +53,9 @@ class RestaurantSeeder extends Seeder
             'phone' => '111111111',
             'password' => bcrypt('password'),
             'user_type' => 'restaurant_admin',
-            'email_verified_at' => now()
+            'email_verified_at' => now(),
+            'restaurant_id' => 2
+
         ]);
         $restaurant = Restaurant::create([
             'id' => 2,
