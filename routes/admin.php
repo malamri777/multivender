@@ -30,6 +30,7 @@ use App\Http\Controllers\SellerWithdrawRequestController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\WarehouseController;
 use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PickupPointController;
 use App\Http\Controllers\ProductController;
@@ -43,6 +44,7 @@ use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\SupplierUserController;
 use App\Http\Controllers\SupportTicketController;
 use App\Http\Controllers\TaxController;
+use App\Http\Controllers\UpdateController;
 use App\Http\Controllers\WarehouseUserController;
 use App\Http\Controllers\WebsiteController;
 
@@ -262,6 +264,20 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
             Route::get('/header', 'header')->name('website.header');
             Route::get('/appearance', 'appearance')->name('website.appearance');
             Route::get('/pages', 'pages')->name('website.pages');
+        });
+
+        // Custom Page
+        Route::resource('custom-pages', PageController::class);
+        Route::controller(PageController::class)->group(function () {
+            // Route::get('/custom-pages/edit/{id}', 'edit')->name('custom-pages.edit');
+            // Route::get('/custom-pages/destroy/{id}', 'destroy')->name('custom-pages.destroy');
+        });
+    });
+
+    // Mobile setting
+    Route::group(['prefix' => 'mobile', 'as' => 'mobile.'], function () {
+        Route::controller(WebsiteController::class)->group(function () {
+            Route::get('/banner', 'mobile_banner')->name('banner');
         });
 
         // Custom Page
@@ -580,10 +596,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
     Route::view('/system/server-status', 'backend.system.server_status')->name('system_server');
 
     // uploaded files
-    Route::resource('/uploaded-files', AizUploadController::class);
-    Route::controller(AizUploadController::class)->group(function () {
-        Route::any('/uploaded-files/file-info', 'file_info')->name('uploaded-files.info');
-        // Route::get('/uploaded-files/destroy/{id}', 'destroy')->name('uploaded-files.destroy');
+    // Route::resource('/uploaded-files', AizUploadController::class);
+    Route::group(['prefix' => '/uploaded-files', 'as' => 'uploaded-files.', 'controller' => AizUploadController::class],function () {
+        Route::get('', 'index')->name('index');
+        Route::get('create', 'create')->name('create');
+        Route::any('file-info', 'file_info')->name('info');
+        Route::any('create-folder', 'createFolder')->name('createFolder');
+        Route::get('destroy/{id}', 'destroy')->name('destroy');
     });
 
     Route::get('/all-notification', [NotificationController::class, 'index'])->name('all-notification');

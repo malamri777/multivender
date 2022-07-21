@@ -19,14 +19,12 @@ class AppLanguage
         // Check header request and determine localizaton
         if($request->hasHeader('App-Language')){
             $locale = $request->header('App-Language');
-        }
-        elseif(env('DEFAULT_LANGUAGE') != null){
+        } elseif(env('DEFAULT_LANGUAGE') != null){
             $locale = env('DEFAULT_LANGUAGE');
-        }
-        else{
+        } else {
             $locale = 'en';
         }
-    
+
 
         // set laravel localization
         App::setLocale($locale);
