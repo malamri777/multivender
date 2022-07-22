@@ -1151,6 +1151,13 @@
                                     <span class="aiz-side-nav-text">{{translate('Server status')}}</span>
                                 </a>
                             </li>
+                            @if(Auth::user()->hasRole('super_admin'))
+                                <li class="aiz-side-nav-item">
+                                    <a href="/tinker" class="aiz-side-nav-link">
+                                        <span class="aiz-side-nav-text">{{translate('Tinker')}}</span>
+                                    </a>
+                                </li>
+                            @endif
                         </ul>
                     </li>
                     @endpermission

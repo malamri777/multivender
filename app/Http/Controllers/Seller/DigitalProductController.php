@@ -55,7 +55,7 @@ class DigitalProductController  extends Controller
         if(addon_is_activated('seller_subscription')){
             if(!seller_package_validity_check()){
                 flash(translate('Please upgrade your package.'))->warning();
-                return redirect()->route('seller.digitalproducts');
+                return redirect()->route('supplier.digitalproducts');
             }
         }
 
@@ -109,7 +109,7 @@ class DigitalProductController  extends Controller
             $product_translation->save();
 
             flash(translate('Digital Product has been inserted successfully'))->success();
-            return redirect()->route('seller.digitalproducts');
+            return redirect()->route('supplier.digitalproducts');
         }
         else{
             flash(translate('Something went wrong'))->error();
@@ -230,7 +230,7 @@ class DigitalProductController  extends Controller
         Product::destroy($id);
 
         flash(translate('Product has been deleted successfully'))->success();
-        return redirect()->route('seller.digitalproducts');
+        return redirect()->route('supplier.digitalproducts');
     }
 
 

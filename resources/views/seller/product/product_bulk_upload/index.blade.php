@@ -40,8 +40,8 @@
                     <td>{{ translate('2. You can download the pdf to get Category and Brand id.')}}:</td>
                 </tr>
             </table>
-            <a href="{{ route('seller.pdf.download_category') }}"><button class="btn btn-primary mt-2">{{ translate('Download Category')}}</button></a>
-            <a href="{{ route('seller.pdf.download_brand') }}"><button class="btn btn-primary mt-2">{{ translate('Download Brand')}}</button></a>
+            <a href="{{ route('supplier.pdf.download_category') }}"><button class="btn btn-primary mt-2">{{ translate('Download Category')}}</button></a>
+            <a href="{{ route('supplier.pdf.download_brand') }}"><button class="btn btn-primary mt-2">{{ translate('Download Brand')}}</button></a>
         </div>
     </div>
 
@@ -52,7 +52,7 @@
             </div>
         </div>
         <div class="card-body">
-            <form class="form-horizontal" action="{{ route('seller.bulk_product_upload') }}" method="POST" enctype="multipart/form-data">
+            <form class="form-horizontal" action="{{ route('supplier.bulk_product_upload') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group row">
                     <label class="col-md-2 col-form-label">{{ translate('CSV') }}</label>

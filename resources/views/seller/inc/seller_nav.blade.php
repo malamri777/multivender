@@ -74,7 +74,7 @@
                             </ul>
                         </div>
                         <div class="text-center border-top">
-                            <a href="{{ route('seller.all-notification') }}" class="text-reset d-block py-2">
+                            <a href="{{ route('supplier.all-notification') }}" class="text-reset d-block py-2">
                                 {{translate('View All Notifications')}}
                             </a>
                         </div>
@@ -129,7 +129,7 @@
                         </span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated dropdown-menu-md">
-                        <a href="{{ route('seller.profile.index') }}" class="dropdown-item">
+                        <a href="{{ route('supplier.profile.index') }}" class="dropdown-item">
                             <i class="las la-user-circle"></i>
                             <span>{{translate('Profile')}}</span>
                         </a>

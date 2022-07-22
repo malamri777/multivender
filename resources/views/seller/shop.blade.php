@@ -18,7 +18,7 @@
             <h5 class="mb-0 h6">{{ translate('Basic Info') }}</h5>
         </div>
         <div class="card-body">
-            <form class="" action="{{ route('seller.shop.update') }}" method="POST" enctype="multipart/form-data">
+            <form class="" action="{{ route('supplier.shop.update') }}" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="shop_id" value="{{ $shop->id }}">
                 @csrf
                 <div class="row">
@@ -90,7 +90,7 @@
                 <h5 class="mb-0 h6">{{ translate('Delivery Boy Pickup Point') }}</h5>
             </div>
             <div class="card-body">
-                <form class="" action="{{ route('seller.shop.update') }}" method="POST" enctype="multipart/form-data">
+                <form class="" action="{{ route('supplier.shop.update') }}" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="shop_id" value="{{ $shop->id }}">
                     @csrf
 
@@ -155,7 +155,7 @@
             <h5 class="mb-0 h6">{{ translate('Banner Settings') }}</h5>
         </div>
         <div class="card-body">
-            <form class="" action="{{ route('seller.shop.update') }}" method="POST" enctype="multipart/form-data">
+            <form class="" action="{{ route('supplier.shop.update') }}" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="shop_id" value="{{ $shop->id }}">
                 @csrf
 
@@ -188,7 +188,7 @@
             <h5 class="mb-0 h6">{{ translate('Social Media Link') }}</h5>
         </div>
         <div class="card-body">
-            <form class="" action="{{ route('seller.shop.update') }}" method="POST" enctype="multipart/form-data">
+            <form class="" action="{{ route('supplier.shop.update') }}" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="shop_id" value="{{ $shop->id }}">
                 @csrf
                 <div class="form-box-content p-3">

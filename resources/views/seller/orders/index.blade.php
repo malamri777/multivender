@@ -88,10 +88,10 @@
                                         @endif
                                     </td>
                                     <td class="text-right">
-                                        <a href="{{ route('seller.orders.show', encrypt($order->id)) }}" class="btn btn-soft-info btn-icon btn-circle btn-sm" title="{{ translate('Order Details') }}">
+                                        <a href="{{ route('supplier.orders.show', encrypt($order->id)) }}" class="btn btn-soft-info btn-icon btn-circle btn-sm" title="{{ translate('Order Details') }}">
                                             <i class="las la-eye"></i>
                                         </a>
-                                        <a href="{{ route('seller.invoice.download', $order->id) }}" class="btn btn-soft-warning btn-icon btn-circle btn-sm" title="{{ translate('Download Invoice') }}">
+                                        <a href="{{ route('supplier.invoice.download', $order->id) }}" class="btn btn-soft-warning btn-icon btn-circle btn-sm" title="{{ translate('Download Invoice') }}">
                                             <i class="las la-download"></i>
                                         </a>
                                     </td>

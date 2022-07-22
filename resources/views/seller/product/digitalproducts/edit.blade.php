@@ -8,7 +8,7 @@
             </div>
         </div>
     </div>
-    <form class="" action="{{route('seller.digitalproducts.update', $product->id)}}" method="POST" enctype="multipart/form-data">
+    <form class="" action="{{route('supplier.digitalproducts.update', $product->id)}}" method="POST" enctype="multipart/form-data">
         <input name="_method" type="hidden" value="Post">
         <input type="hidden" name="id" value="{{ $product->id }}">
         <input type="hidden" name="lang" value="{{ $lang }}">
@@ -20,7 +20,7 @@
                 <ul class="nav nav-tabs nav-fill border-light">
                     @foreach (\App\Models\Language::all() as $key => $language)
                         <li class="nav-item">
-                            <a class="nav-link text-reset @if ($language->code == $lang) active @else bg-soft-dark border-light border-left-0 @endif py-3" href="{{ route('seller.digitalproducts.edit', ['id'=>$product->id, 'lang'=> $language->code] ) }}">
+                            <a class="nav-link text-reset @if ($language->code == $lang) active @else bg-soft-dark border-light border-left-0 @endif py-3" href="{{ route('supplier.digitalproducts.edit', ['id'=>$product->id, 'lang'=> $language->code] ) }}">
                                 <img src="{{ static_asset('assets/img/flags/'.$language->code.'.png') }}" height="11" class="mr-1">
                                 <span>{{$language->name}}</span>
                             </a>

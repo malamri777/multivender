@@ -251,7 +251,7 @@ class SellerController extends Controller
         $user  = $shop->user;
         auth()->login($user, true);
 
-        return redirect()->route('seller.dashboard');
+        return redirect()->route('supplier.dashboard');
     }
 
     public function ban($id)

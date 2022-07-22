@@ -3,7 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\IsAdmin;
-use App\Http\Middleware\IsSeller;
+use App\Http\Middleware\isSupplier;
 use App\Http\Middleware\IsCustomer;
 use App\Http\Middleware\IsUser;
 use App\Http\Middleware\CheckoutMiddleware;
@@ -64,7 +64,7 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         'app_language' => AppLanguage::class,
         'admin' => IsAdmin::class,
-        'seller' => IsSeller::class,
+        'supplier' => isSupplier::class,
         'customer' => IsCustomer::class,
         'user' => IsUser::class,
         'unbanned' => IsUnbanned::class,

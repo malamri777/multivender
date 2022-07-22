@@ -498,7 +498,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
                 ->as('users.')
                 ->prefix('users')
                 ->group(function () {
-                    Route::get('/', 'index')->name('ndex');
+                    Route::get('/', 'index')->name('dashboard');
                     Route::get('/create', 'create')->name('create');
                     Route::post('/', 'store')->name('store');
 

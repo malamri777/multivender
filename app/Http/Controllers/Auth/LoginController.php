@@ -121,7 +121,7 @@ class LoginController extends Controller
             return redirect(session('link'));
         } else {
             if(auth()->user()->user_type == 'seller') {
-                return redirect()->route('seller.dashboard');
+                return redirect()->route('supplier.dashboard');
             }
             return redirect()->route('dashboard');
         }
@@ -194,7 +194,7 @@ class LoginController extends Controller
         if (auth()->user()->user_type == 'admin' || auth()->user()->user_type == 'staff') {
             return redirect()->route('admin.dashboard');
         } elseif (auth()->user()->user_type == 'seller') {
-            return redirect()->route('seller.dashboard');
+            return redirect()->route('supplier.dashboard');
         } else {
 
             if (session('link') != null) {

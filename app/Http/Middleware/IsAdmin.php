@@ -16,16 +16,10 @@ class IsAdmin
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::check() && (Auth::user()->hasRole('super_admin') || Auth::user()->hasRole('admin'))) {
+        if(Auth::check() && (Auth::user()->hasRole(adminRolesList()))) {
             return $next($request);
         } else {
             abort(404);
         }
-
-//        if (Auth::check() && (Auth::user()->user_type == 'super_admin' || Auth::user()->user_type == 'admin' || Auth::user()->user_type == 'staff')) {
-//            return $next($request);
-//        } else {
-//            abort(404);
-//        }
     }
 }

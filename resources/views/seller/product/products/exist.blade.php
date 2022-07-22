@@ -9,7 +9,7 @@
     </div>
 </div>
 
-<form class="" action="{{route('seller.products.exist.store')}}" method="POST" enctype="multipart/form-data" id="form">
+<form class="" action="{{route('supplier.products.exist.store')}}" method="POST" enctype="multipart/form-data" id="form">
     <div class="row gutters-5">
         <div class="col-lg-12">
             @csrf
@@ -152,7 +152,7 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type:"POST",
-                url:'{{ route('seller.products.sku') }}',
+                url:'{{ route('supplier.products.sku') }}',
                 data:{
                     sku: $('#sku').val(),
                     warehouse: warehouse

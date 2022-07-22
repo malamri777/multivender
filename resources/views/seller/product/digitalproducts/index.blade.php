@@ -26,7 +26,7 @@
 
 
         <div class="col-md-4 mx-auto mb-3" >
-            <a href="{{ route('seller.digitalproducts.create')}}">
+            <a href="{{ route('supplier.digitalproducts.create')}}">
               <div class="p-3 rounded mb-3 c-pointer text-center bg-white shadow-sm hov-shadow-lg has-transition">
                   <span class="size-60px rounded-circle mx-auto bg-secondary d-flex align-items-center justify-content-center mb-3">
                       <i class="las la-plus la-3x text-white"></i>
@@ -41,7 +41,7 @@
             $seller_package = \App\Models\SellerPackage::find(Auth::user()->shop->seller_package_id);
         @endphp
             <div class="col-md-4">
-                <a href="{{ route('seller.seller_packages_list') }}" class="text-center bg-white shadow-sm hov-shadow-lg text-center d-block p-3 rounded">
+                <a href="{{ route('supplier.seller_packages_list') }}" class="text-center bg-white shadow-sm hov-shadow-lg text-center d-block p-3 rounded">
                     @if($seller_package != null)
                         <img src="{{ uploaded_asset($seller_package->logo) }}" height="44" class="mw-100 mx-auto">
                         <span class="d-block sub-title mb-2">{{ translate('Current Package')}}: {{ $seller_package->getTranslation('name') }}</span>
@@ -95,13 +95,13 @@
                                 <span class="slider round"></span></label>
                             </td>
                             <td class="text-right">
-                                <a href="{{route('seller.digitalproducts.edit',  ['id'=>$product->id, 'lang'=>config('myenv.DEFAULT_LANGUAGE')] )}}" class="btn btn-soft-info btn-icon btn-circle btn-sm" title="{{ translate('Edit') }}">
+                                <a href="{{route('supplier.digitalproducts.edit',  ['id'=>$product->id, 'lang'=>config('myenv.DEFAULT_LANGUAGE')] )}}" class="btn btn-soft-info btn-icon btn-circle btn-sm" title="{{ translate('Edit') }}">
                                   <i class="las la-edit"></i>
                                 </a>
-                                <a class="btn btn-soft-success btn-icon btn-circle btn-sm" href="{{route('seller.digitalproducts.download', encrypt($product->id))}}" title="{{ translate('Download') }}">
+                                <a class="btn btn-soft-success btn-icon btn-circle btn-sm" href="{{route('supplier.digitalproducts.download', encrypt($product->id))}}" title="{{ translate('Download') }}">
                                     <i class="las la-download"></i>
                                 </a>
-                                <a href="javascript:void(0)" class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete" data-href="{{route('seller.digitalproducts.destroy', $product->id)}}" title="{{ translate('Delete') }}">
+                                <a href="javascript:void(0)" class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete" data-href="{{route('supplier.digitalproducts.destroy', $product->id)}}" title="{{ translate('Delete') }}">
                                   <i class="las la-trash"></i>
                                 </a>
                             </td>
@@ -130,7 +130,7 @@
             else{
                 var status = 0;
             }
-            $.post('{{ route('seller.products.featured') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
+            $.post('{{ route('supplier.products.featured') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
                 if(data == 1){
                     AIZ.plugins.notify('success', '{{ translate('Featured products updated successfully') }}');
                 }
@@ -148,7 +148,7 @@
             else{
                 var status = 0;
             }
-            $.post('{{ route('seller.products.published') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
+            $.post('{{ route('supplier.products.published') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
                 if(data == 1){
                     AIZ.plugins.notify('success', '{{ translate('Published products updated successfully') }}');
                 }

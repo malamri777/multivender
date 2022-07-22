@@ -9,7 +9,7 @@
             </div>
         </div>
     </div>
-    <form class="" action="{{route('seller.digitalproducts.store')}}" method="POST" enctype="multipart/form-data" id="choice_form">
+    <form class="" action="{{route('supplier.digitalproducts.store')}}" method="POST" enctype="multipart/form-data" id="choice_form">
         @csrf
 		<input type="hidden" name="added_by" value="seller">
 

@@ -15,7 +15,7 @@
                 <div class="card-header">
                     <h3 class="mb-0 h6">{{translate('Coupon Information Update')}}</h3>
                 </div>
-                <form action="{{ route('seller.coupon.update', $coupon->id) }}" method="POST">
+                <form action="{{ route('supplier.coupon.update', $coupon->id) }}" method="POST">
                     <input name="_method" type="hidden" value="PATCH">
                     @csrf
                     @if ($errors->any())
@@ -63,7 +63,7 @@
     function coupon_form(){
         var coupon_type = $('#coupon_type').val();
         var id = $('#id').val();
-		$.post('{{ route('seller.coupon.get_coupon_form_edit') }}',{_token:'{{ csrf_token() }}', coupon_type:coupon_type, id:id}, function(data){
+		$.post('{{ route('supplier.coupon.get_coupon_form_edit') }}',{_token:'{{ csrf_token() }}', coupon_type:coupon_type, id:id}, function(data){
             $('#coupon_form').html(data);
 
 		});

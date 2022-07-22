@@ -10,7 +10,7 @@
     </div>
 </div>
 
-<form class="" action="{{route('seller.products.update', $product->id)}}" method="POST" enctype="multipart/form-data"
+<form class="" action="{{route('supplier.products.update', $product->id)}}" method="POST" enctype="multipart/form-data"
     id="choice_form">
     <div class="row gutters-5">
         <div class="col-lg-8">
@@ -24,7 +24,7 @@
                     @foreach (\App\Models\Language::all() as $key => $language)
                     <li class="nav-item">
                         <a class="nav-link text-reset @if ($language->code == $lang) active @else bg-soft-dark border-light border-left-0 @endif py-3"
-                            href="{{ route('seller.products.edit', ['id'=>$product->id, 'lang'=> $language->code] ) }}">
+                            href="{{ route('supplier.products.edit', ['id'=>$product->id, 'lang'=> $language->code] ) }}">
                             <img src="{{ static_asset('assets/img/flags/'.$language->code.'.png') }}" height="11"
                                 class="mr-1">
                             <span>{{$language->name}}</span>
@@ -706,7 +706,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             type:"POST",
-            url:'{{ route('seller.products.add-more-choice-option') }}',
+            url:'{{ route('supplier.products.add-more-choice-option') }}',
             data:{
                attribute_id: i
             },
@@ -763,7 +763,7 @@
     function update_sku(){
         $.ajax({
            type:"POST",
-           url:'{{ route('seller.products.sku_combination_edit') }}',
+           url:'{{ route('supplier.products.sku_combination_edit') }}',
            data:$('#choice_form').serialize(),
            success: function(data){
                $('#sku_combination').html(data);

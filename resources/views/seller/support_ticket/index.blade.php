@@ -50,7 +50,7 @@
                                   @endif
                               </td>
                               <td>
-                                  <a href="{{route('seller.support_ticket.show', encrypt($ticket->id))}}" class="btn btn-styled btn-link py-1 px-0 icon-anim text-underline--none">
+                                  <a href="{{route('supplier.support_ticket.show', encrypt($ticket->id))}}" class="btn btn-styled btn-link py-1 px-0 icon-anim text-underline--none">
                                       {{ translate('View Details')}}
                                       <i class="la la-angle-right text-sm"></i>
                                   </a>
@@ -77,7 +77,7 @@
                   </button>
               </div>
               <div class="modal-body px-3 pt-3">
-                  <form class="" action="{{ route('seller.support_ticket.store') }}" method="post" enctype="multipart/form-data">
+                  <form class="" action="{{ route('supplier.support_ticket.store') }}" method="post" enctype="multipart/form-data">
                       @csrf
                       <div class="row">
                           <div class="col-md-2">

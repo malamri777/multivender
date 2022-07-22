@@ -32,7 +32,7 @@
         $seller_package = \App\Models\SellerPackage::find(Auth::user()->shop->seller_package_id);
     @endphp
     <div class="col-md-4">
-        <a href="{{ route('seller.seller_packages_list') }}" class="text-center bg-white shadow-sm hov-shadow-lg text-center d-block p-3 rounded">
+        <a href="{{ route('supplier.seller_packages_list') }}" class="text-center bg-white shadow-sm hov-shadow-lg text-center d-block p-3 rounded">
             @if($seller_package != null)
                 <img src="{{ uploaded_asset($seller_package->logo) }}" height="44" class="mw-100 mx-auto">
                 <span class="d-block sub-title mb-2">{{ translate('Current Package')}}: {{ $seller_package->getTranslation('name') }}</span>
@@ -202,7 +202,7 @@
             else{
                 var status = 0;
             }
-            $.post('{{ route('seller.products.featured') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
+            $.post('{{ route('supplier.products.featured') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
                 if(data == 1){
                     AIZ.plugins.notify('success', '{{ translate('Featured products updated successfully') }}');
                 }

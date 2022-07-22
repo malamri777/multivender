@@ -405,7 +405,7 @@
                                             {{ Auth::user()->shop->package_invalid_at }}
                                         </p>
                                         <div class="">
-                                            <a href="{{ route('seller.seller_packages_list') }}"
+                                            <a href="{{ route('supplier.seller_packages_list') }}"
                                                 class="btn btn-soft-primary">{{ translate('Upgrade Package') }}</a>
                                         </div>
                                 </div>
@@ -423,7 +423,7 @@
                     <div class="my-n4 py-1 text-center">
                         <img src="{{ static_asset('assets/img/non_verified.png') }}" alt=""
                             class="w-xxl-130px w-90px d-block">
-                        <a href="{{ route('seller.shop.verify') }}"
+                        <a href="{{ route('supplier.shop.verify') }}"
                             class="btn btn-sm btn-primary">{{ translate('Verify Now') }}</a>
                     </div>
                 @else
@@ -437,7 +437,7 @@
 
     <div class="row">
         <div class="col-sm-6 col-md-6 col-lg-3">
-            <a href="{{ route('seller.money_withdraw_requests.index') }}"
+            <a href="{{ route('supplier.money_withdraw_requests.index') }}"
                 class="card mb-4 p-4 text-center bg-soft-primary h-180px">
                 <div class="fs-16 fw-600 text-primary">
                     {{ translate('Money Withdraw') }}
@@ -460,7 +460,7 @@
             </a>
         </div>
         <div class="col-sm-6 col-md-6 col-lg-3">
-            <a href="{{ route('seller.products') }}" class="card mb-4 p-4 text-center h-180px">
+            <a href="{{ route('supplier.products') }}" class="card mb-4 p-4 text-center h-180px">
                 <div class="fs-16 fw-600 text-primary">
                     {{ translate('Add New Product') }}
                 </div>
@@ -500,7 +500,7 @@
                             fill="#0277bd" />
                     </svg>
                 </div>
-                <a href="{{ route('seller.shop.index') }}" class="btn btn-primary">
+                <a href="{{ route('supplier.shop.index') }}" class="btn btn-primary">
                     {{ translate('Go to setting') }}
                 </a>
             </div>
@@ -527,7 +527,7 @@
                             transform="translate(-92.946 -10)" fill="#0277bd" />
                     </svg>
                 </div>
-                <a href="{{ route('seller.profile.index') }}" class="btn btn-primary">
+                <a href="{{ route('supplier.profile.index') }}" class="btn btn-primary">
                     {{ translate('Configure Now') }}
                 </a>
             </div>

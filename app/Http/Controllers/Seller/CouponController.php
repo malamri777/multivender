@@ -29,8 +29,8 @@ class CouponController extends Controller
     public function create()
     {
         return view('seller.coupons.create');
-    } 
-    
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -46,7 +46,7 @@ class CouponController extends Controller
         ]);
 
         flash(translate('Coupon has been saved successfully.'))->success();
-        return redirect()->route('seller.coupon.index');
+        return redirect()->route('supplier.coupon.index');
     }
 
     /**
@@ -82,9 +82,9 @@ class CouponController extends Controller
     public function update(CouponRequest $request, Coupon $coupon)
     {
         $coupon->update($request->validated());
-        
+
         flash(translate('Coupon has been updated successfully'))->success();
-        return redirect()->route('seller.coupon.index');
+        return redirect()->route('supplier.coupon.index');
     }
 
     /**
@@ -97,7 +97,7 @@ class CouponController extends Controller
     {
         Coupon::destroy($id);
         flash(translate('Coupon has been deleted successfully'))->success();
-        return redirect()->route('seller.coupon.index');
+        return redirect()->route('supplier.coupon.index');
     }
 
     public function get_coupon_form(Request $request)

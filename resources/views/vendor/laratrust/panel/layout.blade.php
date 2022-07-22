@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="shortcut icon" href="/vendor/laratrust/img/logo.png">
-  <title>Laratrust - @yield('title')</title>
+  <link rel="shortcut icon" href="{{ uploaded_asset(get_setting('site_icon')) }}">
+  <title>Role & Premssion - @yield('title')</title>
   <link href="{{ mix('laratrust.css', 'vendor/laratrust') }}" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 </head>
@@ -40,7 +40,7 @@
             </div>
           </div>
           <div class="ml-10 flex-shrink-0">
-              <img class="mw-100 text-white" src="{{ uploaded_asset(get_setting('system_logo_white', static_asset('assets/img/logo.png'))) }}" class="brand-icon" alt="{{ get_setting('site_name') }}">
+              <img class="mw-100 text-white" style="height: 40px" src="{{ uploaded_asset(get_setting('system_logo_white', static_asset('assets/img/logo.png'))) }}" class="brand-icon" alt="{{ get_setting('site_name') }}">
           </div>
         </div>
         <div class="-mr-2 flex md:hidden">

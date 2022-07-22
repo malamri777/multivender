@@ -83,7 +83,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
                 </div>
                 @if (Auth::user()->shop->admin_to_pay > 5)
-                    <form class="" action="{{ route('seller.money_withdraw_request.store') }}" method="post">
+                    <form class="" action="{{ route('supplier.money_withdraw_request.store') }}" method="post">
                         @csrf
                         <div class="modal-body gry-bg px-3 pt-3">
                             <div class="row">

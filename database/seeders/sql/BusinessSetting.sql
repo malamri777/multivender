@@ -322,3 +322,6 @@ VALUES(120, 'min_order_amount_check_activat', NULL, NULL, '2022-04-17 09:57:17',
 INSERT INTO business_settings
 (id, `type`, value, lang, created_at, updated_at)
 VALUES(121, 'minimum_order_amount', NULL, NULL, '2022-04-17 09:57:17', '2022-04-17 09:57:17');
+INSERT INTO business_settings
+(id, `type`, value, lang, created_at, updated_at)
+VALUES(122, 'helpline_number', "0555555555", NULL, '2022-04-17 09:57:17', '2022-04-17 09:57:17');

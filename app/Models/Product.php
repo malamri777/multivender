@@ -86,7 +86,8 @@ class Product extends Model
 
     public function scopePhysical($query)
     {
-        return $query->where('digital', 0);
+//        return $query->where('digital', 0);
+        return $query;
     }
 
     public function warehouse()

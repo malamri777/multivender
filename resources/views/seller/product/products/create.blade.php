@@ -10,7 +10,7 @@
     </div>
 </div>
 
-<form class="" action="{{route('seller.products.store')}}" method="POST" enctype="multipart/form-data" id="choice_form">
+<form class="" action="{{route('supplier.products.store')}}" method="POST" enctype="multipart/form-data" id="choice_form">
     <div class="row gutters-5">
         <div class="col-lg-8">
             @csrf
@@ -579,7 +579,7 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type:"POST",
-                url:'{{ route('seller.products.add-more-choice-option') }}',
+                url:'{{ route('supplier.products.add-more-choice-option') }}',
                 data:{
                 attribute_id: i
                 },
@@ -644,7 +644,7 @@
         function update_sku(){
             $.ajax({
                type:"POST",
-               url:'{{ route('seller.products.sku_combination') }}',
+               url:'{{ route('supplier.products.sku_combination') }}',
                data:$('#choice_form').serialize(),
                success: function(data){
                    $('#sku_combination').html(data);

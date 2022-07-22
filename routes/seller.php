@@ -19,7 +19,7 @@ use App\Http\Controllers\Seller\ConversationController;
 use App\Http\Controllers\Seller\NotificationController;
 use App\Http\Controllers\Seller\SupportTicketController;
 
-Route::group(['prefix' => 'seller', 'middleware' => ['seller', 'verified', 'user'], 'as' => 'seller.'], function () {
+Route::group(['prefix' => 'supplier', 'middleware' => ['supplier', 'verified', 'user'], 'as' => 'supplier.'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // Product

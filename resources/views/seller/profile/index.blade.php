@@ -8,7 +8,7 @@
         </div>
       </div>
     </div>
-    <form action="{{ route('seller.profile.update', $user->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('supplier.profile.update', $user->id) }}" method="POST" enctype="multipart/form-data">
         <input name="_method" type="hidden" value="POST">
         @csrf
         <!-- Basic Info-->
@@ -190,9 +190,9 @@
                                         {{ translate('Edit') }}
                                     </a>
                                     @if (!$address->set_default)
-                                        <a class="dropdown-item" href="{{ route('seller.addresses.set_default', $address->id) }}">{{ translate('Make This Default') }}</a>
+                                        <a class="dropdown-item" href="{{ route('supplier.addresses.set_default', $address->id) }}">{{ translate('Make This Default') }}</a>
                                     @endif
-                                    <a class="dropdown-item" href="{{ route('seller.addresses.destroy', $address->id) }}">{{ translate('Delete') }}</a>
+                                    <a class="dropdown-item" href="{{ route('supplier.addresses.destroy', $address->id) }}">{{ translate('Delete') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -254,7 +254,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form class="form-default" role="form" action="{{ route('seller.addresses.store') }}" method="POST">
+                <form class="form-default" role="form" action="{{ route('supplier.addresses.store') }}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <div class="p-3">
@@ -452,7 +452,7 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url: "{{route('seller.get-state')}}",
+                url: "{{route('supplier.get-state')}}",
                 type: 'POST',
                 data: {
                     country_id  : country_id
@@ -473,7 +473,7 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url: "{{route('seller.get-city')}}",
+                url: "{{route('supplier.get-city')}}",
                 type: 'POST',
                 data: {
                     state_id: state_id
