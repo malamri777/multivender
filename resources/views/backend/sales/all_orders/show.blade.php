@@ -77,7 +77,7 @@
             </div>
             <div class="mb-3">
                 @php
-                    $removedXML = '<?xml version="1.0" encoding="UTF-8"';
+                    $removedXML = '<?xml version="1.0" encoding="UTF-8"?>';
                 @endphp
                 {!! str_replace($removedXML, '', QrCode::size(100)->generate($order->code)) !!}
             </div>
@@ -292,7 +292,7 @@
         $('#assign_deliver_boy').on('change', function() {
             var order_id = {{ $order->id }};
             var delivery_boy = $('#assign_deliver_boy').val();
-            $.post('{{ route('orders.delivery-boy-assign') }}', {
+            $.post('{{ route('admin.orders.delivery-boy-assign') }}', {
                 _token: '{{ @csrf_token() }}',
                 order_id: order_id,
                 delivery_boy: delivery_boy
@@ -304,7 +304,7 @@
         $('#update_delivery_status').on('change', function() {
             var order_id = {{ $order->id }};
             var status = $('#update_delivery_status').val();
-            $.post('{{ route('orders.update_delivery_status') }}', {
+            $.post('{{ route('admin.orders.update_delivery_status') }}', {
                 _token: '{{ @csrf_token() }}',
                 order_id: order_id,
                 status: status
@@ -316,7 +316,7 @@
         $('#update_payment_status').on('change', function() {
             var order_id = {{ $order->id }};
             var status = $('#update_payment_status').val();
-            $.post('{{ route('orders.update_payment_status') }}', {
+            $.post('{{ route('admin.orders.update_payment_status') }}', {
                 _token: '{{ @csrf_token() }}',
                 order_id: order_id,
                 status: status
@@ -328,7 +328,7 @@
         $('#update_tracking_code').on('change', function() {
             var order_id = {{ $order->id }};
             var tracking_code = $('#update_tracking_code').val();
-            $.post('{{ route('orders.update_tracking_code') }}', {
+            $.post('{{ route('admin.orders.update_tracking_code') }}', {
                 _token: '{{ @csrf_token() }}',
                 order_id: order_id,
                 tracking_code: tracking_code

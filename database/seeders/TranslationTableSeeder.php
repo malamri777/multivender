@@ -20,26 +20,33 @@ class TranslationTableSeeder extends Seeder
         $sql = file_get_contents($path);
         DB::unprepared($sql);
 
-        Translation::create([
-            'lang' => 'en',
-            'lang_key' => 'shipping_districts',
-            'lang_value' => 'Shipping Districts'
-        ]);
-        Translation::create([
-            'lang' => 'ar',
-            'lang_key' => 'shipping_districts',
-            'lang_value' => 'مناطق الشحن'
-        ]);
+        $t = [
+            [
+                'id'    => 25137,
+                'lang' => 'en',
+                'lang_key' => 'shipping_districts',
+                'lang_value' => 'Shipping Districts'
+            ],
+            [
+                'id'    => 25138,
+                'lang' => 'ar',
+                'lang_key' => 'shipping_districts',
+                'lang_value' => 'مناطق الشحن'
+            ],
+            [
+                'id'    => 25139,
+                'lang' => 'en',
+                'lang_key' => 'districts',
+                'lang_value' => 'Districts'
+            ],
+            [
+                'id'    => 25140,
+                'lang' => 'ar',
+                'lang_key' => 'districts',
+                'lang_value' => 'المناطق'
+            ]
+        ];
 
-        Translation::create([
-            'lang' => 'en',
-            'lang_key' => 'districts',
-            'lang_value' => 'Districts'
-        ]);
-        Translation::create([
-            'lang' => 'ar',
-            'lang_key' => 'districts',
-            'lang_value' => 'المناطق'
-        ]);
+        Translation::insert($t);
     }
 }

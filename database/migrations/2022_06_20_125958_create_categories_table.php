@@ -20,8 +20,8 @@ class CreateCategoriesTable extends Migration
             $table->string('name', 50);
             $table->integer('order_level')->default(0);
             $table->double('commision_rate', 8, 2)->default(0);
-            $table->string('banner', 100)->default('/assets/img/banner-placeholder.png');
-            $table->string('icon', 100)->default('/assets/img/icon-placeholder.jpeg');
+            $table->string('banner', 100)->default(10)->comment('/assets/img/banner-placeholder.jpeg');
+            $table->string('icon', 100)->default(11)->comment('/assets/img/icon-placeholder.jpeg');
             $table->integer('featured')->default(0);
             $table->integer('top')->default(0);
             $table->integer('digital')->default(0);

@@ -106,5 +106,23 @@ class UploadTableSeeder extends Seeder
             'type' => 'image',
             'file_size' => '28070'
         ]);
+        Upload::create([
+            'folder_id' => 1,
+            'file_original_name' => 'icon-placeholder',
+            'file_name' => '/assets/img/icon-placeholder.jpeg',
+            'user_id' => 1,
+            'extension' => 'jpeg',
+            'type' => 'image',
+            'file_size' => '28070'
+        ]);
+        Upload::create([
+            'folder_id' => 1,
+            'file_original_name' => 'icon-placeholder',
+            'file_name' => '/assets/img/banner-placeholder.jpeg',
+            'user_id' => 1,
+            'extension' => 'jpeg',
+            'type' => 'image',
+            'file_size' => '28070'
+        ]);
     }
 }

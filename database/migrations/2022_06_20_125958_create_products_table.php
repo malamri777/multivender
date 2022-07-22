@@ -26,20 +26,20 @@ class CreateProductsTable extends Migration
             $table->string('tags', 500)->nullable()->index('tags');
             $table->longText('description')->nullable();
 
-            // $table->double('unit_price', 20, 2)->index('unit_price');
-            // $table->string('stock_visibility_state', 10)->default('quantity');
-            // $table->double('discount', 20, 2)->nullable();
-            // $table->string('discount_type', 10)->nullable();
-            // $table->integer('discount_start_date')->nullable();
-            // $table->integer('discount_end_date')->nullable();
-            // $table->integer('low_stock_quantity')->nullable();
+             $table->double('unit_price', 20, 2)->index('unit_price')->default(0);
+             $table->string('stock_visibility_state', 10)->default('quantity');
+             $table->double('discount', 20, 2)->nullable();
+             $table->string('discount_type', 10)->nullable();
+             $table->integer('discount_start_date')->nullable();
+             $table->integer('discount_end_date')->nullable();
+             $table->integer('low_stock_quantity')->nullable();
 
-            // $table->string('video_provider', 20)->nullable();
-            // $table->string('video_link', 100)->nullable();
-            // $table->string('pdf', 255)->nullable();
-            // $table->string('external_link', 500)->nullable();
-            // $table->string('external_link_btn', 255)->nullable()->default('Buy Now');
-            // $table->integer('digital')->default(0);
+             $table->string('video_provider', 20)->nullable();
+             $table->string('video_link', 100)->nullable();
+             $table->string('pdf', 255)->nullable();
+             $table->string('external_link', 500)->nullable();
+             $table->string('external_link_btn', 255)->nullable()->default('Buy Now');
+             $table->integer('digital')->default(0);
 
             $table->double('purchase_price', 20, 2)->nullable();
             $table->integer('variant_product')->default(0);
