@@ -30,7 +30,7 @@ INSERT INTO business_settings
 VALUES(10, 'stripe_payment', '0', NULL, '2018-10-28 10:45:47', '2018-11-14 04:51:51');
 INSERT INTO business_settings
 (id, type, value, lang, created_at, updated_at)
-VALUES(11, 'cash_payment', '1', NULL, '2018-10-28 10:46:05', '2019-01-24 06:40:18');
+VALUES(11, 'cash_payment', 0, NULL, '2018-10-28 10:46:05', '2019-01-24 06:40:18');
 INSERT INTO business_settings
 (id, type, value, lang, created_at, updated_at)
 VALUES(12, 'payumoney_payment', '0', NULL, '2018-10-28 10:46:27', '2019-03-05 08:41:36');

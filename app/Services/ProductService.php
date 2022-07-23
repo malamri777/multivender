@@ -64,15 +64,15 @@ class ProductService
        $slug_suffix = $same_slug_count ? '-' . $same_slug_count + 1 : '';
        $slug .= $slug_suffix;
 
-        $colors = json_encode(array());
-        if (
-            isset($collection['colors_active']) &&
-            $collection['colors_active'] &&
-            $collection['colors'] &&
-            count($collection['colors']) > 0
-        ) {
-            $colors = json_encode($collection['colors']);
-        }
+        // $colors = json_encode(array());
+        // if (
+        //     isset($collection['colors_active']) &&
+        //     $collection['colors_active'] &&
+        //     $collection['colors'] &&
+        //     count($collection['colors']) > 0
+        // ) {
+        //     $colors = json_encode($collection['colors']);
+        // }
 
         $options = ProductUtility::get_attribute_options($collection);
 
@@ -88,7 +88,7 @@ class ProductService
             }
         }
 
-        unset($collection['colors_active']);
+        // unset($collection['colors_active']);
 
         $choice_options = array();
         if (isset($collection['choice_no']) && $collection['choice_no']) {
@@ -132,7 +132,7 @@ class ProductService
             'discount_end_date',
             'shipping_cost',
             'slug',
-            'colors',
+            // 'colors',
             'choice_options',
             'attributes',
             'published',
@@ -157,7 +157,7 @@ class ProductService
             unset($collection['description']);
         }
         unset($collection['lang']);
-        $collection['current_stock'] = 0;
+        // $collection['current_stock'] = 0;
 
         $tags = array();
         if ($collection['tags'][0] != null) {
@@ -166,14 +166,14 @@ class ProductService
             }
         }
         $collection['tags'] = implode(',', $tags);
-        $discount_start_date = null;
-        $discount_end_date   = null;
-        if ($collection['date_range'] != null) {
-            $date_var               = explode(" to ", $collection['date_range']);
-            $discount_start_date = strtotime($date_var[0]);
-            $discount_end_date   = strtotime($date_var[1]);
-        }
-        unset($collection['date_range']);
+        // $discount_start_date = null;
+        // $discount_end_date   = null;
+        // if (isset($collection['date_range']) and $collection['date_range'] != null) {
+        //     $date_var               = explode(" to ", $collection['date_range']);
+        //     $discount_start_date = strtotime($date_var[0]);
+        //     $discount_end_date   = strtotime($date_var[1]);
+        // }
+        // unset($collection['date_range']);
 
         if ($collection['meta_title'] == null) {
             $collection['meta_title'] = $collection['name'];
@@ -196,15 +196,15 @@ class ProductService
             }
         }
 
-        $colors = json_encode(array());
-        if (
-            isset($collection['colors_active']) &&
-            $collection['colors_active'] &&
-            $collection['colors'] &&
-            count($collection['colors']) > 0
-        ) {
-            $colors = json_encode($collection['colors']);
-        }
+        // $colors = json_encode(array());
+        // if (
+        //     isset($collection['colors_active']) &&
+        //     $collection['colors_active'] &&
+        //     $collection['colors'] &&
+        //     count($collection['colors']) > 0
+        // ) {
+        //     $colors = json_encode($collection['colors']);
+        // }
 
         $options = ProductUtility::get_attribute_options($collection);
 
@@ -220,7 +220,7 @@ class ProductService
             }
         }
 
-        unset($collection['colors_active']);
+        // unset($collection['colors_active']);
 
         $choice_options = array();
         if (isset($collection['choice_no']) && $collection['choice_no']) {
@@ -254,11 +254,11 @@ class ProductService
         unset($collection['button']);
 
         $data = $collection->merge(compact(
-            'discount_start_date',
-            'discount_end_date',
-            'shipping_cost',
+            // 'discount_start_date',
+            // 'discount_end_date',
+            // 'shipping_cost',
             'slug',
-            'colors',
+            // 'colors',
             'choice_options',
             'attributes',
         ))->toArray();

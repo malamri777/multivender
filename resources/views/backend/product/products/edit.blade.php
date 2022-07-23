@@ -183,87 +183,7 @@
                         <h5 class="mb-0 h6">{{translate('Product price + stock')}}</h5>
                     </div>
                     <div class="card-body">
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-from-label">{{translate('Unit price')}}</label>
-                            <div class="col-lg-6">
-                                <input type="text" placeholder="{{translate('Unit price')}}" name="unit_price" class="form-control" value="{{$product->unit_price}}" required>
-                            </div>
-                        </div>
-
-                        @php
-                          $start_date = date('d-m-Y H:i:s', $product->discount_start_date);
-                          $end_date = date('d-m-Y H:i:s', $product->discount_end_date);
-                        @endphp
-
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-from-label" for="start_date">{{translate('Discount Date Range')}}</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control aiz-date-range" @if($product->discount_start_date && $product->discount_end_date) value="{{ $start_date.' to '.$end_date }}" @endif name="date_range" placeholder="{{translate('Select Date')}}" data-time-picker="true" data-format="DD-MM-Y HH:mm:ss" data-separator=" to " autocomplete="off">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-from-label">{{translate('Discount')}}</label>
-                            <div class="col-lg-6">
-                                <input type="number" lang="en" min="0" step="0.01" placeholder="{{translate('Discount')}}" name="discount" class="form-control" value="{{ $product->discount }}" required>
-                            </div>
-                            <div class="col-lg-3">
-                                <select class="form-control aiz-selectpicker" name="discount_type" required>
-                                    <option value="amount" <?php if ($product->discount_type == 'amount') echo "selected"; ?> >{{translate('Flat')}}</option>
-                                    <option value="percent" <?php if ($product->discount_type == 'percent') echo "selected"; ?> >{{translate('Percent')}}</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        @if(addon_is_activated('club_point'))
-                            <div class="form-group row">
-                                <label class="col-md-3 col-from-label">
-                                    {{translate('Set Point')}}
-                                </label>
-                                <div class="col-md-6">
-                                    <input type="number" lang="en" min="0" value="{{ $product->earn_point }}" step="1" placeholder="{{ translate('1') }}" name="earn_point" class="form-control">
-                                </div>
-                            </div>
-                        @endif
-
-                        <div id="show-hide-div">
-                            <div class="form-group row" id="quantity">
-                                <label class="col-lg-3 col-from-label">{{translate('Quantity')}}</label>
-                                <div class="col-lg-6">
-                                    <input type="number" lang="en" value="{{ optional($product->stocks->first())->qty }}" step="1" placeholder="{{translate('Quantity')}}" name="current_stock" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-md-3 col-from-label">
-                                    {{translate('SKU')}}
-                                </label>
-                                <div class="col-md-6">
-                                    <input type="text" placeholder="{{ translate('SKU') }}" value="{{ optional($product->stocks->first())->sku }}" name="sku" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-md-3 col-from-label">
-                                {{translate('External link')}}
-                            </label>
-                            <div class="col-md-9">
-                                <input type="text" placeholder="{{ translate('External link') }}" name="external_link" value="{{ $product->external_link }}" class="form-control">
-                                <small class="text-muted">{{translate('Leave it blank if you do not use external site link')}}</small>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-md-3 col-from-label">
-                                {{translate('External link button text')}}
-                            </label>
-                            <div class="col-md-9">
-                                <input type="text" placeholder="{{ translate('External link button text') }}" name="external_link_btn" value="{{ $product->external_link_btn }}" class="form-control">
-                                <small class="text-muted">{{translate('Leave it blank if you do not use external site link')}}</small>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="sku_combination" id="sku_combination">
-
-                        </div>
+                        <div class="sku_combination" id="sku_combination"></div>
                     </div>
                 </div>
                 <div class="card">
@@ -279,37 +199,6 @@
                         </div>
                     </div>
                 </div>
-
-<!--                <div class="card">
-                    <div class="card-header">
-                        <h5 class="mb-0 h6">{{translate('Product Shipping Cost')}}</h5>
-                    </div>
-                    <div class="card-body">
-
-                    </div>
-                </div>-->
-
-                {{-- <div class="card">
-                    <div class="card-header">
-                        <h5 class="mb-0 h6">{{translate('PDF Specification')}}</h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="form-group row">
-                            <label class="col-md-3 col-form-label" for="signinSrEmail">{{translate('PDF Specification')}}</label>
-                            <div class="col-md-8">
-                                <div class="input-group" data-toggle="aizuploader">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text bg-soft-secondary font-weight-medium">{{ translate('Browse')}}</div>
-                                    </div>
-                                    <div class="form-control file-amount">{{ translate('Choose File') }}</div>
-                                    <input type="hidden" name="pdf" value="{{ $product->pdf }}" class="selected-files">
-                                </div>
-                                <div class="file-preview box sm">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
 
                 <div class="card">
                     <div class="card-header">
@@ -354,7 +243,7 @@
 
             <div class="col-lg-4">
 
-                <div class="card">
+                {{-- <div class="card">
                     <div class="card-header">
                         <h5 class="mb-0 h6" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_2">
                             {{translate('Shipping Configuration')}}
@@ -409,7 +298,7 @@
                         </p>
                         @endif
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="card">
                     <div class="card-header">
@@ -467,35 +356,25 @@
                     </div>
                 </div>
 
+                @if (get_setting('cash_payment') == '1')
                 <div class="card">
                     <div class="card-header">
                         <h5 class="mb-0 h6">{{translate('Cash On Delivery')}}</h5>
                     </div>
                     <div class="card-body">
-                        @if (get_setting('cash_payment') == '1')
                         <div class="form-group row">
-                            <div class="col-md-12">
-                                <div class="form-group row">
-                                    <label class="col-md-6 col-from-label">{{translate('Status')}}</label>
-                                    <div class="col-md-6">
-                                        <label class="aiz-switch aiz-switch-success mb-0">
-                                            <input type="checkbox" name="cash_on_delivery" value="1" @if($product->cash_on_delivery == 1) checked @endif>
-                                            <span></span>
-                                        </label>
-                                    </div>
-                                </div>
+                            <label class="col-md-6 col-from-label">{{translate('Status')}}</label>
+                            <div class="col-md-6">
+                                <label class="aiz-switch aiz-switch-success mb-0">
+                                    <input type="checkbox" name="cash_on_delivery" value="1" @checked($product->cash_on_delivery == 1)>
+                                    <span></span>
+                                </label>
                             </div>
                         </div>
-                        @else
-                            <p>
-                                {{ translate('Cash On Delivery option is disabled. Activate this feature from here') }}
-                                <a href="{{route('activation.index')}}" class="aiz-side-nav-link {{ areActiveRoutes(['shipping_configuration.index','shipping_configuration.edit','shipping_configuration.update'])}}">
-                                    <span class="aiz-side-nav-text">{{translate('Cash Payment Activation')}}</span>
-                                </a>
-                            </p>
-                        @endif
                     </div>
                 </div>
+                @endif
+
                 <div class="card">
                     <div class="card-header">
                         <h5 class="mb-0 h6">{{translate('Featured')}}</h5>
@@ -599,47 +478,6 @@
                     </div>
                 </div>
 
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="mb-0 h6">{{translate('VAT & Tax')}}</h5>
-                    </div>
-                    <div class="card-body">
-                        @foreach(\App\Models\Tax::where('tax_status', 1)->get() as $tax)
-                        <label for="name">
-                            {{$tax->name}}
-                            <input type="hidden" value="{{$tax->id}}" name="tax_id[]">
-                        </label>
-
-                        @php
-                        $tax_amount = 0;
-                        $tax_type = '';
-                        foreach($tax->product_taxes as $row) {
-                            if($product->id == $row->product_id) {
-                                $tax_amount = $row->tax;
-                                $tax_type = $row->tax_type;
-                            }
-                        }
-                        @endphp
-
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <input type="number" lang="en" min="0" value="{{ $tax_amount }}" step="0.01" placeholder="{{ translate('Tax') }}" name="tax[]" class="form-control" required>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <select class="form-control aiz-selectpicker" name="tax_type[]">
-                                    <option value="amount" @if($tax_type == 'amount') selected @endif>
-                                        {{translate('Flat')}}
-                                    </option>
-                                    <option value="percent" @if($tax_type == 'percent') selected @endif>
-                                        {{translate('Percent')}}
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                        @endforeach
-                    </div>
-                </div>
-
             </div>
             <div class="col-12">
                 <div class="mb-3 text-right">
@@ -684,6 +522,7 @@
                attribute_id: i
             },
             success: function(data) {
+                console.log(data);
                 var obj = JSON.parse(data);
                 $('#customer_choice_options').append('\
                 <div class="form-group row">\
@@ -739,6 +578,7 @@
            url:'{{ route('admin.products.sku_combination_edit') }}',
            data:$('#choice_form').serialize(),
            success: function(data){
+            console.log(data);
                 $('#sku_combination').html(data);
                 AIZ.uploader.previewGenerate();
                 AIZ.plugins.fooTable();

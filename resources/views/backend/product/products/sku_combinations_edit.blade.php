@@ -68,7 +68,8 @@
                                 }
                             }
                             else{
-                                echo $unit_price;
+                                // echo $unit_price;
+                                echo $stock->price;
                             }
                            @endphp" min="0" step="0.01" class="form-control" required>
                 </td>

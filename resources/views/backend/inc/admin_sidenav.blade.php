@@ -162,21 +162,21 @@
                         </li>
                         @endpermission
                         <li class="aiz-side-nav-item">
-                            <a href="{{route('admin.products.all')}}" class="aiz-side-nav-link">
+                            <a href="{{route('admin.products.all')}}" class="aiz-side-nav-link {{ areActiveRoutes(['admin.products.admin', 'admin.products.create', 'admin.products.admin.edit']) }}">
                                 <span class="aiz-side-nav-text">{{ translate('All Products') }}</span>
                             </a>
                         </li>
-                        <li class="aiz-side-nav-item">
+                        {{-- <li class="aiz-side-nav-item">
                             <a href="{{route('admin.products.admin')}}"
                                 class="aiz-side-nav-link {{ areActiveRoutes(['admin.products.admin', 'admin.products.create', 'admin.products.admin.edit']) }}">
                                 <span class="aiz-side-nav-text">{{ translate('In House Products') }}</span>
                             </a>
-                        </li>
+                        </li> --}}
                         @if(get_setting('vendor_system_activation') == 1)
                         <li class="aiz-side-nav-item">
                             <a href="{{route('admin.products.seller')}}"
                                 class="aiz-side-nav-link {{ areActiveRoutes(['products.seller', 'products.seller.edit']) }}">
-                                <span class="aiz-side-nav-text">{{ translate('Seller Products') }}</span>
+                                <span class="aiz-side-nav-text">{{ translate('Supplier Products') }}</span>
                             </a>
                         </li>
                         @endif

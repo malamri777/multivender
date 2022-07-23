@@ -118,9 +118,9 @@ class UploadTableSeeder extends Seeder
         Upload::create([
             'folder_id' => 1,
             'file_original_name' => 'icon-placeholder',
-            'file_name' => '/assets/img/banner-placeholder.jpeg',
+            'file_name' => '/assets/img/banner-placeholder.png',
             'user_id' => 1,
-            'extension' => 'jpeg',
+            'extension' => 'png',
             'type' => 'image',
             'file_size' => '28070'
         ]);
