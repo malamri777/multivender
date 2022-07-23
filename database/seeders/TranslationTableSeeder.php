@@ -16,31 +16,32 @@ class TranslationTableSeeder extends Seeder
      */
     public function run()
     {
-        $path = base_path() . '/database/seeders/sql/Translation.sql';
-        $sql = file_get_contents($path);
-        DB::unprepared($sql);
+//        $path = base_path() . '/database/seeders/sql/Translation.sql';
+//        $sql = file_get_contents($path);
+//        DB::unprepared($sql);
+
+        $translationsJson = json_decode(file_get_contents(app_path() . "/../database/seeders/data/translations.json"), true);
+        foreach ($translationsJson as $t) {
+            Translation::create($t);
+        }
 
         $t = [
             [
-                'id'    => 25137,
                 'lang' => 'en',
                 'lang_key' => 'shipping_districts',
                 'lang_value' => 'Shipping Districts'
             ],
             [
-                'id'    => 25138,
                 'lang' => 'ar',
                 'lang_key' => 'shipping_districts',
                 'lang_value' => 'مناطق الشحن'
             ],
             [
-                'id'    => 25139,
                 'lang' => 'en',
                 'lang_key' => 'districts',
                 'lang_value' => 'Districts'
             ],
             [
-                'id'    => 25140,
                 'lang' => 'ar',
                 'lang_key' => 'districts',
                 'lang_value' => 'المناطق'

@@ -16,17 +16,18 @@
                     @include('backend.inc.admin_lang_form_menu', ['route_name' => 'admin.products.admin.edit', 'params' => ['id'=>$product->id] ])
                     <div class="card-body">
                         <div class="form-group row">
-                            <label class="col-lg-3 col-from-label">{{translate('Product Name')}} <i class="las la-language text-danger" title="{{translate('Translatable')}}"></i></label>
-                            <div class="col-lg-8">
-                                <input type="text" class="form-control" name="name" placeholder="{{translate('Product Name')}}" value="{{ $product->getTranslation('name', $lang) }}" required>
-                            </div>
-                        </div>
-                        <div class="form-group row">
                             <label class="col-md-3 col-from-label">
                                 {{translate('SKU')}}
                             </label>
-                            <div class="col-md-6">
-                                <input type="text" placeholder="{{ translate('SKU') }}" value="{{ optional($product->stocks->first())->sku }}" name="sku" class="form-control">
+                            <div class="col-md-8">
+                                <input type="text" placeholder="{{ translate('SKU') }}" value="{{ optional($product->stocks->first())->sku }}"
+                                    name="sku" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-from-label">{{translate('Product Name')}} <i class="las la-language text-danger" title="{{translate('Translatable')}}"></i></label>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" name="name" placeholder="{{translate('Product Name')}}" value="{{ $product->getTranslation('name', $lang) }}" required>
                             </div>
                         </div>
                         <div class="form-group row" id="category">
@@ -128,40 +129,6 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- <div class="form-group row">
-                                                    <label class="col-lg-3 col-from-label">{{translate('Gallery Images')}}</label>
-                        <div class="col-lg-8">
-                            <div id="photos">
-                                @if(is_array(json_decode($product->photos)))
-                                @foreach (json_decode($product->photos) as $key => $photo)
-                                <div class="col-md-4 col-sm-4 col-xs-6">
-                                    <div class="img-upload-preview">
-                                        <img loading="lazy"  src="{{ uploaded_asset($photo) }}" alt="" class="img-responsive">
-                                            <input type="hidden" name="previous_photos[]" value="{{ $photo }}">
-                                            <button type="button" class="btn btn-danger close-btn remove-files"><i class="fa fa-times"></i></button>
-                                    </div>
-                                </div>
-                                @endforeach
-                                @endif
-                            </div>
-                        </div>
-                    </div> --}}
-                        {{-- <div class="form-group row">
-                            <label class="col-lg-3 col-from-label">{{translate('Thumbnail Image')}} <small>(290x300)</small></label>
-                            <div class="col-lg-8">
-                                <div id="thumbnail_img">
-                                    @if ($product->thumbnail_img != null)
-                                    <div class="col-md-4 col-sm-4 col-xs-6">
-                                        <div class="img-upload-preview">
-                                            <img loading="lazy"  src="{{ uploaded_asset($product->thumbnail_img) }}" alt="" class="img-responsive">
-                                            <input type="hidden" name="previous_thumbnail_img" value="{{ $product->thumbnail_img }}">
-                                            <button type="button" class="btn btn-danger close-btn remove-files"><i class="fa fa-times"></i></button>
-                                        </div>
-                                    </div>
-                                    @endif
-                                </div>
-                            </div>
-                        </div> --}}
                     </div>
                 </div>
 
@@ -171,29 +138,6 @@
                         <h5 class="mb-0 h6">{{translate('Product Variation')}}</h5>
                     </div>
                     <div class="card-body">
-                        <div class="form-group row gutters-5">
-                            <div class="col-lg-3">
-                                <input type="text" class="form-control" value="{{translate('Colors')}}" disabled>
-                            </div>
-                            <div class="col-lg-8">
-                                <select class="form-control aiz-selectpicker" data-live-search="true" data-selected-text-format="count" name="colors[]" id="colors" multiple>
-                                    @foreach (\App\Models\Color::orderBy('name', 'asc')->get() as $key => $color)
-                                    <option
-                                        value="{{ $color->code }}"
-                                        data-content="<span><span class='size-15px d-inline-block mr-2 rounded border' style='background:{{ $color->code }}'></span><span>{{ $color->name }}</span></span>"
-                                        <?php if (in_array($color->code, json_decode($product->colors))) echo 'selected' ?>
-                                        ></option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col-lg-1">
-                                <label class="aiz-switch aiz-switch-success mb-0">
-                                    <input value="1" type="checkbox" name="colors_active" <?php if (count(json_decode($product->colors)) > 0) echo "checked"; ?> >
-                                    <span></span>
-                                </label>
-                            </div>
-                        </div>
-
                         <div class="form-group row gutters-5">
                             <div class="col-lg-3">
                                 <input type="text" class="form-control" value="{{translate('Attributes')}}" disabled>
@@ -234,7 +178,7 @@
                         </div>
                     </div>
                 </div>
-                {{-- <div class="card">
+                <div class="card">
                     <div class="card-header">
                         <h5 class="mb-0 h6">{{translate('Product price + stock')}}</h5>
                     </div>
@@ -321,7 +265,7 @@
 
                         </div>
                     </div>
-                </div> --}}
+                </div>
                 <div class="card">
                     <div class="card-header">
                         <h5 class="mb-0 h6">{{translate('Product Description')}}</h5>
@@ -366,6 +310,7 @@
                         </div>
                     </div>
                 </div> --}}
+
                 <div class="card">
                     <div class="card-header">
                         <h5 class="mb-0 h6">{{translate('SEO Meta Tags')}}</h5>
@@ -466,7 +411,7 @@
                     </div>
                 </div>
 
-                {{-- <div class="card">
+                <div class="card">
                     <div class="card-header">
                         <h5 class="mb-0 h6">{{translate('Low Stock Quantity Warning')}}</h5>
                     </div>
@@ -478,7 +423,7 @@
                             <input type="number" name="low_stock_quantity" value="{{ $product->low_stock_quantity }}" min="0" step="1" class="form-control">
                         </div>
                     </div>
-                </div> --}}
+                </div>
 
                 <div class="card">
                     <div class="card-header">

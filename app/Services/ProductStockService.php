@@ -16,9 +16,8 @@ class ProductStockService
 
         //Generates the combinations of customer choice options
         $combinations = CombinationsUtility::makeCombinations($options);
-
         $variant = '';
-        if (count($combinations[0]) > 1) {
+        if (count($combinations) > 0) {
             $product->variant_product = 1;
             $product->save();
             foreach ($combinations as $key => $combination) {

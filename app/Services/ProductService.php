@@ -33,15 +33,12 @@ class ProductService
         $collection['tags'] = implode(',', $tags);
         $discount_start_date = null;
         $discount_end_date   = null;
-        // if ($collection['date_range'] != null) {
-        //     $date_var               = explode(" to ", $collection['date_range']);
-        //     $discount_start_date = strtotime($date_var[0]);
-        //     $discount_end_date   = strtotime($date_var[1]);
-        // }
-        // unset($collection['date_range']);
-        // if ($collection['pdf']) {
-        //     $collection['pdf'] = request()->pdf->store('uploads/products/pdf');
-        // }
+        if (in_array('date_range', $collection->toArray()) and $collection['date_range'] != null) {
+            $date_var               = explode(" to ", $collection['date_range']);
+            $discount_start_date = strtotime($date_var[0]);
+            $discount_end_date   = strtotime($date_var[1]);
+        }
+        unset($collection['date_range']);
         if ($collection['meta_title'] == null) {
             $collection['meta_title'] = $collection['name'];
         }
@@ -62,10 +59,10 @@ class ProductService
                 unset($collection['flat_shipping_cost']);
             }
         }
-//        $slug = Str::slug($collection['name']);
-//        $same_slug_count = Product::where('slug', 'LIKE', $slug . '%')->count();
-//        $slug_suffix = $same_slug_count ? '-' . $same_slug_count + 1 : '';
-//        $slug .= $slug_suffix;
+       $slug = Str::slug($collection['name']);
+       $same_slug_count = Product::where('slug', 'LIKE', $slug . '%')->count();
+       $slug_suffix = $same_slug_count ? '-' . $same_slug_count + 1 : '';
+       $slug .= $slug_suffix;
 
         $colors = json_encode(array());
         if (
@@ -131,10 +128,10 @@ class ProductService
         $data = $collection->merge(compact(
             'user_id',
             'approved',
-            // 'discount_start_date',
-            // 'discount_end_date',
+            'discount_start_date',
+            'discount_end_date',
             'shipping_cost',
-//            'slug',
+            'slug',
             'colors',
             'choice_options',
             'attributes',
@@ -148,18 +145,19 @@ class ProductService
     {
         $collection = collect($data);
 
-//        $slug = Str::slug($collection['name']);
-//        $slug = $collection['slug'] ? Str::slug($collection['slug']) : Str::slug($collection['name']);
-//        $same_slug_count = Product::where('slug', 'LIKE', $slug . '%')->count();
-//        $slug_suffix = $same_slug_count > 1 ? '-' . $same_slug_count + 1 : '';
-//        $slug .= $slug_suffix;
+       $slug = Str::slug($collection['name']);
+       $slug = $collection['slug'] ? Str::slug($collection['slug']) : Str::slug($collection['name']);
+       $same_slug_count = Product::where('slug', 'LIKE', $slug . '%')->count();
+       $slug_suffix = $same_slug_count > 1 ? '-' . $same_slug_count + 1 : '';
+       $slug .= $slug_suffix;
 
-        if ($collection['lang'] != env("DEFAULT_LANGUAGE")) {
+        if ($collection['lang'] != config("myenv.DEFAULT_LANGUAGE")) {
             unset($collection['name']);
             unset($collection['unit']);
             unset($collection['description']);
         }
         unset($collection['lang']);
+        $collection['current_stock'] = 0;
 
         $tags = array();
         if ($collection['tags'][0] != null) {
@@ -168,17 +166,15 @@ class ProductService
             }
         }
         $collection['tags'] = implode(',', $tags);
-        // $discount_start_date = null;
-        // $discount_end_date   = null;
-        // if ($collection['date_range'] != null) {
-        //     $date_var               = explode(" to ", $collection['date_range']);
-        //     $discount_start_date = strtotime($date_var[0]);
-        //     $discount_end_date   = strtotime($date_var[1]);
-        // }
-        // unset($collection['date_range']);
-        // if ($collection['pdf']) {
-        //     $collection['pdf'] = request()->pdf->store('uploads/products/pdf');
-        // }
+        $discount_start_date = null;
+        $discount_end_date   = null;
+        if ($collection['date_range'] != null) {
+            $date_var               = explode(" to ", $collection['date_range']);
+            $discount_start_date = strtotime($date_var[0]);
+            $discount_end_date   = strtotime($date_var[1]);
+        }
+        unset($collection['date_range']);
+
         if ($collection['meta_title'] == null) {
             $collection['meta_title'] = $collection['name'];
         }
@@ -258,10 +254,10 @@ class ProductService
         unset($collection['button']);
 
         $data = $collection->merge(compact(
-            // 'discount_start_date',
-            // 'discount_end_date',
+            'discount_start_date',
+            'discount_end_date',
             'shipping_cost',
-//            'slug',
+            'slug',
             'colors',
             'choice_options',
             'attributes',

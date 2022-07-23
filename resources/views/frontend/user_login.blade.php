@@ -18,13 +18,13 @@
                                     <form class="form-default" role="form" action="{{ route('login') }}" method="POST">
                                         @csrf
                                         @if (addon_is_activated('otp_system') && env("DEMO_MODE") != "On")
-                                            <div class="form-group phone-form-group mb-1">
+                                            <div class="form-group phone-form-group mb-1 d-none">
                                                 <input type="tel" id="phone-code" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" value="{{ old('phone') }}" placeholder="" name="phone" autocomplete="off">
                                             </div>
 
                                             <input type="hidden" name="country_code" value="">
 
-                                            <div class="form-group email-form-group mb-1 d-none">
+                                            <div class="form-group email-form-group mb-1">
                                                 <input type="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" placeholder="{{  translate('Email') }}" name="email" id="email" autocomplete="off">
                                                 @if ($errors->has('email'))
                                                     <span class="invalid-feedback" role="alert">
@@ -140,14 +140,14 @@
 
 @section('script')
     <script type="text/javascript">
-        var isPhoneShown = true,
+        var isPhoneShown = false,
             countryData = window.intlTelInputGlobals.getCountryData(),
             input = document.querySelector("#phone-code");
 
         for (var i = 0; i < countryData.length; i++) {
             var country = countryData[i];
-            if(country.iso2 == 'bd'){
-                country.dialCode = '88';
+            if(country.iso2 == 'sa'){
+                country.dialCode = '966';
             }
         }
 
@@ -156,8 +156,8 @@
             utilsScript: "{{ static_asset('assets/js/intlTelutils.js') }}?1590403638580",
             onlyCountries: @php echo json_encode(\App\Models\Country::where('status', 1)->pluck('code')->toArray()) @endphp,
             customPlaceholder: function(selectedCountryPlaceholder, selectedCountryData) {
-                if(selectedCountryData.iso2 == 'bd'){
-                    return "01xxxxxxxxx";
+                if(selectedCountryData.iso2 == 'sa'){
+                    return "05xxxxxxxxx";
                 }
                 return selectedCountryPlaceholder;
             }
@@ -181,8 +181,7 @@
                 $('input[name=phone]').val(null);
                 isPhoneShown = false;
                 $(el).html('{{ translate('Use Phone Instead') }}');
-            }
-            else{
+            } else {
                 $('.phone-form-group').removeClass('d-none');
                 $('.email-form-group').addClass('d-none');
                 $('input[name=email]').val(null);

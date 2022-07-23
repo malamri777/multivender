@@ -16,7 +16,9 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 200)->index('name');
+            $table->mediumText('slug');
+            $table->string('sku')->unique();
+            $table->string('name')->index('name');
             $table->string('added_by', 6)->default('admin');
             $table->integer('user_id');
             $table->integer('category_id');
@@ -49,7 +51,6 @@ class CreateProductsTable extends Migration
             $table->text('variations')->nullable();
             $table->integer('todays_deal')->default(0);
             $table->integer('published')->default(1);
-            $table->string('sku', 255)->nullable();
             $table->boolean('approved')->default(true);
             $table->boolean('cash_on_delivery')->default(false)->comment('1 = On, 0 = Off');
             $table->integer('featured')->default(0);
@@ -67,7 +68,6 @@ class CreateProductsTable extends Migration
             $table->mediumText('meta_title')->nullable();
             $table->longText('meta_description')->nullable();
             $table->string('meta_img', 255)->nullable();
-            $table->mediumText('slug');
             $table->double('rating', 8, 2)->default(0);
             $table->string('barcode', 255)->nullable();
             $table->integer('auction_product')->default(0);
