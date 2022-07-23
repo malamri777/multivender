@@ -169,11 +169,5 @@ class SetupTableSeeder extends Seeder
             'name' => 'الملقا',
             'lang' => 'sa'
         ]);
-
-
-        // Color
-        $path = base_path() . '/database/seeders/sql/Color.sql';
-        $sql = file_get_contents($path);
-        DB::unprepared($sql);
     }
 }

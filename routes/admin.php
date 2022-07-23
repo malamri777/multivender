@@ -427,13 +427,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
         Route::get('/edit-attribute-value/{id}', 'edit_attribute_value')->name('edit-attribute-value');
         Route::post('/update-attribute-value/{id}', 'update_attribute_value')->name('update-attribute-value');
         Route::get('/destroy-attribute-value/{id}', 'destroy_attribute_value')->name('destroy-attribute-value');
-
-        //Colors
-        Route::get('/colors', 'colors')->name('colors');
-        Route::post('/colors/store', 'store_color')->name('colors.store');
-        Route::get('/colors/edit/{id}', 'edit_color')->name('colors.edit');
-        Route::post('/colors/update/{id}', 'update_color')->name('colors.update');
-        Route::get('/colors/destroy/{id}', 'destroy_color')->name('colors.destroy');
     });
 
     // Addon
