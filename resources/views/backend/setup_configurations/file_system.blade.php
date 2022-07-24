@@ -54,7 +54,7 @@
                                 <label class="control-label">{{translate('AWS_URL')}}</label>
                             </div>
                             <div class="col-lg-8">
-                                <input type="text" class="form-control" name="AWS_URL" value="{{  env('AWS_URL') }}" placeholder="{{ translate('AWS_URL') }}" required>
+                                <input type="text" class="form-control" name="AWS_URL" value="{{  env('AWS_URL') }}" placeholder="{{ translate('AWS_URL') }}">
                             </div>
                         </div>
                         <div class="form-group row">

@@ -189,7 +189,7 @@ class AizUploadController extends Controller
                             $img->resize(1500, null, function ($constraint) {
                                 $constraint->aspectRatio();
                             });
-                        }elseif ($height > 1500) {
+                        } elseif ($height > 1500) {
                             $img->resize(null, 800, function ($constraint) {
                                 $constraint->aspectRatio();
                             });
@@ -204,11 +204,10 @@ class AizUploadController extends Controller
                 }
 
                 if (env('FILESYSTEM_DRIVER') == 's3') {
-                    Storage::disk('s3')->put(
+                    Storage::disk('s3-public')->put(
                         $path,
                         file_get_contents(base_path('public/').$path),
                         [
-                            'visibility' => 'public',
                             'ContentType' =>  $extension == 'svg' ? 'image/svg+xml' : $file_mime
                         ]
                     );

@@ -242,64 +242,6 @@
             </div>
 
             <div class="col-lg-4">
-
-                {{-- <div class="card">
-                    <div class="card-header">
-                        <h5 class="mb-0 h6" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_2">
-                            {{translate('Shipping Configuration')}}
-                        </h5>
-                    </div>
-                    <div class="card-body collapse show" id="collapse_2">
-                        @if (get_setting('shipping_type') == 'product_wise_shipping')
-                        <div class="form-group row">
-                            <label class="col-lg-6 col-from-label">{{translate('Free Shipping')}}</label>
-                            <div class="col-lg-6">
-                                <label class="aiz-switch aiz-switch-success mb-0">
-                                    <input type="radio" name="shipping_type" value="free" @if($product->shipping_type == 'free') checked @endif>
-                                    <span></span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-lg-6 col-from-label">{{translate('Flat Rate')}}</label>
-                            <div class="col-lg-6">
-                                <label class="aiz-switch aiz-switch-success mb-0">
-                                    <input type="radio" name="shipping_type" value="flat_rate" @if($product->shipping_type == 'flat_rate') checked @endif>
-                                    <span></span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="flat_rate_shipping_div" style="display: none">
-                            <div class="form-group row">
-                                <label class="col-lg-6 col-from-label">{{translate('Shipping cost')}}</label>
-                                <div class="col-lg-6">
-                                    <input type="number" lang="en" min="0" value="{{ $product->shipping_cost }}" step="0.01" placeholder="{{ translate('Shipping cost') }}" name="flat_shipping_cost" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-md-6 col-from-label">{{translate('Is Product Quantity Mulitiply')}}</label>
-                            <div class="col-md-6">
-                                <label class="aiz-switch aiz-switch-success mb-0">
-                                    <input type="checkbox" name="is_quantity_multiplied" value="1" @if($product->is_quantity_multiplied == 1) checked @endif>
-                                    <span></span>
-                                </label>
-                            </div>
-                        </div>
-                        @else
-                        <p>
-                            {{ translate('Product wise shipping cost is disable. Shipping cost is configured from here') }}
-                            <a href="{{route('shipping_configuration.index')}}" class="aiz-side-nav-link {{ areActiveRoutes(['shipping_configuration.index','shipping_configuration.edit','shipping_configuration.update'])}}">
-                                <span class="aiz-side-nav-text">{{translate('Shipping Configuration')}}</span>
-                            </a>
-                        </p>
-                        @endif
-                    </div>
-                </div> --}}
-
                 <div class="card">
                     <div class="card-header">
                         <h5 class="mb-0 h6">{{translate('Low Stock Quantity Warning')}}</h5>

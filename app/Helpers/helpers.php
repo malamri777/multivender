@@ -87,7 +87,9 @@ if (!function_exists('filter_products')) {
     {
         $verified_sellers = verified_sellers_id();
         if (get_setting('vendor_system_activation') == 1) {
-            return $products->where('approved', '1')->where('published', '1')->where('auction_product', 0)->orderBy('created_at', 'desc')->where(function ($p) use ($verified_sellers) {
+            return $products->where('approved', '1')->where('published', '1')
+                // ->where('auction_product', 0)
+                ->orderBy('created_at', 'desc')->where(function ($p) use ($verified_sellers) {
                 $p->where('added_by', 'admin')->orWhere(function ($q) use ($verified_sellers) {
                     $q->whereIn('user_id', $verified_sellers);
                 });
