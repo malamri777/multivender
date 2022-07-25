@@ -74,7 +74,7 @@ class BranchController extends Controller
         $branch->district_id = $request->district_id;
         if ($branch->save()) {
             flash(translate('Branch has been created successfully'))->success();
-            return redirect()->route('admin.branches.index');
+            return redirect()->route('admin.restaurants.branches.index');
         }
 
         flash(translate('Error Creating Branch'))->error();
@@ -126,7 +126,7 @@ class BranchController extends Controller
         $branch->district_id = $request->district_id;
         if ($branch->save()) {
             flash(translate('Branch has been updated successfully'))->success();
-            return redirect()->route('admin.branches.index');
+            return redirect()->route('admin.restaurants.branches.index');
         }
 
         flash(translate('Error updated Branch'))->error();
@@ -143,7 +143,7 @@ class BranchController extends Controller
     {
         if(Branch::destroy($id)) {
             flash(translate('Branch has been deleted successfully'))->success();
-            return redirect()->route('admin.branches.index');
+            return redirect()->route('admin.restaurants.branches.index');
         }
 
         flash(translate('Error Deleting Branch'))->error();

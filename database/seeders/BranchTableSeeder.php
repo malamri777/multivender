@@ -2,11 +2,12 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
+use App\Models\Role;
+use App\Models\User;
 
 use App\Models\Branch;
-use App\Models\User;
+use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class BranchTableSeeder extends Seeder
 {
@@ -25,6 +26,11 @@ class BranchTableSeeder extends Seeder
             'user_type' => 'restaurant_branch_admin',
             'email_verified_at' => now()
         ]);
+
+        $role = Role::where('name', 'branch')->first();
+        $admin->roles()->sync($role);
+
+
         $b = Branch::create([
             'name'           => 'Branch 1 Restaurant 1',
             'admin_id'    => $admin->id,
@@ -51,6 +57,10 @@ class BranchTableSeeder extends Seeder
             'user_type' => 'restaurant_branch_admin',
             'email_verified_at' => now()
         ]);
+
+        $role = Role::where('name', 'branch')->first();
+        $admin->roles()->sync($role);
+
         Branch::create([
             'name'           => 'Branch 2 Restaurant 1',
             'admin_id'    => $admin->id,
@@ -68,6 +78,10 @@ class BranchTableSeeder extends Seeder
             'user_type' => 'restaurant_branch_admin',
             'email_verified_at' => now()
         ]);
+
+        $role = Role::where('name', 'branch')->first();
+        $admin->roles()->sync($role);
+
         Branch::create([
             'name'           => 'Branch 3 Restaurant 1',
             'admin_id'    => $admin->id,
@@ -86,6 +100,10 @@ class BranchTableSeeder extends Seeder
             'user_type' => 'restaurant_branch_admin',
             'email_verified_at' => now()
         ]);
+
+        $role = Role::where('name', 'branch')->first();
+        $admin->roles()->sync($role);
+
         Branch::create([
             'name'           => 'Branch 1 Restaurant 2',
             'admin_id'    => $admin->id,
@@ -103,6 +121,9 @@ class BranchTableSeeder extends Seeder
             'user_type' => 'restaurant_branch_admin',
             'email_verified_at' => now()
         ]);
+        $role = Role::where('name', 'branch')->first();
+        $admin->roles()->sync($role);
+
         Branch::create([
             'name'           => 'Branch 2 Restaurant 2',
             'admin_id'    => $admin->id,
@@ -120,6 +141,9 @@ class BranchTableSeeder extends Seeder
             'user_type' => 'restaurant_branch_admin',
             'email_verified_at' => now()
         ]);
+        $role = Role::where('name', 'branch')->first();
+        $admin->roles()->sync($role);
+
         Branch::create([
             'name'           => 'Branch 3 Restaurant 2',
             'admin_id'    => $admin->id,
@@ -147,6 +171,9 @@ class BranchTableSeeder extends Seeder
             'user_type' => 'restaurant_branch_admin',
             'email_verified_at' => now()
         ]);
+        $role = Role::where('name', 'branch')->first();
+        $admin->roles()->sync($role);
+
         Branch::create([
             'name'           => 'Branch 1 Restaurant 3',
             'admin_id'    => $admin->id,

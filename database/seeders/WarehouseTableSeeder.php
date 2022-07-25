@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Role;
 use App\Models\Warehouse;
 use App\Models\WarehouseProduct;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -27,6 +28,10 @@ class WarehouseTableSeeder extends Seeder
             'email_verified_at' => now(),
             'provider_id' => 1
         ]);
+
+        $role = Role::where('name', 'warehouse')->first();
+        $admin->roles()->sync($role);
+
         $user = User::create([
             'name' => 's1_w1_user',
             'email' => 's1_w1_user@dev.com',
@@ -35,6 +40,10 @@ class WarehouseTableSeeder extends Seeder
             'email_verified_at' => now(),
             'provider_id' => 1
         ]);
+
+        $role = Role::where('name', 'warehouse')->first();
+        $user->roles()->sync($role);
+
         $w1 = Warehouse::create([
             'name'           => 'WareHouse 1 balubaid',
             'admin_id'    => $admin->id,
@@ -54,6 +63,9 @@ class WarehouseTableSeeder extends Seeder
             'email_verified_at' => now(),
             'provider_id' => 1
         ]);
+        $role = Role::where('name', 'warehouse')->first();
+        $admin->roles()->sync($role);
+
         Warehouse::create([
             'name'           => 'WareHouse 2 balubaid',
             'admin_id'    => $admin->id,
@@ -72,6 +84,10 @@ class WarehouseTableSeeder extends Seeder
             'email_verified_at' => now(),
             'provider_id' => 1
         ]);
+
+        $role = Role::where('name', 'warehouse')->first();
+        $admin->roles()->sync($role);
+
         Warehouse::create([
             'name'           => 'WareHouse 3 balubaid',
             'admin_id'    => $admin->id,
@@ -91,6 +107,10 @@ class WarehouseTableSeeder extends Seeder
             'email_verified_at' => now(),
             'provider_id' => 2
         ]);
+
+        $role = Role::where('name', 'warehouse')->first();
+        $admin->roles()->sync($role);
+
         Warehouse::create([
             'name'           => 'WareHouse 1 almunajem',
             'admin_id'    => $admin->id,
@@ -109,6 +129,10 @@ class WarehouseTableSeeder extends Seeder
             'email_verified_at' => now(),
             'provider_id' => 2
         ]);
+
+        $role = Role::where('name', 'warehouse')->first();
+        $user->roles()->sync($role);
+
         Warehouse::create([
             'name'           => 'WareHouse 2 almunajem',
             'admin_id'    => $admin->id,
@@ -127,6 +151,10 @@ class WarehouseTableSeeder extends Seeder
             'email_verified_at' => now(),
             'provider_id' => 2
         ]);
+
+        $role = Role::where('name', 'warehouse')->first();
+        $user->roles()->sync($role);
+
         Warehouse::create([
             'name'           => 'WareHouse 3 almunajem',
             'admin_id'    => $admin->id,
@@ -155,6 +183,10 @@ class WarehouseTableSeeder extends Seeder
             'email_verified_at' => now(),
             'provider_id' => 3
         ]);
+
+        $role = Role::where('name', 'warehouse')->first();
+        $user->roles()->sync($role);
+
         Warehouse::create([
             'name'           => 'WareHouse 1 almunajem',
             'admin_id'    => $admin->id,

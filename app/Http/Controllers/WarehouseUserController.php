@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Role;
 use App\Models\Warehouse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -53,8 +54,12 @@ class WarehouseUserController extends Controller
 
     public function create()
     {
+        // $warehouseUser = User::with(["warehouses", 'supplier', 'supplier.supplierWarehouses'])->get();
+        // $warehouseUserRolesId = $warehouseUser->roles->pluck('id');
+        $warehouseRolesList= Role::whereIn("name", warehouseRolesList())->get();
+        $warehouse = Warehouse::get();
         $suppliers = Supplier::get();
-        return view('backend.suppliers.warehouses.users.create', compact('suppliers'));
+        return view('backend.suppliers.warehouses.users.create', compact('suppliers','warehouseRolesList','warehouse'));
     }
 
 
@@ -79,13 +84,15 @@ class WarehouseUserController extends Controller
         }
     }
 
-
     public function edit($id)
     {
         $warehouseUser = User::with(["warehouses", 'supplier', 'supplier.supplierWarehouses'])->findOrFail($id);
+        $warehouseUserRolesId = $warehouseUser->roles->pluck('id');
         $warehouseIds = $warehouseUser->warehouses->pluck('id') ?? [];
         $suppliers = Supplier::get();
-        return view('backend.suppliers.warehouses.users.edit', compact('warehouseUser', 'suppliers', 'warehouseIds'));
+        $warehouse = Warehouse::get();
+        $warehouseRolesList= Role::whereIn("name", warehouseRolesList())->get();
+        return view('backend.suppliers.warehouses.users.edit', compact('warehouseUser', 'suppliers', 'warehouseIds','warehouseUserRolesId','warehouseRolesList','warehouse'));
     }
 
     public function update(WarehouseUserRequest $request, User $user)
@@ -120,4 +127,5 @@ class WarehouseUserController extends Controller
         flash(translate('Something went wrong'))->error();
         return back();
     }
+    
 }

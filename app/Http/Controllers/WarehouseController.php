@@ -74,7 +74,7 @@ class WarehouseController extends Controller
         $warehouse->district_id = $request->district_id;
         if ($warehouse->save()) {
             flash(translate('Warehouse has been created successfully'))->success();
-            return redirect()->route('admin.warehouses.index');
+            return redirect()->route('admin.suppliers.warehouses.index');
         }
 
         flash(translate('Error Creating Warehouse'))->error();
@@ -126,7 +126,7 @@ class WarehouseController extends Controller
         $warehouse->district_id = $request->district_id;
         if ($warehouse->save()) {
             flash(translate('Warehouse has been updated successfully'))->success();
-            return redirect()->route('admin.warehouses.index');
+            return redirect()->route('admin.suppliers.warehouses.index');
         }
 
         flash(translate('Error updated Warehouse'))->error();
@@ -143,7 +143,7 @@ class WarehouseController extends Controller
     {
         if(Warehouse::destroy($id)) {
             flash(translate('Warehouse has been deleted successfully'))->success();
-            return redirect()->route('admin.warehouses.index');
+            return redirect()->route('admin.suppliers.warehouses.index');
         }
 
         flash(translate('Error Deleting Warehouse'))->error();

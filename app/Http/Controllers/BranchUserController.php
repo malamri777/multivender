@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Role;
 use App\Models\Branch;;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -54,8 +55,11 @@ class BranchUserController extends Controller
 
     public function create()
     {
-        $restaurants = Restaurant::get();
-        return view('backend.restaurants.branches.users.create', compact('restaurants'));
+        $branches = Branch::get();
+        $restaurant = Restaurant::get();
+        $branchRolesList= Role::whereIn("name", branchRolesList())->get();
+        // $branchUserRolesId = $branchUser->roles->pluck('id');
+        return view('backend.restaurants.branches.users.create', compact('branches','branchRolesList','restaurant'));
     }
 
 
@@ -80,13 +84,23 @@ class BranchUserController extends Controller
         }
     }
 
+    // $warehouseUser = User::with(["warehouses", 'supplier', 'supplier.supplierWarehouses'])->findOrFail($id);
+    // $warehouseUserRolesId = $warehouseUser->roles->pluck('id');
+    // $warehouseIds = $warehouseUser->warehouses->pluck('id') ?? [];
+    // $suppliers = Supplier::get();
+    // $warehouseRolesList= Role::whereIn("name", warehouseRolesList())->get();
+
 
     public function edit($id)
     {
         $branchUser = User::with(["branches", 'restaurant', 'restaurant.restaurantBranches'])->findOrFail($id);
+        $branchUserRolesId = $branchUser->roles->pluck('id');
         $branchIds = $branchUser->branches->pluck('id') ?? null;
         $restaurants = Restaurant::get();
-        return view('backend.restaurants.branches.users.edit', compact('branchUser', 'restaurants', 'branchIds'));
+        $branches = Branch::get();
+        $branchRolesList= Role::whereIn("name", branchRolesList())->get();
+
+        return view('backend.restaurants.branches.users.edit', compact('branchUser', 'restaurants', 'branchIds','branchUserRolesId','branchRolesList','branches'));
     }
 
     public function update(BranchUserRequest $request, User $user)
@@ -121,4 +135,7 @@ class BranchUserController extends Controller
         flash(translate('Something went wrong'))->error();
         return back();
     }
+
+
+
 }

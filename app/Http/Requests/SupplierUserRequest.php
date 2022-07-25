@@ -39,7 +39,7 @@ class SupplierUserRequest extends FormRequest
                 'name' => 'required|max:255|unique:users,name,' . $id,
                 'email' => 'required|max:255|unique:users,email,' . $id,
                 'supplier_id' => 'required',
-                'user_type' => 'required',
+                'roleIds' => 'required',
                 'password' => 'confirmed',
             ];
         }
@@ -49,7 +49,7 @@ class SupplierUserRequest extends FormRequest
             'email'          => 'required|unique:users|max:255',
             'password'      => 'required|confirmed',
             'supplier_id' => 'required',
-            'user_type' => 'required'
+            'roleIds' => 'required'
         ];
     }
 }

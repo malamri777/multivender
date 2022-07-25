@@ -332,13 +332,46 @@ return [
         */
         'roles_restrictions' => [
             // The user won't be able to remove roles already assigned to users.
-            'not_removable' => ['super_admin', 'admin', 'supplier', 'restaurant', 'driver'],
+            'not_removable' => ['restaurant','restaurant_admin', 'restaurant_branch_admin', 'restaurant_branch_driver','restaurant_branch_driver'],
 
             // The user won't be able to edit the role and the permissions assigned.
-            'not_editable' => ['super_admin', 'admin', 'supplier', 'restaurant', 'driver'],
+            'not_editable' => ['restaurant','restaurant_admin', 'restaurant_branch_admin', 'restaurant_branch_driver','restaurant_branch_driver'],
 
             // The user won't be able to delete the role.
-            'not_deletable' => ['super_admin', 'admin', 'supplier', 'restaurant', 'driver'],
+            'not_deletable' => ['restaurant','restaurant_admin', 'restaurant_branch_admin', 'restaurant_branch_driver','restaurant_branch_driver'],
         ],
+
+        'roles_suppliers' => [
+            // The user won't be able to remove roles already assigned to users.
+            'not_removable' => ['supplier' ,'supplier_admin', 'supplier_warehouse_admin', 'supplier_warehouse_driver','supplier_warehouse_user'],
+
+            // The user won't be able to edit the role and the permissions assigned.
+            'not_editable' => [ 'supplier' ,'supplier_admin', 'supplier_warehouse_admin', 'supplier_warehouse_driver','supplier_warehouse_user'],
+
+            // The user won't be able to delete the role.
+            'not_deletable' => ['supplier' ,'supplier_admin', 'supplier_warehouse_admin', 'supplier_warehouse_driver','supplier_warehouse_user'],
+        ],
+
+        'roles_warehosees' => [
+            // The user won't be able to remove roles already assigned to users.
+            'not_removable' => ['supplier_warehouse_admin', 'supplier_warehouse_driver' , 'supplier_warehouse_user'],
+
+            // The user won't be able to edit the role and the permissions assigned.
+            'not_editable' => [ 'supplier_warehouse_admin', 'supplier_warehouse_driver' , 'supplier_warehouse_user'],
+
+            // The user won't be able to delete the role.
+        ],
+
+        'roles_branches' => [
+            // The user won't be able to remove roles already assigned to users.
+            'not_removable' => ['restaurant_branch_admin', 'restaurant_branch_driver','restaurant_branch_user'],
+
+            // The user won't be able to edit the role and the permissions assigned.
+            'not_editable' => ['restaurant_branch_admin', 'restaurant_branch_driver','restaurant_branch_user'],
+
+            // The user won't be able to delete the role.
+            'not_deletable' => ['restaurant_branch_admin', 'restaurant_branch_driver','restaurant_branch_user'],
+        ],
+
     ]
 ];

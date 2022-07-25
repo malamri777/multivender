@@ -2,10 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Role;
 use App\Models\Shop;
 use App\Models\User;
-use Database\Factories\UserFactory;
 use Illuminate\Database\Seeder;
+use Database\Factories\UserFactory;
 
 class UsersTableSeeder extends Seeder
 {
@@ -25,6 +26,9 @@ class UsersTableSeeder extends Seeder
             'email_verified_at' => now()
         ]);
 
+        $role = Role::where('name', 'super_admin')->first();
+        $user->roles()->sync($role);
+
 
         $user = User::create([
             'name' => 'admin',
@@ -34,7 +38,8 @@ class UsersTableSeeder extends Seeder
             'user_type' => 'admin',
             'email_verified_at' => now()
         ]);
-
+        $role = Role::where('name', 'admin')->first();
+        $user->roles()->sync($role);
         // \App\Models\User::factory(100)->create();
 
     }//end of run

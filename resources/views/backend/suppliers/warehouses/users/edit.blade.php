@@ -5,7 +5,7 @@
         <div class="col-lg-6 mx-auto">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="mb-0 h6">{{ translate('User Warehouse Information') }}</h5>
+                    <h5 class="mb-0 h6">{{ translate(' Edit User Warehouse Information') }}</h5>
                 </div>
 
                 <form class="form-horizontal"
@@ -62,8 +62,7 @@
                             <label class="col-sm-3 col-from-label" for="name">{{ translate('Supplier') }}</label>
                             <div class="col-sm-9">
                                 <select name="supplier_id" id="supplier_id" required class="form-control aiz-selectpicker"
-                                    data-selected="{{ $warehouseUser->provider_id }}">
-                                    <option value=""></option>
+                                    data-selected="{{ $suppliers }}">
                                     @foreach ($suppliers as $item)
                                         <option value="{{ $item->id }}">{{ $item->name }}</option>
                                     @endforeach
@@ -85,17 +84,19 @@
                                 @include('backend.inc.form-span-error', ['field' => 'warehouses'])
                             </div>
                         </div>
-
                         <div class="form-group row">
                             <label class="col-sm-3 col-from-label" for="user_type">{{ translate('Role') }}</label>
                             <div class="col-sm-9">
                                 <select name="user_type" required class="form-control aiz-selectpicker"
-                                    data-selected="{{ $warehouseUser->user_type }}">
-                                    <option value=""></option>
+                                    data-selected="{{ $warehouseUserRolesId}}" multiple>
+                                    @foreach ( $warehouseRolesList as $item)
+                                    <option value="{{ $item->id }}">{{ $item->display_name }}</option>
+                                 @endforeach
+                                    {{-- <option value=""></option>
                                     <option value="warehouse_admin">{{ _('Warehouse Admin') }}</option>
                                     <option value="supplier_warehouse_admin">{{ _('Supplier Warehouse Admin') }}</option>
                                     <option value="supplier_warehouse_user">{{ _('Supplier Warehouse User') }}</option>
-                                    <option value="supplier_warehouse_driver">{{ _('Supplier Warehouse Driver') }}</option>
+                                    <option value="supplier_warehouse_driver">{{ _('Supplier Warehouse Driver') }}</option> --}}
                                 </select>
                                 @include('backend.inc.form-span-error', ['field' => 'user_type'])
                             </div>
@@ -128,8 +129,8 @@
                 success: function(data) {
                     var obj = JSON.parse(data);
                     let warehousesSelector = $('#warehouses');
-                    supplierSelector.empty();
-                    supplierSelector.append(obj);
+                    warehousesSelector.empty();
+                    warehousesSelector.append(obj);
                     AIZ.plugins.bootstrapSelect('refresh');
                 }
             });

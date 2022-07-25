@@ -63,7 +63,7 @@
                         </li>
                         <li class="aiz-side-nav-item">
                             <a href="{{route('admin.suppliers.warehouses.users.index')}}"
-                                class="aiz-side-nav-link {{ areActiveRoutes(['admin.suppliers.warehouses.Windex', 'admin.suppliers.warehouses.Wcreate', 'admin.suppliers.warehouses.Wedit'])}}">
+                                class="aiz-side-nav-link {{ areActiveRoutes(['admin.suppliers.warehouses.users.index', 'admin.suppliers.warehouses.users.create', 'admin.suppliers.warehouses.users.edit'])}}">
                                 <span class="aiz-side-nav-text">{{translate('Warehouse User List')}}</span>
                             </a>
                         </li>

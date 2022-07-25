@@ -21,13 +21,16 @@ class SupplierUserController extends Controller
     {
         $sort_search = null;
         $sort_supplier = null;
-        $sort_warehouse = null;
 
         $usersSupplier = User::query()
             ->whereIn('user_type', ['supplier_admin', 'supplier_warehouse_admin']);
 
-        $usersWarehouser = User::query()
-        ->whereIn('user_type', ['supplier_admin', 'supplier_warehouse_admin']);
+        $usersSupplier = User::whereHas('roles', function($q){
+            $q->whereIn('name', ['supplier_admin']);
+        })
+        ->whereHas('supplier', function($q) {
+            $q->whereNotIn('name', adminRolesList());
+        });
 
         if (!empty($request->input('search'))) {
             $sort_search = $request->search;
@@ -41,16 +44,9 @@ class SupplierUserController extends Controller
             $usersSupplier = $usersSupplier->where('provider_id', $sort_supplier);
         }
 
-        if(!empty($request->input('sort_warehouse'))) {
-            $sort_warehouse = $request->input('sort_warehouse');
-            // $usersWarehouser=  $usersWarehouser->whereHas("user", function($q) use ($sort_supplier) {
-            //     return $q->where('provider_id', $sort_supplier);
-            // });
-        }
-
 
         $usersSupplier = $usersSupplier->paginate(15);
-        return view('backend.suppliers.users.index', compact('usersSupplier', 'sort_search', 'sort_supplier','sort_warehouse'));
+        return view('backend.suppliers.users.index', compact('usersSupplier', 'sort_search', 'sort_supplier'));
     }
 
 
@@ -62,8 +58,9 @@ class SupplierUserController extends Controller
      */
     public function create()
     {
+        $supplierRolesList= Role::whereIn("name", supplierRolesList())->get();
         $suppliers = Supplier::get();
-        return view('backend.suppliers.users.create', compact('suppliers'));
+        return view('backend.suppliers.users.create', compact('suppliers','supplierRolesList'));
     }
 
     /**
@@ -83,6 +80,7 @@ class SupplierUserController extends Controller
                 'provider_id' => $request->supplier_id,
                 'user_type' => $request->user_type
             ]);
+            $user->roles()->sync($request->user_type);
 
             flash(translate('User has been created successfully'))->success();
             return redirect()->route('admin.suppliers.users.index');
@@ -113,8 +111,11 @@ class SupplierUserController extends Controller
     public function edit($id)
     {
         $supplier = User::findOrFail($id);
+        $supplierUserRolesId = $supplier->roles->pluck("id");
         $suppliers = Supplier::get();
-        return view('backend.suppliers.users.edit', compact('supplier', 'suppliers'));
+        $supplierRolesList= Role::whereIn("name", supplierRolesList())->get();
+
+        return view('backend.suppliers.users.edit', compact('supplier', 'suppliers','supplierRolesList','supplierUserRolesId'));
     }
 
     /**
@@ -130,12 +131,13 @@ class SupplierUserController extends Controller
         $user->email = $request->email;
         $user->phone = $request->mobile;
         $user->provider_id = $request->supplier_id;
-        $user->user_type = $request->user_type;
 
         if (strlen($request->password) > 0) {
             $user->password = Hash::make($request->password);
         }
+
         if ($user->save()) {
+            $user->roles()->sync($request->roleIds);
             flash(translate('User has been updated successfully'))->success();
             return redirect()->route('admin.suppliers.users.index');
         }

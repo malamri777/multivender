@@ -6,7 +6,7 @@
     <div class="col-lg-6 mx-auto">
         <div class="card">
             <div class="card-header">
-                <h5 class="mb-0 h6">{{translate('User Branch Information')}}</h5>
+                <h5 class="mb-0 h6">{{translate('Create User Branch Information')}}</h5>
             </div>
 
             <form class="form-horizontal" action="{{ route('admin.restaurants.branches.users.store') }}" method="POST" enctype="multipart/form-data">
@@ -53,7 +53,7 @@
                             <select name="restaurant_id" id="restaurant_id" required class="form-control aiz-selectpicker"
                                 data-selected="{{ old('restaurant_id') }}">
                                 <option value=""></option>
-                                @foreach ($restaurants as $item)
+                                @foreach ($restaurant as $item)
                                     <option value="{{ $item->id }}">{{ $item->name }}</option>
                                 @endforeach
                             </select>
@@ -66,20 +66,25 @@
                         <div class="col-sm-9">
                             <select class="select2 form-control aiz-selectpicker" name="branches[]" id="branches"
                                 data-toggle="select2" data-placeholder="Choose ..." data-live-search="true" multiple>
+                                @foreach($branches as $branch)
+                                    <option value="{{$branch->id}}">{{$branch->name}}</option>
+                                @endforeach
                             </select>
                             @include('backend.inc.form-span-error', ['field' => 'branches'])
                         </div>
                     </div>
-
                     <div class="form-group row">
                         <label class="col-sm-3 col-from-label" for="user_type">{{translate('Role')}}</label>
                         <div class="col-sm-9">
                             <select name="user_type" required class="form-control aiz-selectpicker" data-selected="{{ old('user_type', '') }}">
-                                <option value=""></option>
+                                @foreach ( $branchRolesList as $item)
+                                <option value="{{ $item->id }}">{{ $item->display_name }}</option>
+                                @endforeach
+                                {{-- <option value=""></option>
                                 <option value="branch_admin">{{ _('Branch Admin') }}</option>
                                 <option value="restaurant_branch_admin">{{ _('Restaurant Branch Admin') }}</option>
                                 <option value="restaurant_branch_user">{{ _('Restaurant Branch User') }}</option>
-                                <option value="restaurant_branch_driver">{{ _('Restaurant Branch Driver') }}</option>
+                                <option value="restaurant_branch_driver">{{ _('Restaurant Branch Driver') }}</option> --}}
                             </select>
                             @include('backend.inc.form-span-error', ['field' => 'user_type'])
                         </div>
@@ -98,22 +103,22 @@
 
 @section('script')
     <script type="text/javascript">
-        let restaurantSelector = $('#restaurant_id');
-        restaurantSelector.change(e => {
+        let supplierSelector = $('#supplier_id');
+        supplierSelector.change(e => {
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type: "POST",
-                url: '{{ route('admin.restaurants.branches.get-branch-option-by-restaurant-id') }}',
+                url: '{{ route('admin.restaurants.get-branch-option-by-restaurant-id') }}',
                 data: {
-                    restaurant_id: restaurantSelector.val()
+                    supplier_id: supplierSelector.val()
                 },
                 success: function(data) {
                     var obj = JSON.parse(data);
-                    let branchesSelector = $('#branches');
-                    branchesSelector.empty();
-                    branchesSelector.append(obj);
+                    let warehousesSelector = $('#warehouses');
+                    warehousesSelector.empty();
+                    warehousesSelector.append(obj);
                     AIZ.plugins.bootstrapSelect('refresh');
                 }
             });

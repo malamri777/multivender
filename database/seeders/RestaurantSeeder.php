@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 
 use App\Models\Restaurant;
 use App\Models\User;
+use App\Models\Role;
 
 class RestaurantSeeder extends Seeder
 {
@@ -27,6 +28,10 @@ class RestaurantSeeder extends Seeder
             'email_verified_at' => now(),
             'restaurant_id' => 1
         ]);
+
+        $role = Role::where('name', 'restaurant')->first();
+        $admin->roles()->sync($role);
+
         $restaurant = Restaurant::create([
             'id' => 1,
             'name' => 'Restaurant 1',
@@ -57,6 +62,9 @@ class RestaurantSeeder extends Seeder
             'restaurant_id' => 2
 
         ]);
+        $role = Role::where('name', 'restaurant')->first();
+        $admin->roles()->sync($role);
+
         $restaurant = Restaurant::create([
             'id' => 2,
             'name' => 'Restaurant 2',

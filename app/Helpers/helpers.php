@@ -949,12 +949,41 @@ if (!function_exists('checkerCountryCode')) {
         return true;
     }
 }
+//  - supplier
 
 if (!function_exists('supplierRolesList')) {
     function supplierRolesList()
     {
         return [
-            'supplier',
+           'supplier' ,'supplier_admin', 'supplier_warehouse_admin', 'supplier_warehouse_driver','supplier_warehouse_user'
+
+        ];
+    }
+}
+if (!function_exists('warehouseRolesList')) {
+    function warehouseRolesList()
+    {
+        return [
+            'supplier_warehouse_admin', 'supplier_warehouse_driver' , 'supplier_warehouse_user'
+
+        ];
+    }
+}
+
+if (!function_exists('restaurantRolesList')) {
+    function restaurantRolesList()
+    {
+        return [
+            'restaurant','restaurant_admin', 'restaurant_branch_admin', 'restaurant_branch_driver','restaurant_branch_user'
+        ];
+    }
+}
+if (!function_exists('branchRolesList')) {
+    function branchRolesList()
+    {
+        return [
+            'restaurant_branch_admin', 'restaurant_branch_driver','restaurant_branch_user'
+
         ];
     }
 }

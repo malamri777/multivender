@@ -13,6 +13,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\BranchController;
+use App\Http\Controllers\BranchUserController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ReviewController;
@@ -51,6 +52,8 @@ use App\Http\Controllers\CustomerProductController;
 use App\Http\Controllers\BusinessSettingsController;
 use App\Http\Controllers\ProductBulkUploadController;
 use App\Http\Controllers\SellerWithdrawRequestController;
+use App\Http\Controllers\BranchUserControlle;
+
 
 /*
   |--------------------------------------------------------------------------
@@ -483,6 +486,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
         Route::get('query-users-selector/{supplier?}', 'queryUsersForSupplier')->name('query-users-selector');
         Route::get('destroy/{id}', 'destroy')->name('destroy');
 
+
         // Warehouse
         Route::controller(WarehouseController::class)
         ->as('warehouses.')
@@ -536,10 +540,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
 
 
     // Restaurant
-    Route::group(['prefix' => 'restaurants', 'as' => 'restaurants.', 'controller' => RestaurantController::class], function(){
+        Route::group(['prefix' => 'restaurants', 'as' => 'restaurants.', 'controller' => RestaurantController::class], function(){
         Route::post('update_status', 'updateStatus')->name('update_status');
         Route::get('query-users-selector/{restaurant?}', 'queryUsersForRestaurant')->name('query-users-selector');
         Route::get('destroy/{id}', 'destroy')->name('destroy');
+        Route::post('get-branch-option-by-restaurant-id', 'getBranchOptionByRestaurantId')->name('get-branch-option-by-restaurant-id');
+        
 
         // Branchs
         Route::controller(BranchController::class)
@@ -550,8 +556,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
             Route::get('users', 'getUsers')->name('users');
             Route::get('destroy/{id}', 'destroy')->name('destroy');
 
+
                         // Add here
-                        Route::controller(BranchUserControlle::class)
+                        Route::controller(BranchUserController::class)
                         ->as('users.')
                         ->prefix('users')
                         ->group(function () {
@@ -562,7 +569,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
                             Route::get('/', 'edit')->name('edit');
 
                         });
-                        Route::resource('users', BranchUserControlle::class)->except('destroy');
+                        Route::resource('users', BranchUserController::class)->except('destroy');
         });
 
         Route::resource('branches', BranchController::class)->except('destroy');

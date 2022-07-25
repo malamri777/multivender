@@ -28,7 +28,7 @@ class RestaurantUserController extends Controller
             $sort_search = $request->search;
             $user_ids = $usersRestaurant->where(function ($user) use ($sort_search) {
                 $user->where('name', 'like', '%' . $sort_search . '%')->orWhere('email', 'like', '%' . $sort_search . '%');
-            })->pluck('id')->toArray();
+            })->pluck('id');
         }
 
         if(!empty($request->input('sort_restaurant'))) {
@@ -49,7 +49,9 @@ class RestaurantUserController extends Controller
     public function create()
     {
         $restaurants = Restaurant::get();
-        return view('backend.restaurants.users.create', compact('restaurants'));
+        $restaurantRolesList= Role::whereIn("name", restaurantRolesList())->get();
+        // $restaurantUserRolesId = $restaurant->roles->pluck("id");
+        return view('backend.restaurants.users.create', compact('restaurants','restaurantRolesList'));
     }
 
     /**
@@ -95,11 +97,15 @@ class RestaurantUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function edit($id)
     {
         $restaurant = User::findOrFail($id);
+        $restaurantUserRolesId = $restaurant->roles->pluck("id");
         $restaurants = Restaurant::get();
-        return view('backend.restaurants.users.edit', compact('restaurant', 'restaurants'));
+        $restaurantRolesList= Role::whereIn("name", restaurantRolesList())->get();
+
+        return view('backend.restaurants.users.edit', compact('restaurant', 'restaurants','restaurantRolesList','restaurantUserRolesId'));
     }
 
     /**
@@ -146,4 +152,6 @@ class RestaurantUserController extends Controller
         flash(translate('Something went wrong'))->error();
         return back();
     }
+
+
 }

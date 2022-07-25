@@ -42,13 +42,66 @@ return [
         ],
         'supplier' => [
             'profile' => 'r,u',
+            'admin_dashboard' => 'v',
+            'supplier_uploads' => 'c,r,u,d,l',
         ],
+        'supplier_admin' => [
+            'profile' => 'r,u',
+            'admin_dashboard' => 'v',
+            'supplier_uploads' => 'c,r,u,d,l',
+        ],
+        'supplier_warehouse_admin' => [
+            'profile' => 'r,u',
+            'admin_dashboard' => 'v',
+            'supplier_uploads' => 'c,r,u,d,l',
+        ],
+
+        'supplier_warehouse_driver' => [
+            'profile' => 'r,u',
+            'admin_dashboard' => 'v',
+            'supplier_uploads' => 'c,r,u,d,l',
+        ],
+
+
+        'supplier_warehouse_user' => [
+            'profile' => 'r,u',
+            'admin_dashboard' => 'v',
+            'supplier_uploads' => 'c,r,u,d,l',
+        ],
+
+
+
         'restaurant' => [
             'profile' => 'r,u',
+            'admin_dashboard' => 'v',
+            'restaurant_uploads' => 'c,r,u,d,l',
         ],
-        'driver' => [
+
+        'restaurant_admin' => [
             'profile' => 'r,u',
+            'admin_dashboard' => 'v',
+            'restaurant_uploads' => 'c,r,u,d,l',
         ],
+        'restaurant_branch_admin' => [
+            'profile' => 'r,u',
+            'admin_dashboard' => 'v',
+            'restaurant_uploads' => 'c,r,u,d,l',
+        ],
+        'restaurant_branch_driver' => [
+            'profile' => 'r,u',
+            'admin_dashboard' => 'v',
+            'restaurant_uploads' => 'c,r,u,d,l',
+        ],
+        'restaurant_branch_user' => [
+            'profile' => 'r,u',
+            'admin_dashboard' => 'v',
+            'branch_uploads' => 'c,r,u,d,l',
+        ],
+        // 'driver' => [
+        //     'profile' => 'r,u',
+        //     'admin_dashboard' => 'v',
+        //     'supplier_uploads' => 'c,r,u,d,l',
+        // ],
         // 'role_name' => [
         //     'module_1_name' => 'c,r,u,d',
         // ]

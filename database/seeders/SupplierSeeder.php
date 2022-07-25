@@ -2,10 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Supplier;
+use App\Models\Role;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Supplier;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class SupplierSeeder extends Seeder
 {
@@ -25,6 +26,9 @@ class SupplierSeeder extends Seeder
             'user_type' => 'supplier_admin',
             'email_verified_at' => now()
         ]);
+        $role = Role::where('name', 'supplier_admin')->first();
+        $admin->roles()->sync($role);
+
         $supplier = Supplier::create([
             'id' => 1,
             'name' => 'balubaid',
@@ -52,6 +56,11 @@ class SupplierSeeder extends Seeder
             'user_type' => 'supplier_admin',
             'email_verified_at' => now()
         ]);
+
+        $role = Role::where('name', 'supplier_admin')->first();
+        $admin->roles()->sync($role);
+
+
         $supplier = Supplier::create([
             'id' => 2,
             'name' => 'almunajem',

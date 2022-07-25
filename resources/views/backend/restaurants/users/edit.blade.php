@@ -5,7 +5,7 @@
         <div class="col-lg-6 mx-auto">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="mb-0 h6">{{ translate('User Restaurant Information') }}</h5>
+                    <h5 class="mb-0 h6">{{ translate('Edit User Restaurant Information') }}</h5>
                 </div>
 
                 <form class="form-horizontal"
@@ -75,13 +75,16 @@
                             <label class="col-sm-3 col-from-label" for="user_type">{{ translate('Role') }}</label>
                             <div class="col-sm-9">
                                 <select name="user_type" required class="form-control aiz-selectpicker"
-                                    data-selected="{{ $restaurant->user_type }}">
-                                    <option value=""></option>
-                                    <option value="restaurant_admin">{{ _('Restaurant Admin') }}</option>
+                                    data-selected="{{ $restaurantUserRolesId }}" multiple>
+                                    @foreach ( $restaurantRolesList as $item)
+                                    <option value="{{ $item->id }}">{{ $item->display_name}}</option>
+                                    @endforeach
+                                    {{-- <option value=""></option> --}}
+                                    {{-- <option value="restaurant_admin">{{ _('Restaurant Admin') }}</option>
                                     <option value="restaurant_Branch_admin">{{ _('Restaurant Branch Admin') }}</option>
                                     <option value="restaurant_Branch_user">{{ _('Restaurant Branch User') }}</option>
                                     <option value="restaurant_Branch_driver">{{ _('Restaurant Branch Driver') }}
-                                    </option>
+                                    </option> --}}
                                 </select>
                                 @include('backend.inc.form-span-error', ['field' => 'user_type'])
                             </div>

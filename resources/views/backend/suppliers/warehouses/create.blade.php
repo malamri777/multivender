@@ -5,7 +5,7 @@
         <div class="col-lg-6 mx-auto">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="mb-0 h6">{{ translate('Warehouse Information') }}</h5>
+                    <h5 class="mb-0 h6">{{ translate(' Create Warehouse Information') }}</h5>
                 </div>
 
                 <form class="form-horizontal" action="{{ route('admin.suppliers.warehouses.store') }}" method="POST"
