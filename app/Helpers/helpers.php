@@ -568,7 +568,7 @@ if (!function_exists('uploaded_asset')) {
     function uploaded_asset($id)
     {
         if (($asset = \App\Models\Upload::find($id)) != null) {
-            return $asset->external_link == null ? my_asset($asset->file_name) : $asset->external_link;
+            return $asset->external_link == null ? my_asset($asset->file_name, $isUploaded = true) : $asset->external_link;
         }
         return null;
 //        return asset('assets/img/placeholder.jpg');
@@ -583,10 +583,14 @@ if (!function_exists('my_asset')) {
      * @param bool|null $secure
      * @return string
      */
-    function my_asset($path, $secure = null)
+    function my_asset($path, $isUploaded = false, $secure = null)
     {
         if (env('FILESYSTEM_DRIVER') == 's3') {
-            return Storage::disk('s3')->url("public/$path");
+            if ($isUploaded) {
+                return Storage::disk('s3')->url($path);
+            } else {
+                return Storage::disk('s3')->url("public/$path");
+            }
         } else {
             return app('url')->asset($path, $secure);
 //            return app('url')->asset('public/' . $path, $secure);
