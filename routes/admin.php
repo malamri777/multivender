@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\BranchUserControlle;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaxController;
 use App\Http\Controllers\BlogController;
@@ -539,7 +538,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
         Route::get('query-users-selector/{restaurant?}', 'queryUsersForRestaurant')->name('query-users-selector');
         Route::get('destroy/{id}', 'destroy')->name('destroy');
         Route::post('get-branch-option-by-restaurant-id', 'getBranchOptionByRestaurantId')->name('get-branch-option-by-restaurant-id');
-        
+
 
         // Branchs
         Route::controller(BranchController::class)
