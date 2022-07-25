@@ -16,7 +16,7 @@ class CreateBrandsTable extends Migration
         Schema::create('brands', function (Blueprint $table) {
             $table->id();
             $table->string('name', 50);
-            $table->string('logo', 100)->default('/assets/img/logo-placeholder.jpeg');
+            $table->string('logo', 100)->default(6);
             $table->integer('top')->default(0);
             $table->string('slug', 255)->nullable();
             $table->string('meta_title', 255)->nullable();

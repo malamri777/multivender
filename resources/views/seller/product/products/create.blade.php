@@ -10,7 +10,7 @@
     </div>
 </div>
 
-<form class="" action="{{route('seller.products.store')}}" method="POST" enctype="multipart/form-data" id="choice_form">
+<form class="" action="{{route('supplier.products.store')}}" method="POST" enctype="multipart/form-data" id="choice_form">
     <div class="row gutters-5">
         <div class="col-lg-8">
             @csrf
@@ -113,7 +113,7 @@
                         <label class="col-md-3 col-form-label"
                             for="signinSrEmail">{{translate('Gallery Images')}}</label>
                         <div class="col-md-8">
-                            <div class="input-group" data-toggle="aizuploader" data-type="image" data-multiple="true">
+                            <div class="input-group" data-toggle="aizuploader" data-type="folder,image" data-multiple="true">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text bg-soft-secondary font-weight-medium">
                                         {{ translate('Browse')}}</div>
@@ -129,7 +129,7 @@
                         <label class="col-md-3 col-form-label" for="signinSrEmail">{{translate('Thumbnail Image')}}
                             <small>(290x300)</small></label>
                         <div class="col-md-8">
-                            <div class="input-group" data-toggle="aizuploader" data-type="image">
+                            <div class="input-group" data-toggle="aizuploader" data-type="folder,image">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text bg-soft-secondary font-weight-medium">
                                         {{ translate('Browse')}}</div>
@@ -355,7 +355,7 @@
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label" for="signinSrEmail">{{ translate('Meta Image') }}</label>
                         <div class="col-md-8">
-                            <div class="input-group" data-toggle="aizuploader" data-type="image">
+                            <div class="input-group" data-toggle="aizuploader" data-type="folder,image">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text bg-soft-secondary font-weight-medium">
                                         {{ translate('Browse')}}</div>
@@ -579,7 +579,7 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type:"POST",
-                url:'{{ route('seller.products.add-more-choice-option') }}',
+                url:'{{ route('supplier.products.add-more-choice-option') }}',
                 data:{
                 attribute_id: i
                 },
@@ -644,7 +644,7 @@
         function update_sku(){
             $.ajax({
                type:"POST",
-               url:'{{ route('seller.products.sku_combination') }}',
+               url:'{{ route('supplier.products.sku_combination') }}',
                data:$('#choice_form').serialize(),
                success: function(data){
                    $('#sku_combination').html(data);

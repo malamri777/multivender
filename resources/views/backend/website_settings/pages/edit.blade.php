@@ -97,7 +97,7 @@
 			<div class="form-group row">
 				<label class="col-sm-2 col-from-label" for="name">{{translate('Meta Image')}}</label>
 				<div class="col-sm-10">
-					<div class="input-group " data-toggle="aizuploader" data-type="image">
+					<div class="input-group " data-toggle="aizuploader" data-type="folder,image">
 							<div class="input-group-prepend">
 								<div class="input-group-text bg-soft-secondary font-weight-medium">{{ translate('Browse') }}</div>
 						</div>

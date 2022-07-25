@@ -10,7 +10,7 @@
         </div>
       </div>
     </div>
-    <form class="" action="{{ route('seller.shop.verify.store') }}" method="POST" enctype="multipart/form-data">
+    <form class="" action="{{ route('supplier.shop.verify.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="card">
             <div class="card-header">

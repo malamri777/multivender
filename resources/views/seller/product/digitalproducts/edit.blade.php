@@ -8,7 +8,7 @@
             </div>
         </div>
     </div>
-    <form class="" action="{{route('seller.digitalproducts.update', $product->id)}}" method="POST" enctype="multipart/form-data">
+    <form class="" action="{{route('supplier.digitalproducts.update', $product->id)}}" method="POST" enctype="multipart/form-data">
         <input name="_method" type="hidden" value="Post">
         <input type="hidden" name="id" value="{{ $product->id }}">
         <input type="hidden" name="lang" value="{{ $lang }}">
@@ -20,7 +20,7 @@
                 <ul class="nav nav-tabs nav-fill border-light">
                     @foreach (\App\Models\Language::all() as $key => $language)
                         <li class="nav-item">
-                            <a class="nav-link text-reset @if ($language->code == $lang) active @else bg-soft-dark border-light border-left-0 @endif py-3" href="{{ route('seller.digitalproducts.edit', ['id'=>$product->id, 'lang'=> $language->code] ) }}">
+                            <a class="nav-link text-reset @if ($language->code == $lang) active @else bg-soft-dark border-light border-left-0 @endif py-3" href="{{ route('supplier.digitalproducts.edit', ['id'=>$product->id, 'lang'=> $language->code] ) }}">
                                 <img src="{{ static_asset('assets/img/flags/'.$language->code.'.png') }}" height="11" class="mr-1">
                                 <span>{{$language->name}}</span>
                             </a>
@@ -84,7 +84,7 @@
                 <div class="form-group row">
                     <label class="col-lg-3 col-form-label" for="signinSrEmail">{{translate('Gallery Images')}} <small>(600x600)</small></label>
                     <div class="col-lg-9">
-                        <div class="input-group" data-toggle="aizuploader" data-type="image" data-multiple="true">
+                        <div class="input-group" data-toggle="aizuploader" data-type="folder,image" data-multiple="true">
                             <div class="input-group-prepend">
                                 <div class="input-group-text bg-soft-secondary font-weight-medium">{{ translate('Browse')}}</div>
                             </div>
@@ -100,7 +100,7 @@
                 <div class="form-group row">
                     <label class="col-lg-3 col-form-label" for="signinSrEmail">{{translate('Thumbnail Image')}} <small>(300x300)</small></label>
                     <div class="col-lg-9">
-                        <div class="input-group" data-toggle="aizuploader" data-type="image" data-multiple="false">
+                        <div class="input-group" data-toggle="aizuploader" data-type="folder,image" data-multiple="false">
                             <div class="input-group-prepend">
                                 <div class="input-group-text bg-soft-secondary font-weight-medium">{{ translate('Browse')}}</div>
                             </div>
@@ -134,7 +134,7 @@
                 <div class="form-group row">
                     <label class="col-lg-3 col-form-label" for="signinSrEmail">{{ translate('Meta Image') }}</label>
                     <div class="col-lg-9">
-                        <div class="input-group" data-toggle="aizuploader" data-type="image" data-multiple="false">
+                        <div class="input-group" data-toggle="aizuploader" data-type="folder,image" data-multiple="false">
                             <div class="input-group-prepend">
                                 <div class="input-group-text bg-soft-secondary font-weight-medium">{{ translate('Browse')}}</div>
                             </div>

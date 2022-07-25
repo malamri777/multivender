@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BranchUserControlle;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaxController;
 use App\Http\Controllers\BlogController;
@@ -429,13 +430,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
         Route::get('/edit-attribute-value/{id}', 'edit_attribute_value')->name('edit-attribute-value');
         Route::post('/update-attribute-value/{id}', 'update_attribute_value')->name('update-attribute-value');
         Route::get('/destroy-attribute-value/{id}', 'destroy_attribute_value')->name('destroy-attribute-value');
-
-        //Colors
-        Route::get('/colors', 'colors')->name('colors');
-        Route::post('/colors/store', 'store_color')->name('colors.store');
-        Route::get('/colors/edit/{id}', 'edit_color')->name('colors.edit');
-        Route::post('/colors/update/{id}', 'update_color')->name('colors.update');
-        Route::get('/colors/destroy/{id}', 'destroy_color')->name('colors.destroy');
     });
 
     // Addon
@@ -501,7 +495,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
                 ->as('users.')
                 ->prefix('users')
                 ->group(function () {
-                    Route::get('/', 'index')->name('ndex');
+                    Route::get('/', 'index')->name('dashboard');
                     Route::get('/create', 'create')->name('create');
                     Route::post('/', 'store')->name('store');
 

@@ -251,7 +251,7 @@
                     </tbody>
                 </table>
                 <div class="no-print text-right">
-                    <a href="{{ route('seller.invoice.download', $order->id) }}" type="button"
+                    <a href="{{ route('supplier.invoice.download', $order->id) }}" type="button"
                         class="btn btn-icon btn-light"><i class="las la-print"></i></a>
                 </div>
             </div>
@@ -265,7 +265,7 @@
         $('#update_delivery_status').on('change', function() {
             var order_id = {{ $order->id }};
             var status = $('#update_delivery_status').val();
-            $.post('{{ route('seller.orders.update_delivery_status') }}', {
+            $.post('{{ route('supplier.orders.update_delivery_status') }}', {
                 _token: '{{ @csrf_token() }}',
                 order_id: order_id,
                 status: status
@@ -279,7 +279,7 @@
         $('#update_payment_status').on('change', function() {
             var order_id = {{ $order->id }};
             var status = $('#update_payment_status').val();
-            $.post('{{ route('seller.orders.update_payment_status') }}', {
+            $.post('{{ route('supplier.orders.update_payment_status') }}', {
                 _token: '{{ @csrf_token() }}',
                 order_id: order_id,
                 status: status

@@ -32,7 +32,7 @@
         $seller_package = \App\Models\SellerPackage::find(Auth::user()->shop->seller_package_id);
     @endphp
     <div class="col-md-4">
-        <a href="{{ route('seller.seller_packages_list') }}" class="text-center bg-white shadow-sm hov-shadow-lg text-center d-block p-3 rounded">
+        <a href="{{ route('supplier.seller_packages_list') }}" class="text-center bg-white shadow-sm hov-shadow-lg text-center d-block p-3 rounded">
             @if($seller_package != null)
                 <img src="{{ uploaded_asset($seller_package->logo) }}" height="44" class="mw-100 mx-auto">
                 <span class="d-block sub-title mb-2">{{ translate('Current Package')}}: {{ $seller_package->getTranslation('name') }}</span>
@@ -70,7 +70,7 @@
                 </div>
             </div>
         </div>
-    
+
         <div class="card-body">
             <table class="table aiz-table mb-0">
                 <thead>
@@ -149,7 +149,7 @@
                             <a class="btn btn-soft-success btn-icon btn-circle btn-sm"  href="{{ route('product', $product->slug) }}" target="_blank" title="{{ translate('View') }}">
                                 <i class="las la-eye"></i>
                             </a>
-                            <a class="btn btn-soft-info btn-icon btn-circle btn-sm" href="{{route('wholesale_product_edit.seller', ['id'=>$product->id, 'lang'=>env('DEFAULT_LANGUAGE')] )}}" title="{{ translate('Edit') }}">
+                            <a class="btn btn-soft-info btn-icon btn-circle btn-sm" href="{{route('wholesale_product_edit.seller', ['id'=>$product->id, 'lang'=>config('myenv.DEFAULT_LANGUAGE')] )}}" title="{{ translate('Edit') }}">
                                 <i class="las la-edit"></i>
                             </a>
                             <a href="#" class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete" data-href="{{route('wholesale_product_destroy.seller', $product->id)}}" title="{{ translate('Delete') }}">
@@ -176,7 +176,7 @@
 
 @section('script')
     <script type="text/javascript">
-        
+
         function update_published(el){
             if(el.checked){
                 var status = 1;
@@ -193,7 +193,7 @@
                 }
             });
         }
-        
+
 
         function update_featured(el){
             if(el.checked){
@@ -202,7 +202,7 @@
             else{
                 var status = 0;
             }
-            $.post('{{ route('seller.products.featured') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
+            $.post('{{ route('supplier.products.featured') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
                 if(data == 1){
                     AIZ.plugins.notify('success', '{{ translate('Featured products updated successfully') }}');
                 }

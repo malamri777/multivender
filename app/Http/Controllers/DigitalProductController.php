@@ -95,7 +95,7 @@ class DigitalProductController extends Controller
             $product_stock->save();
 
             // Product Translations
-            $product_translation                = ProductTranslation::firstOrNew(['lang' => env('DEFAULT_LANGUAGE'), 'product_id' => $product->id]);
+            $product_translation                = ProductTranslation::firstOrNew(['lang' => config('myenv.DEFAULT_LANGUAGE'), 'product_id' => $product->id]);
             $product_translation->name          = $request->name;
             $product_translation->description   = $request->description;
             $product_translation->save();

@@ -189,7 +189,7 @@ class AizUploadController extends Controller
                             $img->resize(1500, null, function ($constraint) {
                                 $constraint->aspectRatio();
                             });
-                        }elseif ($height > 1500) {
+                        } elseif ($height > 1500) {
                             $img->resize(null, 800, function ($constraint) {
                                 $constraint->aspectRatio();
                             });
@@ -204,11 +204,10 @@ class AizUploadController extends Controller
                 }
 
                 if (env('FILESYSTEM_DRIVER') == 's3') {
-                    Storage::disk('s3')->put(
+                    Storage::disk('s3-public')->put(
                         $path,
                         file_get_contents(base_path('public/').$path),
                         [
-                            'visibility' => 'public',
                             'ContentType' =>  $extension == 'svg' ? 'image/svg+xml' : $file_mime
                         ]
                     );
@@ -231,23 +230,27 @@ class AizUploadController extends Controller
 
     public function get_uploaded_files(Request $request)
     {
-        $folder_id = null;
+        $parentFolderId = null;
         if (Auth::user()->hasRole(adminRolesList())) {
             $uploads = Upload::query();
         } else if (Auth::user()->hasRole(supplierRolesList())) {
             $uploads = Upload::where('user_id', auth()->user()->id);
         }
 
+        $uploads = $uploads->with(['parent:id']);
+
         if ($request->folder_id != null) {
-            // $folder_id = $request->folder_id;
+            $parentFolderId = Upload::with('parent')->find($request->folder_id)->parent?->id;
             $uploads = $uploads->where('folder_id', $request->folder_id);
         } else {
             $uploads = $uploads->where('folder_id', 1);
         }
 
         if ($request->search != null) {
-            $uploads->where('file_original_name', 'like', '%'.$request->search.'%');
+            $uploads = $uploads->where('file_original_name', 'like', '%'.$request->search.'%');
         }
+
+        $uploads = $uploads->orderBy('order')->orderBy('folder_name');
         if ($request->sort != null) {
             switch ($request->sort) {
                 case 'newest':
@@ -267,7 +270,10 @@ class AizUploadController extends Controller
                     break;
             }
         }
-        return $uploads->paginate(60)->appends(request()->query());
+        return [
+            'uploads' => $uploads->paginate(60)->appends(request()->query()),
+            'parentId' => $parentFolderId
+        ];
     }
 
     public function destroy(Request $request,$id)

@@ -103,7 +103,7 @@ class ShopController extends Controller
         $shop->verification_info = json_encode($data);
         if ($shop->save()) {
             flash(translate('Your shop verification request has been submitted successfully!'))->success();
-            return redirect()->route('seller.dashboard');
+            return redirect()->route('supplier.dashboard');
         }
 
         flash(translate('Sorry! Something went wrong.'))->error();

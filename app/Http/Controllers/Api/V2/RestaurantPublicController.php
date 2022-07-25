@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Api\V2;
 
+use App\Http\Resources\V2\BrandCollection;
 use App\Http\Resources\V2\CategoryCollection;
 use App\Http\Resources\V2\ProductCollection;
 use App\Http\Resources\V2\ProductMiniCollection;
 use App\Http\Resources\V2\ProductResource;
 use App\Http\Resources\V2\SupplierCollection;
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Supplier;
@@ -35,10 +37,34 @@ class RestaurantPublicController extends Controller
             return new CategoryCollection(Category::orderBy('order_level', 'desc')->get());
         });
 
+        $brands = Cache::remember('mobile_home_brands', 86400, function () {
+            return new BrandCollection(Brand::get());
+        });
+
+        $suppliers = Cache::remember('mobile_home_suppliers', 86400, function () {
+            return new SupplierCollection(Supplier::get());
+        });
+
+        $bestSelling = Cache::remember('mobile_home_best_selling_products', 86400, function(){
+            $products = Product::orderBy('num_of_sale', 'desc')->physical();
+            return new ProductMiniCollection(filter_products($products)->limit(20)->get());
+        });
+
+        $latest = Cache::remember('mobile_home_latest_products', 86400, function(){
+            $products = Product::orderBy('num_of_sale', 'desc');
+            return new ProductMiniCollection(Product::latest()->paginate(10));
+        });
+
+
+
         return response()->json([
             'result' => true,
             'slider' => $mobile_home_slider,
             'categories' => $categories,
+            'brands' => $brands,
+            'suppliers' => $suppliers,
+            'bestSellingProduct' => $bestSelling,
+            'latest' => $latest
         ]);
     }
 

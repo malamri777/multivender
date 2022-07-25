@@ -84,7 +84,7 @@
                 <div class="form-group row">
                     <label class="col-md-2 col-from-label">{{translate('Gallery Images')}} <span class="text-danger">*</span></label>
                     <div class="col-md-10">
-                        <div class="input-group" data-toggle="aizuploader" data-type="image" data-multiple="true">
+                        <div class="input-group" data-toggle="aizuploader" data-type="folder,image" data-multiple="true">
                             <div class="input-group-prepend">
                                 <div class="input-group-text bg-soft-secondary font-weight-medium">{{ translate('Browse')}}</div>
                             </div>
@@ -98,7 +98,7 @@
                 <div class="form-group row">
                     <label class="col-md-2 col-from-label">{{translate('Thumbnail Image')}} <span class="text-danger">*</span></label>
                     <div class="col-md-10">
-                        <div class="input-group" data-toggle="aizuploader" data-type="image">
+                        <div class="input-group" data-toggle="aizuploader" data-type="folder,image">
                             <div class="input-group-prepend">
                                 <div class="input-group-text bg-soft-secondary font-weight-medium">{{ translate('Browse')}}</div>
                             </div>
@@ -154,7 +154,7 @@
                 <div class="form-group row">
                     <label class="col-md-2 col-from-label">{{ translate('Meta Image')}}</label>
                     <div class="col-md-10">
-                        <div class="input-group" data-toggle="aizuploader" data-type="image">
+                        <div class="input-group" data-toggle="aizuploader" data-type="folder,image">
                             <div class="input-group-prepend">
                                 <div class="input-group-text bg-soft-secondary font-weight-medium">{{ translate('Browse')}}</div>
                             </div>

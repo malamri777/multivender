@@ -17,6 +17,7 @@ return [
             'profile' => 'r,u',
             'users' => 'c,r,u,d,l',
             'suppliers' => 'c,r,u,d,l',
+            'supplier_dashboard' => 'v',
             'restaurants' => 'c,r,u,d,l',
             'pos' => 'r,l',
             'products' => 'c,r,u,d,l',

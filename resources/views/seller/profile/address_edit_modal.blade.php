@@ -1,4 +1,4 @@
-<form class="form-default" role="form" action="{{ route('seller.addresses.update', $address_data->id) }}" method="POST">
+<form class="form-default" role="form" action="{{ route('supplier.addresses.update', $address_data->id) }}" method="POST">
     @csrf
     <div class="p-3">
         <div class="row">
@@ -56,7 +56,7 @@
                 </select>
             </div>
         </div>
-        
+
         @if (get_setting('google_map') == 1)
             <div class="row">
                 <input id="edit_searchInput" class="controls" type="text" placeholder="Enter a location">
@@ -87,7 +87,7 @@
                 </div>
             </div>
         @endif
-        
+
         <div class="row">
             <div class="col-md-2">
                 <label>{{ translate('Postal code')}}</label>

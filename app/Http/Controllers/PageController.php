@@ -49,7 +49,7 @@ class PageController extends Controller
             $page->meta_image       = $request->meta_image;
             $page->save();
 
-            $page_translation           = PageTranslation::firstOrNew(['lang' => env('DEFAULT_LANGUAGE'), 'page_id' => $page->id]);
+            $page_translation           = PageTranslation::firstOrNew(['lang' => config('myenv.DEFAULT_LANGUAGE'), 'page_id' => $page->id]);
             $page_translation->title    = $request->title;
             $page_translation->content  = $request->content;
             $page_translation->save();

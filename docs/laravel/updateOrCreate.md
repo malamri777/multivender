@@ -36,7 +36,7 @@
         dd('none');
         flash(translate('Warehouse Product Updated'))->success();
         flash(translate('Warehouse Product Created'))->success();
-        return redirect()->route('seller.products');
+        return redirect()->route('supplier.products');
     }
 
 ```

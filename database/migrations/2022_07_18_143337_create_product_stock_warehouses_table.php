@@ -1,10 +1,12 @@
 <?php
 
+use App\Models\ProductStock;
+use App\Models\Warehouse;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductStocksTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +15,12 @@ class CreateProductStocksTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_stocks', function (Blueprint $table) {
+        Schema::create('product_stock_warehouses', function (Blueprint $table) {
             $table->id();
-            $table->integer('product_id');
-            $table->string('variant', 255);
-            $table->string('sku', 255)->nullable();
             $table->double('price', 20, 2)->default(0);
             $table->integer('qty')->default(0);
-            $table->integer('image')->nullable();
+            $table->foreignIdFor(ProductStock::class, 'product_stock_id')->constrained()->onDelete('cascade');
+            $table->foreignIdFor(Warehouse::class, 'warehouse_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ class CreateProductStocksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_stocks');
+        Schema::dropIfExists('product_stock_warehouses');
     }
-}
+};

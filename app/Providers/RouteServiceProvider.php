@@ -54,8 +54,8 @@ class RouteServiceProvider extends ServiceProvider
 
        $this->mapOtpRoutes();
 
-//        $this->mapOfflinePaymentRoutes();
-//
+        $this->mapOfflinePaymentRoutes();
+
 //        $this->mapAfricanPaymentGatewayRoutes();
 //
 //        $this->mapPaytmRoutes();

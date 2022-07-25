@@ -58,12 +58,12 @@ class BrandController extends Controller
         $brand->logo = $request->logo;
         $brand->save();
 
-        $brand_translation = BrandTranslation::firstOrNew(['lang' => env('DEFAULT_LANGUAGE'), 'brand_id' => $brand->id]);
+        $brand_translation = BrandTranslation::firstOrNew(['lang' => config('myenv.DEFAULT_LANGUAGE'), 'brand_id' => $brand->id]);
         $brand_translation->name = $request->name;
         $brand_translation->save();
 
         flash(translate('Brand has been inserted successfully'))->success();
-        return redirect()->route('brands.index');
+        return redirect()->route('admin.brands.index');
 
     }
 

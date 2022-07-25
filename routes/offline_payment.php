@@ -4,7 +4,6 @@ use App\Http\Controllers\CustomerPackageController;
 use App\Http\Controllers\WalletController;
 use App\Http\Controllers\CustomerPackagePaymentController;
 use App\Http\Controllers\ManualPaymentMethodController;
-use App\Http\Controllers\SellerPackageController;
 use App\Http\Controllers\SellerPackagePaymentController;
 
 /*
@@ -26,8 +25,8 @@ Route::group(['prefix' =>'admin', 'middleware' => ['auth', 'admin']], function()
     Route::post('/offline-wallet-recharge/approved', [WalletController::class, 'updateApproved'])->name('offline_recharge_request.approved');
 
     // Seller Package purchase request
-    Route::get('/offline-seller-package-payment-requests', [SellerPackagePaymentController::class, 'offline_payment_request'])->name('offline_seller_package_payment_request.index');
-    Route::post('/offline-seller-package-payment/approved', [SellerPackagePaymentController::class, 'offline_payment_approval'])->name('offline_seller_package_payment.approved');
+//    Route::get('/offline-seller-package-payment-requests', [SellerPackagePaymentController::class, 'offline_payment_request'])->name('offline_seller_package_payment_request.index');
+//    Route::post('/offline-seller-package-payment/approved', [SellerPackagePaymentController::class, 'offline_payment_approval'])->name('offline_seller_package_payment.approved');
 
     // customer package purchase request
     Route::get('/offline-customer-package-payment-requests', [CustomerPackagePaymentController::class, 'offline_payment_request'])->name('offline_customer_package_payment_request.index');
@@ -53,6 +52,6 @@ Route::post('/offline-customer-package-paymnet', [CustomerPackageController::cla
 Route::group(['prefix' => 'seller', 'middleware' => ['seller', 'verified', 'user'], 'as' => 'seller.'], function () {
     // Seller Package purchase
     Route::post('/offline-seller-package-purchase-modal', [ManualPaymentMethodController::class, 'offline_seller_package_purchase_modal'])->name('offline_seller_package_purchase_modal');
-    Route::post('/offline-seller-package-paymnet',[SellerPackageController::class, 'purchase_package_offline'])->name('make_offline_payment');
+//    Route::post('/offline-seller-package-paymnet',[SellerPackageController::class, 'purchase_package_offline'])->name('make_offline_payment');
 });
 

@@ -61,7 +61,7 @@
 					<input type="number" lang="en" name="qty_{{ $str }}" value="10" min="0" step="1" class="form-control" required>
 				</td>
 				<td>
-					<div class=" input-group " data-toggle="aizuploader" data-type="image">
+					<div class=" input-group " data-toggle="aizuploader" data-type="folder,image">
 						<div class="input-group-prepend">
 							<div class="input-group-text bg-soft-secondary font-weight-medium">{{ translate('Browse') }}</div>
 						</div>

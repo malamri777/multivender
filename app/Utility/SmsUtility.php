@@ -7,7 +7,7 @@ use App\Models\User;
 
 class SmsUtility
 {
-    public static function phone_number_verification(User $user = '')
+    public static function phone_number_verification($user = '')
     {
 
         $sms_template   = SmsTemplate::where('identifier','phone_number_verification')->first();

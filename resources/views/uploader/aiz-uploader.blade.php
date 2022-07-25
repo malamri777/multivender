@@ -11,12 +11,12 @@
 							<a class="nav-link font-weight-medium text-dark" data-toggle="tab" href="#aiz-upload-new">{{ translate('Upload New') }}</a>
 						</li>
                         <li class="nav-item">
-                            <a class="nav-link font-weight-medium text-dark" id="back-to-main-upload-page">
+                            <a class="nav-link font-weight-medium text-dark" data-click="backToMainUploadPage">
                                 <i class="las la-home text-danger" style="font-size: 20px" title="{{translate('Back to main upload page')}}"></i>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link font-weight-medium text-dark">
+                            <a class="nav-link font-weight-medium text-dark" data-click="previousFolder">
                                 <i class="las la-arrow-circle-left text-danger" style="font-size: 20px" title="{{translate('Previous Folder')}}"></i>
                             </a>
                         </li>

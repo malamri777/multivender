@@ -94,7 +94,7 @@ class VerificationController extends Controller
         }
 
         if($user->user_type == 'seller') {
-            return redirect()->route('seller.dashboard');
+            return redirect()->route('supplier.dashboard');
         }
 
         return redirect()->route('dashboard');

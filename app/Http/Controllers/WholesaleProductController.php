@@ -189,7 +189,7 @@ class WholesaleProductController extends Controller
         }
 
         (new WholesaleService)->store($request);
-        return redirect()->route('seller.wholesale_products_list');
+        return redirect()->route('supplier.wholesale_products_list');
     }
 
 

@@ -26,7 +26,7 @@
         @endif
 
         <div class="col-md-4 mx-auto mb-3" >
-            <a href="{{ route('seller.products.create')}}">
+            <a href="{{ route('supplier.products.create')}}">
               <div class="p-3 rounded mb-3 c-pointer text-center bg-white shadow-sm hov-shadow-lg has-transition">
                   <span class="size-60px rounded-circle mx-auto bg-secondary d-flex align-items-center justify-content-center mb-3">
                       <i class="las la-plus la-3x text-white"></i>
@@ -37,7 +37,7 @@
         </div>
 
         <div class="col-md-4 mx-auto mb-3" >
-            <a href="{{ route('seller.products.exist')}}">
+            <a href="{{ route('supplier.products.exist')}}">
               <div class="p-3 rounded mb-3 c-pointer text-center bg-white shadow-sm hov-shadow-lg has-transition">
                   <span class="size-60px rounded-circle mx-auto bg-secondary d-flex align-items-center justify-content-center mb-3">
                       <i class="las la-plus la-3x text-white"></i>
@@ -52,7 +52,7 @@
             $seller_package = \App\Models\SellerPackage::find(Auth::user()->shop->seller_package_id);
         @endphp
         <div class="col-md-4">
-            <a href="{{ route('seller.seller_packages_list') }}" class="text-center bg-white shadow-sm hov-shadow-lg text-center d-block p-3 rounded">
+            <a href="{{ route('supplier.seller_packages_list') }}" class="text-center bg-white shadow-sm hov-shadow-lg text-center d-block p-3 rounded">
                 @if($seller_package != null)
                     <img src="{{ uploaded_asset($seller_package->logo) }}" height="44" class="mw-100 mx-auto">
                     <span class="d-block sub-title mb-2">{{ translate('Current Package')}}: {{ $seller_package->getTranslation('name') }}</span>
@@ -144,13 +144,13 @@
                                 </label>
                             </td>
                             <td class="text-right">
-		                      <a class="btn btn-soft-info btn-icon btn-circle btn-sm" href="{{route('seller.products.edit', ['id'=>$product->id, 'lang'=>env('DEFAULT_LANGUAGE')])}}" title="{{ translate('Edit') }}">
+		                      <a class="btn btn-soft-info btn-icon btn-circle btn-sm" href="{{route('supplier.products.edit', ['id'=>$product->id, 'lang'=>config('myenv.DEFAULT_LANGUAGE')])}}" title="{{ translate('Edit') }}">
 		                          <i class="las la-edit"></i>
 		                      </a>
-                              <a href="{{route('seller.products.duplicate', $product->id)}}" class="btn btn-soft-success btn-icon btn-circle btn-sm"  title="{{ translate('Duplicate') }}">
+                              <a href="{{route('supplier.products.duplicate', $product->id)}}" class="btn btn-soft-success btn-icon btn-circle btn-sm"  title="{{ translate('Duplicate') }}">
     							   <i class="las la-copy"></i>
     						  </a>
-                              <a href="#" class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete" data-href="{{route('seller.products.destroy', $product->id)}}" title="{{ translate('Delete') }}">
+                              <a href="#" class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete" data-href="{{route('supplier.products.destroy', $product->id)}}" title="{{ translate('Delete') }}">
                                   <i class="las la-trash"></i>
                               </a>
                           </td>
@@ -179,7 +179,7 @@
             else{
                 var status = 0;
             }
-            $.post('{{ route('seller.products.featured') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
+            $.post('{{ route('supplier.products.featured') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
                 if(data == 1){
                     AIZ.plugins.notify('success', '{{ translate('Featured products updated successfully') }}');
                 }
@@ -197,7 +197,7 @@
             else{
                 var status = 0;
             }
-            $.post('{{ route('seller.products.published') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
+            $.post('{{ route('supplier.products.published') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
                 if(data == 1){
                     AIZ.plugins.notify('success', '{{ translate('Published products updated successfully') }}');
                 }

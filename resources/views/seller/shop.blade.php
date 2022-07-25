@@ -18,7 +18,7 @@
             <h5 class="mb-0 h6">{{ translate('Basic Info') }}</h5>
         </div>
         <div class="card-body">
-            <form class="" action="{{ route('seller.shop.update') }}" method="POST" enctype="multipart/form-data">
+            <form class="" action="{{ route('supplier.shop.update') }}" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="shop_id" value="{{ $shop->id }}">
                 @csrf
                 <div class="row">
@@ -30,7 +30,7 @@
                 <div class="row mb-3">
                     <label class="col-md-2 col-form-label">{{ translate('Shop Logo') }}</label>
                     <div class="col-md-10">
-                        <div class="input-group" data-toggle="aizuploader" data-type="image">
+                        <div class="input-group" data-toggle="aizuploader" data-type="folder,image">
                             <div class="input-group-prepend">
                                 <div class="input-group-text bg-soft-secondary font-weight-medium">{{ translate('Browse')}}</div>
                             </div>
@@ -64,7 +64,7 @@
                             <input type="number" lang="en" min="0" class="form-control mb-3" placeholder="{{ translate('Shipping Cost')}}" name="shipping_cost" value="{{ $shop->shipping_cost }}" required>
                         </div>
                     </div>
-                @endif 
+                @endif
                 <div class="row">
                     <label class="col-md-2 col-form-label">{{ translate('Meta Title') }}<span class="text-danger text-danger">*</span></label>
                     <div class="col-md-10">
@@ -90,7 +90,7 @@
                 <h5 class="mb-0 h6">{{ translate('Delivery Boy Pickup Point') }}</h5>
             </div>
             <div class="card-body">
-                <form class="" action="{{ route('seller.shop.update') }}" method="POST" enctype="multipart/form-data">
+                <form class="" action="{{ route('supplier.shop.update') }}" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="shop_id" value="{{ $shop->id }}">
                     @csrf
 
@@ -155,14 +155,14 @@
             <h5 class="mb-0 h6">{{ translate('Banner Settings') }}</h5>
         </div>
         <div class="card-body">
-            <form class="" action="{{ route('seller.shop.update') }}" method="POST" enctype="multipart/form-data">
+            <form class="" action="{{ route('supplier.shop.update') }}" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="shop_id" value="{{ $shop->id }}">
                 @csrf
 
                 <div class="row mb-3">
                     <label class="col-md-2 col-form-label">{{ translate('Banners') }} (1500x450)</label>
                     <div class="col-md-10">
-                        <div class="input-group" data-toggle="aizuploader" data-type="image" data-multiple="true">
+                        <div class="input-group" data-toggle="aizuploader" data-type="folder,image" data-multiple="true">
                             <div class="input-group-prepend">
                                 <div class="input-group-text bg-soft-secondary font-weight-medium">{{ translate('Browse')}}</div>
                             </div>
@@ -188,7 +188,7 @@
             <h5 class="mb-0 h6">{{ translate('Social Media Link') }}</h5>
         </div>
         <div class="card-body">
-            <form class="" action="{{ route('seller.shop.update') }}" method="POST" enctype="multipart/form-data">
+            <form class="" action="{{ route('supplier.shop.update') }}" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="shop_id" value="{{ $shop->id }}">
                 @csrf
                 <div class="form-box-content p-3">
@@ -240,9 +240,9 @@
 @section('script')
 
     @if (get_setting('google_map') == 1)
-        
+
         @include('frontend.partials.google_map')
-        
+
     @endif
 
 @endsection

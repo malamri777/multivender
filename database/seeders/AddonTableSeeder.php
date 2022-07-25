@@ -32,5 +32,23 @@ class AddonTableSeeder extends Seeder
             "activated" => 1,
             "purchase_code" => "lskdfjlsdkjf"
         ]);
+
+        Addon::create([
+            'name' => 'POS System',
+            "unique_identifier" => "pos_system",
+            "version" => "1.0",
+            "image" => "addons/otp_system.png",
+            "activated" => 0,
+            "purchase_code" => "lskdfjlsdkjf"
+        ]);
+
+        Addon::create([
+            'name' => 'Refund Request',
+            "unique_identifier" => "refund_request",
+            "version" => "1.0",
+            "image" => "addons/otp_system.png",
+            "activated" => 0,
+            "purchase_code" => "lskdfjlsdkjf"
+        ]);
     }
 }

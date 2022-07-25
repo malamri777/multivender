@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="card-body">
-            <form action="{{route('seller.support_ticket.reply_store')}}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('supplier.support_ticket.reply_store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="ticket_id" value="{{$ticket->id}}" required>
                 <input type="hidden" name="user_id" value="{{$ticket->user_id}}">
@@ -22,7 +22,7 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-md-12">
-                        <div class="input-group" data-toggle="aizuploader" data-type="image" data-multiple="true">
+                        <div class="input-group" data-toggle="aizuploader" data-type="folder,image" data-multiple="true">
                             <div class="input-group-prepend">
                                 <div class="input-group-text bg-soft-secondary font-weight-medium">{{ translate('Browse')}}</div>
                             </div>

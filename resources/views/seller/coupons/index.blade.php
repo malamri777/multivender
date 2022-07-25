@@ -11,7 +11,7 @@
 
     <div class="row gutters-10 justify-content-center">
         <div class="col-md-4 mx-auto mb-3" >
-            <a href="{{ route('seller.coupon.create')}}">
+            <a href="{{ route('supplier.coupon.create')}}">
             <div class="p-3 rounded mb-3 c-pointer text-center bg-white shadow-sm hov-shadow-lg has-transition">
                 <span class="size-60px rounded-circle mx-auto bg-secondary d-flex align-items-center justify-content-center mb-3">
                     <i class="las la-plus la-3x text-white"></i>
@@ -52,10 +52,10 @@
                             <td>{{ date('d-m-Y', $coupon->start_date) }}</td>
                             <td>{{ date('d-m-Y', $coupon->end_date) }}</td>
                             <td class="text-right">
-                                <a class="btn btn-soft-primary btn-icon btn-circle btn-sm" href="{{route('seller.coupon.edit', encrypt($coupon->id) )}}" title="{{ translate('Edit') }}">
+                                <a class="btn btn-soft-primary btn-icon btn-circle btn-sm" href="{{route('supplier.coupon.edit', encrypt($coupon->id) )}}" title="{{ translate('Edit') }}">
                                     <i class="las la-edit"></i>
                                 </a>
-                                <a href="#" class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete" data-href="{{route('seller.coupon.destroy', $coupon->id)}}" title="{{ translate('Delete') }}">
+                                <a href="#" class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete" data-href="{{route('supplier.coupon.destroy', $coupon->id)}}" title="{{ translate('Delete') }}">
                                     <i class="las la-trash"></i>
                                 </a>
                             </td>

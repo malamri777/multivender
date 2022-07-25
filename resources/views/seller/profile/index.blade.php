@@ -8,7 +8,7 @@
         </div>
       </div>
     </div>
-    <form action="{{ route('seller.profile.update', $user->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('supplier.profile.update', $user->id) }}" method="POST" enctype="multipart/form-data">
         <input name="_method" type="hidden" value="POST">
         @csrf
         <!-- Basic Info-->
@@ -39,7 +39,7 @@
                 <div class="form-group row">
                     <label class="col-md-2 col-form-label">{{ translate('Photo') }}</label>
                     <div class="col-md-10">
-                        <div class="input-group" data-toggle="aizuploader" data-type="image">
+                        <div class="input-group" data-toggle="aizuploader" data-type="folder,image">
                             <div class="input-group-prepend">
                                 <div class="input-group-text bg-soft-secondary font-weight-medium">{{ translate('Browse')}}</div>
                             </div>
@@ -190,9 +190,9 @@
                                         {{ translate('Edit') }}
                                     </a>
                                     @if (!$address->set_default)
-                                        <a class="dropdown-item" href="{{ route('seller.addresses.set_default', $address->id) }}">{{ translate('Make This Default') }}</a>
+                                        <a class="dropdown-item" href="{{ route('supplier.addresses.set_default', $address->id) }}">{{ translate('Make This Default') }}</a>
                                     @endif
-                                    <a class="dropdown-item" href="{{ route('seller.addresses.destroy', $address->id) }}">{{ translate('Delete') }}</a>
+                                    <a class="dropdown-item" href="{{ route('supplier.addresses.destroy', $address->id) }}">{{ translate('Delete') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -254,7 +254,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form class="form-default" role="form" action="{{ route('seller.addresses.store') }}" method="POST">
+                <form class="form-default" role="form" action="{{ route('supplier.addresses.store') }}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <div class="p-3">
@@ -281,7 +281,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="row">
                                 <div class="col-md-2">
                                     <label>{{ translate('State')}}</label>
@@ -334,7 +334,7 @@
                                     </div>
                                 </div>
                             @endif
-                            
+
                             <div class="row">
                                 <div class="col-md-2">
                                     <label>{{ translate('Postal code')}}</label>
@@ -371,7 +371,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                
+
                 <div class="modal-body" id="edit_modal_body">
 
                 </div>
@@ -383,7 +383,7 @@
 
 @section('script')
     <script type="text/javascript">
-        
+
         $('.new-email-verification').on('click', function() {
             $(this).find('.loading').removeClass('d-none');
             $(this).find('.default').addClass('d-none');
@@ -409,7 +409,7 @@
         function edit_address(address) {
             var url = '{{ route("seller.addresses.edit", ":id") }}';
             url = url.replace(':id', address);
-            
+
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -435,7 +435,7 @@
                 }
             });
         }
-        
+
         $(document).on('change', '[name=country_id]', function() {
             var country_id = $(this).val();
             get_states(country_id);
@@ -445,14 +445,14 @@
             var state_id = $(this).val();
             get_city(state_id);
         });
-        
+
         function get_states(country_id) {
             $('[name="state"]').html("");
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url: "{{route('seller.get-state')}}",
+                url: "{{route('supplier.get-state')}}",
                 type: 'POST',
                 data: {
                     country_id  : country_id
@@ -473,7 +473,7 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url: "{{route('seller.get-city')}}",
+                url: "{{route('supplier.get-city')}}",
                 type: 'POST',
                 data: {
                     state_id: state_id
@@ -491,9 +491,9 @@
     </script>
 
     @if (get_setting('google_map') == 1)
-        
+
         @include('frontend.partials.google_map')
-        
+
     @endif
 
 @endsection

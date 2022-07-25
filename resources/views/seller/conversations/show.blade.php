@@ -44,7 +44,7 @@
                     </li>
                 @endforeach
             </ul>
-            <form class="pt-4" action="{{ route('seller.conversations.message_store') }}" method="POST">
+            <form class="pt-4" action="{{ route('supplier.conversations.message_store') }}" method="POST">
                 @csrf
                 <input type="hidden" name="conversation_id" value="{{ $conversation->id }}">
                 <div class="form-group">
@@ -61,7 +61,7 @@
 @section('script')
     <script type="text/javascript">
     function refresh_messages(){
-        $.post('{{ route('seller.conversations.refresh') }}', {_token:'{{ @csrf_token() }}', id:'{{ encrypt($conversation->id) }}'}, function(data){
+        $.post('{{ route('supplier.conversations.refresh') }}', {_token:'{{ @csrf_token() }}', id:'{{ encrypt($conversation->id) }}'}, function(data){
             $('#messages').html(data);
         })
     }

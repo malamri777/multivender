@@ -16,30 +16,38 @@ class TranslationTableSeeder extends Seeder
      */
     public function run()
     {
-        $path = base_path() . '/database/seeders/sql/Translation.sql';
-        $sql = file_get_contents($path);
-        DB::unprepared($sql);
+//        $path = base_path() . '/database/seeders/sql/Translation.sql';
+//        $sql = file_get_contents($path);
+//        DB::unprepared($sql);
 
-        Translation::create([
-            'lang' => 'en',
-            'lang_key' => 'shipping_districts',
-            'lang_value' => 'Shipping Districts'
-        ]);
-        Translation::create([
-            'lang' => 'ar',
-            'lang_key' => 'shipping_districts',
-            'lang_value' => 'مناطق الشحن'
-        ]);
+        $translationsJson = json_decode(file_get_contents(app_path() . "/../database/seeders/data/translations.json"), true);
+        foreach ($translationsJson as $t) {
+            Translation::create($t);
+        }
 
-        Translation::create([
-            'lang' => 'en',
-            'lang_key' => 'districts',
-            'lang_value' => 'Districts'
-        ]);
-        Translation::create([
-            'lang' => 'ar',
-            'lang_key' => 'districts',
-            'lang_value' => 'المناطق'
-        ]);
+        $t = [
+            [
+                'lang' => 'en',
+                'lang_key' => 'shipping_districts',
+                'lang_value' => 'Shipping Districts'
+            ],
+            [
+                'lang' => 'ar',
+                'lang_key' => 'shipping_districts',
+                'lang_value' => 'مناطق الشحن'
+            ],
+            [
+                'lang' => 'en',
+                'lang_key' => 'districts',
+                'lang_value' => 'Districts'
+            ],
+            [
+                'lang' => 'ar',
+                'lang_key' => 'districts',
+                'lang_value' => 'المناطق'
+            ]
+        ];
+
+        Translation::insert($t);
     }
 }

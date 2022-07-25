@@ -162,21 +162,21 @@
                         </li>
                         @endpermission
                         <li class="aiz-side-nav-item">
-                            <a href="{{route('admin.products.all')}}" class="aiz-side-nav-link">
+                            <a href="{{route('admin.products.all')}}" class="aiz-side-nav-link {{ areActiveRoutes(['admin.products.admin', 'admin.products.create', 'admin.products.admin.edit']) }}">
                                 <span class="aiz-side-nav-text">{{ translate('All Products') }}</span>
                             </a>
                         </li>
-                        <li class="aiz-side-nav-item">
+                        {{-- <li class="aiz-side-nav-item">
                             <a href="{{route('admin.products.admin')}}"
                                 class="aiz-side-nav-link {{ areActiveRoutes(['admin.products.admin', 'admin.products.create', 'admin.products.admin.edit']) }}">
                                 <span class="aiz-side-nav-text">{{ translate('In House Products') }}</span>
                             </a>
-                        </li>
+                        </li> --}}
                         @if(get_setting('vendor_system_activation') == 1)
                         <li class="aiz-side-nav-item">
                             <a href="{{route('admin.products.seller')}}"
                                 class="aiz-side-nav-link {{ areActiveRoutes(['products.seller', 'products.seller.edit']) }}">
-                                <span class="aiz-side-nav-text">{{ translate('Seller Products') }}</span>
+                                <span class="aiz-side-nav-text">{{ translate('Supplier Products') }}</span>
                             </a>
                         </li>
                         @endif
@@ -212,12 +212,6 @@
                             <a href="{{route('admin.attributes.index')}}"
                                 class="aiz-side-nav-link {{ areActiveRoutes(['admin.attributes.index','admin.attributes.create','admin.attributes.edit'])}}">
                                 <span class="aiz-side-nav-text">{{translate('Attribute')}}</span>
-                            </a>
-                        </li>
-                        <li class="aiz-side-nav-item">
-                            <a href="{{route('admin.colors')}}"
-                                class="aiz-side-nav-link {{ areActiveRoutes(['admin.colors.edit'])}}">
-                                <span class="aiz-side-nav-text">{{translate('Colors')}}</span>
                             </a>
                         </li>
                         <li class="aiz-side-nav-item">
@@ -1151,6 +1145,13 @@
                                     <span class="aiz-side-nav-text">{{translate('Server status')}}</span>
                                 </a>
                             </li>
+                            @if(Auth::user()->hasRole('super_admin'))
+                                <li class="aiz-side-nav-item">
+                                    <a href="/tinker" class="aiz-side-nav-link">
+                                        <span class="aiz-side-nav-text">{{translate('Tinker')}}</span>
+                                    </a>
+                                </li>
+                            @endif
                         </ul>
                     </li>
                     @endpermission

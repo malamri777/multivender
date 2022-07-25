@@ -41,7 +41,7 @@ class SupportTicketController extends Controller
         if($ticket->save()){
             $this->send_support_mail_to_admin($ticket);
             flash(translate('Ticket has been sent successfully'))->success();
-            return redirect()->route('seller.support_ticket.index');
+            return redirect()->route('supplier.support_ticket.index');
         }
         else{
             flash(translate('Something went wrong'))->error();

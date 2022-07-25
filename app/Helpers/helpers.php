@@ -3,6 +3,8 @@
 use App\Http\Controllers\ClubPointController;
 use App\Http\Controllers\AffiliateController;
 use App\Http\Controllers\CommissionController;
+use App\Models\Coupon;
+use App\Models\CouponUsage;
 use App\Models\Currency;
 use App\Models\BusinessSetting;
 use App\Models\ProductStock;
@@ -85,7 +87,9 @@ if (!function_exists('filter_products')) {
     {
         $verified_sellers = verified_sellers_id();
         if (get_setting('vendor_system_activation') == 1) {
-            return $products->where('approved', '1')->where('published', '1')->where('auction_product', 0)->orderBy('created_at', 'desc')->where(function ($p) use ($verified_sellers) {
+            return $products->where('approved', '1')->where('published', '1')
+                // ->where('auction_product', 0)
+                ->orderBy('created_at', 'desc')->where(function ($p) use ($verified_sellers) {
                 $p->where('added_by', 'admin')->orWhere(function ($q) use ($verified_sellers) {
                     $q->whereIn('user_id', $verified_sellers);
                 });
@@ -582,7 +586,7 @@ if (!function_exists('my_asset')) {
     function my_asset($path, $secure = null)
     {
         if (env('FILESYSTEM_DRIVER') == 's3') {
-            return Storage::disk('s3')->url($path);
+            return Storage::disk('s3')->url("public/$path");
         } else {
             return app('url')->asset($path, $secure);
 //            return app('url')->asset('public/' . $path, $secure);
@@ -874,7 +878,7 @@ if (!function_exists('seller_package_validity_check')) {
 if (!function_exists('getDefaultLanguage')) {
     function getDefaultLanguage()
     {
-        return env('DEFAULT_LANGUAGE') ?? 'en';
+        return config('myenv.DEFAULT_LANGUAGE') ?? 'en';
     }
 }
 
@@ -950,6 +954,281 @@ if (!function_exists('checkerCountryCode')) {
     }
 }
 //  - supplier
+
+//Shows Price on page based on carts
+if (!function_exists('cart_product_price')) {
+    function cart_product_price($cart_product, $product, $formatted = true, $tax = true)
+    {
+        $str = '';
+        if ($cart_product['variation'] != null) {
+            $str = $cart_product['variation'];
+        }
+        $price = 0;
+        $product_stock = $product->stocks->where('variant', $str)->first();
+        if($product_stock) {
+            $price = $product_stock->price;
+        }
+
+
+        //discount calculation
+        $discount_applicable = false;
+
+        if ($product->discount_start_date == null) {
+            $discount_applicable = true;
+        }
+        elseif (strtotime(date('d-m-Y H:i:s')) >= $product->discount_start_date &&
+            strtotime(date('d-m-Y H:i:s')) <= $product->discount_end_date) {
+            $discount_applicable = true;
+        }
+
+        if ($discount_applicable) {
+            if($product->discount_type == 'percent'){
+                $price -= ($price*$product->discount)/100;
+            }
+            elseif($product->discount_type == 'amount'){
+                $price -= $product->discount;
+            }
+        }
+
+        //calculation of taxes
+        if($tax){
+            $taxAmount = 0;
+            foreach ($product->taxes as $product_tax) {
+                if($product_tax->tax_type == 'percent'){
+                    $taxAmount += ($price * $product_tax->tax) / 100;
+                }
+                elseif($product_tax->tax_type == 'amount'){
+                    $taxAmount += $product_tax->tax;
+                }
+            }
+            $price += $taxAmount;
+        }
+
+        if ($formatted) {
+            return format_price(convert_price($price));
+        } else {
+            return $price;
+        }
+
+    }
+}
+
+if (!function_exists('cart_product_tax')) {
+    function cart_product_tax($cart_product, $product, $formatted = true)
+    {
+        $str = '';
+        if ($cart_product['variation'] != null) {
+            $str = $cart_product['variation'];
+        }
+        $product_stock = $product->stocks->where('variant', $str)->first();
+        $price = $product_stock->price;
+
+        //discount calculation
+        $discount_applicable = false;
+
+        if ($product->discount_start_date == null) {
+            $discount_applicable = true;
+        }
+        elseif (strtotime(date('d-m-Y H:i:s')) >= $product->discount_start_date &&
+            strtotime(date('d-m-Y H:i:s')) <= $product->discount_end_date) {
+            $discount_applicable = true;
+        }
+
+        if ($discount_applicable) {
+            if($product->discount_type == 'percent'){
+                $price -= ($price*$product->discount)/100;
+            }
+            elseif($product->discount_type == 'amount'){
+                $price -= $product->discount;
+            }
+        }
+
+        //calculation of taxes
+        $tax = 0;
+        foreach ($product->taxes as $product_tax) {
+            if($product_tax->tax_type == 'percent'){
+                $tax += ($price * $product_tax->tax) / 100;
+            }
+            elseif($product_tax->tax_type == 'amount'){
+                $tax += $product_tax->tax;
+            }
+        }
+
+        if ($formatted) {
+            return format_price(convert_price($tax));
+        } else {
+            return $tax;
+        }
+
+    }
+}
+
+if (!function_exists('cart_product_discount')) {
+    function cart_product_discount($cart_product, $product, $formatted = false)
+    {
+        $str = '';
+        if ($cart_product['variation'] != null) {
+            $str = $cart_product['variation'];
+        }
+        $product_stock = $product->stocks->where('variant', $str)->first();
+        $price = $product_stock->price;
+
+        //discount calculation
+        $discount_applicable = false;
+        $discount = 0;
+
+        if ($product->discount_start_date == null) {
+            $discount_applicable = true;
+        }
+        elseif (strtotime(date('d-m-Y H:i:s')) >= $product->discount_start_date &&
+            strtotime(date('d-m-Y H:i:s')) <= $product->discount_end_date) {
+            $discount_applicable = true;
+        }
+
+        if ($discount_applicable) {
+            if($product->discount_type == 'percent'){
+                $discount = ($price*$product->discount)/100;
+            }
+            elseif($product->discount_type == 'amount'){
+                $discount = $product->discount;
+            }
+        }
+
+        if ($formatted) {
+            return format_price(convert_price($discount));
+        } else {
+            return $discount;
+        }
+
+    }
+}
+
+// all discount
+if (!function_exists('carts_product_discount')) {
+    function carts_product_discount($cart_products, $formatted = false)
+    {
+        $discount = 0;
+        foreach ($cart_products as $key => $cart_product) {
+            $str = '';
+            $product = \App\Models\Product::find($cart_product['product_id']);
+            if ($cart_product['variation'] != null) {
+                $str = $cart_product['variation'];
+            }
+            $product_stock = $product->stocks->where('variant', $str)->first();
+            $price = $product_stock->price;
+
+            //discount calculation
+            $discount_applicable = false;
+
+            if ($product->discount_start_date == null) {
+                $discount_applicable = true;
+            }
+            elseif (strtotime(date('d-m-Y H:i:s')) >= $product->discount_start_date &&
+                strtotime(date('d-m-Y H:i:s')) <= $product->discount_end_date) {
+                $discount_applicable = true;
+            }
+
+            if ($discount_applicable) {
+                if($product->discount_type == 'percent'){
+                    $discount += ($price*$product->discount)/100;
+                }
+                elseif($product->discount_type == 'amount'){
+                    $discount += $product->discount;
+                }
+            }
+        }
+
+        if ($formatted) {
+            return format_price(convert_price($discount));
+        } else {
+            return $discount;
+        }
+
+    }
+}
+
+if (!function_exists('carts_coupon_discount')) {
+    function carts_coupon_discount($code, $formatted = false)
+    {
+        $coupon = Coupon::where('code', $code)->first();
+        $coupon_discount = 0;
+        if ($coupon != null) {
+            if (strtotime(date('d-m-Y')) >= $coupon->start_date && strtotime(date('d-m-Y')) <= $coupon->end_date) {
+                if (CouponUsage::where('user_id', Auth::user()->id)->where('coupon_id', $coupon->id)->first() == null) {
+                    $coupon_details = json_decode($coupon->details);
+
+                    $carts = Cart::where('user_id', Auth::user()->id)
+                        ->where('owner_id', $coupon->user_id)
+                        ->get();
+
+                    if ($coupon->type == 'cart_base') {
+                        $subtotal = 0;
+                        $tax = 0;
+                        $shipping = 0;
+                        foreach ($carts as $key => $cartItem) {
+                            $product = Product::find($cartItem['product_id']);
+                            $subtotal += cart_product_price($cartItem, $product, false, false) * $cartItem['quantity'];
+                            $tax += cart_product_tax($cartItem, $product,false) * $cartItem['quantity'];
+                            $shipping += $cartItem['shipping_cost'];
+                        }
+                        $sum = $subtotal + $tax + $shipping;
+
+                        if ($sum >= $coupon_details->min_buy) {
+                            if ($coupon->discount_type == 'percent') {
+                                $coupon_discount = ($sum * $coupon->discount) / 100;
+                                if ($coupon_discount > $coupon_details->max_discount) {
+                                    $coupon_discount = $coupon_details->max_discount;
+                                }
+                            } elseif ($coupon->discount_type == 'amount') {
+                                $coupon_discount = $coupon->discount;
+                            }
+
+                        }
+                    } elseif ($coupon->type == 'product_base') {
+                        foreach ($carts as $key => $cartItem) {
+                            $product = Product::find($cartItem['product_id']);
+                            foreach ($coupon_details as $key => $coupon_detail) {
+                                if ($coupon_detail->product_id == $cartItem['product_id']) {
+                                    if ($coupon->discount_type == 'percent') {
+                                        $coupon_discount += (cart_product_price($cartItem, $product, false, false) * $coupon->discount / 100) * $cartItem['quantity'];
+                                    } elseif ($coupon->discount_type == 'amount') {
+                                        $coupon_discount += $coupon->discount * $cartItem['quantity'];
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+
+            if($coupon_discount > 0){
+                Cart::where('user_id', Auth::user()->id)
+                    ->where('owner_id', $coupon->user_id)
+                    ->update(
+                        [
+                            'discount' => $coupon_discount / count($carts),
+                        ]
+                    );
+            }else{
+                Cart::where('user_id', Auth::user()->id)
+                    ->where('owner_id', $coupon->user_id)
+                    ->update(
+                        [
+                            'discount' => 0,
+                            'coupon_code' => null,
+                        ]
+                    );
+            }
+        }
+
+        if ($formatted) {
+            return format_price(convert_price($coupon_discount));
+        } else {
+            return $coupon_discount;
+        }
+    }
+}
 
 if (!function_exists('supplierRolesList')) {
     function supplierRolesList()

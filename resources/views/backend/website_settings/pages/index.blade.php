@@ -39,16 +39,16 @@
 
         		<td class="text-right">
 					@if($page->type == 'home_page')
-						<a href="{{route('admin.custom-pages.edit', ['custom_page'=>$page->slug, 'lang'=>env('DEFAULT_LANGUAGE'), 'page'=>'home'] )}}" class="btn btn-icon btn-circle btn-sm btn-soft-primary" title="Edit">
+						<a href="{{route('admin.custom-pages.edit', ['custom_page'=>$page->slug, 'lang'=>config('myenv.DEFAULT_LANGUAGE'), 'page'=>'home'] )}}" class="btn btn-icon btn-circle btn-sm btn-soft-primary" title="Edit">
 							<i class="las la-pen"></i>
 						</a>
                     @elseif($page->type == 'mobile_home_page')
-                    <a href="{{route('admin.custom-pages.edit', ['custom_page'=>$page->slug, 'lang'=>env('DEFAULT_LANGUAGE'), 'page'=>'mobile_home'] )}}"
+                    <a href="{{route('admin.custom-pages.edit', ['custom_page'=>$page->slug, 'lang'=>config('myenv.DEFAULT_LANGUAGE'), 'page'=>'mobile_home'] )}}"
                         class="btn btn-icon btn-circle btn-sm btn-soft-primary" title="Edit">
                         <i class="las la-pen"></i>
                     </a>
 					@else
-	          			<a href="{{route('admin.custom-pages.edit', ['custom_page'=>$page->slug, 'lang'=>env('DEFAULT_LANGUAGE')] )}}" class="btn btn-icon btn-circle btn-sm btn-soft-primary" title="Edit">
+	          			<a href="{{route('admin.custom-pages.edit', ['custom_page'=>$page->slug, 'lang'=>config('myenv.DEFAULT_LANGUAGE')] )}}" class="btn btn-icon btn-circle btn-sm btn-soft-primary" title="Edit">
 							<i class="las la-pen"></i>
 						</a>
 					@endif

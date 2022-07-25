@@ -36,7 +36,7 @@ class SellerWithdrawRequestController extends Controller
         $seller_withdraw_request->viewed = '0';
         if ($seller_withdraw_request->save()) {
             flash(translate('Request has been sent successfully'))->success();
-            return redirect()->route('seller.money_withdraw_requests.index');
+            return redirect()->route('supplier.money_withdraw_requests.index');
         }
         else{
             flash(translate('Something went wrong'))->error();

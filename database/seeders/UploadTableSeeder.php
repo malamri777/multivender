@@ -16,6 +16,7 @@ class UploadTableSeeder extends Seeder
      */
     public function run()
     {
+
         Upload::create([
             'folder_name' => 'parent',
             'type' => 'folder',
@@ -100,6 +101,24 @@ class UploadTableSeeder extends Seeder
             'folder_id' => 1,
             'file_original_name' => 'Favicon Logo',
             'file_name' => 'assets/img/favicon.png',
+            'user_id' => 1,
+            'extension' => 'png',
+            'type' => 'image',
+            'file_size' => '28070'
+        ]);
+        Upload::create([
+            'folder_id' => 1,
+            'file_original_name' => 'icon-placeholder',
+            'file_name' => '/assets/img/icon-placeholder.jpeg',
+            'user_id' => 1,
+            'extension' => 'jpeg',
+            'type' => 'image',
+            'file_size' => '28070'
+        ]);
+        Upload::create([
+            'folder_id' => 1,
+            'file_original_name' => 'icon-placeholder',
+            'file_name' => '/assets/img/banner-placeholder.png',
             'user_id' => 1,
             'extension' => 'png',
             'type' => 'image',

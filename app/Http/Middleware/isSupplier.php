@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Auth;
 
-class IsSeller
+class isSupplier
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class IsSeller
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->user_type == 'supplier_admin'  && !Auth::user()->banned) {
+        if (Auth::check() && Auth::user()->hasRole(supplierRolesList())) {
             return $next($request);
         }
         else{

@@ -188,7 +188,7 @@ class ProductController extends Controller
             }
         }
 
-        return redirect()->route('seller.products.exist');
+        return redirect()->route('supplier.products.exist');
     }
 
 
@@ -197,7 +197,7 @@ class ProductController extends Controller
         if (addon_is_activated('seller_subscription')) {
             if (!seller_package_validity_check()) {
                 flash(translate('Please upgrade your package.'))->warning();
-                return redirect()->route('seller.products');
+                return redirect()->route('supplier.products');
             }
         }
 
@@ -219,7 +219,7 @@ class ProductController extends Controller
         ]), $product);
 
         // Product Translations
-        $request->merge(['lang' => env('DEFAULT_LANGUAGE')]);
+        $request->merge(['lang' => config('myenv.DEFAULT_LANGUAGE')]);
         ProductTranslation::create($request->only([
             'lang', 'name', 'unit', 'description', 'product_id'
         ]));
@@ -229,7 +229,7 @@ class ProductController extends Controller
         Artisan::call('view:clear');
         Artisan::call('cache:clear');
 
-        return redirect()->route('seller.products');
+        return redirect()->route('supplier.products');
     }
 
     public function edit(Request $request, $id)
@@ -417,7 +417,7 @@ class ProductController extends Controller
             $this->productTaxService->product_duplicate_store($product->taxes, $product_new);
 
             flash(translate('Product has been duplicated successfully'))->success();
-            return redirect()->route('seller.products');
+            return redirect()->route('supplier.products');
         } else {
             flash(translate('This product is not yours.'))->warning();
             return back();

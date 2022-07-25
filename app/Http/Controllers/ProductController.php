@@ -10,7 +10,6 @@ use App\Models\ProductTax;
 use App\Models\AttributeValue;
 use App\Models\Cart;
 use Carbon\Carbon;
-use Combinations;
 use Artisan;
 use Cache;
 use Modules\Translations\Entities\ProductTranslation;
@@ -19,6 +18,7 @@ use App\Services\ProductService;
 use App\Services\ProductTaxService;
 use App\Services\ProductFlashDealService;
 use App\Services\ProductStockService;
+use App\Utility\CombinationsUtility;
 
 class ProductController extends Controller
 {
@@ -115,7 +115,10 @@ class ProductController extends Controller
         $query = null;
         $seller_id = null;
         $sort_search = null;
-        $products = Product::orderBy('created_at', 'desc')->where('auction_product', 0)->where('wholesale_product', 0);
+        $products = Product::orderBy('created_at', 'desc');
+            // ->where('auction_product', 0)
+            // ->where('wholesale_product', 0);
+
         if ($request->has('user_id') && $request->user_id != null) {
             $products = $products->where('user_id', $request->user_id);
             $seller_id = $request->user_id;
@@ -182,7 +185,7 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $product = $this->productService->store($request->except([
-            '_token', 'sku', 'choice', 'tax_id', 'tax', 'tax_type', 'flash_deal_id', 'flash_discount', 'flash_discount_type'
+            '_token', 'choice', 'tax_id', 'tax', 'tax_type', 'flash_deal_id', 'flash_discount', 'flash_discount_type'
         ]));
         $request->merge(['product_id' => $product->id]);
 
@@ -499,7 +502,7 @@ class ProductController extends Controller
             }
         }
 
-        $combinations = Combinations::makeCombinations($options);
+        $combinations = CombinationsUtility::makeCombinations($options);
         return view('backend.product.products.sku_combinations', compact('combinations', 'unit_price', 'colors_active', 'product_name'));
     }
 
@@ -531,7 +534,7 @@ class ProductController extends Controller
             }
         }
 
-        $combinations = Combinations::makeCombinations($options);
+        $combinations = CombinationsUtility::makeCombinations($options);
         return view('backend.product.products.sku_combinations_edit', compact('combinations', 'unit_price', 'colors_active', 'product_name', 'product'));
     }
 }

@@ -185,7 +185,7 @@ class WholesaleService
         }
 
         // Product Translations
-        $product_translation = ProductTranslation::firstOrNew(['lang' => env('DEFAULT_LANGUAGE'), 'product_id' => $product->id]);
+        $product_translation = ProductTranslation::firstOrNew(['lang' => config('myenv.DEFAULT_LANGUAGE'), 'product_id' => $product->id]);
         $product_translation->name = $request->name;
         $product_translation->unit = $request->unit;
         $product_translation->description = $request->description;
