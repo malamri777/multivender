@@ -18,17 +18,18 @@ class AizUploadController extends Controller
         $search = null;
         $sort_by = null;
         $folder_id = null;
-        if (Auth::user()->hasRole(adminRolesList())) {
-            $all_uploads = Upload::query();
-        } else if (Auth::user()->hasRole(supplierRolesList())) {
-            $all_uploads = Upload::where('user_id',auth()->user()->id);
-        }
+        if (Auth::user()->hasRole(adminRolesList()) and Auth::user()->hasPermission('admin_uploads-read')) {
+            $all_uploads = Upload::query()->roleType(Upload::ROLE_TYPE['admin']);
+            if ($request->folder_id != null) {
+                $all_uploads = $all_uploads->where('folder_id', $request->folder_id ?? 1);
+            } else {
+                $all_uploads = $all_uploads->where('folder_id', 1);
+            }
+        } else if (Auth::user()->hasRole(supplierRolesList()) and Auth::user()->hasPermission('supplier_uploads-read')) {
+            $all_uploads = Upload::roleType(Upload::ROLE_TYPE['supplier']);
 
-        if ($request->folder_id != null) {
-            $folder_id = $request->folder_id;
-            $all_uploads = $all_uploads->where('folder_id', $request->folder_id);
-        } else {
-            $all_uploads = $all_uploads->where('folder_id', 1);
+            $parentFolderId = $request->folder_id ?? Auth::user()->supplier->parent_folder_id;
+            $all_uploads = $all_uploads->where('folder_id', $parentFolderId);
         }
 
         if ($request->search != null) {
@@ -58,29 +59,39 @@ class AizUploadController extends Controller
 
         $all_uploads = $all_uploads->paginate(60)->appends(request()->query());
 
-        return (auth()->user()->user_type == 'seller')
-            ? view('seller.uploads.index', compact('all_uploads', 'search', 'sort_by', 'folder_id'))
-            : view('backend.uploaded_files.index', compact('all_uploads', 'search', 'sort_by', 'folder_id'));
+        if (Auth::user()->hasRole(adminRolesList()) and Auth::user()->hasPermission('admin_uploads-read')) {
+            return view('backend.uploaded_files.index', compact('all_uploads', 'search', 'sort_by', 'folder_id'));
+        } elseif (Auth::user()->hasRole(supplierRolesList()) and Auth::user()->hasPermission('supplier_uploads-read')) {
+            return view('supplier.uploads.index', compact('all_uploads', 'search', 'sort_by', 'folder_id'));
+        } else {
+            abort(403);
+        }
     }
 
     public function create(){
-        if (Auth::user()->hasPermission('admin_uploads-create')) {
+        if (Auth::user()->hasRole(adminRolesList()) and Auth::user()->hasPermission('admin_uploads-create')) {
             return view('backend.uploaded_files.create');
-        } else if (Auth::user()->hasPermission('supplier_uploads-create')) {
-            return view('seller.uploads.create');
+        } else if (Auth::user()->hasRole(supplierRolesList()) and Auth::user()->hasPermission('supplier_uploads-create')) {
+            return view('supplier.uploads.create');
         } else {
-            abort(404);
+            abort(403);
         }
     }
 
     public function createFolder(Request $request)
     {
         $upload = new Upload();
-
-        if ($request->folder_id) {
-            $upload->folder_id = $request->folder_id;
+        if (Auth::user()->hasRole(adminRolesList()) and Auth::user()->hasPermission('admin_uploads-create')) {
+            $upload->folder_id = $request->folder_id ?? 1;
+            $upload->role_type = Upload::ROLE_TYPE['admin'];
+        } else if (Auth::user()->hasRole(supplierRolesList()) and Auth::user()->hasPermission('supplier_uploads-create')) {
+            $upload->folder_id = $request->folder_id ?? Auth::user()->supplier->parent_folder_id;
+            $upload->role_type = Upload::ROLE_TYPE['supplier'];
         } else {
-            $upload->folder_id = 1;
+            return response()->json([
+                'result' => false,
+                'message' => translate('You Could not upload file'),
+            ], 401);
         }
 
         $upload->folder_name = $request->name;
@@ -91,12 +102,6 @@ class AizUploadController extends Controller
             'result' => true,
             'message' => translate('Folder Created'),
         ], 200);
-
-//        return response()->json([
-//            'result' => false,
-//            'message' => translate('Error Creating User'),
-//            'user_id' => 0
-//        ], 401);
     }
 
     public function show_uploader(Request $request){
@@ -168,7 +173,6 @@ class AizUploadController extends Controller
                     }
                     $path = $request->file('aiz_file')->store('uploads/all/' . $folderPath, 'local');
                 } else {
-                    $folder = Upload::find(1);
                     $path = $request->file('aiz_file')->store('uploads/all', 'local');
                 }
 
@@ -216,8 +220,20 @@ class AizUploadController extends Controller
                     }
                 }
 
+                if (Auth::user()->hasRole(adminRolesList()) and Auth::user()->hasPermission('admin_uploads-create')) {
+                    $upload->folder_id = $request->folder_id ?? 1;
+                    $upload->role_type = Upload::ROLE_TYPE['admin'];
+                } else if (Auth::user()->hasRole(supplierRolesList()) and Auth::user()->hasPermission('supplier_uploads-create')) {
+                    $upload->folder_id = $request->folder_id ?? Auth::user()->supplier->parent_folder_id;
+                    $upload->role_type = Upload::ROLE_TYPE['supplier'];
+                } else {
+                    return response()->json([
+                        'result' => false,
+                        'message' => translate('You Could not upload file'),
+                    ], 401);
+                }
+
                 $upload->extension = $extension;
-                $upload->folder_id = $folder->id;
                 $upload->file_name = $path;
                 $upload->user_id = Auth::user()->id;
                 $upload->type = $type[$upload->extension];
@@ -339,7 +355,7 @@ class AizUploadController extends Controller
         $file = Upload::findOrFail($request['id']);
 
         return (auth()->user()->user_type == 'seller')
-            ? view('seller.uploads.info',compact('file'))
+            ? view('supplier.uploads.info',compact('file'))
             : view('backend.uploaded_files.info',compact('file'));
     }
 

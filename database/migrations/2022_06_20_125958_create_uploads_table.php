@@ -29,6 +29,7 @@ class CreateUploadsTable extends Migration
             $table->string('extension', 10)->nullable();
             $table->string('type', 15)->nullable();
             $table->string('external_link', 500)->nullable();
+            $table->string('role_type')->default(Upload::ROLE_TYPE['admin'])->comment('enum class in type');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -81,11 +81,6 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Product::class);
     }
 
-    public function shop()
-    {
-        return $this->hasOne(Shop::class);
-    }
-
     public function supplier()
     {
         return $this->belongsTo(Supplier::class, 'provider_id');
@@ -94,7 +89,6 @@ class User extends Authenticatable implements MustVerifyEmail
     public function warehouses()
     {
         return $this->belongsToMany(Warehouse::class, 'warehouse_users');
-        // return $this->belongsToMany(Warehouse::class, 'warehouse_warehouse_user', 'warehouse_user_id', 'warehouse_id');
     }
 
     public function warehouseUsers()
@@ -109,9 +103,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function branches()
     {
-        return $this->belongsToMany(Branch::class ,'branch_user');
-        // return $this->belongsToMany(Warehouse::class, 'warehouse_warehouse_user', 'warehouse_user_id', 'warehouse_id');
-    }
+        return $this->belongsToMany(Branch::class ,'branch_user');    }
 
     public function branchUsers()
     {
@@ -181,10 +173,5 @@ class User extends Authenticatable implements MustVerifyEmail
     public function product_bids()
     {
         return $this->hasMany(AuctionProductBid::class);
-    }
-
-    public function uploadable()
-    {
-        return $this->morphOne(Upload::class, 'uploadable');
     }
 }

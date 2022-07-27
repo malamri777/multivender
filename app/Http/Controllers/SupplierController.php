@@ -176,10 +176,9 @@ class SupplierController extends Controller
         $term = $request->get('q');
         if($request->ajax()){
             $userSupplier = User::where('provider_id', $supplier->id)
-                ->where('user_type', 'supplier_admin')
-                ->where('name', 'like', "%$term%")
-                ->orWhere('email', 'like', "%$term%")
-                ->select('id', 'name')
+                ->whereHas('roles', function($q){
+                    $q->whereIn('name', ['supplier_admin']);
+                })
                 ->paginate(10);
 
             $morePages = true;

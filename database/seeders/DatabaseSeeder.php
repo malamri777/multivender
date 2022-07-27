@@ -32,11 +32,11 @@ class DatabaseSeeder extends Seeder
             LaratrustSeeder::class,
             RoleTableSeeder::class,
 
+            // Upload
+            UploadTableSeeder::class,
 
             SupplierSeeder::class,
             WarehouseTableSeeder::class,
-            // Upload
-            UploadTableSeeder::class,
 
             // Product
             CategoryTableSeeder::class,

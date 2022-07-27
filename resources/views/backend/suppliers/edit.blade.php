@@ -169,8 +169,8 @@ var options = {
   log: 3,
   preprocessData: function(data) {
     let results = JSON.parse(data.results).data;
-    console.log("data:", results);
-    // return [];
+    // console.log("data:", results);
+
     var i,
       l = results.length,
       array = [];

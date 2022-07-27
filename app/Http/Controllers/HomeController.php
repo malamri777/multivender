@@ -13,8 +13,6 @@ use App\Models\CustomerProduct;
 use App\Models\PickupPoint;
 use App\Models\CustomerPackage;
 use App\Models\User;
-use App\Models\Seller;
-use App\Models\Shop;
 use App\Models\Order;
 use App\Models\BusinessSetting;
 use App\Models\Coupon;
@@ -23,6 +21,7 @@ use Illuminate\Support\Str;
 use App\Mail\SecondEmailVerifyMailManager;
 use App\Models\AffiliateConfig;
 use App\Models\Page;
+use App\Models\Supplier;
 use Mail;
 use Illuminate\Auth\Events\PasswordReset;
 use Cache;
@@ -230,7 +229,10 @@ class HomeController extends Controller
 
     public function product(Request $request, $slug)
     {
-        $detailedProduct  = Product::with('reviews', 'brand', 'stocks', 'user', 'user.shop')->where('auction_product', 0)->where('slug', $slug)->where('approved', 1)->first();
+        $detailedProduct  = Product::with('reviews', 'brand', 'stocks', 'user', 'user.supplier')
+            // ->where('auction_product', 0)
+            ->where('slug', $slug)
+            ->where('approved', 1)->first();
 
         if($detailedProduct != null && $detailedProduct->published){
             if($request->has('product_referral_code') && addon_is_activated('affiliate_system')) {
@@ -258,25 +260,25 @@ class HomeController extends Controller
         abort(404);
     }
 
-    public function shop($slug)
+    public function supplier($slug)
     {
-        $shop  = Shop::where('slug', $slug)->first();
-        if($shop!=null){
-            if ($shop->verification_status != 0){
-                return view('frontend.seller_shop', compact('shop'));
+        $supplier  = Supplier::where('slug', $slug)->first();
+        if($supplier!=null){
+            if ($supplier->verification_status != 0){
+                return view('frontend.seller_supplier', compact('supplier'));
             }
             else{
-                return view('frontend.seller_shop_without_verification', compact('shop'));
+                return view('frontend.seller_supplier_without_verification', compact('supplier'));
             }
         }
         abort(404);
     }
 
-    public function filter_shop($slug, $type)
+    public function filter_supplier($slug, $type)
     {
-        $shop  = Shop::where('slug', $slug)->first();
-        if($shop!=null && $type != null){
-            return view('frontend.seller_shop', compact('shop', 'type'));
+        $supplier  = Supplier::where('slug', $slug)->first();
+        if($supplier!=null && $type != null){
+            return view('frontend.seller_supplier', compact('supplier', 'type'));
         }
         abort(404);
     }
@@ -593,11 +595,11 @@ class HomeController extends Controller
         return view("frontend.flash_deal.all_flash_deal_list", $data);
     }
 
-    public function all_seller(Request $request) {
-        $shops = Shop::whereIn('user_id', verified_sellers_id())
+    public function all_supplier(Request $request) {
+        $suppliers = Supplier::whereIn('user_id', verified_sellers_id())
                 ->paginate(15);
 
-        return view('frontend.shop_listing', compact('shops'));
+        return view('frontend.supplier_listing', compact('suppliers'));
     }
 
     public function all_coupons(Request $request) {

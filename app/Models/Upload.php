@@ -9,6 +9,12 @@ class Upload extends Model
 {
     use SoftDeletes;
 
+    public const ROLE_TYPE = [
+        'admin' => 'admin',
+        'supplier'     => 'supplier',
+        'restaurant'     => 'restaurant',
+    ];
+
     /**
     * The attributes that are mass assignable.
     *
@@ -41,5 +47,15 @@ class Upload extends Model
 
     public function children() {
         return $this->hasMany(Upload::class, 'folder_id');
+    }
+
+    public function supplierParentFolder()
+    {
+        return $this->hasOne(Supplier::class, 'parent_folder_id');
+    }
+
+    public function scopeRoleType($query, $value = null)
+    {
+        return $query->where('role_type', $value);
     }
 }

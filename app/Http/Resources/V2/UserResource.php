@@ -20,7 +20,7 @@ class UserResource extends JsonResource
             'type' => $this->user_type,
             'email' => $this->email,
             'avatar' => $this->avatar,
-            'avatar_original' => $this->logoUploadFilePath(),
+            'avatar_original' => uploaded_asset($this->avatar_original),
             'address' => $this->address,
             'city' => $this->city,
             'country' => $this->country,

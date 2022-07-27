@@ -8,6 +8,7 @@ use Socialite;
 use App\Models\User;
 use App\Models\Customer;
 use App\Models\Cart;
+use Auth;
 use Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -191,12 +192,11 @@ class LoginController extends Controller
             Session::forget('temp_user_id');
         }
 
-        if (auth()->user()->user_type == 'admin' || auth()->user()->user_type == 'staff') {
+        if(Auth::user()->hasRole(adminRolesList()) and Auth::user()->hasPermission('admin_dashboard-view')) {
             return redirect()->route('admin.dashboard');
-        } elseif (auth()->user()->user_type == 'seller') {
+        } elseif (Auth::user()->hasRole(supplierRolesList()) and Auth::user()->hasPermission('supplier_dashboard-view')) {
             return redirect()->route('supplier.dashboard');
         } else {
-
             if (session('link') != null) {
                 return redirect(session('link'));
             } else {

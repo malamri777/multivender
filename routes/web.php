@@ -43,7 +43,7 @@ use App\Http\Controllers\Payment\VoguepayController;
 use App\Http\Controllers\Payment\IyzicoController;
 use App\Http\Controllers\Payment\NagadController;
 use App\Http\Controllers\Payment\PaykuController;
-use App\Http\Controllers\ShopController;
+use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\WishlistController;
 
 /*
@@ -119,8 +119,8 @@ Route::controller(HomeController::class)->group(function () {
 
     Route::get('/product/{slug}', 'product')->name('product');
     Route::post('/product/variant_price', 'variant_price')->name('products.variant_price');
-    Route::get('/shop/{slug}', 'shop')->name('shop.visit');
-    Route::get('/shop/{slug}/{type}', 'filter_shop')->name('shop.visit.type');
+    Route::get('/supplier/{slug}', 'supplier')->name('supplier.visit');
+    Route::get('/supplier/{slug}/{type}', 'filter_supplier')->name('supplier.visit.type');
 
     Route::get('/customer-packages', 'premium_package_index')->name('customer_packages_list_show');
 
@@ -329,7 +329,7 @@ Route::group(['middleware' => ['auth']], function() {
     });
 });
 
-Route::resource('shops', ShopController::class);
+Route::resource('supplier', SupplierController::class);
 
 Route::get('/instamojo/payment/pay-success', [InstamojoController::class, 'success'])->name('instamojo.success');
 

@@ -1,4 +1,4 @@
-@extends('seller.layouts.app')
+@extends('supplier.layouts.app')
 @section('panel_content')
 
 <div class="row gutters-10 justify-content-center">

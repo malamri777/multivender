@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,6 +12,7 @@ class Supplier extends Model
 {
     use SoftDeletes;
     use HasFactory;
+    use Sluggable;
 
     public const STATUS_RADIO = [
         'published' => 'Published',
@@ -46,15 +48,26 @@ class Supplier extends Model
 
     public static function boot()
     {
-        parent::boot();
-//        Supplier::observe(new \App\Observers\SupplierActionObserver());
-    }
 
-    // public function registerMediaConversions(Media $media = null): void
-    // {
-    //     $this->addMediaConversion('thumb')->fit('crop', 50, 50);
-    //     $this->addMediaConversion('preview')->fit('crop', 120, 120);
-    // }
+        parent::boot();
+
+        static::created(function ($model) {
+            $parentUpload = Upload::create([
+                'folder_name' => $model->name,
+                'order' => 0,
+                'folder_id' => 1,
+                'type' => 'folder',
+                'role_type' => Upload::ROLE_TYPE['supplier']
+            ]);
+
+            $model->parent_folder_id = $parentUpload->id;
+            $model->save();
+        });
+
+        // static::created(function ($model) {
+
+        // });
+    }
 
     public function admin()
     {
@@ -71,22 +84,21 @@ class Supplier extends Model
         return $this->hasManyThrough(WarehouseProduct::class, Warehouse::class);
     }
 
-//    public function getLogoAttribute()
-//    {
-//        return $this->getMedia('logo')->last();
-//    }
+    public function parentFolder() {
+        return $this->belongsTo(Upload::class, 'parent_folder_id');
+    }
 
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
     }
 
-    public function logoUpload()
+    public function sluggable(): array
     {
-        return $this->morphOne(Upload::class, 'uploadable')->where('kind', 'logo');
-    }
-
-    public function logoUploadFilePath() {
-        return uploaded_asset($this->logoUpload()->first()->id);
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
     }
 }
