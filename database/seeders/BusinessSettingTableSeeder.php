@@ -16,8 +16,10 @@ class BusinessSettingTableSeeder extends Seeder
      */
     public function run()
     {
-        $path = base_path() . '/database/seeders/sql/BusinessSetting.sql';
-        $sql = file_get_contents($path);
-        DB::unprepared($sql);
+        $path = base_path() . '/database/seeders/data/BusinessSetting.json';
+        $settings = json_decode(file_get_contents($path), true);
+        foreach($settings['business_settings'] as $setting) {
+            BusinessSetting::create($setting);
+        }
     }
 }

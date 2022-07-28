@@ -30,7 +30,7 @@ class UploadTableSeeder extends Seeder
         Upload::create([
             'folder_id' => 1,
             'file_original_name' => 'balubaid',
-            'file_name' => 'uploads/all/balubaid.jpeg',
+            'file_name' => 'uploads/vendors/balubaid.jpeg',
             'user_id' => 1,
             'extension' => 'jpeg',
             'type' => 'image',
@@ -40,7 +40,7 @@ class UploadTableSeeder extends Seeder
         Upload::create([
             'folder_id' => 1,
             'file_original_name' => 'almunajem',
-            'file_name' => 'uploads/all/almunajem.webp',
+            'file_name' => 'uploads/vendors/almunajem.webp',
             'user_id' => 1,
             'extension' => 'webp',
             'type' => 'image',
@@ -50,7 +50,7 @@ class UploadTableSeeder extends Seeder
         Upload::create([
             'folder_id' => 1,
             'file_original_name' => 'bindawood',
-            'file_name' => 'uploads/all/bindawood.jpeg',
+            'file_name' => 'uploads/vendors/bindawood.jpeg',
             'user_id' => 1,
             'extension' => 'jpeg',
             'type' => 'image',
@@ -60,7 +60,7 @@ class UploadTableSeeder extends Seeder
         Upload::create([
             'folder_id' => 1,
             'file_original_name' => 'binzagr',
-            'file_name' => 'uploads/all/binzagr.webp',
+            'file_name' => 'uploads/vendors/binzagr.webp',
             'user_id' => 1,
             'extension' => 'webp',
             'type' => 'image',

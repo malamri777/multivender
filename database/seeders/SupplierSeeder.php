@@ -30,7 +30,6 @@ class SupplierSeeder extends Seeder
         $admin->roles()->sync($role);
 
         $supplier = Supplier::create([
-            'id' => 1,
             'name' => 'balubaid',
             'cr_no' => '11111111',
             'vat_no' => '11111111',
@@ -62,7 +61,6 @@ class SupplierSeeder extends Seeder
 
 
         $supplier = Supplier::create([
-            'id' => 2,
             'name' => 'almunajem',
             'cr_no' => '222222222',
             'vat_no' => '222222222',
@@ -82,7 +80,6 @@ class SupplierSeeder extends Seeder
 
         // Supplier 3
         Supplier::create([
-            'id' => 3,
             'name' => 'bindawood',
             'cr_no' => '333333333',
             'vat_no' => '333333333',
@@ -99,7 +96,6 @@ class SupplierSeeder extends Seeder
 
         // Supplier 4
         Supplier::create([
-            'id' => 4,
             'name' => 'binzagr',
             'cr_no' => '444444444',
             'vat_no' => '444444444',

@@ -28,7 +28,8 @@ class RestaurantUserResource extends JsonResource
             'phone' => $this->phone,
             'country_dail_code' => $this->country_dail_code,
             'country_code' => $this->country_code,
-            'restaurant' => RestaurantResource::make($this->restaurant)
+            'restaurant' => RestaurantResource::make($this->restaurant),
+            'roles' => RoleCollection::make($this->whenLoaded('roles')),
         ];
     }
 

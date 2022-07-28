@@ -9,6 +9,7 @@ use App\Http\Requests\Api\Auth\RestaurantSignUpRequest;
 use App\Http\Resources\V2\RestaurantUserResource;
 use App\Models\BusinessSetting;
 use App\Models\Customer;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\User;
@@ -71,6 +72,9 @@ class RestaurantAuthController extends Controller
         }
 
         $user->save();
+
+        $role = Role::where('name', 'restaurant')->first();
+        $user->roles()->sync($role);
 
         //create token
         $user->createToken('tokens')->plainTextToken;
