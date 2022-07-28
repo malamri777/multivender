@@ -44,9 +44,15 @@
                         </li>
                         @endpermission
                         <li class="aiz-side-nav-item">
+                            @php
+                            $suppliers = \App\Models\Supplier::where('verification_status', 0)
+                                ->where('verification_info',
+                            '!=', null)->count();
+                            @endphp
                             <a href="{{route('admin.suppliers.index')}}"
                                 class="aiz-side-nav-link {{ areActiveRoutes(['admin.suppliers.index', 'admin.suppliers.create', 'admin.suppliers.edit'])}}">
                                 <span class="aiz-side-nav-text">{{translate('Supplier List')}}</span>
+                                @if($suppliers > 0)<span class="badge badge-info">{{ $suppliers }}</span> @endif
                             </a>
                         </li>
                         <li class="aiz-side-nav-item">
@@ -438,28 +444,20 @@
                 <li class="aiz-side-nav-item">
                     <a href="#" class="aiz-side-nav-link">
                         <i class="las la-user-friends aiz-side-nav-icon"></i>
-                        <span class="aiz-side-nav-text">{{ translate('Customers') }}</span>
+                        <span class="aiz-side-nav-text">{{ translate('User Managment') }}</span>
                         <span class="aiz-side-nav-arrow"></span>
                     </a>
                     <ul class="aiz-side-nav-list level-2">
                         <li class="aiz-side-nav-item">
-                            <a href="{{ route('admin.customers.index') }}" class="aiz-side-nav-link">
-                                <span class="aiz-side-nav-text">{{ translate('Customer list') }}</span>
-                            </a>
-                        </li>
-                        @if(get_setting('classified_product') == 1)
-                        <li class="aiz-side-nav-item">
-                            <a href="{{route('admin.classified_products')}}" class="aiz-side-nav-link">
-                                <span class="aiz-side-nav-text">{{translate('Classified Products')}}</span>
+                            <a href="{{ route('admin.users.adminList') }}" class="aiz-side-nav-link" {{ areActiveRoutes(['admin.users.adminList'])}}">
+                                <span class="aiz-side-nav-text">{{ translate('Admin list') }}</span>
                             </a>
                         </li>
                         <li class="aiz-side-nav-item">
-                            <a href="{{ route('admin.customer_packages.index') }}"
-                                class="aiz-side-nav-link {{ areActiveRoutes(['admin.customer_packages.index', 'admin.customer_packages.create', 'admin.customer_packages.edit'])}}">
-                                <span class="aiz-side-nav-text">{{ translate('Classified Packages') }}</span>
+                            <a href="{{ route('admin.users.userList') }}" class="aiz-side-nav-link" {{ areActiveRoutes(['admin.users.userList'])}}">
+                                <span class="aiz-side-nav-text">{{ translate('User list') }}</span>
                             </a>
                         </li>
-                        @endif
                     </ul>
                 </li>
 
@@ -856,7 +854,7 @@
                             <i class="las la-phone aiz-side-nav-icon"></i>
                             <span class="aiz-side-nav-text">{{translate('OTP System')}}</span>
                             @if (env("DEMO_MODE") == "On")
-                            <span class="badge badge-inline badge-danger">Addon</span>
+                                <span class="badge badge-inline badge-danger">Addon</span>
                             @endif
                             <span class="aiz-side-nav-arrow"></span>
                         </a>
@@ -968,8 +966,8 @@
                         </a>
                         <ul class="aiz-side-nav-list level-2">
                             <li class="aiz-side-nav-item">
-                                <a href="{{route('admin.roles.index')}}"
-                                    class="aiz-side-nav-link {{ areActiveRoutes(['admin.roles.index', 'admin.roles.create', 'admin.roles.edit'])}}">
+                                <a href="{{route('laratrust.roles.index')}}"
+                                    class="aiz-side-nav-link {{ areActiveRoutes(['laratrust.roles.*'])}}">
                                     <span class="aiz-side-nav-text">{{translate('Role & permissions')}}</span>
                                 </a>
                             </li>

@@ -1282,3 +1282,10 @@ if (!function_exists('adminRolesList')) {
         ];
     }
 }
+
+if (!function_exists('normalRolesList')) {
+    function normalRolesList()
+    {
+        return array_merge(supplierRolesList(), branchRolesList(), restaurantRolesList(), warehouseRolesList());
+    }
+}

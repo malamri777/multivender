@@ -174,4 +174,11 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(AuctionProductBid::class);
     }
+
+    public function scopeAdminRole($query)
+    {
+        return $query->whereHas('roles', function($role) {
+            $role->whereIn('name', adminRolesList());
+        });
+    }
 }
