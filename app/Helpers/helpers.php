@@ -21,6 +21,7 @@ use App\Models\Product;
 use App\Models\Shop;
 use App\Utility\SendSMSUtility;
 use App\Utility\NotificationUtility;
+use App\Utility\TaxUtilty;
 use Carbon\Carbon;
 use Modules\Translations\Entities\Translation;
 
@@ -217,6 +218,7 @@ if (!function_exists('home_price')) {
     {
         $lowest_price = $product->unit_price;
         $highest_price = $product->unit_price;
+        $tax = TaxUtilty::getDefaultTaxValue();
 
         if ($product->variant_product) {
             foreach ($product->stocks as $key => $stock) {
@@ -394,8 +396,9 @@ if (!function_exists('home_discounted_base_price_by_stock_id')) {
 if (!function_exists('home_discounted_base_price')) {
     function home_discounted_base_price($product, $formatted = true)
     {
-        $price = $product->unit_price;
-        $tax = 0;
+        $price = $product->warehouseProductsLowestPrice?->first()->price ?? 0;
+
+        $tax = 0.15;
 
         $discount_applicable = false;
 
@@ -416,13 +419,15 @@ if (!function_exists('home_discounted_base_price')) {
             }
         }
 
-        foreach ($product->taxes as $product_tax) {
-            if ($product_tax->tax_type == 'percent') {
-                $tax += ($price * $product_tax->tax) / 100;
-            } elseif ($product_tax->tax_type == 'amount') {
-                $tax += $product_tax->tax;
-            }
-        }
+        // foreach ($product->taxes as $product_tax) {
+        //     if ($product_tax->tax_type == 'percent') {
+        //         $tax += ($price * $product_tax->tax) / 100;
+        //     } elseif ($product_tax->tax_type == 'amount') {
+        //         $tax += $product_tax->tax;
+        //     }
+        // }
+
+        $tax += ($price * $tax) / 100;
         $price += $tax;
 
         return $formatted ? format_price(convert_price($price)) : $price;

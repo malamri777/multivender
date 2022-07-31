@@ -5,6 +5,7 @@ namespace App\Models;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use App;
+use App\Models\Scopes\ProductWarehouseScope;
 use Modules\Translations\Entities\ProductTranslation;
 
 class Product extends Model
@@ -33,6 +34,11 @@ class Product extends Model
     public function product_translations()
     {
         return $this->hasMany(ProductTranslation::class);
+    }
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new ProductWarehouseScope);
     }
 
     public function category()
@@ -85,15 +91,8 @@ class Product extends Model
         return $this->hasMany(AuctionProductBid::class);
     }
 
-    public function scopePhysical($query)
-    {
-//        return $query->where('digital', 0);
-        return $query;
-    }
-
     public function warehouse()
     {
-        // return $this->belongsToMany(WarehouseProduct::class);
         return $this->hasManyThrough(
             warehouse::class,
             WarehouseProduct::class,
@@ -103,6 +102,27 @@ class Product extends Model
             'product_id'
         );
     }
+
+    public function warehouseProducts() {
+        return $this->hasMany(WarehouseProduct::class)->orderBy('price');
+    }
+
+    public function warehouseProductsLowestPrice()
+    {
+        return $this->hasMany(WarehouseProduct::class)->orderBy('price')->limit(1);
+    }
+
+    public function scopeProductFilterLowPrice($query) {
+        return $query;
+    }
+
+    public function scopePhysical($query)
+    {
+//        return $query->where('digital', 0);
+        return $query;
+    }
+
+
 
 
     public function sluggable(): array

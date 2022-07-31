@@ -16,7 +16,9 @@ class CreateTaxesTable extends Migration
         Schema::create('taxes', function (Blueprint $table) {
             $table->id();
             $table->string('name', 255);
-            $table->boolean('tax_status')->default(true)->comment('0 = Inactive, 1 = Active');
+            $table->boolean('tax_status')->default(false)->comment('0 = Inactive, 1 = Active');
+            $table->boolean('is_default')->default(false);
+            $table->float('tax_amount')->default(0);
             $table->timestamps();
         });
     }

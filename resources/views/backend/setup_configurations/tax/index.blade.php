@@ -28,6 +28,7 @@
                     <th>#</th>
                     <th>{{translate('Tax Type')}}</th>
                     <th>{{translate('Status')}}</th>
+                    <th>{{translate('Default')}}</th>
                     <th class="text-right">{{translate('Options')}}</th>
                 </tr>
             </thead>
@@ -39,11 +40,18 @@
 
                     <td>
                         <label class="aiz-switch aiz-switch-success mb-0">
-                            <input onchange="update_tax_status(this)" value="{{ $tax->id }}" type="checkbox" <?php if ($tax->tax_status == 1) echo "checked"; ?> >
+                            <input onchange="update_tax_status(this)" value="{{ $tax->id }}" type="checkbox" @checked($tax->tax_status)>
                             <span class="slider round"></span>
                         </label>
-
                     </td>
+
+                    <td>
+                        <label class="aiz-switch aiz-switch-success mb-0">
+                            <input onchange="update_default_tax_status(this)" value="{{ $tax->id }}" type="checkbox" @checked($tax->is_default)>
+                            <span class="slider round"></span>
+                        </label>
+                    </td>
+
                     <td class="text-right">
                         <a class="btn btn-soft-primary btn-icon btn-circle btn-sm" href="{{route('admin.tax.edit', $tax->id )}}" title="{{ translate('Edit') }}">
                             <i class="las la-edit"></i>
@@ -120,6 +128,23 @@
             }
             $.post('{{ route('admin.taxes.tax-status') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
                 if(data == 1){
+                    AIZ.plugins.notify('success', '{{ translate('Tax status updated successfully') }}');
+                } else {
+                    AIZ.plugins.notify('danger', '{{ translate('Something went wrong') }}');
+                }
+            });
+        }
+
+        function update_default_tax_status(el){
+            if(el.checked){
+                var status = 1;
+            }
+            else{
+                var status = 0;
+            }
+            $.post('{{ route('admin.taxes.default_tax_status') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
+                if(data == 1){
+                    location.reload();
                     AIZ.plugins.notify('success', '{{ translate('Tax status updated successfully') }}');
                 }
                 else{

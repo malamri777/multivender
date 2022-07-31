@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\BusinessSetting;
+use App\Models\Tax;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;

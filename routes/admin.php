@@ -264,6 +264,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
         // Route::get('/tax/edit/{id}', 'edit')->name('tax.edit');
         // Route::get('/tax/destroy/{id}', 'destroy')->name('tax.destroy');
         Route::post('tax-status', 'change_tax_status')->name('taxes.tax-status');
+        Route::post('default-tax-status', 'change_default_tax_status')->name('taxes.default_tax_status');
     });
 
     // Language

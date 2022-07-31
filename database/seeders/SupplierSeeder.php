@@ -26,6 +26,7 @@ class SupplierSeeder extends Seeder
             'user_type' => 'supplier_admin',
             'email_verified_at' => now()
         ]);
+
         $role = Role::where('name', 'supplier_admin')->first();
         $admin->roles()->sync($role);
 
