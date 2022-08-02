@@ -53,7 +53,7 @@ use App\Http\Controllers\BusinessSettingsController;
 use App\Http\Controllers\ProductBulkUploadController;
 use App\Http\Controllers\SellerWithdrawRequestController;
 use App\Http\Controllers\BranchUserControlle;
-
+use App\Http\Controllers\UserController;
 
 /*
   |--------------------------------------------------------------------------
@@ -167,7 +167,26 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
         Route::post('/withdraw_request/message_modal', 'message_modal')->name('withdraw_request.message_modal');
     });
 
+    // User
+    Route::group(['prefix' => 'users', 'as' => 'users.', 'controller' => UserController::class], function () {
+        // Admin
+        Route::get('admin', 'adminList')->name('adminList');
+        Route::get('admin_ban/{user}', 'ban')->name('admin.ban');
+        Route::get('/admin/login/{id}', 'login')->name('admin.login');
+        Route::get('/admin/destroy/{id}', 'destroy')->name('admin.destroy');
+        Route::post('/bulk-admin-delete', 'bulk_admin_delete')->name('bulk-admin-delete');
+
+        // User
+        Route::get('user', 'userList')->name('userList');
+        Route::get('user_ban/{user}', 'ban')->name('user.ban');
+        Route::get('/user/login/{id}', 'login')->name('user.login');
+        Route::get('/user/destroy/{id}', 'destroy')->name('user.destroy');
+        Route::post('/bulk-users-delete', 'bulk_users_delete')->name('bulk-users-delete');
+
+    });
+
     // Customer
+    // TODO: Remove
     Route::resource('customers', CustomerController::class);
     Route::controller(CustomerController::class)->group(function () {
         Route::get('customers_ban/{customer}', 'ban')->name('customers.ban');
@@ -245,6 +264,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
         // Route::get('/tax/edit/{id}', 'edit')->name('tax.edit');
         // Route::get('/tax/destroy/{id}', 'destroy')->name('tax.destroy');
         Route::post('tax-status', 'change_tax_status')->name('taxes.tax-status');
+        Route::post('default-tax-status', 'change_default_tax_status')->name('taxes.default_tax_status');
     });
 
     // Language
@@ -296,11 +316,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
     });
 
     // Staff Roles
-    Route::resource('roles', RoleController::class);
-    Route::controller(RoleController::class)->group(function () {
+    // Route::resource('roles', RoleController::class);
+    // Route::controller(RoleController::class)->group(function () {
         // Route::get('/roles/edit/{id}', 'edit')->name('roles.edit');
         // Route::get('/roles/destroy/{id}', 'destroy')->name('roles.destroy');
-    });
+    // });
 
     // Staff
     Route::resource('staffs', StaffController::class)->except('destroy');

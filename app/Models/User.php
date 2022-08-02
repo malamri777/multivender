@@ -179,4 +179,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function scopeOther($query){
         return $query->where('id','!=',Auth::id());
     }
+
+    public function scopeAdminRole($query)
+    {
+        return $query->whereHas('roles', function($role) {
+            $role->whereIn('name', adminRolesList());
+        });
+    }
 }

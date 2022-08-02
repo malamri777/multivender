@@ -28,8 +28,10 @@ class SetupTableSeeder extends Seeder
 
         // Tax
         Tax::create([
-            'name' => 'VAT',
-            'tax_status' => true
+            'name' => 'KSA Tax 15%',
+            'tax_status' => true,
+            'is_default' => true,
+            'tax_amount' => 0.15,
         ]);
 
 
