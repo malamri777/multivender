@@ -71,8 +71,7 @@ class BranchUserController extends Controller
                 'email' => $request->email,
                 'phone' => $request->mobile,
                 'password' => bcrypt($request->password),
-                'provider_id' => $request->restaurant_id,
-                'user_type' => $request->user_type
+                'provider_id' => $request->restaurant_id
             ]);
             $user->branchUsers()->sync($request->branches);
 
@@ -109,7 +108,6 @@ class BranchUserController extends Controller
         $user->email = $request->email;
         $user->phone = $request->mobile;
         $user->restaurant_id = $request->restaurant_id;
-        $user->user_type = $request->user_type;
 
         if (strlen($request->password) > 0) {
             $user->password = Hash::make($request->password);

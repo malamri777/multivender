@@ -697,7 +697,7 @@ function hex2rgba($color, $opacity = false)
 if (!function_exists('isAdmin')) {
     function isAdmin()
     {
-        if (Auth::check() && (Auth::user()->user_type == 'super_admin' || Auth::user()->user_type == 'admin' || Auth::user()->user_type == 'staff')) {
+        if (Auth::check() && Auth::user()->hasRole(adminRolesList())) {
             return true;
         }
         return false;
@@ -707,17 +707,17 @@ if (!function_exists('isAdmin')) {
 if (!function_exists('isSeller')) {
     function isSeller()
     {
-        if (Auth::check() && Auth::user()->user_type == 'seller') {
+        if (Auth::check() && Auth::user()->hasRole(supplierRolesList())) {
             return true;
         }
         return false;
     }
 }
 
-if (!function_exists('isCustomer')) {
-    function isCustomer()
+if (!function_exists('isRrestaurant')) {
+    function isRrestaurant()
     {
-        if (Auth::check() && Auth::user()->user_type == 'customer') {
+        if (Auth::check() && Auth::user()->hasRole(restaurantRolesList())) {
             return true;
         }
         return false;
@@ -1285,6 +1285,14 @@ if (!function_exists('adminRolesList')) {
             'super_admin',
             'admin'
         ];
+    }
+}
+
+if (!function_exists('driverRolesList')) {
+    function driverRolesList()
+    {
+        return [];
+        return array_merge(supplierRolesList(), branchRolesList(), restaurantRolesList(), warehouseRolesList());
     }
 }
 

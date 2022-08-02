@@ -25,7 +25,7 @@ use App\Models\Supplier;
 use Mail;
 use Illuminate\Auth\Events\PasswordReset;
 use Cache;
-
+use PhpOffice\PhpSpreadsheet\Calculation\Statistical\Distributions\Normal;
 
 class HomeController extends Controller
 {
@@ -130,29 +130,26 @@ class HomeController extends Controller
      */
     public function dashboard()
     {
-        if(Auth::user()->user_type == 'seller'){
+        if(Auth::check() and Auth::user()->hasRole(adminRolesList())) {
+            return redirect()->route('admin.dashboard');
+        } elseif(Auth::check() and Auth::user()->hasRole(supplierRolesList())){
             return redirect()->route('supplier.dashboard');
-        }
-        elseif(Auth::user()->user_type == 'customer'){
+        } elseif(Auth::check() and Auth::user()->hasRole(restaurantRolesList())){
             return view('frontend.user.customer.dashboard');
-        }
-        elseif(Auth::user()->user_type == 'delivery_boy'){
+        } elseif(Auth::check() and Auth::user()->hasRole(driverRolesList())){
             return view('delivery_boys.frontend.dashboard');
-        }
-        else {
+        } else {
             abort(404);
         }
     }
 
     public function profile(Request $request)
     {
-        if(Auth::user()->user_type == 'seller'){
+        if(Auth::check() and Auth::user()->hasRole(supplierRolesList())){
             return redirect()->route('supplier.profile.index');
-        }
-        elseif(Auth::user()->user_type == 'delivery_boy'){
+        } elseif(Auth::user()->hasRole(driverRolesList())){
             return view('delivery_boys.frontend.profile');
-        }
-        else{
+        } else {
             return view('frontend.user.profile');
         }
     }
@@ -542,7 +539,7 @@ class HomeController extends Controller
                 auth()->login($user, true);
 
                 flash(translate('Email Changed successfully'))->success();
-                if($user->user_type == 'seller') {
+                if($user->hasRole(supplierRolesList())) {
                     return redirect()->route('supplier.dashboard');
                 }
                 return redirect()->route('dashboard');
@@ -565,18 +562,16 @@ class HomeController extends Controller
 
                 flash(translate('Password updated successfully'))->success();
 
-                if(auth()->user()->user_type == 'admin' || auth()->user()->user_type == 'staff')
+                if(Auth::check() and Auth::user()->hasRole(adminRolesList()))
                 {
                     return redirect()->route('admin.dashboard');
                 }
                 return redirect()->route('home');
-            }
-            else {
+            } else {
                 flash("Password and confirm password didn't match")->warning();
                 return redirect()->route('password.request');
             }
-        }
-        else {
+        } else {
             flash("Verification code mismatch")->error();
             return redirect()->route('password.request');
         }

@@ -102,11 +102,11 @@ return [
             'admin_dashboard' => 'v',
             'branch_uploads' => 'c,r,u,d,l',
         ],
-        // 'driver' => [
-        //     'profile' => 'r,u',
-        //     'admin_dashboard' => 'v',
-        //     'supplier_uploads' => 'c,r,u,d,l',
-        // ],
+        'driver' => [
+            'profile' => 'r,u',
+            'admin_dashboard' => 'v',
+            'supplier_uploads' => 'c,r,u,d,l',
+        ],
         // 'role_name' => [
         //     'module_1_name' => 'c,r,u,d',
         // ]

@@ -296,24 +296,23 @@ class AizUploadController extends Controller
     {
         $upload = Upload::findOrFail($id);
 
-        if(auth()->user()->user_type == 'seller' && $upload->user_id != auth()->user()->id){
+        if(Auth::check() and Auth::user()->hasPermission('supplier_uploads-delete') && $upload->user_id != Auth::user()->id){
             flash(translate("You don't have permission for deleting this!"))->error();
             return back();
         }
-        try{
+
+        try {
             if(env('FILESYSTEM_DRIVER') == 's3'){
                 Storage::disk('s3')->delete($upload->file_name);
                 if (file_exists(public_path().'/'.$upload->file_name)) {
                     unlink(public_path().'/'.$upload->file_name);
                 }
-            }
-            else{
+            } else {
                 unlink(public_path().'/'.$upload->file_name);
             }
             $upload->delete();
             flash(translate('File deleted successfully'))->success();
-        }
-        catch(\Exception $e){
+        } catch(\Exception $e) {
             $upload->delete();
             flash(translate('File deleted successfully'))->success();
         }
@@ -340,23 +339,28 @@ class AizUploadController extends Controller
     public function attachment_download($id)
     {
         $project_attachment = Upload::find($id);
-        try{
+        try {
            $file_path = public_path($project_attachment->file_name);
             return Response::download($file_path);
-        }catch(\Exception $e){
+        } catch(\Exception $e) {
             flash(translate('File does not exist!'))->error();
             return back();
         }
 
     }
+
     //Download project attachment
     public function file_info(Request $request)
     {
         $file = Upload::findOrFail($request['id']);
 
-        return (auth()->user()->user_type == 'seller')
-            ? view('supplier.uploads.info',compact('file'))
-            : view('backend.uploaded_files.info',compact('file'));
+        if(Auth::check() and Auth::user()->hasRole(adminRolesList())) {
+            return view('backend.uploaded_files.info',compact('file'));
+        } else if (Auth::check() and Auth::user()->hasRole(adminRolesList())) {
+            return view('supplier.uploads.info', compact('file'));
+        } else {
+            abort(404);
+        }
     }
 
 }

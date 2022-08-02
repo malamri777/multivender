@@ -9,6 +9,7 @@ use App\Models\BusinessSetting;
 use App\OtpConfiguration;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\OTPVerificationController;
+use App\Models\Role;
 use App\Notifications\EmailVerificationNotification;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -80,8 +81,7 @@ class RegisterController extends Controller
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
             ]);
-        }
-        else {
+        } else {
             if (addon_is_activated('otp_system')){
                 $user = User::create([
                     'name' => $data['name'],
@@ -113,6 +113,8 @@ class RegisterController extends Controller
                 $user->save();
             }
         }
+        $role = Role::where('name', 'restaurant')->first();
+        $user->roles()->sync($role);
 
         return $user;
     }
@@ -141,8 +143,7 @@ class RegisterController extends Controller
                 $user->email_verified_at = date('Y-m-d H:m:s');
                 $user->save();
                 flash(translate('Registration successful.'))->success();
-            }
-            else {
+            } else {
                 try {
                     $user->sendEmailVerificationNotification();
                     flash(translate('Registration successful. Please verify your email.'))->success();
