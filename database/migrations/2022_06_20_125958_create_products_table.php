@@ -33,17 +33,15 @@ class CreateProductsTable extends Migration
             $table->mediumText('choice_options')->nullable();
             $table->mediumText('colors')->nullable();
             $table->text('variations')->nullable();
-            $table->integer('published')->default(1);
             $table->boolean('approved')->default(true);
             $table->integer('todays_deal')->default(0);
             $table->boolean('cash_on_delivery')->default(false)->comment('1 = On, 0 = Off');
-            $table->integer('featured')->default(0);
             $table->integer('seller_featured')->default(0);
             $table->string('unit', 20)->nullable();
             $table->integer('min_qty')->default(1);
+            $table->integer('featured')->default(0);
             $table->boolean('is_quantity_multiplied')->default(false)->comment('1 = Mutiplied with shipping cost');
             $table->integer('est_shipping_days')->nullable();
-            $table->integer('num_of_sale')->default(0);
             $table->mediumText('meta_title')->nullable();
             $table->longText('meta_description')->nullable();
             $table->string('meta_img', 255)->nullable();
@@ -58,6 +56,9 @@ class CreateProductsTable extends Migration
             // $table->integer('current_stock')->default(0);
             // $table->string('shipping_type', 20)->nullable()->default('flat_rate');
             // $table->double('shipping_cost', 20, 2)->default(0);
+            // $table->integer('published')->default(1);
+            // $table->integer('num_of_sale')->default(0);
+
 
             $table->timestamp('created_at')->useCurrent()->index('created_at');
             $table->timestamp('updated_at')->useCurrent();

@@ -135,7 +135,6 @@ class ProductService
             // 'colors',
             'choice_options',
             'attributes',
-            'published',
         ))->toArray();
 
         return Product::create($data);

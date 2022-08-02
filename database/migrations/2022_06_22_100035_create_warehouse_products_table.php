@@ -21,6 +21,8 @@ class CreateWarehouseProductsTable extends Migration
             $table->string('sale_price_start_date')->nullable();
             $table->string('sale_price_end_date')->nullable();
             $table->integer('low_stock_quantity')->nullable();
+            $table->integer('published')->default(1);
+            $table->integer('num_of_sale')->default(0);
 
             $table->foreignIdFor(Warehouse::class, 'warehouse_id');
             $table->foreignIdFor(Product::class, 'product_id');

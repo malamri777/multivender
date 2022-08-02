@@ -99,12 +99,12 @@
                         <th width="30%">{{ translate('Name')}}</th>
                         <th data-breakpoints="md">{{ translate('Category')}}</th>
                         <th data-breakpoints="md">{{ translate('Current Qty')}}</th>
-                        <th>{{ translate('Base Price')}}</th>
+                        <th>{{ translate('Price')}}</th>
                         @if(get_setting('product_approve_by_admin') == 1)
                             <th data-breakpoints="md">{{ translate('Approval')}}</th>
                         @endif
-                        <th data-breakpoints="md">{{ translate('Published')}}</th>
-                        <th data-breakpoints="md">{{ translate('Featured')}}</th>
+                        {{-- <th data-breakpoints="md">{{ translate('Published')}}</th> --}}
+                        {{-- <th data-breakpoints="md">{{ translate('Featured')}}</th> --}}
                         <th data-breakpoints="md" class="text-right">{{ translate('Options')}}</th>
                     </tr>
                 </thead>
@@ -132,7 +132,7 @@
                                     echo $qty;
                                 @endphp
                             </td>
-                            <td>{{ $product->unit_price }}</td>
+                            <td>{{ $product->purchase_price }}</td>
                             @if(get_setting('product_approve_by_admin') == 1)
                                 <td>
                                     @if ($product->approved == 1)
@@ -142,18 +142,18 @@
                                     @endif
                                 </td>
                             @endif
-                            <td>
+                            {{-- <td>
                                 <label class="aiz-switch aiz-switch-success mb-0">
                                     <input onchange="update_published(this)" value="{{ $product->id }}" type="checkbox" <?php if($product->published == 1) echo "checked";?> >
                                     <span class="slider round"></span>
                                 </label>
-                            </td>
-                            <td>
+                            </td> --}}
+                            {{-- <td>
                                 <label class="aiz-switch aiz-switch-success mb-0">
                                     <input onchange="update_featured(this)" value="{{ $product->id }}" type="checkbox" <?php if($product->seller_featured == 1) echo "checked";?> >
                                     <span class="slider round"></span>
                                 </label>
-                            </td>
+                            </td> --}}
                             <td class="text-right">
 		                      <a class="btn btn-soft-info btn-icon btn-circle btn-sm" href="{{route('supplier.products.edit', ['id'=>$product->id, 'lang'=>config('myenv.DEFAULT_LANGUAGE')])}}" title="{{ translate('Edit') }}">
 		                          <i class="las la-edit"></i>
