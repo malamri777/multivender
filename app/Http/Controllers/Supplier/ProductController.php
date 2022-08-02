@@ -51,13 +51,37 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $search = null;
-        $products = Product::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc');
+        $sort_warehouse = null;
+
+
+        $products = Product::query();
+
+
+
+
+
+
         if ($request->has('search')) {
             $search = $request->search;
             $products = $products->where('name', 'like', '%' . $search . '%');
         }
-        $products = $products->paginate(10);
-        return view('supplier.product.products.index', compact('products', 'search'));
+
+
+        if ($request->has('sort_warehouse') && isset($request->sort_warehouse)) {
+            $sort_warehouse = $request->sort_warehouse;
+            $products = $products->whereHas('warehouseProducts',function($q) use ($sort_warehouse){
+                $q->where('warehouse_id',$sort_warehouse);
+            });
+        } else {
+            $products = $products->whereHas('warehouse',function($q){
+                $q->where('supplier_id', Auth::user()->provider_id);
+            });
+        }
+
+
+
+        $products = $products->orderBy('created_at', 'desc')->paginate(10);
+        return view('supplier.product.products.index', compact('products', 'search','sort_warehouse'));
     }
 
     public function create(Request $request)
@@ -452,4 +476,5 @@ class ProductController extends Controller
             return back();
         }
     }
+
 }

@@ -104,6 +104,10 @@ class Product extends Model
         );
     }
 
+    public function warehouseProducts() {
+        return $this->hasMany(WarehouseProduct::class)->orderBy('price');
+    }
+
 
     public function sluggable(): array
     {

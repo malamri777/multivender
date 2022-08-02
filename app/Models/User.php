@@ -10,6 +10,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Notifications\EmailVerificationNotification;
+use Auth;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laratrust\Traits\LaratrustUserTrait;
@@ -173,5 +174,9 @@ class User extends Authenticatable implements MustVerifyEmail
     public function product_bids()
     {
         return $this->hasMany(AuctionProductBid::class);
+    }
+
+    public function scopeOther($query){
+        return $query->where('id','!=',Auth::id());
     }
 }

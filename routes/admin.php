@@ -448,30 +448,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
         Route::post('/classified_products/published', 'updatePublished')->name('classified_products.published');
     });
 
-    // Countries
-    Route::resource('countries', CountryController::class);
-    Route::post('/countries/status', [CountryController::class, 'updateStatus'])->name('countries.status');
-
-    // States
-    Route::resource('states', StateController::class);
-	Route::post('/states/status', [StateController::class, 'updateStatus'])->name('states.status');
-
-    Route::resource('cities', CityController::class)->except('show');
-    Route::controller(CityController::class)->group(function () {
-        Route::post('/cities/status', 'updateStatus')->name('cities.status');
-        Route::post('/cities/get-city-option-by-state-id', 'getCityOptionByStateId')->name('cities.get-city-option-by-state-id');
-    });
-
-    // Districts
-    Route::resource('districts', DistrictController::class)->except('destroy');
-    Route::controller(DistrictController::class)
-        ->as('districts.')
-        ->prefix('districts')
-        ->group(function() {
-            Route::post('status', 'updateStatus')->name('status');
-            Route::get('destroy/{id}', 'destroy')->name('destroy');
-            Route::post('get-districts-option-by-city-id', 'getDistrictOptionByCityId')->name('get-districts-option-by-city-id');
-    });
 
     // Supplier
     Route::group(['prefix' => 'suppliers', 'as' => 'suppliers.', 'controller' => SupplierController::class], function(){
@@ -612,4 +588,42 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
     Route::get('/all-notification', [NotificationController::class, 'index'])->name('all-notification');
 
     Route::get('/clear-cache', [AdminController::class, 'clearCache'])->name('cache.clear');
+});
+
+
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], function() {
+
+    // Citities
+    Route::resource('cities', CityController::class)->except('show');
+    Route::controller(CityController::class)->group(function () {
+        Route::post('/cities/status', 'updateStatus')->name('cities.status');
+        Route::post('/cities/get-city-option-by-state-id', 'getCityOptionByStateId')->name('cities.get-city-option-by-state-id');
+    });
+
+
+    // Countries
+    Route::resource('countries', CountryController::class);
+    Route::post('/countries/status', [CountryController::class, 'updateStatus'])->name('countries.status');
+
+    // States
+    Route::resource('states', StateController::class);
+	Route::post('/states/status', [StateController::class, 'updateStatus'])->name('states.status');
+
+    Route::resource('cities', CityController::class)->except('show');
+    Route::controller(CityController::class)->group(function () {
+        Route::post('/cities/status', 'updateStatus')->name('cities.status');
+        Route::post('/cities/get-city-option-by-state-id', 'getCityOptionByStateId')->name('cities.get-city-option-by-state-id');
+    });
+
+    // Districts
+    Route::resource('districts', DistrictController::class)->except('destroy');
+    Route::controller(DistrictController::class)
+        ->as('districts.')
+        ->prefix('districts')
+        ->group(function() {
+            Route::post('status', 'updateStatus')->name('status');
+            Route::get('destroy/{id}', 'destroy')->name('destroy');
+            Route::post('get-districts-option-by-city-id', 'getDistrictOptionByCityId')->name('get-districts-option-by-city-id');
+    });
 });

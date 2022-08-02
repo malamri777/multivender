@@ -1,23 +1,24 @@
 <?php
 
 use App\Http\Controllers\AizUploadController;
-use App\Http\Controllers\Supplier\AddressController;
-use App\Http\Controllers\Supplier\CouponController;
-use App\Http\Controllers\Supplier\DashboardController;
-use App\Http\Controllers\Supplier\ProductController;
-use App\Http\Controllers\Supplier\ProductBulkUploadController;
-use App\Http\Controllers\Supplier\DigitalProductController;
-use App\Http\Controllers\Supplier\InvoiceController;
 use App\Http\Controllers\Supplier\OrderController;
-use App\Http\Controllers\Supplier\PaymentController;
-use App\Http\Controllers\Supplier\ProfileController;
+use App\Http\Controllers\Supplier\CouponController;
 use App\Http\Controllers\Supplier\ReviewController;
-use App\Http\Controllers\Supplier\SellerWithdrawRequestController;
-use App\Http\Controllers\Supplier\CommissionHistoryController;
+use App\Http\Controllers\Supplier\AddressController;
+use App\Http\Controllers\Supplier\InvoiceController;
+use App\Http\Controllers\Supplier\PaymentController;
+use App\Http\Controllers\Supplier\ProductController;
+use App\Http\Controllers\Supplier\ProfileController;
+use App\Http\Controllers\Supplier\SettingController;
+use App\Http\Controllers\Supplier\DashboardController;
+use App\Http\Controllers\Supplier\WarehouseController;
 use App\Http\Controllers\Supplier\ConversationController;
 use App\Http\Controllers\Supplier\NotificationController;
-use App\Http\Controllers\Supplier\SettingController;
 use App\Http\Controllers\Supplier\SupportTicketController;
+use App\Http\Controllers\Supplier\DigitalProductController;
+use App\Http\Controllers\Supplier\CommissionHistoryController;
+use App\Http\Controllers\Supplier\ProductBulkUploadController;
+use App\Http\Controllers\Supplier\SellerWithdrawRequestController;
 
 Route::group(['prefix' => 'supplier', 'middleware' => ['supplier', 'verified', 'user'], 'as' => 'supplier.'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -40,6 +41,33 @@ Route::group(['prefix' => 'supplier', 'middleware' => ['supplier', 'verified', '
         Route::post('/products/published', 'updatePublished')->name('products.published');
         Route::get('/products/destroy/{id}', 'destroy')->name('products.destroy');
     });
+
+    // warehouse
+    Route::controller(WarehouseController::class)->group(function () {
+        Route::get('/warehouses', 'warehouseIndex')->name('warehouse.index');
+        Route::get('/warehouse/create', 'warehouseCreate')->name('warehouse.create');
+        Route::post('/warehouse/store', 'warehouseStore')->name('warehouse.store');
+        Route::get('/warehouse/edit', 'warehouseEdit')->name('warehouse.edit');
+        Route::patch('/warehouse/update', 'warehouseUpdate')->name('warehouse.update');
+        Route::get('/warehouse/destroy', 'warehouseDestroy')->name('warehouse.destroy');
+        Route::post('warehouse/update_status', 'warehouseUpdateStatus')->name('warehouse.update_status');
+
+        // user
+        Route::get('/warehouse/users', 'warehouseUsersPage')->name('warehouse.users.index');
+        Route::get('/warehouse/user/edit', 'userEdit')->name('warehouse.user.edit');
+        Route::patch('/warehouse/user/update', 'userUpdate')->name('warehouse.user.update');
+        Route::get('/warehouse/user/create', 'userCreate')->name('warehouse.user.create');
+        Route::post('/warehouse/user/store', 'userStore')->name('warehouse.user.store');
+        Route::get('/warehouse/user/delete', 'userDestroy')->name('warehouse.user.destroy');
+
+        // porduct
+        Route::get('/warehouse/products', 'warehouseProductsPage')->name('warehouse.products.index');
+
+
+
+    });
+
+
 
     // Product Bulk Upload
     Route::controller(ProductBulkUploadController::class)->group(function () {

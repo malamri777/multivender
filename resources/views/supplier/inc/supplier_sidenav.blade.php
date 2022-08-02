@@ -30,6 +30,33 @@
                 <li class="aiz-side-nav-item">
                     <a href="#" class="aiz-side-nav-link">
                         <i class="las la-shopping-cart aiz-side-nav-icon"></i>
+                        <span class="aiz-side-nav-text">{{ translate('Warehouses') }}</span>
+                        <span class="aiz-side-nav-arrow"></span>
+                    </a>
+                    <!--Submenu-->
+                    <ul class="aiz-side-nav-list level-2">
+                        <li class="aiz-side-nav-item">
+                            <a href="{{ route('supplier.warehouse.index') }}"
+                                class="aiz-side-nav-link {{ areActiveRoutes(['supplier.warehouse.index']) }}">
+                                <span class="aiz-side-nav-text">{{ translate('Warehouses list') }}</span>
+                            </a>
+                        </li>
+
+                        <li class="aiz-side-nav-item">
+                            <a href="{{ route('supplier.warehouse.users.index') }}"
+                                class="aiz-side-nav-link {{ areActiveRoutes(['supplier.warehouse.users.index']) }}">
+                                <span class="aiz-side-nav-text">{{ translate('Warehouses User list') }}</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+
+
+                <li class="aiz-side-nav-item">
+                    <a href="#" class="aiz-side-nav-link">
+                        <i class="las la-shopping-cart aiz-side-nav-icon"></i>
                         <span class="aiz-side-nav-text">{{ translate('Products') }}</span>
                         <span class="aiz-side-nav-arrow"></span>
                     </a>
@@ -48,6 +75,8 @@
                                 <span class="aiz-side-nav-text">{{ translate('Product Bulk Upload') }}</span>
                             </a>
                         </li>
+
+
                         <li class="aiz-side-nav-item">
                             <a href="{{ route('supplier.digitalproducts') }}"
                                 class="aiz-side-nav-link {{ areActiveRoutes(['supplier.digitalproducts', 'supplier.digitalproducts.create', 'supplier.digitalproducts.edit']) }}">

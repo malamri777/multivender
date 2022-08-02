@@ -50,6 +50,10 @@ return [
             'profile' => 'r,u',
             'admin_dashboard' => 'v',
             'supplier_uploads' => 'c,r,u,d,l',
+            'product' => 'c,r,u,d,l',
+            'user' => 'c,r,u,d,l',
+            'warehouse' => 'c,r,u,d,l',
+            'supplier_dashboard' => 'v',
         ],
         'supplier_warehouse_admin' => [
             'profile' => 'r,u',
