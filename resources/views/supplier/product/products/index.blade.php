@@ -97,6 +97,7 @@
                     <tr>
                         <th>#</th>
                         <th width="30%">{{ translate('Name')}}</th>
+                        <th data-breakpoints="md">{{ translate('Warehouse')}}</th>
                         <th data-breakpoints="md">{{ translate('Category')}}</th>
                         <th data-breakpoints="md">{{ translate('Current Qty')}}</th>
                         <th>{{ translate('Price')}}</th>
@@ -110,12 +111,18 @@
                 </thead>
 
                 <tbody>
+
                     @foreach ($products as $key => $product)
                         <tr>
                             <td>{{ ($key+1) + ($products->currentPage() - 1)*$products->perPage() }}</td>
                             <td>
                                 <a href="{{ route('product', $product->slug) }}" target="_blank" class="text-reset">
                                     {{ $product->getTranslation('name') }}
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{ route('supplier.warehouse.index') }}" class="text-reset">
+                                    {{ $product->warehouse[0]->name }}
                                 </a>
                             </td>
                             <td>
