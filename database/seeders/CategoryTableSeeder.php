@@ -16,40 +16,46 @@ class CategoryTableSeeder extends Seeder
      */
     public function run()
     {
-        Category::create([
-            'name' => 'Milks and Dairies'
-        ]);
-        CategoryTranslation::create([
-            'category_id' => 1,
-            'name' => 'الألبان',
-            'lang' => 'sa'
-        ]);
+        // Category::create([
+        //     'name' => 'Milks and Dairies'
+        // ]);
+        // CategoryTranslation::create([
+        //     'category_id' => 1,
+        //     'name' => 'الألبان',
+        //     'lang' => 'sa'
+        // ]);
 
-        Category::create([
-            'name' => 'Baking material'
-        ]);
-        CategoryTranslation::create([
-            'category_id' => 2,
-            'name' => 'مواد الخبز',
-            'lang' => 'sa'
-        ]);
+        // Category::create([
+        //     'name' => 'Baking material'
+        // ]);
+        // CategoryTranslation::create([
+        //     'category_id' => 2,
+        //     'name' => 'مواد الخبز',
+        //     'lang' => 'sa'
+        // ]);
 
-        Category::create([
-            'name' => 'Fresh Fruit'
-        ]);
-        CategoryTranslation::create([
-            'category_id' => 3,
-            'name' => 'فاكهة طازجة',
-            'lang' => 'sa'
-        ]);
+        // Category::create([
+        //     'name' => 'Fresh Fruit'
+        // ]);
+        // CategoryTranslation::create([
+        //     'category_id' => 3,
+        //     'name' => 'فاكهة طازجة',
+        //     'lang' => 'sa'
+        // ]);
 
-        Category::create([
-            'name' => 'Fresh Seafood'
-        ]);
-        CategoryTranslation::create([
-            'category_id' => 4,
-            'name' => 'مأكولات بحرية طازجة',
-            'lang' => 'sa'
-        ]);
+        // Category::create([
+        //     'name' => 'Fresh Seafood'
+        // ]);
+        // CategoryTranslation::create([
+        //     'category_id' => 4,
+        //     'name' => 'مأكولات بحرية طازجة',
+        //     'lang' => 'sa'
+        // ]);
+
+        $path = base_path() . '/database/seeders/data/Category.json';
+        $categories = json_decode(file_get_contents($path), true);
+        foreach ($categories['categories'] as $category) {
+            Category::create($category);
+        }
     }
 }

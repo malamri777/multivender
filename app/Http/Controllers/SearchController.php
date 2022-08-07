@@ -8,7 +8,6 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\FlashDeal;
 use App\Models\Brand;
-use App\Models\Color;
 use App\Models\Shop;
 use App\Models\Attribute;
 use App\Models\AttributeCategory;
@@ -25,8 +24,6 @@ class SearchController extends Controller
         $seller_id = $request->seller_id;
         $attributes = Attribute::all();
         $selected_attribute_values = array();
-        $colors = Color::all();
-        $selected_color = null;
 
         $conditions = ['published' => 1];
 
@@ -107,12 +104,6 @@ class SearchController extends Controller
                 break;
         }
 
-        if ($request->has('color')) {
-            $str = '"' . $request->color . '"';
-            $products->where('colors', 'like', '%' . $str . '%');
-            $selected_color = $request->color;
-        }
-
         if ($request->has('selected_attribute_values')) {
             $selected_attribute_values = $request->selected_attribute_values;
             foreach ($selected_attribute_values as $key => $value) {
@@ -123,7 +114,7 @@ class SearchController extends Controller
 
         $products = filter_products($products)->with('taxes')->paginate(12)->appends(request()->query());
 
-        return view('frontend.product_listing', compact('products', 'query', 'category_id', 'brand_id', 'sort_by', 'seller_id', 'min_price', 'max_price', 'attributes', 'selected_attribute_values', 'colors', 'selected_color'));
+        return view('frontend.product_listing', compact('products', 'query', 'category_id', 'brand_id', 'sort_by', 'seller_id', 'min_price', 'max_price', 'attributes', 'selected_attribute_values'));
     }
 
     public function listing(Request $request)

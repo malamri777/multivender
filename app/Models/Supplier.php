@@ -52,8 +52,11 @@ class Supplier extends Model
         parent::boot();
 
         static::created(function ($model) {
-            $parentUpload = Upload::create([
-                'folder_name' => $model->name,
+
+            $parentUpload = Upload::firstOrCreate([
+                'folder_name_slug' => $model->slug
+            ],[
+                'folder_name' => $model->slug,
                 'order' => 0,
                 'folder_id' => 1,
                 'type' => 'folder',

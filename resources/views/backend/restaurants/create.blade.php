@@ -29,10 +29,45 @@
                     </div>
 
                     <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="cr_file">{{translate('CR Images')}} <small>(600x600)</small></label>
+                        <div class="col-md-8">
+                            <div class="input-group" data-toggle="aizuploader" data-type="folder,image" data-multiple="true">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-soft-secondary font-weight-medium">{{ translate('Browse')}}</div>
+                                </div>
+                                <div class="form-control file-amount">{{ translate('Choose File') }}</div>
+                                <input type="hidden" name="cr_file" class="selected-files">
+                                @include('backend.inc.form-span-error', ['field' => 'cr_file'])
+                            </div>
+                            <div class="file-preview box sm">
+                            </div>
+                            <small class="text-muted">{{translate('CR file of the restaurant. Use 600x600 sizes images.')}}</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
                         <label class="col-sm-3 col-from-label" for="vat_no">{{translate('VAT Number')}}</label>
                         <div class="col-sm-9">
                             <input type="text" placeholder="{{translate('VAT Number')}}" id="vat_no" name="vat_no" class="form-control" required>
                             @include('backend.inc.form-span-error', ['field' => 'vat_no'])
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="vat_file">{{translate('VAT Images')}}
+                            <small>(600x600)</small></label>
+                        <div class="col-md-8">
+                            <div class="input-group" data-toggle="aizuploader" data-type="folder,image" data-multiple="true">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-soft-secondary font-weight-medium">{{ translate('Browse')}}</div>
+                                </div>
+                                <div class="form-control file-amount">{{ translate('Choose File') }}</div>
+                                <input type="hidden" name="vat_file" class="selected-files">
+                                @include('backend.inc.form-span-error', ['field' => 'vat_file'])
+                            </div>
+                            <div class="file-preview box sm">
+                            </div>
+                            <small class="text-muted">{{translate('VAT File of the restaurant. Use 600x600 sizes images.')}}</small>
                         </div>
                     </div>
 

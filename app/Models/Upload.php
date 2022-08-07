@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Upload extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, Sluggable;
 
     public const ROLE_TYPE = [
         'admin' => 'admin',
@@ -57,5 +58,14 @@ class Upload extends Model
     public function scopeRoleType($query, $value = null)
     {
         return $query->where('role_type', $value);
+    }
+
+    public function sluggable(): array
+    {
+        return [
+            'folder_name_slug' => [
+                'source' => 'folder_name'
+            ]
+        ];
     }
 }

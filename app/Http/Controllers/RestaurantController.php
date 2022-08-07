@@ -43,6 +43,8 @@ class RestaurantController extends Controller
         $restaurant->description = $request->description;
         $restaurant->content = $request->content;
         $restaurant->logo = $request->logo;
+        $restaurant->cr_file = $request->cr_file;
+        $restaurant->vat_file = $request->vat_file;
         if ($restaurant->save()) {
             flash(translate('Restaurant has been created successfully'))->success();
             return redirect()->route('admin.restaurants.index');

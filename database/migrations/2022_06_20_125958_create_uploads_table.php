@@ -19,6 +19,7 @@ class CreateUploadsTable extends Migration
         Schema::create('uploads', function (Blueprint $table) {
             $table->id();
             $table->string('folder_name')->nullable();
+            $table->string('folder_name_slug')->nullable();
 //            $table->string('folder_id')->default(0);
             $table->integer('order')->default(1);
             $table->foreignIdFor(Upload::class, 'folder_id')->nullable();

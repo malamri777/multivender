@@ -29,7 +29,6 @@ class UsersTableSeeder extends Seeder
         $role = Role::where('name', 'super_admin')->first();
         $user->roles()->sync($role);
 
-
         $user = User::create([
             'name' => 'admin',
             'email' => 'admin@app.com',
@@ -40,6 +39,30 @@ class UsersTableSeeder extends Seeder
         ]);
         $role = Role::where('name', 'admin')->first();
         $user->roles()->sync($role);
+
+        // Supplier 1
+        $admin = User::create([
+            'name' => 's1_admin',
+            'email' => 's1_admin@dev.com',
+            'password' => bcrypt('password'),
+            'user_type' => 'supplier_admin',
+            'email_verified_at' => now()
+        ]);
+        $role = Role::where('name', 'supplier_admin')->first();
+        $admin->roles()->sync($role);
+
+        // Supplier 2
+        $admin = User::create([
+            'name' => 's2_admin',
+            'email' => 's2_admin@dev.com',
+            'password' => bcrypt('password'),
+            'user_type' => 'supplier_admin',
+            'email_verified_at' => now()
+        ]);
+
+        $role = Role::where('name', 'supplier_admin')->first();
+        $admin->roles()->sync($role);
+
         // \App\Models\User::factory(100)->create();
 
     }//end of run

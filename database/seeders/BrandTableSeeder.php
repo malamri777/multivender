@@ -15,8 +15,14 @@ class BrandTableSeeder extends Seeder
      */
     public function run()
     {
-        Brand::create([
-            'name' => 'Brand 1'
-        ]);
+        // Brand::create([
+        //     'name' => 'Brand 1'
+        // ]);
+
+        $path = base_path() . '/database/seeders/data/Brand.json';
+        $brands = json_decode(file_get_contents($path), true);
+        foreach ($brands['brands'] as $brand) {
+            Brand::create($brand);
+        }
     }
 }

@@ -1,0 +1,354 @@
+{
+    "brands": [
+        {
+            "name": "Coca Cola",
+            "logo": "64",
+            "top": 0,
+            "slug": "Coca-Cola-fIHPw",
+            "meta_title": null,
+            "meta_description": null,
+            "created_at": "2022-08-03T04:04:02.000Z",
+            "updated_at": "2022-08-03T04:04:02.000Z"
+        },
+        {
+            "name": "walemah",
+            "logo": "65",
+            "top": 0,
+            "slug": "walemah-zGnOy",
+            "meta_title": null,
+            "meta_description": null,
+            "created_at": "2022-08-03T04:06:35.000Z",
+            "updated_at": "2022-08-03T04:06:35.000Z"
+        },
+        {
+            "name": "sunWhite",
+            "logo": "66",
+            "top": 0,
+            "slug": "sunWhite-h882h",
+            "meta_title": null,
+            "meta_description": null,
+            "created_at": "2022-08-03T04:07:46.000Z",
+            "updated_at": "2022-08-03T04:07:46.000Z"
+        },
+        {
+            "name": "Pepsi",
+            "logo": "68",
+            "top": 0,
+            "slug": "Pepsi-esk4L",
+            "meta_title": null,
+            "meta_description": null,
+            "created_at": "2022-08-03T04:10:35.000Z",
+            "updated_at": "2022-08-03T04:10:35.000Z"
+        },
+        {
+            "name": "Freshly",
+            "logo": "69",
+            "top": 0,
+            "slug": "Freshly-Cs6P0",
+            "meta_title": null,
+            "meta_description": null,
+            "created_at": "2022-08-03T04:13:08.000Z",
+            "updated_at": "2022-08-03T04:13:08.000Z"
+        },
+        {
+            "name": "BOX",
+            "logo": "6",
+            "top": 0,
+            "slug": "box",
+            "meta_title": null,
+            "meta_description": null,
+            "created_at": "2022-08-07T09:15:22.000Z",
+            "updated_at": "2022-08-07T09:15:22.000Z"
+        },
+        {
+            "name": "BRAGG",
+            "logo": "6",
+            "top": 0,
+            "slug": "bragg",
+            "meta_title": null,
+            "meta_description": null,
+            "created_at": "2022-08-07T09:15:22.000Z",
+            "updated_at": "2022-08-07T09:15:22.000Z"
+        },
+        {
+            "name": "C & H",
+            "logo": "6",
+            "top": 0,
+            "slug": "c-h",
+            "meta_title": null,
+            "meta_description": null,
+            "created_at": "2022-08-07T09:15:22.000Z",
+            "updated_at": "2022-08-07T09:15:22.000Z"
+        },
+        {
+            "name": "CUTEY",
+            "logo": "6",
+            "top": 0,
+            "slug": "cutey",
+            "meta_title": null,
+            "meta_description": null,
+            "created_at": "2022-08-07T09:15:22.000Z",
+            "updated_at": "2022-08-07T09:15:22.000Z"
+        },
+        {
+            "name": "CUTY",
+            "logo": "6",
+            "top": 0,
+            "slug": "cuty",
+            "meta_title": null,
+            "meta_description": null,
+            "created_at": "2022-08-07T09:15:22.000Z",
+            "updated_at": "2022-08-07T09:15:22.000Z"
+        },
+        {
+            "name": "DANBORG",
+            "logo": "6",
+            "top": 0,
+            "slug": "danborg",
+            "meta_title": null,
+            "meta_description": null,
+            "created_at": "2022-08-07T09:15:22.000Z",
+            "updated_at": "2022-08-07T09:15:22.000Z"
+        },
+        {
+            "name": "EL SERPIS",
+            "logo": "6",
+            "top": 0,
+            "slug": "el-serpis",
+            "meta_title": null,
+            "meta_description": null,
+            "created_at": "2022-08-07T09:15:22.000Z",
+            "updated_at": "2022-08-07T09:15:22.000Z"
+        },
+        {
+            "name": "FRESHLY",
+            "logo": "6",
+            "top": 0,
+            "slug": "freshly",
+            "meta_title": null,
+            "meta_description": null,
+            "created_at": "2022-08-07T09:15:22.000Z",
+            "updated_at": "2022-08-07T09:15:22.000Z"
+        },
+        {
+            "name": "FRESHLY ",
+            "logo": "6",
+            "top": 0,
+            "slug": "freshly-2",
+            "meta_title": null,
+            "meta_description": null,
+            "created_at": "2022-08-07T09:15:25.000Z",
+            "updated_at": "2022-08-07T09:15:25.000Z"
+        },
+        {
+            "name": "HAND BEST",
+            "logo": "6",
+            "top": 0,
+            "slug": "hand-best",
+            "meta_title": null,
+            "meta_description": null,
+            "created_at": "2022-08-07T09:15:25.000Z",
+            "updated_at": "2022-08-07T09:15:25.000Z"
+        },
+        {
+            "name": "HERSHEY",
+            "logo": "6",
+            "top": 0,
+            "slug": "hershey",
+            "meta_title": null,
+            "meta_description": null,
+            "created_at": "2022-08-07T09:15:25.000Z",
+            "updated_at": "2022-08-07T09:15:25.000Z"
+        },
+        {
+            "name": "HINTZ",
+            "logo": "6",
+            "top": 0,
+            "slug": "hintz",
+            "meta_title": null,
+            "meta_description": null,
+            "created_at": "2022-08-07T09:15:25.000Z",
+            "updated_at": "2022-08-07T09:15:25.000Z"
+        },
+        {
+            "name": "JOSIAN",
+            "logo": "6",
+            "top": 0,
+            "slug": "josian",
+            "meta_title": null,
+            "meta_description": null,
+            "created_at": "2022-08-07T09:15:25.000Z",
+            "updated_at": "2022-08-07T09:15:25.000Z"
+        },
+        {
+            "name": "LIGO",
+            "logo": "6",
+            "top": 0,
+            "slug": "ligo",
+            "meta_title": null,
+            "meta_description": null,
+            "created_at": "2022-08-07T09:15:25.000Z",
+            "updated_at": "2022-08-07T09:15:25.000Z"
+        },
+        {
+            "name": "MAKATI",
+            "logo": "6",
+            "top": 0,
+            "slug": "makati",
+            "meta_title": null,
+            "meta_description": null,
+            "created_at": "2022-08-07T09:15:26.000Z",
+            "updated_at": "2022-08-07T09:15:26.000Z"
+        },
+        {
+            "name": "MAKATI ",
+            "logo": "6",
+            "top": 0,
+            "slug": "makati-2",
+            "meta_title": null,
+            "meta_description": null,
+            "created_at": "2022-08-07T09:15:26.000Z",
+            "updated_at": "2022-08-07T09:15:26.000Z"
+        },
+        {
+            "name": "MR. COFFEE",
+            "logo": "6",
+            "top": 0,
+            "slug": "mr-coffee",
+            "meta_title": null,
+            "meta_description": null,
+            "created_at": "2022-08-07T09:15:26.000Z",
+            "updated_at": "2022-08-07T09:15:26.000Z"
+        },
+        {
+            "name": "MUSSELMANS",
+            "logo": "6",
+            "top": 0,
+            "slug": "musselmans",
+            "meta_title": null,
+            "meta_description": null,
+            "created_at": "2022-08-07T09:15:26.000Z",
+            "updated_at": "2022-08-07T09:15:26.000Z"
+        },
+        {
+            "name": "ORIENT GARDENS",
+            "logo": "6",
+            "top": 0,
+            "slug": "orient-gardens",
+            "meta_title": null,
+            "meta_description": null,
+            "created_at": "2022-08-07T09:15:26.000Z",
+            "updated_at": "2022-08-07T09:15:26.000Z"
+        },
+        {
+            "name": "ORIENT GARDENS ",
+            "logo": "6",
+            "top": 0,
+            "slug": "orient-gardens-2",
+            "meta_title": null,
+            "meta_description": null,
+            "created_at": "2022-08-07T09:15:27.000Z",
+            "updated_at": "2022-08-07T09:15:27.000Z"
+        },
+        {
+            "name": "ORIENT GARDENSS",
+            "logo": "6",
+            "top": 0,
+            "slug": "orient-gardenss",
+            "meta_title": null,
+            "meta_description": null,
+            "created_at": "2022-08-07T09:15:27.000Z",
+            "updated_at": "2022-08-07T09:15:27.000Z"
+        },
+        {
+            "name": "ORINEX",
+            "logo": "6",
+            "top": 0,
+            "slug": "orinex",
+            "meta_title": null,
+            "meta_description": null,
+            "created_at": "2022-08-07T09:15:27.000Z",
+            "updated_at": "2022-08-07T09:15:27.000Z"
+        },
+        {
+            "name": "PEEP",
+            "logo": "6",
+            "top": 0,
+            "slug": "peep",
+            "meta_title": null,
+            "meta_description": null,
+            "created_at": "2022-08-07T09:15:29.000Z",
+            "updated_at": "2022-08-07T09:15:29.000Z"
+        },
+        {
+            "name": "PEEP  ",
+            "logo": "6",
+            "top": 0,
+            "slug": "peep-2",
+            "meta_title": null,
+            "meta_description": null,
+            "created_at": "2022-08-07T09:15:29.000Z",
+            "updated_at": "2022-08-07T09:15:29.000Z"
+        },
+        {
+            "name": "ROBERT",
+            "logo": "6",
+            "top": 0,
+            "slug": "robert",
+            "meta_title": null,
+            "meta_description": null,
+            "created_at": "2022-08-07T09:15:29.000Z",
+            "updated_at": "2022-08-07T09:15:29.000Z"
+        },
+        {
+            "name": "SIPA",
+            "logo": "6",
+            "top": 0,
+            "slug": "sipa",
+            "meta_title": null,
+            "meta_description": null,
+            "created_at": "2022-08-07T09:15:29.000Z",
+            "updated_at": "2022-08-07T09:15:29.000Z"
+        },
+        {
+            "name": "TABASCO",
+            "logo": "6",
+            "top": 0,
+            "slug": "tabasco",
+            "meta_title": null,
+            "meta_description": null,
+            "created_at": "2022-08-07T09:15:29.000Z",
+            "updated_at": "2022-08-07T09:15:29.000Z"
+        },
+        {
+            "name": "TARGET",
+            "logo": "6",
+            "top": 0,
+            "slug": "target",
+            "meta_title": null,
+            "meta_description": null,
+            "created_at": "2022-08-07T09:15:29.000Z",
+            "updated_at": "2022-08-07T09:15:29.000Z"
+        },
+        {
+            "name": "W\/COPENHAGEN ",
+            "logo": "6",
+            "top": 0,
+            "slug": "w-copenhagen",
+            "meta_title": null,
+            "meta_description": null,
+            "created_at": "2022-08-07T09:15:29.000Z",
+            "updated_at": "2022-08-07T09:15:29.000Z"
+        },
+        {
+            "name": "YERGAT",
+            "logo": "6",
+            "top": 0,
+            "slug": "yergat",
+            "meta_title": null,
+            "meta_description": null,
+            "created_at": "2022-08-07T09:15:29.000Z",
+            "updated_at": "2022-08-07T09:15:29.000Z"
+        }
+    ]
+}
