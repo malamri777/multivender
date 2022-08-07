@@ -158,12 +158,6 @@ class ProductController extends Controller
 
     public function store_exist(WarehouseProductReqeust $request)
     {
-
-
-        info($request->all());
-        info(explode(' to ',$request->date_range)[0]);
-        info(explode(' to ',$request->date_range)[1]);
-
         if($request->warehouse_product_id){
 
             $warehouseProduct = WarehouseProduct::where('id', $request->warehouse_product_id)->where('warehouse_id', $request->warehouse_id);
@@ -173,6 +167,7 @@ class ProductController extends Controller
                     'price' => $request->price ,
                     'sale_price' => $request->sale_price ,
                     'quantity' => $request->quantity,
+                    'published' => $request->published,
                     "sale_price_type" => $request->sale_price_type,
                     "sale_price_start_date" => explode(' to ',$request->date_range)[0],
                     "sale_price_end_date" => explode(' to ',$request->date_range)[1],
@@ -190,20 +185,37 @@ class ProductController extends Controller
                 flash(translate('Something Went Wrong'))->success();
             }
         }else{
-            $warehouseProduct = WarehouseProduct::create([
-                "warehouse_id" => $request->warehouse_id,
-                "price" => $request->price,
-                "sale_price" => $request->sale_price,
-                "quantity" => $request->quantity,
-                "sale_price_type" => $request->sale_price_type,
-                "sale_price_start_date" => explode(' to ',$request->date_range)[0],
-                "sale_price_end_date" => explode(' to ',$request->date_range)[1],
-                "low_stock_quantity" => $request->low_stock_quantity,
-                "product_id" => $request->product_id,
-                'updated_by_id' =>  Auth::user()->id,
-                'created_by_id' =>  Auth::user()->id
-            ]);
-
+            if($request->date_range && $request->low_stock_quantity && $request->sale_price_type && $request->sale_price_type){
+                $warehouseProduct = WarehouseProduct::create([
+                    "warehouse_id" => $request->warehouse_id,
+                    "price" => $request->price,
+                    "sale_price" => $request->sale_price,
+                    "quantity" => $request->quantity,
+                    "sale_price_type" => $request->sale_price_type,
+                    "sale_price_start_date" => explode(' to ',$request->date_range)[0],
+                    "sale_price_end_date" => explode(' to ',$request->date_range)[1],
+                    "low_stock_quantity" => $request->low_stock_quantity,
+                    'published' => $request->published,
+                    "product_id" => $request->product_id,
+                    'updated_by_id' =>  Auth::user()->id,
+                    'created_by_id' =>  Auth::user()->id
+                ]);
+            } else {
+                $warehouseProduct = WarehouseProduct::create([
+                    "warehouse_id" => $request->warehouse_id,
+                    "price" => $request->price,
+                    "sale_price" => $request->sale_price,
+                    "quantity" => $request->quantity,
+                    "sale_price_type" => null,
+                    "sale_price_start_date" => null,
+                    "sale_price_end_date" => null,
+                    "low_stock_quantity" => 1,
+                    'published' => $request->published,
+                    "product_id" => $request->product_id,
+                    'updated_by_id' =>  Auth::user()->id,
+                    'created_by_id' =>  Auth::user()->id
+                ]);
+            }
 
             if($warehouseProduct){
                 flash(translate('Warehouse Product Created Successfully'))->success();

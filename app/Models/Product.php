@@ -15,7 +15,7 @@ class Product extends Model
     protected $fillable = [
         'sku', 'name', 'added_by', 'user_id', 'category_id', 'brand_id', 'photos', 'thumbnail_img', 'video_provider', 'video_link',
         'tags', 'description', 'unit_price', 'purchase_price', 'variant_product', 'attributes', 'choice_options', 'unit', 'slug',
-        'approved', 'choice_options', 'colors', 'variations', 'todays_deal', 'published', 'approved', 'stock_visibility_state',
+        'approved', 'choice_options', 'colors', 'variations', 'todays_deal', 'approved', 'stock_visibility_state',
         'cash_on_delivery', 'featured', 'seller_featured', 'current_stock', 'unit', 'min_qty', 'low_stock_quantity',
         'discount', 'discount_type', 'discount_start_date', 'discount_end_date', 'shipping_type', 'shipping_cost', 'is_quantity_multiplied',
         'est_shipping_days', 'meta_title', 'meta_description', 'meta_img', 'pdf', 'slug', 'rating', 'barcode', 'digital', 'external_link',
@@ -123,8 +123,6 @@ class Product extends Model
     }
 
 
-
-
     public function sluggable(): array
     {
         return [
@@ -133,4 +131,12 @@ class Product extends Model
             ]
         ];
     }
+
+    public function scopePublished($query)
+    {
+        return $query->whereHas('warehouseProducts',function($q){
+            $q->where('published', 1)->orderBy('num_of_sale', 'desc');
+        });
+    }
+
 }

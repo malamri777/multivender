@@ -67,6 +67,19 @@
                         </div>
                     </div>
 
+
+                    <div id="product_input" class="form-group row">
+                        <label class="col-md-3 col-from-label">{{translate('Published')}}  <span class="text-danger">*</span></label>
+                        <div class="col-md-3">
+                            <select id="published_option" class="form-control aiz-selectpicker" name="published" required>
+                                <option value="1">{{translate('Publish')}}</option>
+                                <option value="0">{{translate('Dont Publish')}}</option>
+                            </select>
+                            @include('backend.inc.form-span-error', ['field' => 'published'])
+                        </div>
+                    </div>
+
+
                     <div id="product_input" class="form-group row">
                         <label class="col-sm-3 control-label" for="start_date">{{translate('Sale Price Date Range')}}</label>
                         <div class="col-md-8">
@@ -77,7 +90,7 @@
                     <div id="product_input" class="form-group row">
                         <label class="col-md-3 col-from-label">{{translate('Sale Price')}} </label>
                         <div class="col-md-5">
-                            <input type="number" lang="en" min="0" value="0" step="0.01" placeholder="{{ translate('Sale Price') }}" name="sale_price" class="form-control" required>
+                            <input type="number" lang="en" min="0" value="0" step="0.01" placeholder="{{ translate('Sale Price') }}" name="sale_price" class="form-control">
                             @include('backend.inc.form-span-error', ['field' => 'sale_price'])
                         </div>
                         <div class="col-md-3">
@@ -92,7 +105,7 @@
                     <div id="product_input" class="form-group row">
                         <label class="col-md-3 col-from-label">{{translate('Low Stock Quantity Warning')}}</label>
                         <div class="col-md-8">
-                            <input type="number" lang="en" min="0" value="0" step="1" placeholder="{{ translate('Low Stock Quantity') }}" name="low_stock_quantity" class="form-control" required>
+                            <input type="number" lang="en" min="0" value="0" step="1" placeholder="{{ translate('Low Stock Quantity') }}" name="low_stock_quantity" class="form-control">
                             @include('backend.inc.form-span-error', ['field' => 'low_stock_quantity'])
                         </div>
                     </div>
@@ -177,9 +190,13 @@
                             $('#form input[name=sale_price]').val(result.warehouse_product.sale_price)
                             $('#form input[name=quantity]').val(result.warehouse_product.quantity)
                             $('#form input[name=low_stock_quantity]').val(result.warehouse_product.low_stock_quantity)
-                            $('#form input[name=date_range]').val(result.warehouse_product.sale_price_start_date+' to '+result.warehouse_product.sale_price_end_date)
+                            if(result.warehouse_product.sale_price_start_date != null && result.warehouse_product.sale_price_end_date != null){
+                                $('#form input[name=date_range]').val(result.warehouse_product.sale_price_start_date+' to '+result.warehouse_product.sale_price_end_date)
+                            }
                             $('#type_option').val(result.warehouse_product.sale_price_type)
                             $('#type_option').selectpicker('refresh');
+                            $('#published_option').val(result.warehouse_product.published)
+                            $('#published_option').selectpicker('refresh');
                         }else if(result.warehouse_product == false){
                             $('#new_product').show()
                             $('#form input[name=warehouse_product_id]').val('');
@@ -190,11 +207,10 @@
                             $('#form input[name=date_range]').val('')
                             $("[id='product_input']").show();
                             $('#form input[name=price]').prop('required',true);
-                            $('#form input[name=low_stock_quantity]').prop('required',true);
-                            $('#form input[name=date_range]').prop('required',true);
-                            $('#type_option').prop('required',true);
                             $('#type_option').val('')
                             $('#type_option').selectpicker('refresh');
+                            $('#published_option').val('')
+                            $('#published_option').selectpicker('refresh');
                         }
 
                     }else{

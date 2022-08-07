@@ -24,6 +24,7 @@ class WarehouseProduct extends Model
         'price',
         'sale_price',
         'quantity',
+        'published' ,
         'warehouse_id',
         'product_id',
         'create_by_id',

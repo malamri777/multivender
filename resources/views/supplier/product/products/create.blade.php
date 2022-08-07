@@ -179,11 +179,11 @@
                         <div class="col-md-8">
                             <select class="form-control aiz-selectpicker" data-live-search="true" name="colors[]"
                                 data-selected-text-format="count" id="colors" multiple disabled>
-                                @foreach (\App\Models\Color::orderBy('name', 'asc')->get() as $key => $color)
+                                {{-- @foreach (\App\Models\Color::orderBy('name', 'asc')->get() as $key => $color)
                                 <option value="{{ $color->code }}"
                                     data-content="<span><span class='size-15px d-inline-block mr-2 rounded border' style='background:{{ $color->code }}'></span><span>{{ $color->name }}</span></span>">
                                 </option>
-                                @endforeach
+                                @endforeach --}}
                             </select>
                         </div>
                         <div class="col-md-1">
