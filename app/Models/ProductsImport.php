@@ -19,26 +19,26 @@ use Storage;
 class ProductsImport implements ToCollection, WithHeadingRow, WithValidation, ToModel
 {
     private $rows = 0;
-    
+
     public function collection(Collection $rows) {
         $canImport = true;
         $user = Auth::user();
         if ($user->user_type == 'seller' && addon_is_activated('seller_subscription')){
-            if((count($rows) + $user->products()->count()) > $user->shop->product_upload_limit
-                    || $user->shop->package_invalid_at == null 
-                        || Carbon::now()->diffInDays(Carbon::parse($user->shop->package_invalid_at), false) < 0) {
+            if((count($rows) + $user->products()->count()) > $user->supplier->product_upload_limit
+                    || $user->supplier->package_invalid_at == null
+                        || Carbon::now()->diffInDays(Carbon::parse($user->supplier->package_invalid_at), false) < 0) {
                 $canImport = false;
                 flash(translate('Please upgrade your package.'))->warning();
             }
         }
-        
+
         if($canImport) {
             foreach ($rows as $row) {
 				$approved = 1;
 				if($user->user_type == 'seller' && get_setting('product_approve_by_admin') == 1) {
 					$approved = 0;
 				}
-				
+
                 $productId = Product::create([
                             'name' => $row['name'],
                             'description' => $row['description'],
@@ -69,16 +69,16 @@ class ProductsImport implements ToCollection, WithHeadingRow, WithValidation, To
                     'variant' => '',
                 ]);
             }
-            
+
             flash(translate('Products imported successfully'))->success();
         }
     }
-    
+
     public function model(array $row)
     {
         ++$this->rows;
     }
-    
+
     public function getRowCount(): int
     {
         return $this->rows;
@@ -104,7 +104,7 @@ class ProductsImport implements ToCollection, WithHeadingRow, WithValidation, To
 
             return $upload->id;
         } catch (\Exception $e) {
-            
+
         }
         return null;
     }

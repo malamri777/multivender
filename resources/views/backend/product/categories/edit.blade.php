@@ -44,7 +44,7 @@
                             <small>{{translate('Higher number has high priority')}}</small>
                         </div>
                     </div>
-                    <div class="form-group row">
+                    {{-- <div class="form-group row">
                         <label class="col-md-3 col-form-label">{{translate('Type')}}</label>
                         <div class="col-md-9">
                             <select name="digital" required class="form-control aiz-selectpicker mb-2 mb-md-0">
@@ -52,7 +52,7 @@
                                 <option value="1" @if ($category->digital == '1') selected @endif>{{translate('Digital')}}</option>
                             </select>
                         </div>
-                    </div>
+                    </div> --}}
     	            <div class="form-group row">
                         <label class="col-md-3 col-form-label" for="signinSrEmail">{{translate('Banner')}} <small>({{ translate('200x200') }})</small></label>
                         <div class="col-md-9">
@@ -96,7 +96,7 @@
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label">{{translate('Slug')}}</label>
                         <div class="col-md-9">
-                            <input type="text" placeholder="{{translate('Slug')}}" id="slug" name="slug" value="{{ $category->slug }}" class="form-control">
+                            <input type="text" placeholder="{{translate('Slug')}}" id="slug" name="slug" value="{{ $category->slug }}" class="form-control" readonly>
                         </div>
                     </div>
                     @if (get_setting('category_wise_commission') == 1)

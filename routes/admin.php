@@ -76,11 +76,12 @@ Route::get('/admin', [AdminController::class, 'admin_dashboard'])->name('admin.d
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'admin']], function() {
 
     // category
-    Route::resource('categories', CategoryController::class);
+    Route::resource('categories', CategoryController::class)->except('destroy');
     Route::controller(CategoryController::class)->group(function () {
         // Route::get('/categories/edit/{id}', 'edit')->name('categories.edit');
         // Route::get('/categories/destroy/{id}', 'destroy')->name('categories.destroy');
         Route::post('/categories/featured', 'updateFeatured')->name('categories.featured');
+        Route::get('/categories/destroy/{id}', 'destroy')->name('categories.destroy');
     });
 
     // Brand
@@ -474,7 +475,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
         Route::post('update_status', 'updateStatus')->name('update_status');
         Route::get('query-users-selector/{supplier?}', 'queryUsersForSupplier')->name('query-users-selector');
         Route::get('destroy/{id}', 'destroy')->name('destroy');
-
+        Route::get('unverified', 'unverified')->name('unverified');
 
         // Warehouse
         Route::controller(WarehouseController::class)

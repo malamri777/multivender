@@ -44,7 +44,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-from-label" for="admin_id">{{ translate('Supplier Admin') }}</label>
                             <div class="col-sm-9">
-                                <select class="form-control aiz-selectpicker-ajax with-ajax" data-abs-cache="true"
+                                <select class="form-control aiz-selectpicker-ajax with-ajax" data-abs-cache="true" required
                                 data-live-search="true" id="admin_id" name="admin_id"></select>
                                 @include('backend.inc.form-span-error', ['field' => 'admin_id'])
                             </div>

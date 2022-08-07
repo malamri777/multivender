@@ -40,7 +40,7 @@
                     <option value="">{{ translate('All Sellers') }}</option>
                     @foreach (\App\Models\Seller::all() as $key => $seller)
                         @if ($seller->user != null && $seller->user->shop != null)
-                            <option value="{{ $seller->user->id }}" @if ($seller->user->id == $seller_id) selected @endif>{{ $seller->user->shop->name }} ({{ $seller->user->name }})</option>
+                            <option value="{{ $seller->user->id }}" @if ($seller->user->id == $seller_id) selected @endif>{{ $seller->user->supplier->name }} ({{ $seller->user->name }})</option>
                         @endif
                     @endforeach
                 </select>

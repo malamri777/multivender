@@ -15,10 +15,7 @@ class CategoryCollection extends ResourceCollection
                 if(uploaded_asset($data->banner)) {
                     $banner = uploaded_asset($data->banner);
                 }
-//                $icon ='';
-//                if(uploaded_asset(uploaded_asset($data->icon))) {
-//                    $icon = uploaded_asset($data->icon);
-//                }
+
 
                 return [
                     'id' => $data->id,

@@ -21,8 +21,8 @@ class ShopDetailsCollection extends ResourceCollection
                     'facebook' => $data->facebook,
                     'google' => $data->google,
                     'twitter' => $data->twitter,
-                    'true_rating' => (double) $data->user->shop->rating,
-                    'rating' => (double) $data->user->shop->rating
+                    'true_rating' => (double) $data->user->supplier->rating,
+                    'rating' => (double) $data->user->supplier->rating
                 ];
             })
         ];

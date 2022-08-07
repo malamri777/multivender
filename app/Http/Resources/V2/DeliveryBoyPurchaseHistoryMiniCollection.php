@@ -14,17 +14,17 @@ class DeliveryBoyPurchaseHistoryMiniCollection extends ResourceCollection
                 $delivery_pickup_latitude = 90.99;
                 $delivery_pickup_longitude = 180.99;
                 $store_location_available = false;
-                if($data->shop && $data->shop->delivery_pickup_latitude) {
+                if($data->shop && $data->supplier->delivery_pickup_latitude) {
                     $store_location_available = true;
-                    $delivery_pickup_latitude = floatval($data->shop->delivery_pickup_latitude);
-                    $delivery_pickup_longitude = floatval($data->shop->delivery_pickup_longitude);
+                    $delivery_pickup_latitude = floatval($data->supplier->delivery_pickup_latitude);
+                    $delivery_pickup_longitude = floatval($data->supplier->delivery_pickup_longitude);
                 } if(!$data->shop) {
                     $store_location_available = true;
                     if(get_setting('delivery_pickup_latitude') && get_setting('delivery_pickup_longitude')) {
                         $delivery_pickup_latitude = floatval(get_setting('delivery_pickup_latitude'));
                         $delivery_pickup_longitude = floatval(get_setting('delivery_pickup_longitude'));
                     }
-                    
+
                 }
                 $shipping_address = json_decode($data->shipping_address,true);
                 $location_available = false;

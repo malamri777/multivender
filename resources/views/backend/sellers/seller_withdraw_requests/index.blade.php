@@ -25,8 +25,8 @@
                             <tr>
                                 <td>{{ ($key+1) + ($seller_withdraw_requests->currentPage() - 1)*$seller_withdraw_requests->perPage() }}</td>
                                 <td>{{ $seller_withdraw_request->created_at }}</td>
-                                <td>{{ $user->name }} ({{ $user->shop->name }})</td>
-                                <td>{{ single_price($user->shop->admin_to_pay) }}</td>
+                                <td>{{ $user->name }} ({{ $user->supplier->name }})</td>
+                                <td>{{ single_price($user->supplier->admin_to_pay) }}</td>
                                 <td>{{ single_price($seller_withdraw_request->amount) }}</td>
                                 <td>
                                     {{ $seller_withdraw_request->message }}

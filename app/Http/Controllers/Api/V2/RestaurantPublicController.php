@@ -51,7 +51,7 @@ class RestaurantPublicController extends Controller
         });
 
         $latest = Cache::remember('mobile_home_latest_products', 86400, function(){
-            $products = Product::orderBy('num_of_sale', 'desc');
+            $products = Product::orderBy('created_at', 'desc');
             return new ProductMiniCollection(Product::latest()->paginate(10));
         });
 

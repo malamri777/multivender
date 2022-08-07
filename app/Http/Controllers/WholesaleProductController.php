@@ -153,7 +153,7 @@ class WholesaleProductController extends Controller
 
         if(get_setting('seller_wholesale_product') == 1){
             if(addon_is_activated('seller_subscription')){
-                if(Auth::user()->shop->seller_package != null && Auth::user()->shop->seller_package->product_upload_limit > Auth::user()->products()->count()){
+                if(Auth::user()->supplier->seller_package != null && Auth::user()->supplier->seller_package->product_upload_limit > Auth::user()->products()->count()){
                     return view('wholesale.frontend.seller_products.create', compact('categories'));
                 }
                 else {
@@ -182,7 +182,7 @@ class WholesaleProductController extends Controller
     public function product_store_seller(Request $request)
     {
         if(addon_is_activated('seller_subscription')){
-            if(Auth::user()->shop->seller_package == null || Auth::user()->shop->seller_package->product_upload_limit <= Auth::user()->products()->count()){
+            if(Auth::user()->supplier->seller_package == null || Auth::user()->supplier->seller_package->product_upload_limit <= Auth::user()->products()->count()){
                 flash(translate('Upload limit has been reached. Please upgrade your package.'))->warning();
                 return back();
             }

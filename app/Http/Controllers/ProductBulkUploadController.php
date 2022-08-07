@@ -17,7 +17,7 @@ class ProductBulkUploadController extends Controller
     public function index()
     {
         if (Auth::user()->user_type == 'seller') {
-            if(Auth::user()->shop->verification_status){
+            if(Auth::user()->supplier->verification_status){
                 return view('seller.product_bulk_upload.index');
             }
             else{
@@ -68,7 +68,7 @@ class ProductBulkUploadController extends Controller
             $import = new ProductsImport;
             Excel::import($import, request()->file('bulk_file'));
         }
-        
+
         return back();
     }
 

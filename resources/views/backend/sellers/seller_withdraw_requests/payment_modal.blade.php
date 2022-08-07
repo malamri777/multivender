@@ -9,47 +9,47 @@
       <table class="table table-striped table-bordered" >
           <tbody>
                 <tr>
-                    @if($user->shop->admin_to_pay >= 0)
+                    @if($user->supplier->admin_to_pay >= 0)
                         <td>{{ translate('Due to seller') }}</td>
-                        <td>{{ single_price($user->shop->admin_to_pay) }}</td>
+                        <td>{{ single_price($user->supplier->admin_to_pay) }}</td>
                     @endif
                 </tr>
                 <tr>
-                    @if($seller_withdraw_request->amount > $user->shop->admin_to_pay)
+                    @if($seller_withdraw_request->amount > $user->supplier->admin_to_pay)
                         <td>{{ translate('Requested Amount is ') }}</td>
                         <td>{{ single_price($seller_withdraw_request->amount) }}</td>
                     @endif
                 </tr>
-                @if ($user->shop->bank_payment_status == 1)
+                @if ($user->supplier->bank_payment_status == 1)
                     <tr>
                         <td>{{ translate('Bank Name') }}</td>
-                        <td>{{ $user->shop->bank_name }}</td>
+                        <td>{{ $user->supplier->bank_name }}</td>
                     </tr>
                     <tr>
                         <td>{{ translate('Bank Account Name') }}</td>
-                        <td>{{ $user->shop->bank_acc_name }}</td>
+                        <td>{{ $user->supplier->bank_acc_name }}</td>
                     </tr>
                     <tr>
                         <td>{{ translate('Bank Account Number') }}</td>
-                        <td>{{ $user->shop->bank_acc_no }}</td>
+                        <td>{{ $user->supplier->bank_acc_no }}</td>
                     </tr>
                     <tr>
                         <td>{{ translate('Bank Routing Number') }}</td>
-                        <td>{{ $user->shop->bank_routing_no }}</td>
+                        <td>{{ $user->supplier->bank_routing_no }}</td>
                     </tr>
                 @endif
             </tbody>
         </table>
 
-        @if ($user->shop->admin_to_pay > 0)
-            <input type="hidden" name="shop_id" value="{{ $user->shop->id }}">
+        @if ($user->supplier->admin_to_pay > 0)
+            <input type="hidden" name="shop_id" value="{{ $user->supplier->id }}">
             <input type="hidden" name="payment_withdraw" value="withdraw_request">
             <input type="hidden" name="withdraw_request_id" value="{{ $seller_withdraw_request->id }}">
             <div class="form-group row">
                 <label class="col-sm-3 col-from-label" for="amount">{{translate('Requested Amount')}}</label>
                 <div class="col-sm-9">
-                    @if ($seller_withdraw_request->amount > $user->shop->admin_to_pay)
-                        <input type="number" lang="en" min="0" step="0.01" name="amount" id="amount" value="{{ $user->shop->admin_to_pay }}" class="form-control" required>
+                    @if ($seller_withdraw_request->amount > $user->supplier->admin_to_pay)
+                        <input type="number" lang="en" min="0" step="0.01" name="amount" id="amount" value="{{ $user->supplier->admin_to_pay }}" class="form-control" required>
                     @else
                         <input type="number" lang="en" min="0" step="0.01" name="amount" id="amount" value="{{ $seller_withdraw_request->amount }}" class="form-control" required>
                     @endif
@@ -61,10 +61,10 @@
                 <div class="col-sm-9">
                     <select name="payment_option" id="payment_option" class="form-control demo-select2-placeholder" required>
                         <option value="">{{translate('Select Payment Method')}}</option>
-                        @if($user->shop->cash_on_delivery_status == 1)
+                        @if($user->supplier->cash_on_delivery_status == 1)
                             <option value="cash">{{translate('Cash')}}</option>
                         @endif
-                        @if($user->shop->bank_payment_status == 1)
+                        @if($user->supplier->bank_payment_status == 1)
                             <option value="bank_payment">{{translate('Bank Payment')}}</option>
                         @endif
                     </select>
@@ -74,7 +74,7 @@
 
     </div>
     <div class="modal-footer">
-      @if ($user->shop->admin_to_pay > 0)
+      @if ($user->supplier->admin_to_pay > 0)
         <button type="submit" class="btn btn-primary">{{translate('Pay')}}</button>
       @endif
       <button type="button" class="btn btn-light" data-dismiss="modal">{{translate('Cancel')}}</button>

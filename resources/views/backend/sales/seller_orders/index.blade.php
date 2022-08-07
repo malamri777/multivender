@@ -19,7 +19,7 @@
                         <option value="">{{ translate('All Sellers') }}</option>
                         @foreach (App\Models\User::where('user_type', '=', 'seller')->get() as $key => $seller)
                             <option value="{{ $seller->id }}" @if ($seller->id == $seller_id) selected @endif>
-                                {{ $seller->shop->name }} ({{ $seller->name }})
+                                {{ $seller->supplier->name }} ({{ $seller->name }})
                             </option>
                         @endforeach
                     </select>
@@ -78,7 +78,7 @@
                         </td>
                         <td>
                             @if($order->shop)
-                                {{ $order->shop->name }}
+                                {{ $order->supplier->name }}
                             @endif
                         </td>
                         <td>

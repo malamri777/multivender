@@ -45,7 +45,7 @@
                                 <span class="fs-16 text-info">{{ translate('Rating') }}</span>
                             </p>
                             <h3 class="mb-0 text-white fs-30">
-                                {{ Auth::user()->shop->rating ?? 0 }}
+                                {{ Auth::user()->supplier->rating ?? 0 }}
                             </h3>
 
                         </div>
@@ -387,22 +387,22 @@
                         <div class="card-title">
                             <h6 class="mb-0">{{ translate('Purchased Package') }}</h6>
                         </div>
-                        @if (Auth::user()->shop->seller_package)
+                        @if (Auth::user()->supplier->seller_package)
                             <div class="d-flex">
                                 <div>
-                                    <img src="{{ uploaded_asset(Auth::user()->shop->seller_package->logo) }}"
+                                    <img src="{{ uploaded_asset(Auth::user()->supplier->seller_package->logo) }}"
                                         class="img-fluid mb-4 w-64px">
                                 </div>
                                 <div class="ml-3">
                                     <a class="fw-600 mb-3 text-primary">{{ translate('Current Package') }}:</a>
                                     <h6 class="text-primary">
-                                        {{ Auth::user()->shop->seller_package->name }}
+                                        {{ Auth::user()->supplier->seller_package->name }}
                                         </h3>
                                         <p class="mb-1 text-muted">{{ translate('Product Upload Limit') }}:
-                                            {{ Auth::user()->shop->product_upload_limit }} {{ translate('Times') }}
+                                            {{ Auth::user()->supplier->product_upload_limit }} {{ translate('Times') }}
                                         </p>
                                         <p class="text-muted mb-4">{{ translate('Package Expires at') }}:
-                                            {{ Auth::user()->shop->package_invalid_at }}
+                                            {{ Auth::user()->supplier->package_invalid_at }}
                                         </p>
                                         <div class="">
                                             <a href="{{ route('supplier.seller_packages_list') }}"

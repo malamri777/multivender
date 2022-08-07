@@ -5,7 +5,7 @@
         <div class="h6">
             <span>{{ translate('Conversations With ')}}</span>
             @if ($conversation->sender_id == Auth::user()->id && $conversation->receiver->shop != null)
-                <a href="{{ route('shop.visit', $conversation->receiver->shop->slug) }}" class="">{{ $conversation->receiver->shop->name }}</a>
+                <a href="{{ route('shop.visit', $conversation->receiver->supplier->slug) }}" class="">{{ $conversation->receiver->supplier->name }}</a>
             @endif
         </div>
     </div>

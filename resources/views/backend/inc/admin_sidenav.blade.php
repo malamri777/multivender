@@ -44,6 +44,11 @@
                         </li>
                         @endpermission
                         <li class="aiz-side-nav-item">
+                            <a class="aiz-side-nav-link" href="{{route('admin.suppliers.unverified')}}">
+                                <span class="aiz-side-nav-text">{{translate('UnVerified Suppliers')}}</span>
+                            </a>
+                        </li>
+                        <li class="aiz-side-nav-item">
                             @php
                             $suppliers = \App\Models\Supplier::where('verification_status', 0)
                                 ->where('verification_info',

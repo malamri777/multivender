@@ -197,4 +197,9 @@ class SupplierController extends Controller
             return \Response::json($results);
         }
     }
+
+    public function unverified() {
+        $suppliers = Supplier::where('verification_status', 0)->paginate(10);
+        return view('backend.suppliers.index', compact('suppliers'));
+    }
 }

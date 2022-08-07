@@ -14,7 +14,7 @@ class ProductBulkUploadController extends Controller
 {
     public function index()
     {
-        if(Auth::user()->shop->verification_status){
+        if(Auth::user()->supplier->verification_status){
             return view('supplier.product.product_bulk_upload.index');
         }
         else{

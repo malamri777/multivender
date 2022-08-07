@@ -57,7 +57,7 @@ class CategoryController extends Controller
         if($request->order_level != null) {
             $category->order_level = $request->order_level;
         }
-        $category->digital = $request->digital;
+
         $category->banner = $request->banner;
         $category->icon = $request->icon;
         $category->meta_title = $request->meta_title;
@@ -89,7 +89,7 @@ class CategoryController extends Controller
         $category_translation->save();
 
         flash(translate('Category has been inserted successfully'))->success();
-        return redirect()->route('categories.index');
+        return redirect()->route('admin.categories.index');
     }
 
     /**
@@ -138,7 +138,7 @@ class CategoryController extends Controller
         if($request->order_level != null) {
             $category->order_level = $request->order_level;
         }
-        $category->digital = $request->digital;
+
         $category->banner = $request->banner;
         $category->icon = $request->icon;
         $category->meta_title = $request->meta_title;
@@ -177,13 +177,13 @@ class CategoryController extends Controller
         }
 
         $category->save();
-
         $category->attributes()->sync($request->filtering_attributes);
 
         $category_translation = CategoryTranslation::firstOrNew(['lang' => $request->lang, 'category_id' => $category->id]);
         $category_translation->name = $request->name;
         $category_translation->save();
 
+        Cache::forget('mobile_home_categories');
         Cache::forget('featured_categories');
         flash(translate('Category has been updated successfully'))->success();
         return back();
@@ -214,7 +214,7 @@ class CategoryController extends Controller
         Cache::forget('featured_categories');
 
         flash(translate('Category has been deleted successfully'))->success();
-        return redirect()->route('categories.index');
+        return redirect()->route('admin.categories.index');
     }
 
     public function updateFeatured(Request $request)

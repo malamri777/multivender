@@ -40,7 +40,7 @@ class SellerWithdrawRequestController extends Controller
     public function store(Request $request)
     {
         $seller_withdraw_request = new SellerWithdrawRequest;
-        $seller_withdraw_request->user_id = Auth::user()->shop->id;
+        $seller_withdraw_request->user_id = Auth::user()->supplier->id;
         $seller_withdraw_request->amount = $request->amount;
         $seller_withdraw_request->message = $request->message;
         $seller_withdraw_request->status = '0';
