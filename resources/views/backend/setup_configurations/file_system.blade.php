@@ -73,7 +73,7 @@
                 </div>
                 <div class="card-body">
                     <label class="aiz-switch mb-0">
-                        <input type="checkbox" onchange="updateSettings(this, 'FILESYSTEM_DRIVER')" <?php if(env('FILESYSTEM_DRIVER') == 's3') echo "checked";?>>
+                        <input type="checkbox" onchange="updateSettings(this, 'FILESYSTEM_DRIVER')" <?php if(config('myevn.FILESYSTEM_DRIVER') == 's3') echo "checked";?>>
                         <span></span>
                     </label>
                 </div>

@@ -581,7 +581,7 @@ if (!function_exists('my_asset')) {
     function my_asset($path, $secure = null)
     {
         if($path){
-            if (env('FILESYSTEM_DRIVER') == 's3') {
+            if (config('myenv.FILESYSTEM_DRIVER') == 's3') {
                 return Storage::disk('s3')->url($path);
             } else {
                 return app('url')->asset($path, $secure);
@@ -602,7 +602,7 @@ if (!function_exists('static_asset')) {
      */
     function static_asset($path, $secure = null)
     {
-        if (env('FILESYSTEM_DRIVER') == 's3') {
+        if (config('myenv.FILESYSTEM_DRIVER') == 's3') {
             return env("AWS_URL") . "/public/$path";
         } else {
             return app('url')->asset($path, $secure);
@@ -633,7 +633,7 @@ if (!function_exists('getBaseURL')) {
 if (!function_exists('getFileBaseURL')) {
     function getFileBaseURL()
     {
-        if (env('FILESYSTEM_DRIVER') == 's3') {
+        if (config('myenv.FILESYSTEM_DRIVER') == 's3') {
             return env('AWS_URL') . '/';
         } else {
             return getBaseURL() . '/';

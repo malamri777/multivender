@@ -64,7 +64,7 @@ class UploadController extends Controller
                 }
             }
 
-            if (env('FILESYSTEM_DRIVER') == 's3') {
+            if (config('myevn.FILESYSTEM_DRIVER') == 's3') {
                 Storage::disk('s3')->put(
                     $path,
                     file_get_contents(base_path('public/') . $path),

@@ -153,7 +153,7 @@ class ProfileController extends Controller
 
             $newPath = "uploads/all/$newFileName";
 
-            if (env('FILESYSTEM_DRIVER') == 's3') {
+            if (config('myenv.FILESYSTEM_DRIVER') == 's3') {
                 Storage::disk('s3')->put($newPath, file_get_contents(base_path('public/') . $newPath));
                 unlink(base_path('public/') . $newPath);
             }
@@ -269,7 +269,7 @@ class ProfileController extends Controller
 
             $newPath = "uploads/all/$newFileName";
 
-            if (env('FILESYSTEM_DRIVER') == 's3') {
+            if (config('myenv.FILESYSTEM_DRIVER') == 's3') {
                 Storage::disk('s3')->put($newPath, file_get_contents(base_path('public/') . $newPath));
                 unlink(base_path('public/') . $newPath);
             }

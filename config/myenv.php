@@ -21,4 +21,6 @@ return [
     'DEFAULT_COUNT' => env('DEFAULT_COUNT', 3),
     'DEFAULT_TIME_AMOUNT' => env(' DEFAULT_TIME_AMOUNT', 3),
 
+    'FILESYSTEM_DRIVER' => env(' FILESYSTEM_DRIVER', 'local'),
+
 ];
