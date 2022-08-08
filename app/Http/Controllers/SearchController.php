@@ -25,7 +25,7 @@ class SearchController extends Controller
         $attributes = Attribute::all();
         $selected_attribute_values = array();
 
-        $conditions = ['published' => 1];
+        $conditions = [];
 
         if ($brand_id != null) {
             $conditions = array_merge($conditions, ['brand_id' => $brand_id]);
@@ -38,7 +38,7 @@ class SearchController extends Controller
         //     $conditions = array_merge($conditions, ['user_id' => Seller::findOrFail($seller_id)->user->id]);
         // }
 
-        $products = Product::where($conditions);
+        $products = Product::warehouseProductPublished()->where($conditions);
 
         if ($category_id != null) {
             $category_ids = CategoryUtility::children_ids($category_id);
@@ -112,7 +112,10 @@ class SearchController extends Controller
             }
         }
 
-        $products = filter_products($products)->with('taxes')->paginate(12)->appends(request()->query());
+        // $products = filter_products($products)->with('taxes')->paginate(12)->appends(request()->query());
+
+        $products = $products->has('warehouseProducts')
+            ->paginate(12)->appends(request()->query());
 
         return view('frontend.product_listing', compact('products', 'query', 'category_id', 'brand_id', 'sort_by', 'seller_id', 'min_price', 'max_price', 'attributes', 'selected_attribute_values'));
     }
@@ -145,7 +148,7 @@ class SearchController extends Controller
     {
         $keywords = array();
         $query = $request->search;
-        $products = Product::where('published', 1)->where('tags', 'like', '%' . $query . '%')->get();
+        $products = Product::warehouseProductPublished()->where('tags', 'like', '%' . $query . '%')->get();
         foreach ($products as $key => $product) {
             foreach (explode(',', $product->tags) as $key => $tag) {
                 if (stripos($tag, $query) !== false) {
@@ -162,7 +165,7 @@ class SearchController extends Controller
 
         $products = filter_products(Product::query());
 
-        $products = $products->where('published', 1)
+        $products = $products->warehouseProductPublished()
             ->where(function ($q) use ($query) {
                 foreach (explode(' ', trim($query)) as $word) {
                     $q->where('name', 'like', '%' . $word . '%')

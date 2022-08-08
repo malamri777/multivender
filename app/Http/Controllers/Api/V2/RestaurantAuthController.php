@@ -159,7 +159,10 @@ class RestaurantAuthController extends Controller
             'password' => 'required|string'
         ]);
 
-        $user = User::whereIn('user_type', ['restaurant_admin', 'restaurant_branch_admin', 'restaurant'])->where('phone', $request->phone)->first();
+        $user = User::wherehas('roles', function($q){
+            $q->whereIn('name', restaurantRolesList());
+        })
+        ->where('phone', $request->phone)->first();
 
 
         if ($user != null) {

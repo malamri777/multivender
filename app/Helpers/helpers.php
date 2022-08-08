@@ -93,7 +93,8 @@ if (!function_exists('filter_products')) {
                 // ->where('auction_product', 0)
                 ->orderBy('created_at', 'desc')
                 ->where(function ($p) use ($verified_sellers) {
-                $p->where('added_by', 'admin')->orWhere(function ($q) use ($verified_sellers) {
+                $p->where('added_by', 'admin')
+                ->orWhere(function ($q) use ($verified_sellers) {
                     $q->whereIn('user_id', $verified_sellers);
                 });
             });
@@ -139,7 +140,7 @@ if (!function_exists('verified_sellers_id')) {
     function verified_sellers_id()
     {
         return Cache::rememberForever('verified_sellers_id', function () {
-            return App\Models\Shop::where('verification_status', 1)->pluck('user_id')->toArray();
+            return App\Models\Supplier::where('verification_status', 1)->pluck('user_id')->toArray();
         });
     }
 }

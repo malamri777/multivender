@@ -139,4 +139,11 @@ class Product extends Model
         });
     }
 
+    public function scopeWarehouseProductPublished($query)
+    {
+        return $query->whereHas('warehouseProducts',function($q){
+            $q->where('published', 1)->orderBy('num_of_sale', 'desc');
+        });
+    }
+
 }

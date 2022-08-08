@@ -22,10 +22,9 @@ class SupplierUserController extends Controller
         $sort_search = null;
         $sort_supplier = null;
 
-        $usersSupplier = User::query()
-            ->whereIn('user_type', ['supplier_admin', 'supplier_warehouse_admin']);
+        $usersSupplier = User::query();
 
-        $usersSupplier = User::whereHas('roles', function($q){
+        $usersSupplier = $usersSupplier->whereHas('roles', function($q){
             $q->whereIn('name', ['supplier_admin']);
         })
         ->whereHas('supplier', function($q) {

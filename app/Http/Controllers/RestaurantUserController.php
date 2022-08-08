@@ -21,8 +21,10 @@ class RestaurantUserController extends Controller
         $sort_search = null;
         $sort_restaurant = null;
 
-        $usersRestaurant = User::query()
-            ->whereIn('user_type', ['restaurant_admin', 'restaurant_branch_admin']);
+        $usersRestaurant = User::query();
+        $usersRestaurant->whereHas('roles', function ($q) {
+            $q->whereIn('name', restaurantRolesList());
+        })->other();
 
         if (!empty($request->input('search'))) {
             $sort_search = $request->search;
