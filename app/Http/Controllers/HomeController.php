@@ -593,7 +593,7 @@ class HomeController extends Controller
     }
 
     public function all_supplier(Request $request) {
-        $suppliers = Supplier::whereIn('user_id', verified_sellers_id())
+        $suppliers = Supplier::isActive()
                 ->paginate(15);
 
         return view('frontend.supplier_listing', compact('suppliers'));

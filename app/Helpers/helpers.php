@@ -123,9 +123,10 @@ if (!function_exists('get_cached_products')) {
 if (!function_exists('verified_sellers_id')) {
     function verified_sellers_id()
     {
-        return Cache::rememberForever('verified_sellers_id', function () {
-            return App\Models\Supplier::where('verification_status', 1)->pluck('user_id')->toArray();
-        });
+        dd("verified_sellers_id ==========>");
+        // return Cache::rememberForever('verified_sellers_id', function () {
+        //     return App\Models\Supplier::where('verification_status', 1)->pluck('user_id')->toArray();
+        // });
     }
 }
 

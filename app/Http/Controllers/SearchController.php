@@ -8,9 +8,9 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\FlashDeal;
 use App\Models\Brand;
-use App\Models\Shop;
 use App\Models\Attribute;
 use App\Models\AttributeCategory;
+use App\Models\Supplier;
 use App\Utility\CategoryUtility;
 
 class SearchController extends Controller
@@ -183,7 +183,7 @@ class SearchController extends Controller
 
         $categories = Category::where('name', 'like', '%' . $query . '%')->get()->take(3);
 
-        $shops = Shop::whereIn('user_id', verified_sellers_id())->where('name', 'like', '%' . $query . '%')->get()->take(3);
+        $shops = Supplier::isActive()->where('name', 'like', '%' . $query . '%')->get()->take(3);
 
         if (sizeof($keywords) > 0 || sizeof($categories) > 0 || sizeof($products) > 0 || sizeof($shops) > 0) {
             return view('frontend.partials.search_content', compact('products', 'categories', 'keywords', 'shops'));

@@ -104,4 +104,9 @@ class Supplier extends Model
             ]
         ];
     }
+
+    public function scopeIsActive($query)
+    {
+        return $query->where('verification_status', 1);
+    }
 }
