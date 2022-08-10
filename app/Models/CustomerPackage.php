@@ -8,7 +8,7 @@ use App;
 class CustomerPackage extends Model
 {
     public function getTranslation($field = '', $lang = false){
-      $lang = $lang == false ? App::getLocale() : $lang;
+      $lang = $lang == false ? getLocalMapper() : $lang;
       $brand_translation = $this->hasMany(CustomerPackageTranslation::class)->where('lang', $lang)->first();
       return $brand_translation != null ? $brand_translation->$field : $this->$field;
     }

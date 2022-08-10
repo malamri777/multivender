@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('name', 200)->nullable();
             $table->string('unit', 20)->nullable();
             $table->longText('description')->nullable();
-            $table->string('lang', 100);
+            $table->string('lang', 100)->default('ar');
             $table->timestamps();
         });
     }

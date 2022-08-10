@@ -10,7 +10,7 @@ class CustomerProduct extends Model
     protected $with = ['customer_product_translations'];
 
     public function getTranslation($field = '', $lang = false){
-      $lang = $lang == false ? App::getLocale() : $lang;
+      $lang = $lang == false ? getLocalMapper() : $lang;
       $customer_product_translations = $this->customer_product_translations->where('lang', $lang)->first();
       return $customer_product_translations != null ? $customer_product_translations->$field : $this->$field;
     }

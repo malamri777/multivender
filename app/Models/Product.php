@@ -26,7 +26,7 @@ class Product extends Model
 
     public function getTranslation($field = '', $lang = false)
     {
-        $lang = $lang == false ? App::getLocale() : $lang;
+        $lang = $lang == false ? getLocalMapper() : $lang;
         $product_translations = $this->product_translations->where('lang', $lang)->first();
         return $product_translations != null ? $product_translations->$field : $this->$field;
     }

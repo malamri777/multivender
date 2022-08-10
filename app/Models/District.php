@@ -31,7 +31,7 @@ class District extends Model
     ];
 
     public function getTranslation($field = '', $lang = false){
-        $lang = $lang == false ? App::getLocale() : $lang;
+        $lang = $lang == false ? getLocalMapper() : $lang;
         $district_translation = $this->hasMany(DistrictTranslation::class)->where('lang', $lang)->first();
         return $district_translation != null ? $district_translation->$field : $this->$field;
     }

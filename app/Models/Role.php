@@ -13,7 +13,7 @@ class Role extends LaratrustRole
     protected $with = ['role_translations'];
 
     public function getTranslation($field = '', $lang = false){
-        $lang = $lang == false ? App::getLocale() : $lang;
+        $lang = $lang == false ? getLocalMapper() : $lang;
         $role_translation = $this->role_translations->where('lang', $lang)->first();
         return $role_translation != null ? $role_translation->$field : $this->$field;
     }

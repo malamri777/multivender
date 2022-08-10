@@ -157,7 +157,7 @@
                         </div>
 
                         <div class="customer_choice_options" id="customer_choice_options">
-                            @foreach (json_decode($product->choice_options) as $key => $choice_option)
+                            @foreach (json_decode($product->choice_options) ?? [] as $key => $choice_option)
                             <div class="form-group row">
                                 <div class="col-lg-3">
                                     <input type="hidden" name="choice_no[]" value="{{ $choice_option->attribute_id }}">

@@ -46,9 +46,9 @@ class RestaurantPublicController extends Controller
         });
 
         $bestSelling = Cache::remember('mobile_home_best_selling_products', 86400, function(){
-            $products = Product::orderBy('num_of_sale', 'desc')
+            $products = Product::orderBy('created_at', 'desc')
                 ->physical();
-            return new ProductMiniCollection(filter_products($products)->limit(20)->get());
+            return new ProductMiniCollection(filter_products($products)->limit(10)->get());
         });
 
         $latest = Cache::remember('mobile_home_latest_products', 86400, function(){

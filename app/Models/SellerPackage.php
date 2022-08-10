@@ -10,7 +10,7 @@ class SellerPackage extends Model
     protected $guarded = [];
 
     public function getTranslation($field = '', $lang = false){
-        $lang = $lang == false ? App::getLocale() : $lang;
+        $lang = $lang == false ? getLocalMapper() : $lang;
         $seller_package_translation = $this->hasMany(SellerPackageTranslation::class)->where('lang', $lang)->first();
         return $seller_package_translation != null ? $seller_package_translation->$field : $this->$field;
     }

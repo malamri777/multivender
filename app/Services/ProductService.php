@@ -166,10 +166,10 @@ class ProductService
         $collection['tags'] = implode(',', $tags);
 
         if ($collection['meta_title'] == null) {
-            $collection['meta_title'] = $collection['name'];
+            $collection['meta_title'] = $collection['name'] ?? '';
         }
         if ($collection['meta_description'] == null) {
-            $collection['meta_description'] = strip_tags($collection['description']);
+            $collection['meta_description'] = strip_tags($collection['description'] ?? '');
         }
 
         if ($collection['meta_img'] == null) {

@@ -409,14 +409,6 @@ if (!function_exists('home_discounted_base_price')) {
             }
         }
 
-        // foreach ($product->taxes as $product_tax) {
-        //     if ($product_tax->tax_type == 'percent') {
-        //         $tax += ($price * $product_tax->tax) / 100;
-        //     } elseif ($product_tax->tax_type == 'amount') {
-        //         $tax += $product_tax->tax;
-        //     }
-        // }
-
         $tax += ($price * $tax) / 100;
         $price += $tax;
 
@@ -1298,5 +1290,15 @@ if (!function_exists('otpGenerater')) {
     function otpGenerater()
     {
         return rand(1000, 9999);
+    }
+}
+
+if (!function_exists('getLocalMapper')) {
+    function getLocalMapper()
+    {
+        if (App::getLocale() == 'ar') {
+            return 'sa';
+        }
+        return App::getLocale();
     }
 }

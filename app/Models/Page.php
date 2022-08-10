@@ -14,7 +14,7 @@ class Page extends Model
     protected $fillable = ['type', 'title', 'content', 'meta_title', 'meta_description', 'keywords',];
     public function getTranslation($field = '', $lang = false)
     {
-        $lang = $lang == false ? App::getLocale() : $lang;
+        $lang = $lang == false ? getLocalMapper() : $lang;
         $page_translation = $this->hasMany(PageTranslation::class)->where('lang', $lang)->first();
         return $page_translation != null ? $page_translation->$field : $this->$field;
     }
