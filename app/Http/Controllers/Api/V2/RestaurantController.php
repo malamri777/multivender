@@ -6,6 +6,7 @@ use App\Http\Resources\V2\PurchaseHistoryMiniCollection;
 use App\Http\Resources\V2\RestaurantResource;
 use App\Models\Order;
 use App\Models\Restaurant;
+use App\Models\User;
 use Auth;
 use Request;
 

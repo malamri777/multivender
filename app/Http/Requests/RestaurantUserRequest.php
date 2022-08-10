@@ -26,6 +26,7 @@ class RestaurantUserRequest extends FormRequest
     public function rules()
     {
         if (isEditMethod($this->request)) {
+            dd("here");
             // $validationArr = [];
 
             // $validationArr['name'] = 'required|max:255|unique:users,name,' . $id;

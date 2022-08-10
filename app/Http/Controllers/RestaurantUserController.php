@@ -122,13 +122,13 @@ class RestaurantUserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->mobile;
-        $user->provider_id = $request->restaurant_id;
-        $user->user_type = $request->user_type;
+        $user->provider_id ??= $request->restaurant_id;
 
         if (strlen($request->password) > 0) {
             $user->password = Hash::make($request->password);
         }
         if ($user->save()) {
+            $user->roles()->sync($request->roles);
             flash(translate('User has been updated successfully'))->success();
             return redirect()->route('admin.restaurants.users.index');
         }

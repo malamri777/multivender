@@ -39,7 +39,7 @@ class RestaurantAuthController extends Controller
             $user = new User([
                 'name' => $request->name,
                 'phone' => $request->phone,
-                'country_dial_code' => $request->country_dial_code,
+                'country_dail_code' => $request->country_dail_code,
                 'country_code' => $request->country_code,
                 'email' => $request->email,
                 'user_type' => 'restaurant',
@@ -163,16 +163,15 @@ class RestaurantAuthController extends Controller
             // 'password' => 'required|string'
         ]);
 
-        $user = User::wherehas('roles', function($q){
+        $user = User::whereHas('roles', function($q){
             $q->whereIn('name', restaurantRolesList());
         })
         ->where('phone', $request->phone)->first();
 
-
         if ($user != null) {
             // if (Hash::check($request->password, $user->password)) {
 
-                if ($user->email_verified_at == null) {
+                if (isset($user->email) and $user->email_verified_at == null) {
                     return response()->json(['message' => translate('Please verify your account'), 'user' => null], 401);
                 }
 
@@ -182,12 +181,17 @@ class RestaurantAuthController extends Controller
                 $user->save();
                 // return $this->loginSuccess($user);
                 $result = [
+                    'status' => true,
                     'message' => translate('Code sent to your phone.'),
                     'uuid' => $user->uuid
                 ];
                 if (config('myenv.OTP_DEBUG_ENABLE') == 'on') {
                     $result['otp_code'] = $user->otp_code;
+                } else {
+                    $otpController = new OTPVerificationController();
+                    $otpController->send_code($user);
                 }
+                return $result;
                 return response()->json($result);
 
             // } else {
@@ -196,7 +200,7 @@ class RestaurantAuthController extends Controller
         } else {
             $user = new User([
                 'phone' => $request->phone,
-                'country_dial_code' => $request->country_dial_code,
+                'country_dail_code' => $request->country_dail_code,
                 'country_code' => $request->country_code,
             ]);
 
@@ -204,8 +208,11 @@ class RestaurantAuthController extends Controller
             $user->otp_code_count = 0;
             $user->otp_code_time_amount_left = now();
             $user->save();
+            $role = Role::where('name', 'registered')->first();
+            $user->roles()->sync($role);
 
             $result = [
+                'status' => true,
                 'message' => translate('Code sent to your phone.'),
                 'uuid' => $user->uuid
             ];

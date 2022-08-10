@@ -72,9 +72,9 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-3 col-from-label" for="user_type">{{ translate('Role') }}</label>
+                            <label class="col-sm-3 col-from-label" for="roles">{{ translate('Role') }}</label>
                             <div class="col-sm-9">
-                                <select name="user_type" required class="form-control aiz-selectpicker"
+                                <select name="roles[]" required class="form-control aiz-selectpicker"
                                     data-selected="{{ $restaurantUserRolesId }}" multiple>
                                     @foreach ( $restaurantRolesList as $item)
                                     <option value="{{ $item->id }}">{{ $item->display_name}}</option>
@@ -86,7 +86,7 @@
                                     <option value="restaurant_Branch_driver">{{ _('Restaurant Branch Driver') }}
                                     </option> --}}
                                 </select>
-                                @include('backend.inc.form-span-error', ['field' => 'user_type'])
+                                @include('backend.inc.form-span-error', ['field' => 'roles'])
                             </div>
                         </div>
                         <div class="form-group mb-0 text-right">

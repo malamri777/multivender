@@ -32,7 +32,7 @@ class RestaurantResource extends JsonResource
             "admin" => $this->when(Auth::id(), 'admin_id'),
             "cr_file" => uploaded_asset($this->cr_file_id),
             "vat_file" => uploaded_asset($this->vat_file_id),
-            // 'branches' => BranchCollection::make($this->restaurantBranches),
+            'branches' => BranchCollection::make($this->restaurantBranches),
         ];
     }
 

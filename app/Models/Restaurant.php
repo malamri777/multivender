@@ -71,6 +71,18 @@ class Restaurant extends Model
         return $this->hasMany(Branch::class, 'restaurant_id', 'id');
     }
 
+    // public function userBranches()
+    // {
+    //     return $this->hasManyThrough(
+    //         Branch::class,
+    //         WarehouseProduct::class,
+    //         'warehouse_id',
+    //         'id',
+    //         'id',
+    //         'product_id'
+    //     );
+    // }
+
     public function logoUpload()
     {
         return $this->morphOne(Upload::class, 'uploadable');
