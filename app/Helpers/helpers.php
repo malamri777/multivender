@@ -886,9 +886,10 @@ if (!function_exists('getDefaultLanguage')) {
 if (!function_exists('isEditMethod')) {
     function isEditMethod($request)
     {
-        if ($request->get('_method') === 'PATCH' or $request->get('_method') === 'PUT') {
+        if(\Request::method() === 'PATCH' or \Request::method() === 'PUT') {
             return true;
         }
+
         return false;
     }
 }
@@ -1254,7 +1255,7 @@ if (!function_exists('restaurantRolesList')) {
     function restaurantRolesList()
     {
         return [
-            'restaurant','restaurant_admin', 'restaurant_branch_admin', 'restaurant_branch_driver','restaurant_branch_user'
+            'registered', 'restaurant','restaurant_admin', 'restaurant_branch_admin', 'restaurant_branch_driver','restaurant_branch_user'
         ];
     }
 }
@@ -1290,5 +1291,12 @@ if (!function_exists('normalRolesList')) {
     function normalRolesList()
     {
         return array_merge(supplierRolesList(), branchRolesList(), restaurantRolesList(), warehouseRolesList());
+    }
+}
+
+if (!function_exists('otpGenerater')) {
+    function otpGenerater()
+    {
+        return rand(1000, 9999);
     }
 }

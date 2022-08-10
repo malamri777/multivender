@@ -17,7 +17,6 @@ class RestaurantUserResource extends JsonResource
         return [
             'uuid' => $this->uuid,
             'name' => $this->name,
-            'type' => $this->user_type,
             'email' => $this->email,
             'avatar' => $this->avatar,
             'avatar_original' => uploaded_asset($this->logo),
@@ -29,7 +28,7 @@ class RestaurantUserResource extends JsonResource
             'country_dail_code' => $this->country_dail_code,
             'country_code' => $this->country_code,
             'restaurant' => RestaurantResource::make($this->restaurant),
-            'roles' => RoleCollection::make($this->whenLoaded('roles')),
+            'roles' => RoleCollection::make($this->roles),
         ];
     }
 

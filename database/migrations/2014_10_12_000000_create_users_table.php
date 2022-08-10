@@ -20,10 +20,10 @@ return new class extends Migration
             $table->string('uuid')->unique();
             $table->integer('referred_by')->nullable();
             $table->string('user_type', 50)->default('customer');
-            $table->string('name');
-            $table->string('email')->unique()->index();
+            $table->string('name')->nullable();
+            $table->string('email')->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('phone', 20)->nullable();
+            $table->string('phone', 20)->unique()->index();
             $table->string('country_dail_code')->default("966");
             $table->string('country_code')->default("sa");
             $table->string('otp_code')->nullable();

@@ -29,7 +29,7 @@ class RestaurantSignUpRequest extends FormRequest
             'phone'             => 'required|numeric|phone_number|digits_between:8,10',
             'country_dial_code' => 'required|numeric|digits_between:2,3',
             'country_code'      => 'required|size:2',
-            'password'          => 'required|confirmed',
+            // 'password'          => 'required|confirmed',
         ];
     }
 

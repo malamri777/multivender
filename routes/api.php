@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\V2\UserController;
+
 Route::group([
     'prefix'     => 'v2/',
     'as'         => 'api.public.',
@@ -20,11 +22,12 @@ Route::group([
     'middleware' => ['app_language']
 ], function() {
     Route::post('auth/login', 'RestaurantAuthController@login');
-    Route::post('auth/signup', 'RestaurantAuthController@signup');
+    // Route::post('auth/signup', 'RestaurantAuthController@signup');
     Route::post('auth/confirm_code', 'RestaurantAuthController@confirmCode')->middleware('throttle:60,3');
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('auth/logout', 'RestaurantAuthController@logout');
         Route::get('auth/user', 'RestaurantAuthController@user');
+        Route::put('auth/user/update', 'RestaurantAuthController@userUpdate');
     });
     Route::get('suppliers', 'RestaurantPublicController@supplierList')->middleware('throttle:60,3');
     Route::group(['prefix' => 'products', 'middleware' => 'throttle:60,10', 'public.products.'], function() {
@@ -41,6 +44,8 @@ Route::group([
     });
 });
 
+
+// ======================================
 Route::group(['prefix' => 'v2/auth', 'middleware' => ['app_language']], function() {
     Route::post('login', 'AuthController@login');
     Route::post('signup', 'AuthController@signup');

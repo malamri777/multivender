@@ -39,17 +39,17 @@ class UserController extends Controller
             'avatar_original' => "",
             'phone' => ""
         ];
-        
+
 
 
         $token = PersonalAccessToken::findToken($request->access_token);
         if (!$token) {
             return response()->json($false_response);
         }
-        
+
         $user = $token->tokenable;
 
-        
+
 
         if ($user == null) {
             return response()->json($false_response);

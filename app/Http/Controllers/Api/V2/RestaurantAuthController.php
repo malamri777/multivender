@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Api\V2;
 
 use App\Http\Controllers\OTPVerificationController;
 use App\Http\Requests\Api\Auth\RestaurantSignUpRequest;
+use App\Http\Requests\RestaurantUserRequest;
 use App\Http\Resources\V2\RestaurantUserResource;
 use App\Models\BusinessSetting;
 use App\Models\Customer;
@@ -15,6 +16,7 @@ use Carbon\Carbon;
 use App\Models\User;
 use App\Notifications\AppEmailVerificationNotification;
 use App\Utility\SendSMSUtility;
+use Auth;
 use Hash;
 use Socialite;
 
@@ -22,6 +24,8 @@ use Socialite;
 
 class RestaurantAuthController extends Controller
 {
+
+    // Not Used
     public function signup(RestaurantSignUpRequest $request)
     {
         $existingUser = User::where('phone', $request->phone)->first();
@@ -39,8 +43,8 @@ class RestaurantAuthController extends Controller
                 'country_code' => $request->country_code,
                 'email' => $request->email,
                 'user_type' => 'restaurant',
-                'password' => bcrypt($request->password),
-                'otp_code' => rand(100000, 999999)
+                // 'password' => bcrypt($request->password),
+                'otp_code' => otpGenerater()
             ]);
         }
 
@@ -73,7 +77,7 @@ class RestaurantAuthController extends Controller
 
         $user->save();
 
-        $role = Role::where('name', 'restaurant')->first();
+        $role = Role::where('name', 'registered')->first();
         $user->roles()->sync($role);
 
         //create token
@@ -94,7 +98,7 @@ class RestaurantAuthController extends Controller
     public function resendCode(Request $request)
     {
         $user = User::where('id', $request->user_id)->first();
-        $user->otp_code = rand(100000, 999999);
+        $user->otp_code = otpGenerater();
 
         if ($request->verify_by == 'email') {
             $user->notify(new AppEmailVerificationNotification());
@@ -156,7 +160,7 @@ class RestaurantAuthController extends Controller
     {
         $request->validate([
             'phone' => 'required',
-            'password' => 'required|string'
+            // 'password' => 'required|string'
         ]);
 
         $user = User::wherehas('roles', function($q){
@@ -166,13 +170,13 @@ class RestaurantAuthController extends Controller
 
 
         if ($user != null) {
-            if (Hash::check($request->password, $user->password)) {
+            // if (Hash::check($request->password, $user->password)) {
 
                 if ($user->email_verified_at == null) {
                     return response()->json(['message' => translate('Please verify your account'), 'user' => null], 401);
                 }
 
-                $user->otp_code = rand(100000, 999999);
+                $user->otp_code = otpGenerater();
                 $user->otp_code_count = 0;
                 $user->otp_code_time_amount_left = now();
                 $user->save();
@@ -186,11 +190,30 @@ class RestaurantAuthController extends Controller
                 }
                 return response()->json($result);
 
-            } else {
-                return response()->json(['result' => false, 'message' => translate('Unauthorized'), 'user' => null], 401);
-            }
+            // } else {
+            //     return response()->json(['result' => false, 'message' => translate('Unauthorized'), 'user' => null], 401);
+            // }
         } else {
-            return response()->json(['result' => false, 'message' => translate('User not found'), 'user' => null], 401);
+            $user = new User([
+                'phone' => $request->phone,
+                'country_dial_code' => $request->country_dial_code,
+                'country_code' => $request->country_code,
+            ]);
+
+            $user->otp_code = otpGenerater();
+            $user->otp_code_count = 0;
+            $user->otp_code_time_amount_left = now();
+            $user->save();
+
+            $result = [
+                'message' => translate('Code sent to your phone.'),
+                'uuid' => $user->uuid
+            ];
+
+            if (config('myenv.OTP_DEBUG_ENABLE') == 'on') {
+                $result['otp_code'] = $user->otp_code;
+            }
+            return response()->json($result);
         }
     }
 
@@ -236,5 +259,13 @@ class RestaurantAuthController extends Controller
             'result' => true,
             'message' => translate('Successfully logged out')
         ]);
+    }
+
+    public function userUpdate(RestaurantUserRequest $request)
+    {
+        $user = Auth::user();
+        $user->update($request->except(['phone', '']));
+
+        return RestaurantUserResource::make($user);
     }
 }

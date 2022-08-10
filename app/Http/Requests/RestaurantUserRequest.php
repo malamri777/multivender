@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Auth;
 use Illuminate\Foundation\Http\FormRequest;
+use Log;
 
 class RestaurantUserRequest extends FormRequest
 {
@@ -24,7 +26,6 @@ class RestaurantUserRequest extends FormRequest
     public function rules()
     {
         if (isEditMethod($this->request)) {
-            $id = (int) $this->request->get('id');
             // $validationArr = [];
 
             // $validationArr['name'] = 'required|max:255|unique:users,name,' . $id;
@@ -36,20 +37,18 @@ class RestaurantUserRequest extends FormRequest
             // return $validationArr;
 
             return [
-                'name' => 'required|max:255|unique:users,name,' . $id,
-                'email' => 'required|max:255|unique:users,email,' . $id,
-                'restaurant_id' => 'required',
-                'user_type' => 'required',
-                'password' => 'confirmed',
+                'name' => 'required|max:255|unique:users,name,' . Auth::id(),
+                'email' => 'required|max:255|unique:users,email,' . Auth::id(),
+                // 'restaurant_id' => 'required',
+                // 'password' => 'confirmed',
             ];
         }
 
         return [
             'name'          => 'required',
             'email'          => 'required|unique:users|max:255',
-            'password'      => 'required|confirmed',
-            'restaurant_id' => 'required',
-            'user_type' => 'required'
+            // 'password'      => 'required|confirmed',
+            // 'restaurant_id' => 'required'
         ];
     }
 }

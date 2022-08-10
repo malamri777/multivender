@@ -23,6 +23,7 @@ class WarehouseTableSeeder extends Seeder
         $admin = User::create([
             'name' => 's1_w1_admin',
             'email' => 's1_w1_admin@dev.com',
+            'phone' => '000000005',
             'password' => bcrypt('password'),
             'user_type' => 'supplier_warehouse_admin',
             'email_verified_at' => now(),
@@ -35,6 +36,7 @@ class WarehouseTableSeeder extends Seeder
         $user = User::create([
             'name' => 's1_w1_user',
             'email' => 's1_w1_user@dev.com',
+            'phone' => '000000006',
             'password' => bcrypt('password'),
             'user_type' => 'supplier_warehouse_user',
             'email_verified_at' => now(),
@@ -58,6 +60,7 @@ class WarehouseTableSeeder extends Seeder
         $admin = User::create([
             'name' => 's1_w2_admin',
             'email' => 's1_w2_admin@dev.com',
+            'phone' => '000000007',
             'password' => bcrypt('password'),
             'user_type' => 'supplier_warehouse_admin',
             'email_verified_at' => now(),
@@ -79,6 +82,7 @@ class WarehouseTableSeeder extends Seeder
         $admin = User::create([
             'name' => 's1_w3_admin',
             'email' => 's1_w3_admin@dev.com',
+            'phone' => '000000008',
             'password' => bcrypt('password'),
             'user_type' => 'supplier_warehouse_admin',
             'email_verified_at' => now(),
@@ -102,6 +106,7 @@ class WarehouseTableSeeder extends Seeder
         $admin = User::create([
             'name' => 's2_w1_admin',
             'email' => 's2_w1_admin@dev.com',
+            'phone' => '000000009',
             'password' => bcrypt('password'),
             'user_type' => 'supplier_warehouse_admin',
             'email_verified_at' => now(),
@@ -124,6 +129,7 @@ class WarehouseTableSeeder extends Seeder
         $admin = User::create([
             'name' => 's2_w2_admin',
             'email' => 's2_w2_admin@dev.com',
+            'phone' => '000000010',
             'password' => bcrypt('password'),
             'user_type' => 'supplier_warehouse_admin',
             'email_verified_at' => now(),
@@ -146,6 +152,7 @@ class WarehouseTableSeeder extends Seeder
         $admin = User::create([
             'name' => 's2_w3_admin',
             'email' => 's2_w3_admin@dev.com',
+            'phone' => '000000011',
             'password' => bcrypt('password'),
             'user_type' => 'supplier_warehouse_admin',
             'email_verified_at' => now(),
@@ -178,6 +185,7 @@ class WarehouseTableSeeder extends Seeder
         $admin = User::create([
             'name' => 's3_w1_admin',
             'email' => 's3_w1_admin@dev.com',
+            'phone' => '000000012',
             'password' => bcrypt('password'),
             'user_type' => 'supplier_warehouse_admin',
             'email_verified_at' => now(),

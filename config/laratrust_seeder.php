@@ -73,9 +73,9 @@ return [
             'admin_dashboard' => 'v',
             'supplier_uploads' => 'c,r,u,d,l',
         ],
-
-
-
+        'registered' => [
+            'profile' => 'r,u',
+        ],
         'restaurant' => [
             'profile' => 'r,u',
             'admin_dashboard' => 'v',
