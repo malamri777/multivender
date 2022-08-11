@@ -28,9 +28,9 @@ class DatabaseSeeder extends Seeder
             SetupTableSeeder::class,
             TranslationTableSeeder::class,
             AddonTableSeeder::class,
-            UsersTableSeeder::class,
             LaratrustSeeder::class,
-            RoleTableSeeder::class,
+            UsersTableSeeder::class,
+            // RoleTableSeeder::class,
 
             // Upload
             UploadTableSeeder::class,

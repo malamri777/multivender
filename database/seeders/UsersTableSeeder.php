@@ -47,7 +47,8 @@ class UsersTableSeeder extends Seeder
             'phone' => '000000003',
             'password' => bcrypt('password'),
             'user_type' => 'supplier_admin',
-            'email_verified_at' => now()
+            'email_verified_at' => now(),
+            'provider_id' => 1,
         ]);
         $role = Role::where('name', 'supplier_admin')->first();
         $admin->roles()->sync($role);
@@ -59,21 +60,12 @@ class UsersTableSeeder extends Seeder
             'phone' => '000000004',
             'password' => bcrypt('password'),
             'user_type' => 'supplier_admin',
-            'email_verified_at' => now()
+            'email_verified_at' => now(),
+            'provider_id' => 2
         ]);
 
         $role = Role::where('name', 'supplier_admin')->first();
         $admin->roles()->sync($role);
-
-        $user = User::create([
-            'name' => 'api_test',
-            'email' => 'api_test@dev.com',
-            'phone' => '5555555555',
-            'password' => bcrypt('password'),
-            'email_verified_at' => now()
-        ]);
-
-        $user->createToken('API Token')->plainTextToken;
         // \App\Models\User::factory(100)->create();
 
     }//end of run
