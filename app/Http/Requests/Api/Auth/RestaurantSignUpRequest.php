@@ -27,7 +27,7 @@ class RestaurantSignUpRequest extends FormRequest
             'name'              => 'required',
             'email'             => 'required|unique:users|email|max:255',
             'phone'             => 'required|numeric|phone_number|digits_between:8,10',
-            'country_dail_code' => 'required|numeric|digits_between:2,3',
+            'country_dial_code' => 'required|numeric|digits_between:2,3',
             'country_code'      => 'required|size:2',
             // 'password'          => 'required|confirmed',
         ];
@@ -46,7 +46,7 @@ class RestaurantSignUpRequest extends FormRequest
             'phone.phone_number'        => translate('Wrong phone number'),
             'phone.min'                 => translate('Phone must be greater than 7 digit'),
             'phone.max'                 => translate('Phone must be leass than 11 digit'),
-            'country_dail_code.required'=> translate('Country dial Code is required'),
+            'country_dial_code.required'=> translate('Country dial Code is required'),
             'country_code.size'         => translate('Country Code must be with size 2'),
         ];
     }

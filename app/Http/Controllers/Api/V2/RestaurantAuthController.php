@@ -39,7 +39,7 @@ class RestaurantAuthController extends Controller
             $user = new User([
                 'name' => $request->name,
                 'phone' => $request->phone,
-                'country_dail_code' => $request->country_dail_code,
+                'country_dial_code' => $request->country_dial_code,
                 'country_code' => $request->country_code,
                 'email' => $request->email,
                 'user_type' => 'restaurant',
@@ -200,7 +200,7 @@ class RestaurantAuthController extends Controller
         } else {
             $user = new User([
                 'phone' => $request->phone,
-                'country_dail_code' => $request->country_dail_code,
+                'country_dial_code' => $request->country_dial_code,
                 'country_code' => $request->country_code,
             ]);
 

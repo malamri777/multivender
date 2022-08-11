@@ -18,16 +18,16 @@ class RestaurantUserController extends Controller
     public function findUser(Request $request)
     {
         $phone = $request->phone;
-        $country_dail_code = $request->country_dail_code;
+        $country_dial_code = $request->country_dial_code;
         $country_code = $request->country_code;
 
-        if(empty($phone) or empty($country_dail_code) or empty($country_code)) {
+        if(empty($phone) or empty($country_dial_code) or empty($country_code)) {
             $result = [
                 "status" => false,
                 "message" => "Failed Operations",
             ];
         }
-        $user = User::where(['phone' => $phone, 'country_code' => $country_code, 'country_dail_code' => $country_dail_code])
+        $user = User::where(['phone' => $phone, 'country_code' => $country_code, 'country_dial_code' => $country_dial_code])
             ->first();
 
         $user->otp_code = otpGenerater();

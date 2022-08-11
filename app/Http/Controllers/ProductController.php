@@ -83,12 +83,13 @@ class ProductController extends Controller
     {
         $col_name = null;
         $query = null;
-        $seller_id = null;
+        $supplier_id = null;
         $sort_search = null;
-        $products = Product::where('added_by', 'seller')->where('auction_product', 0)->where('wholesale_product', 0);
+        // $products = Product::where('added_by', 'seller')->where('auction_product', 0)->where('wholesale_product', 0);
+        $products = Product::has('warehouseProducts');
         if ($request->has('user_id') && $request->user_id != null) {
-            $products = $products->where('user_id', $request->user_id);
-            $seller_id = $request->user_id;
+            $products = $products->whereHas('warehouse', $request->user_id);
+            $supplier_id = $request->$supplier_id;
         }
         if ($request->search != null) {
             $products = $products
@@ -104,9 +105,9 @@ class ProductController extends Controller
         }
 
         $products = $products->orderBy('created_at', 'desc')->paginate(15);
-        $type = 'Seller';
+        $type = 'Supplier';
 
-        return view('backend.product.products.index', compact('products', 'type', 'col_name', 'query', 'seller_id', 'sort_search'));
+        return view('backend.product.products.index', compact('products', 'type', 'col_name', 'query', 'supplier_id', 'sort_search'));
     }
 
     public function all_products(Request $request)

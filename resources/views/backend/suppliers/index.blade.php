@@ -41,7 +41,7 @@
                         <td>{{$supplier->admin?->name ?? _('No Admin')}}</td>
                         <td>
                             <label class="aiz-switch aiz-switch-success mb-0">
-                                <input onchange="update_status(this)" value="{{ $supplier->id }}" type="checkbox" <?php if ($supplier->status == 1) echo "checked"; ?> >
+                                <input onchange="update_status(this)" value="{{ $supplier->id }}" type="checkbox" <?php if ($supplier->verification_status == 1) echo "checked"; ?> >
                                 <span class="slider round"></span>
                             </label>
                         </td>
@@ -95,11 +95,13 @@
             else{
                 var status = 0;
             }
-            $.post('{{ route('admin.suppliers.update_status') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
+            $.post('{{ route('admin.suppliers.update_status') }}', {_token:'{{ csrf_token() }}', id:el.value, verification_status:status}, function(data){
                 if(data == 1){
                     AIZ.plugins.notify('success', '{{ translate('Status updated successfully') }}');
-                }
-                else{
+                    setTimeout(() => {
+                        location.reload();
+                    }, "1000");
+                } else {
                     AIZ.plugins.notify('danger', '{{ translate('Something went wrong') }}');
                 }
             });

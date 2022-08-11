@@ -20,7 +20,7 @@
                                 {{translate('SKU')}}
                             </label>
                             <div class="col-md-8">
-                                <input type="text" placeholder="{{ translate('SKU') }}" value="{{ optional($product->stocks->first())->sku }}"
+                                <input type="text" placeholder="{{ translate('SKU') }}" value="{{ $product->sku }}"
                                     name="sku" class="form-control">
                             </div>
                         </div>

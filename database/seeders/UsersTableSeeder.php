@@ -65,6 +65,15 @@ class UsersTableSeeder extends Seeder
         $role = Role::where('name', 'supplier_admin')->first();
         $admin->roles()->sync($role);
 
+        $user = User::create([
+            'name' => 'api_test',
+            'email' => 'api_test@dev.com',
+            'phone' => '5555555555',
+            'password' => bcrypt('password'),
+            'email_verified_at' => now()
+        ]);
+
+        $user->createToken('API Token')->plainTextToken;
         // \App\Models\User::factory(100)->create();
 
     }//end of run

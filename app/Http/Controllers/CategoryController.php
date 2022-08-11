@@ -146,7 +146,7 @@ class CategoryController extends Controller
 
         $previous_level = $category->level;
 
-        if ($request->parent_id != "0") {
+        if (isset($request->parent_id) and $request->parent_id != "0") {
             $category->parent_id = $request->parent_id;
 
             $parent = Category::find($request->parent_id);

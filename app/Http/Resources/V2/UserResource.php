@@ -26,7 +26,7 @@ class UserResource extends JsonResource
             'country' => $this->country,
             'postal_code' => $this->postal_code,
             'phone' => $this->phone,
-            'country_dail_code' => $this->country_dail_code,
+            'country_dial_code' => $this->country_dial_code,
             'country_code' => $this->country_code,
         ];
     }

@@ -19,7 +19,7 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        $suppliers = Supplier::paginate(10);
+        $suppliers = Supplier::where('verification_status', 1)->paginate(10);
         return view('backend.suppliers.index', compact('suppliers'));
     }
 
@@ -136,7 +136,7 @@ class SupplierController extends Controller
     public function updateStatus(Request $request)
     {
         $supplier = Supplier::findOrFail($request->id);
-        $supplier->status = $request->status;
+        $supplier->verification_status = $request->verification_status;
 
 
         $supplier->save();

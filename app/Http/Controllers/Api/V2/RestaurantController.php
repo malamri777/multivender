@@ -6,13 +6,16 @@ use App\Http\Resources\V2\PurchaseHistoryMiniCollection;
 use App\Http\Resources\V2\RestaurantResource;
 use App\Models\Order;
 use App\Models\Restaurant;
+use App\Models\Role;
 use App\Models\User;
+use App\Utility\WathqUtility;
 use Auth;
 use Request;
 
 class RestaurantController extends Controller {
 
     public function store(RestaurantRequest $request) {
+
         $restaurant = Restaurant::where('cr_no', $request->cr_no)
                 ->orWhere('vat_no', $request->vat_no)
                 ->orWhereHas('admin', function ($q) {
@@ -30,26 +33,37 @@ class RestaurantController extends Controller {
             ], 406);
         }
 
+        $wathqRequest = WathqUtility::sendRequest($request->cr_no);
+        if($wathqRequest['success'] == false) {
+            return response()->json([
+                'status' => false,
+                'message' => $wathqRequest['message']
+            ], 406);
+        }
+
         $restaurant = Restaurant::create([
-            'name'          => $request->name,
-            'email'          => $request->email,
-            'phone'          => $request->phone,
-            'cr_no'          => $request->cr_no,
-            'vat_no'          => $request->vat_no,
-            'contact_user'          => $request->email,
-            'description'          => $request->description ?? '',
-            'content'          => $request->content ?? '',
-            'logo'                  => $request->logo,
-            'cr_file'          => $request->cr_file,
+            'name'              => $request->name,
+            'email'             => $request->email,
+            'phone'             => $request->phone,
+            'cr_no'             => $request->cr_no,
+            'vat_no'            => $request->vat_no,
+            'contact_user'      => $request->email,
+            'description'       => $request->description ?? '',
+            'content'           => $request->content ?? '',
+            'logo'              => $request->logo,
+            'cr_file'           => $request->cr_file,
             'vat_file'          => $request->vat_file,
-            'admin_id'             => Auth::id(),
+            'admin_id'          => Auth::id(),
+            'wathqData'         => $wathqRequest['data'] ?? '',
         ]);
+
         $user = Auth::user();
         $user->restaurant_id = $restaurant->id;
         $user->save();
+        $role = Role::where('name', 'restaurant_admin')->first();
+        $user->roles()->sync($role);
 
         return (new RestaurantResource($restaurant));
-        // return $this->successResponse($restaurantResource);
     }
 
     public function show() {

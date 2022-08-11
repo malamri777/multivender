@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('phone', 20)->unique()->index();
-            $table->string('country_dail_code')->default("966");
+            $table->string('country_dial_code')->default("966");
             $table->string('country_code')->default("sa");
             $table->string('otp_code')->nullable();
             $table->string('otp_code_count')->default(0);

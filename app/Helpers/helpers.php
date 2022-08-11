@@ -936,7 +936,7 @@ if (!function_exists('checkerCountryCode')) {
             return json_decode(file_get_contents(storage_path() . "/app/country.json"), true);
         });
         foreach($countries as $country) {
-            if ($request->country_dail_code === $country['dialCode']) {
+            if ($request->country_dial_code === $country['dialCode']) {
                 if ($request->country_code != $country['iso2']) {
                     return false;
                 } else {
