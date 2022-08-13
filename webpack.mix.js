@@ -26,7 +26,7 @@ mix
 //     .sass('resources/assets/admin/sass/rtl.scss', '/public/assets/admin/css')
 //     .sass('resources/assets/admin/sass/tree-category.scss', '/public/assets/admin/css')
 
-    .js('resources/js/aiz-core.js', 'public/assets/js')
+    .js('resources/js/aiz-core.js', 'public/assets/js');
 //     .js('resources/assets/admin/js/app.js', '/public/assets/admin/js')
 //     .js('resources/assets/admin/js/core.js', '/public/assets/admin/js')
 //     .js('resources/assets/admin/js/editor.js', '/public/assets/admin/js')
@@ -37,6 +37,19 @@ mix
 //     .js('resources/assets/admin/js/tree-category.js', '/public/assets/admin/js')
 //     .vue()
 // ========== &Admin ====================
+
+// ========== ^Frontend ====================
+
+mix
+    .sass('resources/assets/frontend/sass/main.scss', '/public/assets/frontend/css')
+    .sass('resources/assets/frontend/sass/rtl.scss', '/public/assets/frontend/css')
+    .sass('resources/assets/frontend/sass/custom.scss', '/public/assets/frontend/css')
+
+    // .js('resources/assets/frontend/js/vendor/**/*.js', '/public/assets/frontend/js/vendor/')
+    // .js('resources/assets/frontend/js/plugins/**/*.js', 'public/assets/frontend/js/plugins/')
+    // .js('resources/assets/frontend/js/invoice/**/*.js', 'public/assets/frontend/js/invoice/')
+    // .js('resources/assets/frontend/js/**/*.js', 'public/assets/frontend/js');
+// ========== &Frontend ====================
 
 
 let webpackPlugins = [];

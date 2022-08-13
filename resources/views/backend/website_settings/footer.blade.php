@@ -45,6 +45,12 @@
     			                    </div>
     								<div class="file-preview"></div>
     			                </div>
+                                <div class="form-group">
+                                    <label>{{ translate('Footer Below Slogan') }} ({{ translate('Translatable') }})</label>
+                                    <input type="hidden" name="types[][{{ $lang }}]" value="footer_below_slogan">
+                                    <input type="text" class="form-control" placeholder="Footer Below slogan" name="footer_below_slogan"
+                                        value="{{ get_setting('footer_below_slogan',null,$lang) }}">
+                                </div>
     			                <div class="form-group">
     								<label>{{ translate('About description') }} ({{ translate('Translatable') }})</label>
     								<input type="hidden" name="types[][{{ $lang }}]" value="about_us_description">
@@ -247,6 +253,13 @@
                             </div>
                             <input type="hidden" name="types[]" value="linkedin_link">
                             <input type="text" class="form-control" placeholder="http://" name="linkedin_link" value="{{ get_setting('linkedin_link')}}">
+                        </div>
+
+                        <div class="form-group">
+                            <label>{{ translate('Text Below Social Links') }} ({{ translate('Translatable') }})</label>
+                            <input type="hidden" name="types[][{{ $lang }}]" value="text_below_social_links">
+                            <input type="text" class="form-control" placeholder="Text Below Social Links" name="text_below_social_links"
+                                value="{{ get_setting('text_below_social_links',null,$lang) }}">
                         </div>
                     </div>
                   </div>

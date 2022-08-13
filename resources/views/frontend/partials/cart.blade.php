@@ -8,90 +8,69 @@ if (auth()->user() != null) {
         $cart = \App\Models\Cart::where('temp_user_id', $temp_user_id)->get();
     }
 }
-
 @endphp
-<a href="javascript:void(0)" class="d-flex align-items-center text-reset h-100" data-toggle="dropdown"
-    data-display="static">
-    <i class="la la-shopping-cart la-2x opacity-80"></i>
-    <span class="flex-grow-1 ml-1">
-        @if (isset($cart) && count($cart) > 0)
-            <span class="badge badge-primary badge-inline badge-pill cart-count">
-                {{ count($cart) }}
-            </span>
-        @else
-            <span class="badge badge-primary badge-inline badge-pill cart-count">0</span>
-        @endif
-        <span class="nav-box-text d-none d-xl-block opacity-70">{{ translate('Cart') }}</span>
-    </span>
-</a>
-<div class="dropdown-menu dropdown-menu-right dropdown-menu-lg p-0 stop-propagation">
 
+<div class="header-action-icon-2">
+    {{-- route('cart') --}}
+    <a class="mini-cart-icon" href="#">
+        <img alt="Nest" src="assets/frontend/imgs/theme/icons/icon-cart.svg" />
+        <span class="pro-count blue">{{ isset($cart) ? $cart->count() : 0 }}</span>
+    </a>
+    <a href="shop-cart.html"><span class="lable">{{ translate('Cart') }}</span></a>
     @if (isset($cart) && count($cart) > 0)
-        <div class="p-3 fs-15 fw-600 p-3 border-bottom">
-            {{ translate('Cart Items') }}
-        </div>
-        <ul class="h-250px overflow-auto c-scrollbar-light list-group list-group-flush">
-            @php
-                $total = 0;
-            @endphp
-            @foreach ($cart as $key => $cartItem)
+        <div class="cart-dropdown-wrap cart-dropdown-hm2">
+            <ul>
                 @php
-                    $product = \App\Models\Product::find($cartItem['product_id']);
-                    // $total = $total + ($cartItem['price'] + $cartItem['tax']) * $cartItem['quantity'];
-                    $total = $total + cart_product_price($cartItem, $product, false) * $cartItem['quantity'];
+                    $total = 0;
                 @endphp
-                @if ($product != null)
-                    <li class="list-group-item">
-                        <span class="d-flex align-items-center">
-                            <a href="{{ route('product', $product->slug) }}"
-                                class="text-reset d-flex align-items-center flex-grow-1">
-                                <img src="{{ static_asset('assets/img/placeholder.jpg') }}"
-                                    data-src="{{ uploaded_asset($product->thumbnail_img) }}"
-                                    class="img-fit lazyload size-60px rounded"
-                                    alt="{{ $product->getTranslation('name') }}">
-                                <span class="minw-0 pl-2 flex-grow-1">
-                                    <span class="fw-600 mb-1 text-truncate-2">
+                @foreach ($cart as $key => $cartItem)
+                    @php
+                        $product = \App\Models\Product::find($cartItem['product_id']);
+                        // $total = $total + ($cartItem['price'] + $cartItem['tax']) * $cartItem['quantity'];
+                        $total = $total + cart_product_price($cartItem, $product, false) * $cartItem['quantity'];
+                    @endphp
+                    @if ($product != null)
+                        <li>
+                            <div class="shopping-cart-img">
+                                <a href="{{ route('product', $product->slug) }}">
+                                    <img alt="{{ $product->getTranslation('name') }}"
+                                        src="{{ static_asset('assets/img/placeholder.jpg') }}""
+                                        class="lazyload"
+                                        data-src="{{ uploaded_asset($product->thumbnail_img) }}"
+                                    />
+                                </a>
+                            </div>
+                            <div class="shopping-cart-title">
+                                <h4>
+                                    <a href="{{ route('product', $product->slug) }}">
                                         {{ $product->getTranslation('name') }}
-                                    </span>
-                                    <span class="">{{ $cartItem['quantity'] }}x</span>
-                                    {{-- <span
-                                        class="">{{ single_price($cartItem['price'] + $cartItem['tax']) }}</span> --}}
-                                    <span class="">{{ cart_product_price($cartItem, $product) }}</span>
-                                </span>
-                            </a>
-                            <span class="">
-                                <button onclick="removeFromCart({{ $cartItem['id'] }})"
-                                    class="btn btn-sm btn-icon stop-propagation">
-                                    <i class="la la-close"></i>
-                                </button>
-                            </span>
-                        </span>
-                    </li>
-                @endif
-            @endforeach
-        </ul>
-        <div class="px-3 py-2 fs-15 border-top d-flex justify-content-between">
-            <span class="opacity-60">{{ translate('Subtotal') }}</span>
-            <span class="fw-600">{{ single_price($total) }}</span>
-        </div>
-        <div class="px-3 py-2 text-center border-top">
-            <ul class="list-inline mb-0">
-                <li class="list-inline-item">
-                    <a href="{{ route('cart') }}" class="btn btn-soft-primary btn-sm">
-                        {{ translate('View cart') }}
-                    </a>
-                </li>
-                @if (Auth::check())
-                    <li class="list-inline-item">
-                        <a href="{{ route('checkout.shipping_info') }}" class="btn btn-primary btn-sm">
-                            {{ translate('Checkout') }}
-                        </a>
-                    </li>
-                @endif
+                                    </a>
+                                </h4>
+                                <h4><span>{{ $cartItem['quantity'] }} × </span>{{ cart_product_price($cartItem, $product) }}</h4>
+                            </div>
+                            <div class="shopping-cart-delete">
+                                <a href="#" onclick="removeFromCart({{ $cartItem['id'] }})"><i class="fi-rs-cross-small"></i></a>
+                            </div>
+                        </li>
+                    @endif
+
+                @endforeach
+
             </ul>
+            <div class="shopping-cart-footer">
+                <div class="shopping-cart-total">
+                    <h4>Total <span>$4000.00</span></h4>
+                </div>
+                <div class="shopping-cart-button">
+                    <a href="{{ route('cart') }}" class="outline">{{ translate('View cart') }}</a>
+                    @auth
+                        <a href="{{ route('checkout.shipping_info') }}">{{ translate('Checkout') }}</a>
+                    @endauth
+                </div>
+            </div>
         </div>
     @else
-        <div class="text-center p-3">
+        <div class="cart-dropdown-wrap cart-dropdown-hm2">
             <i class="las la-frown la-3x opacity-60 mb-3"></i>
             <h3 class="h6 fw-700">{{ translate('Your Cart is empty') }}</h3>
         </div>
