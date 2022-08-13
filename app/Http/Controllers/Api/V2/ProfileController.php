@@ -188,10 +188,11 @@ class ProfileController extends Controller
     }
 
     // not user profile image but any other base 64 image through uploader
+    // Todo: check for upload image with kind profile_image, and update it
     public function imageUpload(Request $request)
     {
         $request->validate([
-            'image'  => 'required|mimes:png,jpg,pdf|max:2048'
+            'fileName'  => 'required|mimes:png,jpg,pdf|max:4096'
         ]);
 
         $user = User::find(Auth::id());
@@ -204,12 +205,12 @@ class ProfileController extends Controller
             ]);
         }
 
-        if ($request->hasFile('image') and !empty($request->file('image'))) {
+        if ($request->hasFile('fileName') and !empty($request->file('fileName'))) {
             $upload = new Upload();
-            $extension = strtolower($request->file('image')->getClientOriginalExtension());
+            $extension = strtolower($request->file('fileName')->getClientOriginalExtension());
 
             $upload->file_original_name = null;
-            $arr = explode('.', $request->file('image')->getClientOriginalName());
+            $arr = explode('.', $request->file('fileName')->getClientOriginalName());
             for ($i = 0; $i < count($arr) - 1; $i++) {
                 if ($i == 0) {
                     $upload->file_original_name .= $arr[$i];
@@ -218,9 +219,9 @@ class ProfileController extends Controller
                 }
             }
 
-            $path = $request->file('image')->store('uploads/all/profile_image', 'local');
+            $path = $request->file('fileName')->store('uploads/all/profile_image', 'local');
 
-            $size = $request->file('image')->getSize();
+            $size = $request->file('fileName')->getSize();
 
             // Return MIME type ala mimetype extension
             $finfo = finfo_open(FILEINFO_MIME_TYPE);
@@ -230,7 +231,7 @@ class ProfileController extends Controller
 
             if (fileExtenstionType($extension) == 'image' && get_setting('disable_image_optimization') != 1) {
                 try {
-                    $img = Image::make($request->file('image')->getRealPath())->encode();
+                    $img = Image::make($request->file('fileName')->getRealPath())->encode();
                     $height = $img->height();
                     $width = $img->width();
                     if ($width > $height && $width > 1500) {
