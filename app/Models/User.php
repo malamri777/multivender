@@ -33,7 +33,8 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $fillable = [
         'name', 'email', 'password', 'address', 'city', 'postal_code', 'phone',
-        'country', 'provider_id', 'device_model', 'device_uuid', 'device_manufacturer', 'device_version', 'device_platform'
+        'country', 'provider_id', 'device_token', 'device_model', 'device_uuid',
+        'device_manufacturer', 'device_version', 'device_platform'
     ];
 
 
