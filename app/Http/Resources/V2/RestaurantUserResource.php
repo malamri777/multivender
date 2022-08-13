@@ -27,6 +27,12 @@ class RestaurantUserResource extends JsonResource
             'phone' => $this->phone,
             'country_dial_code' => $this->country_dial_code,
             'country_code' => $this->country_code,
+            'device_token' => $this->device_token,
+            'device_model' => $this->device_model,
+            'device_uuid' => $this->device_uuid,
+            'device_manufacturer' => $this->device_manufacturer,
+            'device_version' => $this->device_version,
+            'device_platform' => $this->device_platform,
             'restaurant' => RestaurantResource::make($this->restaurant),
             'roles' => $this->roles->pluck('name'),
         ];

@@ -31,7 +31,6 @@ return new class extends Migration
             $table->string('otp_code_time_amount_left')->nullable();
             $table->string('new_email_verificiation_code')->nullable();
             $table->string('password')->nullable();
-            $table->string('device_token', 255)->nullable();
             $table->string('avatar', 256)->nullable();
             $table->string('avatar_original', 256)->nullable();
             $table->string('address', 300)->nullable();
@@ -44,6 +43,13 @@ return new class extends Migration
             $table->string('referral_code', 255)->nullable();
             $table->integer('customer_package_id')->nullable();
             $table->integer('remaining_uploads')->nullable()->default(0);
+
+            $table->string('device_token', 255)->nullable();
+            $table->string('device_model')->nullable();
+            $table->string('device_uuid')->nullable();
+            $table->string('device_manufacturer')->nullable();
+            $table->string('device_version')->nullable();
+            $table->string('device_platform')->nullable();
 
             $table->foreignIdFor(Supplier::class, 'provider_id')->nullable();
             $table->foreignIdFor(Restaurant::class, 'restaurant_id')->nullable();
