@@ -218,7 +218,7 @@ class ProfileController extends Controller
                 }
             }
 
-            $path = $request->file('image')->store('uploads/all/profile', 'local');
+            $path = $request->file('image')->store('uploads/all/profile_image', 'local');
 
             $size = $request->file('image')->getSize();
 
@@ -269,6 +269,7 @@ class ProfileController extends Controller
             $upload->user_id = Auth::user()->id;
             $upload->type = fileExtenstionType($upload->extension);
             $upload->file_size = $size;
+            $upload->kind = Upload::KIND['profile_image'];
             $upload->save();
             $user->avatar = $upload->id;
             $user->save();

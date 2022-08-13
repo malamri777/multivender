@@ -16,6 +16,10 @@ class Upload extends Model
         'restaurant'     => 'restaurant',
     ];
 
+    public const KIND = [
+        'profile_image' => 'profile_image',
+    ];
+
     /**
     * The attributes that are mass assignable.
     *
