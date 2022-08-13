@@ -18,7 +18,7 @@ class RestaurantUserResource extends JsonResource
             'uuid' => $this->uuid,
             'name' => $this->name,
             'email' => $this->email,
-            'avatar' => $this->avatar,
+            'avatar' => uploaded_asset($this->avatar),
             'avatar_original' => uploaded_asset($this->logo),
             'address' => $this->address,
             'city' => $this->city,
