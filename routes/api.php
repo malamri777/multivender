@@ -37,6 +37,7 @@ Route::group([
         Route::get('auth/logout', 'RestaurantAuthController@logout');
         Route::get('auth/user', 'RestaurantAuthController@user');
         Route::put('auth/user/update', 'RestaurantAuthController@userUpdate');
+        Route::post('auth/profile/image-upload', 'ProfileController@imageUpload');
 
         Route::post('search_user', 'RestaurantUserController@findUser')->middleware('throttle:60,3');
         Route::get('assign-user-to-restaurant/{user:uuid}', 'RestaurantUserController@assignUserToRestaurant');

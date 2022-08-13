@@ -16,7 +16,7 @@ class UploadResource extends JsonResource
     {
         return [
             "id"                    => $this->id,
-            "file_name"             => uploaded_asset($this->file_name) ?? asset($this->file_name)
+            "file_name"             => uploaded_asset($this->id) ?? asset($this->file_name)
         ];
     }
 }
