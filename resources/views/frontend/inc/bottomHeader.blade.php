@@ -73,8 +73,9 @@
                 <div class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block font-heading">
                     <nav>
                         <ul>
-                            <li class="hot-deals"><img src="assets/frontend/imgs/theme/icons/icon-hot-white.svg"
-                                alt="hot deals" /><a href="shop-grid-right.html">Deals</a>
+                            <li class="hot-deals">
+                                <img src="{{ asset('assets/frontend/imgs/theme/icons/icon-hot-white.svg') }}" alt="hot deals" />
+                                <a href="shop-grid-right.html">Deals</a>
                             </li>
                             @foreach (json_decode( get_setting('header_menu_labels'), true) as $key => $value)
                                 <li>
@@ -93,7 +94,7 @@
             @if (get_setting('helpline_number'))
                 <div class="hotline d-none d-lg-flex">
                     <a href="tel:{{ get_setting('helpline_number') }}">
-                        <img src="assets/frontend/imgs/theme/icons/icon-headphone-white.svg" alt="hotline" />
+                        <img src="{{ asset('assets/frontend/imgs/theme/icons/icon-headphone-white.svg') }}" alt="hotline" />
                     </a>
                     <p>{{ translate('Help line')}}<span>{{ get_setting('helpline_number') }}</span></p>
                 </div>
@@ -109,7 +110,7 @@
                 <div class="header-action-2">
                     <div class="header-action-icon-2">
                         <a href="#">
-                            <img alt="Nest" src="assets/frontend/imgs/theme/icons/icon-heart.svg" />
+                            <img alt="Nest" src="{{ asset('assets/frontend/imgs/theme/icons/icon-heart.svg')}}" />
                             <span class="pro-count white">4</span>
                         </a>
                     </div>

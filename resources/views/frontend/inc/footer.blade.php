@@ -16,7 +16,7 @@
                                 <button class="btn" type="submit">Subscribe</button>
                             </form>
                         </div>
-                        <img src="assets/frontend/imgs/banner/banner-9.png" alt="newsletter" />
+                        <img src="{{ asset('assets/frontend/imgs/banner/banner-9.png') }}" alt="newsletter" />
                     </div>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                     <div class="banner-left-icon d-flex align-items-center wow animate__animated animate__fadeInUp"
                         data-wow-delay="0">
                         <div class="banner-icon">
-                            <img src="assets/frontend/imgs/theme/icons/icon-1.svg" alt="" />
+                            <img src="{{ asset('assets/frontend/imgs/theme/icons/icon-1.svg') }}" alt="" />
                         </div>
                         <div class="banner-text">
                             <h3 class="icon-box-title">Best prices & offers</h3>
@@ -41,7 +41,7 @@
                     <div class="banner-left-icon d-flex align-items-center wow animate__animated animate__fadeInUp"
                         data-wow-delay=".1s">
                         <div class="banner-icon">
-                            <img src="assets/frontend/imgs/theme/icons/icon-2.svg" alt="" />
+                            <img src="{{ asset('assets/frontend/imgs/theme/icons/icon-2.svg') }}" alt="" />
                         </div>
                         <div class="banner-text">
                             <h3 class="icon-box-title">Free delivery</h3>
@@ -53,7 +53,7 @@
                     <div class="banner-left-icon d-flex align-items-center wow animate__animated animate__fadeInUp"
                         data-wow-delay=".2s">
                         <div class="banner-icon">
-                            <img src="assets/frontend/imgs/theme/icons/icon-3.svg" alt="" />
+                            <img src="{{ asset('assets/frontend/imgs/theme/icons/icon-3.svg') }}" alt="" />
                         </div>
                         <div class="banner-text">
                             <h3 class="icon-box-title">Great daily deal</h3>
@@ -65,7 +65,7 @@
                     <div class="banner-left-icon d-flex align-items-center wow animate__animated animate__fadeInUp"
                         data-wow-delay=".3s">
                         <div class="banner-icon">
-                            <img src="assets/frontend/imgs/theme/icons/icon-4.svg" alt="" />
+                            <img src="{{ asset('assets/frontend/imgs/theme/icons/icon-4.svg') }}" alt="" />
                         </div>
                         <div class="banner-text">
                             <h3 class="icon-box-title">Wide assortment</h3>
@@ -77,7 +77,7 @@
                     <div class="banner-left-icon d-flex align-items-center wow animate__animated animate__fadeInUp"
                         data-wow-delay=".4s">
                         <div class="banner-icon">
-                            <img src="assets/frontend/imgs/theme/icons/icon-5.svg" alt="" />
+                            <img src="{{ asset('assets/frontend/imgs/theme/icons/icon-5.svg') }}" alt="" />
                         </div>
                         <div class="banner-text">
                             <h3 class="icon-box-title">Easy returns</h3>
@@ -89,7 +89,7 @@
                     <div class="banner-left-icon d-flex align-items-center wow animate__animated animate__fadeInUp"
                         data-wow-delay=".5s">
                         <div class="banner-icon">
-                            <img src="assets/frontend/imgs/theme/icons/icon-6.svg" alt="" />
+                            <img src="{{ asset('assets/frontend/imgs/theme/icons/icon-6.svg') }}" alt="" />
                         </div>
                         <div class="banner-text">
                             <h3 class="icon-box-title">Safe delivery</h3>
@@ -119,19 +119,19 @@
                         </div>
                         <ul class="contact-infor">
                             <li>
-                                <img src="assets/frontend/imgs/theme/icons/icon-location.svg" alt="" />
+                                <img src="{{ asset('assets/frontend/imgs/theme/icons/icon-location.svg') }}" alt="" />
                                 <strong>{{ translate('Address') }}:</strong>
                                 <span class="mx-1">{{ get_setting('contact_address',null,App::getLocale()) }}</span>
                             </li>
                             <li>
-                                <img src="assets/frontend/imgs/theme/icons/icon-contact.svg" alt="" />
+                                <img src="{{ asset('assets/frontend/imgs/theme/icons/icon-contact.svg') }}" alt="" />
                                 <strong>{{ translate('Call Us') }}:</strong>
                                 <span class="mx-1">
                                     <a style="color: #253D4E" href="tel:{{ get_setting('contact_phone') }}">{{ get_setting('contact_phone') }}</a>
                                 </span>
                             </li>
                             <li>
-                                <img src="assets/frontend/imgs/theme/icons/icon-email-2.svg"alt="" />
+                                <img src="{{ asset('assets/frontend/imgs/theme/icons/icon-email-2.svg') }}" alt="" />
                                 <strong>{{ translate('Email') }}:</strong>
                                 <span class="mx-1">
                                     <a style="color: #253D4E" href="mailto:{{ get_setting('contact_email') }}">
@@ -140,7 +140,7 @@
                                 </span>
                             </li>
                             <li>
-                                <img src="assets/frontend/imgs/theme/icons/icon-clock.svg" alt="" />
+                                <img src="{{ asset('assets/frontend/imgs/theme/icons/icon-clock.svg') }}" alt="" />
                                 <strong>Hours:</strong>
                                 <span>10:00 - 18:00, Mon - Sat</span>
                             </li>
@@ -204,19 +204,19 @@
                             @if(get_setting('play_store_link') != null)
                                 <img class="active"src="{{ static_asset('assets/img/play.png') }}">
                             @else
-                                <img class="active" src="assets/frontend/imgs/theme/app-store.jpg" alt="" />
+                                <img class="active" src="{{ asset('assets/frontend/imgs/theme/app-store.jpg') }}" alt="" />
                             @endif
                         </a>
                         <a href="{{ get_setting('app_store_link') }}" class="hover-up mb-sm-2">
                             @if(get_setting('app_store_link') != null)
                                 <img src="{{ static_asset('assets/img/app.png') }}">
                             @else
-                                <img src="assets/frontend/imgs/theme/google-play.jpg" alt="" />
+                                <img src="{{ asset('assets/frontend/imgs/theme/google-play.jpg') }}" alt="" />
                             @endif
                         </a>
                     </div>
                     <p class="mb-20">Secured Payment Gateways</p>
-                    <img class="" src="assets/frontend/imgs/theme/payment-method.png" alt="" />
+                    <img class="" src="{{ asset('assets/frontend/imgs/theme/payment-method.png') }}" alt="" />
                 </div>
             </div>
     </section>
@@ -230,11 +230,11 @@
             </div>
             <div class="col-xl-4 col-lg-6 text-center d-none d-xl-block">
                 <div class="hotline d-lg-inline-flex mr-30">
-                    <img src="assets/frontend/imgs/theme/icons/phone-call.svg" alt="hotline" />
+                    <img src="{{ asset('assets/frontend/imgs/theme/icons/phone-call.svg') }}" alt="hotline" />
                     <p>1900 - 6666<span>Working 8:00 - 22:00</span></p>
                 </div>
                 <div class="hotline d-lg-inline-flex">
-                    <img src="assets/frontend/imgs/theme/icons/phone-call.svg" alt="hotline" />
+                    <img src="{{ asset('assets/frontend/imgs/theme/icons/phone-call.svg') }}" alt="hotline" />
                     <p>1900 - 8888<span>24/7 Support Center</span></p>
                 </div>
             </div>
@@ -244,27 +244,27 @@
                         <h6>{{ translate('Follow Us') }}</h6>
                         @if ( get_setting('facebook_link') != null )
                             <a href="{{ get_setting('facebook_link') }}" target="_blank">
-                                <img src="assets/frontend/imgs/theme/icons/icon-facebook-white.svg" alt="" />
+                                <img src="{{ asset('assets/frontend/imgs/theme/icons/icon-facebook-white.svg') }}" alt="Facebook" />
                             </a>
                         @endif
                         @if ( get_setting('twitter_link') != null )
                             <a href="{{ get_setting('twitter_link') }}" target="_blank">
-                                <img src="assets/frontend/imgs/theme/icons/icon-twitter-white.svg" alt="" />
+                                <img src="{{ asset('assets/frontend/imgs/theme/icons/icon-twitter-white.svg') }}" alt="Twitter" />
                             </a>
                         @endif
                         @if ( get_setting('instagram_link') != null )
                             <a href="{{ get_setting('instagram_link') }}" target="_blank">
-                                <img src="assets/frontend/imgs/theme/icons/icon-instagram-white.svg" alt="" />
+                                <img src="{{ asset('assets/frontend/imgs/theme/icons/icon-instagram-white.svg') }}" alt="Instagram" />
                             </a>
                         @endif
                         @if ( get_setting('youtube_link') != null )
                             <a href="{{ get_setting('youtube_link') }}" target="_blank">
-                                <img src="assets/frontend/imgs/theme/icons/icon-youtube-white.svg" alt="" />
+                                <img src="{{ asset('assets/frontend/imgs/theme/icons/icon-youtube-white.svg') }}" alt="Youtube" />
                             </a>
                         @endif
                         @if ( get_setting('linkedin_link') != null )
                             <a href="{{ get_setting('linkedin_link') }}" target="_blank">
-                                <img src="assets/frontend/imgs/theme/icons/icon-youtube-white.svg" alt="" />
+                                <img src="{{ asset('assets/frontend/imgs/theme/icons/icon-youtube-white.svg') }}" alt="LinkedIn" />
                             </a>
                         @endif
                     </div>

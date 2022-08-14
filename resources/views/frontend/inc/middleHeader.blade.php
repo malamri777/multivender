@@ -35,7 +35,7 @@
                         {{-- <div class="header-action-icon-2">
                             <a href="shop-compare.html">
                                 <img class="svgInject" alt="Nest"
-                                    src="assets/frontend/imgs/theme/icons/icon-compare.svg" />
+                                    src="{{ asset('assets/frontend/imgs/theme/icons/icon-compare.svg') }}" />
                                 <span class="pro-count blue">3</span>
                             </a>
                             <a href="shop-compare.html"><span class="lable ml-0">Compare</span></a>
@@ -43,7 +43,7 @@
                         <div class="header-action-icon-2">
                             <a href="shop-wishlist.html">
                                 <img class="svgInject" alt="Nest"
-                                    src="assets/frontend/imgs/theme/icons/icon-heart.svg" />
+                                    src="{{ asset('assets/frontend/imgs/theme/icons/icon-heart.svg') }}" />
                                 <span class="pro-count blue">6</span>
                             </a>
                             <a href="shop-wishlist.html"><span class="lable">Wishlist</span></a>
@@ -52,16 +52,16 @@
 
                         @guest
                             <div class="header-action-icon-2">
-                                <a href="page-account.html">
-                                    <img class="svgInject" alt="Nest" src="assets/frontend/imgs/theme/icons/icon-user.svg" />
+                                <a href="{{ route('user.login') }}">
+                                    <img class="svgInject" alt="{{ env('APP_NAME') }}" src="{{ asset('assets/frontend/imgs/theme/icons/icon-user.svg') }}" />
                                 </a>
-                                <a href="page-account.html"><span class="lable ml-0">Register</span></a>
+                                <a href="{{ route('user.registration') }}"><span class="lable ml-0">Register</span></a>
                             </div>
                         @endguest
                         @auth
                             <div class="header-action-icon-2">
                                 <a href="page-account.html">
-                                    <img class="svgInject" alt="Nest" src="assets/frontend/imgs/theme/icons/icon-user.svg" />
+                                    <img class="svgInject" alt="Nest" src="{{ asset('assets/frontend/imgs/theme/icons/icon-user.svg') }}" />
                                 </a>
                                 <a href="page-account.html"><span class="lable ml-0">Account</span></a>
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">

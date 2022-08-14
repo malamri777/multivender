@@ -273,7 +273,7 @@
         <div class="preloader d-flex align-items-center justify-content-center">
             <div class="preloader-inner position-relative">
                 <div class="text-center">
-                    <img src="assets/frontend/imgs/theme/loading.gif" alt="" />
+                    <img src="{{ asset('assets/frontend/imgs/theme/loading.gif') }}" alt="Loading..." />
                 </div>
             </div>
         </div>

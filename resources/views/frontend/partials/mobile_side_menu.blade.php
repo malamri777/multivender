@@ -155,13 +155,36 @@
             <a href="#"><i class="fi-rs-headphones"></i>(+01) - 2345 - 6789 </a>
         </div>
     </div>
+    @if ( get_setting('show_social_links') )
+
+    @endif
     <div class="mobile-social-icon mb-50">
-        <h6 class="mb-15">Follow Us</h6>
-        <a href="#"><img src="assets/frontend/imgs/theme/icons/icon-facebook-white.svg" alt="" /></a>
-        <a href="#"><img src="assets/frontend/imgs/theme/icons/icon-twitter-white.svg" alt="" /></a>
-        <a href="#"><img src="assets/frontend/imgs/theme/icons/icon-instagram-white.svg" alt="" /></a>
-        <a href="#"><img src="assets/frontend/imgs/theme/icons/icon-pinterest-white.svg" alt="" /></a>
-        <a href="#"><img src="assets/frontend/imgs/theme/icons/icon-youtube-white.svg" alt="" /></a>
+        <h6 class="mb-15">{{ translate('Follow Us') }}</h6>
+        @if ( get_setting('facebook_link') != null )
+            <a href="{{ get_setting('facebook_link') }}" target="_blank">
+                <img src="{{ asset('assets/frontend/imgs/theme/icons/icon-facebook-white.svg') }}" alt="Facebook" />
+            </a>
+        @endif
+        @if ( get_setting('twitter_link') != null )
+            <a href="{{ get_setting('twitter_link') }}" target="_blank">
+                <img src="{{ asset('assets/frontend/imgs/theme/icons/icon-twitter-white.svg') }}" alt="Twitter" />
+            </a>
+        @endif
+        @if ( get_setting('instagram_link') != null )
+            <a href="{{ get_setting('instagram_link') }}" target="_blank">
+                <img src="{{ asset('assets/frontend/imgs/theme/icons/icon-instagram-white.svg') }}" alt="Instagram" />
+            </a>
+        @endif
+        @if ( get_setting('youtube_link') != null )
+            <a href="{{ get_setting('youtube_link') }}" target="_blank">
+                <img src="{{ asset('assets/frontend/imgs/theme/icons/icon-youtube-white.svg') }}" alt="Youtube" />
+            </a>
+        @endif
+        @if ( get_setting('linkedin_link') != null )
+            <a href="{{ get_setting('linkedin_link') }}" target="_blank">
+                <img src="{{ asset('assets/frontend/imgs/theme/icons/icon-youtube-white.svg') }}" alt="LinkedIn" />
+            </a>
+        @endif
     </div>
     <div class="site-copyright">Copyright 2022 © Nest. All rights reserved. Powered by AliThemes.</div>
 </div>

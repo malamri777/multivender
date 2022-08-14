@@ -13,7 +13,7 @@ if (auth()->user() != null) {
 <div class="header-action-icon-2">
     {{-- route('cart') --}}
     <a class="mini-cart-icon" href="#">
-        <img alt="Nest" src="assets/frontend/imgs/theme/icons/icon-cart.svg" />
+        <img alt="{{ env('APP_NAME') }}" src="{{ asset('assets/frontend/imgs/theme/icons/icon-cart.svg') }}" />
         <span class="pro-count blue">{{ isset($cart) ? $cart->count() : 0 }}</span>
     </a>
     <a href="shop-cart.html"><span class="lable">{{ translate('Cart') }}</span></a>
