@@ -56,17 +56,17 @@ mix.sass(
         "public/assets/frontend/css"
     )
 
+    // .copy(
+    //     "resources/assets/frontend/js/vendor/",
+    //     "public/assets/frontend/js/vendor/"
+    // )
+    // .copy(
+    //     "resources/assets/frontend/js/plugins/",
+    //     "public/assets/frontend/js/plugins/"
+    // )
     .copy(
-        "resources/assets/frontend/js/vendor/",
-        "public/assets/frontend/js/vendor/"
-    )
-    .copy(
-        "resources/assets/frontend/js/plugins/",
-        "public/assets/frontend/js/plugins/"
-    )
-    .copy(
-        "resources/assets/frontend/js/invoice/",
-        "public/assets/frontend/js/invoice/"
+        "resources/assets/frontend/js/",
+        "public/assets/frontend/js/"
     )
 
     .copy("resources/assets/frontend/imgs", "public/assets/frontend/imgs");
