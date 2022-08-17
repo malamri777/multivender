@@ -18,7 +18,7 @@ class CreateOrdersTable extends Migration
             $table->integer('combined_order_id')->nullable();
             $table->integer('user_id')->nullable();
             $table->integer('guest_id')->nullable();
-            $table->integer('seller_id')->nullable();
+            $table->integer('supplier_id')->nullable();
             $table->longText('shipping_address')->nullable();
             $table->string('shipping_type', 50);
             $table->integer('pickup_point_id')->default(0);
