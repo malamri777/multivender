@@ -13,7 +13,7 @@ class CountriesCollection extends ResourceCollection
                 return [
                     'id'      => (int) $data->id,
                     'code' => $data->code,
-                    'name' => $data->name,
+                    'name' => $data->getTranslation('name'),
                     'status' => (int) $data->status,
                 ];
             })

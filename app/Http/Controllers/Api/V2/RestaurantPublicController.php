@@ -4,13 +4,20 @@ namespace App\Http\Controllers\Api\V2;
 
 use App\Http\Resources\V2\BrandCollection;
 use App\Http\Resources\V2\CategoryCollection;
+use App\Http\Resources\V2\CitiesCollection;
+use App\Http\Resources\V2\CountriesCollection;
+use App\Http\Resources\V2\DistrictCollection;
 use App\Http\Resources\V2\ProductCollection;
 use App\Http\Resources\V2\ProductMiniCollection;
 use App\Http\Resources\V2\ProductResource;
+use App\Http\Resources\V2\StatesCollection;
 use App\Http\Resources\V2\SupplierCollection;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\City;
+use App\Models\Country;
 use App\Models\Product;
+use App\Models\State;
 use App\Models\Supplier;
 use Cache;
 use Illuminate\Http\Request;
@@ -45,13 +52,13 @@ class RestaurantPublicController extends Controller
             return new SupplierCollection(Supplier::get());
         });
 
-        $bestSelling = Cache::remember('mobile_home_best_selling_products', 86400, function(){
+        $bestSelling = Cache::remember('mobile_home_best_selling_products', 86400, function () {
             $products = Product::orderBy('created_at', 'desc')
                 ->physical();
             return new ProductMiniCollection(filter_products($products)->limit(10)->get());
         });
 
-        $latest = Cache::remember('mobile_home_latest_products', 86400, function(){
+        $latest = Cache::remember('mobile_home_latest_products', 86400, function () {
             $products = Product::orderBy('created_at', 'desc');
             return new ProductMiniCollection(Product::latest()->paginate(10));
         });
@@ -69,7 +76,8 @@ class RestaurantPublicController extends Controller
         ]);
     }
 
-    public function supplierList() {
+    public function supplierList()
+    {
         $suppliers = Supplier::where('supplier_waiting_for_upload_file', 1)
             ->where('supplier_waiting_for_admin_approve', 1)
             ->orderBy('order')->paginate(10);
@@ -77,8 +85,9 @@ class RestaurantPublicController extends Controller
         return $supplierResource;
     }
 
-    public function productBySupplier(Supplier $supplier) {
-        $products = Product::whereHas('warehouse', function ($q) use ($supplier){
+    public function productBySupplier(Supplier $supplier)
+    {
+        $products = Product::whereHas('warehouse', function ($q) use ($supplier) {
             $q->where('supplier_id', $supplier->id);
         })->paginate(10);
         $productCollection = new ProductCollection($products);
@@ -103,10 +112,88 @@ class RestaurantPublicController extends Controller
         });
     }
 
-    public function categoryList() {
+    public function categoryList()
+    {
         return Cache::remember("app.product-category", 86400, function () use ($id) {
             $categories = Category::get();
             return CategoryCollection::make($categories);
         });
+    }
+
+    public function getCountriesList()
+    {
+        try {
+            $countries = Cache::rememberForever('ap.countries', function () {
+                return Country::where('status', true)->get();
+            });
+
+            return response()->json([
+                'success' => true,
+                'data' => CountriesCollection::make($countries)
+            ], 200);
+        } catch (\Exception $e) {
+            $data = [];
+            $data['success'] = false;
+            if (config('app.debug')) {
+                $data['error'] = $e->getMessage();
+            }
+            return response()->json($data, 406);
+        }
+    }
+
+    public function getStateList()
+    {
+        try {
+            $states = Cache::rememberForever('ap.states', function () {
+                return State::where('status', true)->get();
+            });
+
+            return response()->json([
+                'success' => true,
+                'data' => StatesCollection::make($states)
+            ], 200);
+        } catch (\Exception $e) {
+            $data = [];
+            $data['success'] = false;
+            if (config('app.debug')) {
+                $data['error'] = $e->getMessage();
+            }
+            return response()->json($data, 406);
+        }
+    }
+
+    public function getCityList(State $state)
+    {
+        try {
+            return response()->json([
+                'success' => true,
+                'data' => CitiesCollection::make($state->cities)
+            ], 200);
+        } catch (\Exception $e) {
+            $data = [];
+            $data['success'] = false;
+            if (config('app.debug')) {
+                $data['error'] = $e->getMessage();
+            }
+            return response()->json($data, 406);
+        }
+    }
+
+    public function getDistrictList(City $city)
+    {
+        try {
+
+            return response()->json([
+                'success' => true,
+                'data' => DistrictCollection::make($city->districts)
+            ], 200);
+        } catch (\Exception $e) {
+            $data = [];
+            $data['success'] = false;
+            if (config('app.debug')) {
+                $data['error'] = $e->getMessage();
+            }
+            return response()->json($data, 406);
+        }
     }
 }

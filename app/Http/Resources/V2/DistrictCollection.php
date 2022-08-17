@@ -4,7 +4,7 @@ namespace App\Http\Resources\V2;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class CitiesCollection extends ResourceCollection
+class DistrictCollection extends ResourceCollection
 {
     public function toArray($request)
     {
@@ -12,7 +12,7 @@ class CitiesCollection extends ResourceCollection
             'data' => $this->collection->map(function($data) {
                 return [
                     'id'      =>(int) $data->id,
-                    'state_id' => (int) $data->state_id,
+                    'city_id' => (int) $data->city_id,
                     'name' => $data->getTranslation('name'),
                 ];
             })
