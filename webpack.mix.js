@@ -56,16 +56,16 @@ mix.sass(
         "public/assets/frontend/css"
     )
 
-    .js(
-        "resources/assets/frontend/js/vendor/**/*.js",
+    .copy(
+        "resources/assets/frontend/js/vendor/",
         "public/assets/frontend/js/vendor/"
     )
-    .js(
-        "resources/assets/frontend/js/plugins/**/*.js",
+    .copy(
+        "resources/assets/frontend/js/plugins/",
         "public/assets/frontend/js/plugins/"
     )
-    .js(
-        "resources/assets/frontend/js/invoice/**/*.js",
+    .copy(
+        "resources/assets/frontend/js/invoice/",
         "public/assets/frontend/js/invoice/"
     )
 
