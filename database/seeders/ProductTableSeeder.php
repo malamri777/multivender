@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Attribute;
 use App\Models\AttributeTranslation;
 use App\Models\AttributeValue;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -91,7 +92,8 @@ class ProductTableSeeder extends Seeder
         $path = base_path() . '/database/seeders/data/Product.json';
         $products = json_decode(file_get_contents($path), true);
         foreach ($products['products'] as $product) {
-            Product::create($product);
+            $category = Category::all()->random(1)->first();
+            Product::create(array_merge($product, ['category_id' => $category->id]));
         }
 
     }

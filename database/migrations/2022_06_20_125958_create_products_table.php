@@ -45,7 +45,8 @@ class CreateProductsTable extends Migration
             $table->mediumText('meta_title')->nullable();
             $table->longText('meta_description')->nullable();
             $table->string('meta_img', 255)->nullable();
-             $table->integer('low_stock_quantity')->nullable();
+            $table->integer('low_stock_quantity')->nullable();
+            $table->integer('num_of_sale')->default(0);
 
             //  $table->double('unit_price', 20, 2)->index('unit_price')->default(0);
             //  $table->string('stock_visibility_state', 10)->default('quantity');
@@ -57,7 +58,6 @@ class CreateProductsTable extends Migration
             // $table->string('shipping_type', 20)->nullable()->default('flat_rate');
             // $table->double('shipping_cost', 20, 2)->default(0);
             // $table->integer('published')->default(1);
-            // $table->integer('num_of_sale')->default(0);
 
 
             $table->timestamp('created_at')->useCurrent()->index('created_at');

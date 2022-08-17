@@ -42,7 +42,7 @@
                         <div class="col">
                             <p class="small text-muted mb-0">
                                 <span class="fe fe-arrow-down fe-12"></span>
-                                <span class="fs-16 text-info">{{ translate('Rating') }}</span>
+                                <span class="fs-16 text-info">{{ translate('Active Order') }}</span>
                             </p>
                             <h3 class="mb-0 text-white fs-30">
                                 {{ Auth::user()->supplier->rating ?? 0 }}
@@ -436,7 +436,7 @@
     </div>
 
     <div class="row">
-        <div class="col-sm-6 col-md-6 col-lg-3">
+        {{-- <div class="col-sm-6 col-md-6 col-lg-3">
             <a href="{{ route('supplier.money_withdraw_requests.index') }}"
                 class="card mb-4 p-4 text-center bg-soft-primary h-180px">
                 <div class="fs-16 fw-600 text-primary">
@@ -458,7 +458,7 @@
                     </svg>
                 </div>
             </a>
-        </div>
+        </div> --}}
         <div class="col-sm-6 col-md-6 col-lg-3">
             <a href="{{ route('supplier.products') }}" class="card mb-4 p-4 text-center h-180px">
                 <div class="fs-16 fw-600 text-primary">
@@ -479,7 +479,7 @@
         <div class="col-sm-6 col-md-6 col-lg-3">
             <div class="card mb-4 p-4 text-center bg-soft-primary">
                 <div class="fs-16 fw-600 text-primary">
-                    {{ translate('Shop Settings') }}
+                    {{ translate('Settings') }}
                 </div>
                 <div class=" m-3">
                     <svg id="Group_31" data-name="Group 31" xmlns="http://www.w3.org/2000/svg" width="32" height="32"

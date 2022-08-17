@@ -202,4 +202,8 @@ class SupplierController extends Controller
         $suppliers = Supplier::where('verification_status', 0)->paginate(10);
         return view('backend.suppliers.index', compact('suppliers'));
     }
+
+    public function supplier_register() {
+        return view('frontend.supplier.register');
+    }
 }

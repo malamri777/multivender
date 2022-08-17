@@ -24,16 +24,14 @@ return new class extends Migration
             $table->string('contact_user')->nullable();
             $table->longText('description')->nullable();
             $table->longText('content')->nullable();
-            $table->string('logo')->default('assets/img/logo.png');
-            // $table->integer('cr_file');
-            // $table->integer('vat_file');
-            $table->tinyInteger('status')->default(0);
-            $table->tinyInteger('restaurant_waiting_for_upload_file')->default(0);
-            $table->tinyInteger('restaurant_waiting_for_admin_approve')->default(0);
+            $table->boolean('status')->default(false);
+            $table->boolean('restaurant_waiting_for_upload_file')->default(false);
+            $table->boolean('restaurant_waiting_for_admin_approve')->default(false);
 
             $table->foreignIdFor(\App\Models\User::class, 'admin_id' )->nullable();
-            $table->foreignIdFor(Upload::class, 'cr_file');
-            $table->foreignIdFor(Upload::class, 'vat_file');
+            $table->foreignIdFor(Upload::class, 'logo')->nullable();
+            $table->foreignIdFor(Upload::class, 'cr_file')->nullable();
+            $table->foreignIdFor(Upload::class, 'vat_file')->nullable();
             $table->json('wathqData')->nullable();
             $table->timestamps();
             $table->softDeletes();

@@ -77,17 +77,17 @@
                         </li>
 
 
-                        <li class="aiz-side-nav-item">
+                        {{-- <li class="aiz-side-nav-item">
                             <a href="{{ route('supplier.digitalproducts') }}"
                                 class="aiz-side-nav-link {{ areActiveRoutes(['supplier.digitalproducts', 'supplier.digitalproducts.create', 'supplier.digitalproducts.edit']) }}">
                                 <span class="aiz-side-nav-text">{{ translate('Digital Products') }}</span>
                             </a>
-                        </li>
-                        <li class="aiz-side-nav-item">
+                        </li> --}}
+                        {{-- <li class="aiz-side-nav-item">
                             <a href="{{ route('supplier.reviews') }}" class="aiz-side-nav-link {{ areActiveRoutes(['supplier.reviews']) }}">
                                 <span class="aiz-side-nav-text">{{ translate('Product Reviews') }}</span>
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </li>
                 <li class="aiz-side-nav-item">
@@ -120,13 +120,13 @@
                     </li>
                 @endif
                 @if (get_setting('coupon_system') == 1)
-                <li class="aiz-side-nav-item">
+                {{-- <li class="aiz-side-nav-item">
                     <a href="{{ route('supplier.coupon.index') }}"
                         class="aiz-side-nav-link {{ areActiveRoutes(['supplier.coupon.index', 'supplier.coupon.create', 'supplier.coupon.edit']) }}">
                         <i class="las la-bullhorn aiz-side-nav-icon"></i>
                         <span class="aiz-side-nav-text">{{ translate('Coupon') }}</span>
                     </a>
-                </li>
+                </li> --}}
                 @endif
                 @if (addon_is_activated('wholesale') && get_setting('seller_wholesale_product') == 1)
                     <li class="aiz-side-nav-item">
@@ -138,7 +138,7 @@
                     </li>
                 @endif
                 @if (addon_is_activated('auction'))
-                    <li class="aiz-side-nav-item">
+                    {{-- <li class="aiz-side-nav-item">
                         <a href="javascript:void(0);" class="aiz-side-nav-link">
                             <i class="las la-gavel aiz-side-nav-icon"></i>
                             <span class="aiz-side-nav-text">{{ translate('Auction') }}</span>
@@ -172,17 +172,17 @@
                                 </a>
                             </li>
                         </ul>
-                    </li>
+                    </li> --}}
                 @endif
                 @if (addon_is_activated('pos_system'))
                     @if (get_setting('pos_activation_for_seller') != null && get_setting('pos_activation_for_seller') != 0)
-                        <li class="aiz-side-nav-item">
+                        {{-- <li class="aiz-side-nav-item">
                             <a href="{{ route('poin-of-sales.seller_index') }}"
                                 class="aiz-side-nav-link {{ areActiveRoutes(['poin-of-sales.seller_index']) }}">
                                 <i class="las la-fax aiz-side-nav-icon"></i>
                                 <span class="aiz-side-nav-text">{{ translate('POS Manager') }}</span>
                             </a>
-                        </li>
+                        </li> --}}
                     @endif
                 @endif
                 <li class="aiz-side-nav-item">
@@ -215,12 +215,12 @@
                     </a>
                 </li>
 
-                <li class="aiz-side-nav-item">
+                {{-- <li class="aiz-side-nav-item">
                     <a href="{{ route('supplier.money_withdraw_requests.index') }}" class="aiz-side-nav-link {{ areActiveRoutes(['supplier.money_withdraw_requests.index']) }}">
                         <i class="las la-money-bill-wave-alt aiz-side-nav-icon"></i>
                         <span class="aiz-side-nav-text">{{ translate('Money Withdraw') }}</span>
                     </a>
-                </li>
+                </li> --}}
 
                 <li class="aiz-side-nav-item">
                     <a href="{{ route('supplier.commission-history.index') }}" class="aiz-side-nav-link">

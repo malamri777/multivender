@@ -280,7 +280,7 @@
 
                 <!-- Wholesale Product -->
                 @if(addon_is_activated('wholesale'))
-                <li class="aiz-side-nav-item">
+                {{-- <li class="aiz-side-nav-item">
                     <a href="#" class="aiz-side-nav-link">
                         <i class="las la-luggage-cart aiz-side-nav-icon"></i>
                         <span class="aiz-side-nav-text">{{translate('Wholesale Products')}}</span>
@@ -315,7 +315,7 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
                 @endif
 
                 <!-- Sale -->
@@ -345,15 +345,15 @@
                         <li class="aiz-side-nav-item">
                             <a href="{{ route('admin.seller_orders.index') }}"
                                 class="aiz-side-nav-link {{ areActiveRoutes(['admin.seller_orders.index', 'admin.seller_orders.show'])}}">
-                                <span class="aiz-side-nav-text">{{translate('Seller Orders')}}</span>
+                                <span class="aiz-side-nav-text">{{translate('Supplier Orders')}}</span>
                             </a>
                         </li>
-                        <li class="aiz-side-nav-item">
+                        {{-- <li class="aiz-side-nav-item">
                             <a href="{{ route('admin.pick_up_point.order_index') }}"
                                 class="aiz-side-nav-link {{ areActiveRoutes(['admin.pick_up_point.order_index','admin.pick_up_point.order_show'])}}">
                                 <span class="aiz-side-nav-text">{{translate('Pick-up Point Order')}}</span>
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </li>
 
@@ -468,7 +468,7 @@
 
                 <!-- Sellers -->
                 @if(get_setting('vendor_system_activation') == 1)
-                <li class="aiz-side-nav-item">
+                {{-- <li class="aiz-side-nav-item">
                     <a href="#" class="aiz-side-nav-link">
                         <i class="las la-user aiz-side-nav-icon"></i>
                         <span class="aiz-side-nav-text">{{ translate('Sellers') }}</span>
@@ -520,7 +520,7 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
                 @endif
                 @permission('admin_uploads-link')
                 <li class="aiz-side-nav-item">

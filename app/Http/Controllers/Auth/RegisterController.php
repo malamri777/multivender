@@ -122,13 +122,25 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
+        /*
+
+        "_token" => "87q7TdR2itkpL9uYQZ0Lm9EYAR37u8GdMT3CUbfF"
+  "name" => "Shannon Hull"
+  "phone" => "+1 (376) 943-6807"
+  "country_code" => null
+  "email" => "kydo@mailinator.com"
+  "password" => "Pa$$w0rd!"
+  "password_confirmation" => "Pa$$w0rd!"
+  "user_type" => "restaurant"
+  "agree_term" => null
+  "login" => null*/
+
         if (filter_var($request->email, FILTER_VALIDATE_EMAIL)) {
             if(User::where('email', $request->email)->first() != null){
                 flash(translate('Email or Phone already exists.'));
                 return back();
             }
-        }
-        elseif (User::where('phone', '+'.$request->country_code.$request->phone)->first() != null) {
+        } elseif (User::where('phone', '+'.$request->country_code.$request->phone)->first() != null) {
             flash(translate('Phone already exists.'));
             return back();
         }
@@ -136,6 +148,14 @@ class RegisterController extends Controller
         $this->validator($request->all())->validate();
 
         $user = $this->create($request->all());
+
+        if($request->user_type == 'supplier') {
+            $role = Role::where('name', 'supplier')->first();
+            $user->roles()->sync($role);
+        } else {
+            $role = Role::where('name', 'registered')->first();
+            $user->roles()->sync($role);
+        }
 
         $this->guard()->login($user);
 
@@ -161,7 +181,9 @@ class RegisterController extends Controller
 
     protected function registered(Request $request, $user)
     {
-        if ($user->email == null) {
+        if ($request->user_type == 'supplier' and $user->provider_id == null) {
+            return redirect()->route('supplier_register');
+        } elseif ($user->email == null) {
             return redirect()->route('verification');
         }elseif(session('link') != null){
             return redirect(session('link'));

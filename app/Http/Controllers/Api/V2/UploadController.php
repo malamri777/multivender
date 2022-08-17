@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V2;
 
 use App\Http\Resources\V2\UploadResource;
+use App\Models\Restaurant;
 use App\Models\Upload;
 use Auth;
 use Illuminate\Http\Request;
@@ -11,15 +12,15 @@ use Storage;
 
 class UploadController extends Controller
 {
-    public function upload(Request $request)
+    public function upload(Request $request, Restaurant $restaurant)
     {
-
+        // info($request->all(), $restaurant);
         $request->validate([
             'file'  => 'required|mimes:png,jpg,pdf|max:2048',
             'kind' => 'required'
         ]);
 
-        if ($request->hasFile('file') and !empty($request->file('file'))) {
+        if ($restaurant and $request->hasFile('file') and !empty($request->file('file'))) {
             $upload = new Upload();
             $extension = strtolower($request->file('file')->getClientOriginalExtension());
 
@@ -85,6 +86,20 @@ class UploadController extends Controller
             $upload->file_size = $size;
             $upload->kind = $request->kind;
             $upload->save();
+            if ($request->kind == 'cr') {
+                $restaurant->cr_file = $upload->id;
+            } else if ($request->kind == 'vat') {
+                $restaurant->vat_file = $upload->id;
+            } else if ($request->kind == 'logo') {
+                $restaurant->logo = $upload->id;
+            }
+            $restaurant->save();
+
+            if ($restaurant->cr_file != null and $restaurant->vat_file != null) {
+                $restaurant->restaurant_waiting_for_upload_file = false;
+                $restaurant->save();
+            }
+
             $data = new UploadResource($upload);
             return $this->successResponse($data);
         } else {

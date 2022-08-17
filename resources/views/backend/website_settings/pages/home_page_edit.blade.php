@@ -1,6 +1,14 @@
 @extends('backend.layouts.app')
-@section('content')
+@push('styles')
+<style>
+    .hr {
+        border-bottom: 1px solid #E2E5EC;
+        margin-bottom: 20px;
+    }
+</style>
+@endpush
 
+@section('content')
 <div class="row">
 	<div class="col-xl-10 mx-auto">
 		<h6 class="fw-600">{{ translate('Home Page Settings') }}</h6>
@@ -21,9 +29,11 @@
 						<div class="home-slider-target">
 							<input type="hidden" name="types[]" value="home_slider_images">
 							<input type="hidden" name="types[]" value="home_slider_links">
+							<input type="hidden" name="types[]" value="home_slider_body_en">
+							<input type="hidden" name="types[]" value="home_slider_body_ar">
 							@if (get_setting('home_slider_images') != null)
 								@foreach (json_decode(get_setting('home_slider_images'), true) as $key => $value)
-									<div class="row gutters-5">
+									<div class="row gutters-5 hr">
 										<div class="col-md-5">
 											<div class="form-group">
 												<div class="input-group" data-toggle="aizuploader" data-type="folder,image">
@@ -38,12 +48,28 @@
 					                            </div>
 				                            </div>
 										</div>
-										<div class="col-md">
+										<div class="col-md-5">
 											<div class="form-group">
 												<input type="hidden" name="types[]" value="home_slider_links">
 												<input type="text" class="form-control" placeholder="http://" name="home_slider_links[]" value="{{ json_decode(get_setting('home_slider_links'), true)[$key] }}">
 											</div>
 										</div>
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label>{{ translate('Body Text English Text') }}</label>
+                                                <input type="hidden" name="types[]" value="home_slider_body_en">
+                                                <input type="text" class="form-control" placeholder="Enter text in english" name="home_slider_body_en[]"
+                                                    value="{{ get_setting('home_slider_body_en') ? json_decode(get_setting('home_slider_body_en'), true)[$key] : '' }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label>{{ translate('Body Text Arabic Text') }}</label>
+                                                <input type="hidden" name="types[]" value="home_slider_body_ar">
+                                                <input type="text" class="form-control" placeholder="Enter text in arabic" name="home_slider_body_ar[]"
+                                                    value="{{ get_setting('home_slider_body_ar') ?  json_decode(get_setting('home_slider_body_ar'), true)[$key] : '' }}">
+                                            </div>
+                                        </div>
 										<div class="col-md-auto">
 											<div class="form-group">
 												<button type="button" class="mt-1 btn btn-icon btn-circle btn-sm btn-soft-danger" data-toggle="remove-parent" data-parent=".row">
@@ -60,7 +86,7 @@
 							class="btn btn-soft-secondary btn-sm"
 							data-toggle="add-more"
 							data-content='
-							<div class="row gutters-5">
+							<div class="row gutters-5 hr">
 								<div class="col-md-5">
 									<div class="form-group">
 										<div class="input-group" data-toggle="aizuploader" data-type="folder,image">
@@ -75,12 +101,26 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-md">
+								<div class="col-md-5">
 									<div class="form-group">
 										<input type="hidden" name="types[]" value="home_slider_links">
 										<input type="text" class="form-control" placeholder="http://" name="home_slider_links[]">
 									</div>
 								</div>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <input type="hidden" name="types[]" value="home_slider_body_en">
+                                        <input type="text" class="form-control" placeholder="Enter text in english" name="home_slider_body_en[]"
+                                            value="">
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <input type="hidden" name="types[]" value="home_slider_body_ar">
+                                        <input type="text" class="form-control" placeholder="Enter text in arabic" name="home_slider_body_ar[]"
+                                            value="">
+                                    </div>
+                                </div>
 								<div class="col-md-auto">
 									<div class="form-group">
 										<button type="button" class="mt-1 btn btn-icon btn-circle btn-sm btn-soft-danger" data-toggle="remove-parent" data-parent=".row">
@@ -103,19 +143,21 @@
 		{{-- Home Banner 1 --}}
 		<div class="card">
 			<div class="card-header">
-				<h6 class="mb-0">{{ translate('Home Banner 1 (Max 3)') }}</h6>
+				<h6 class="mb-0">{{ translate('Home Side Banner (Max 2)') }}</h6>
 			</div>
 			<div class="card-body">
 				<form action="{{ route('admin.business_settings.update') }}" method="POST" enctype="multipart/form-data">
 					@csrf
 					<div class="form-group">
-						<label>{{ translate('Banner & Links') }}</label>
+						<label>{{ translate('Banner & Links') }} (380X250)</label>
 						<div class="home-banner1-target">
 							<input type="hidden" name="types[]" value="home_banner1_images">
 							<input type="hidden" name="types[]" value="home_banner1_links">
+							<input type="hidden" name="types[]" value="home_banner1_body_en">
+							<input type="hidden" name="types[]" value="home_banner1_body_ar">
 							@if (get_setting('home_banner1_images') != null)
 								@foreach (json_decode(get_setting('home_banner1_images'), true) as $key => $value)
-									<div class="row gutters-5">
+									<div class="row gutters-5 hr">
 										<div class="col-md-5">
 											<div class="form-group">
 												<div class="input-group" data-toggle="aizuploader" data-type="folder,image">
@@ -130,12 +172,28 @@
 					                            </div>
 				                            </div>
 										</div>
-										<div class="col-md">
+										<div class="col-md-5">
 											<div class="form-group">
 												<input type="hidden" name="types[]" value="home_banner1_links">
 												<input type="text" class="form-control" placeholder="http://" name="home_banner1_links[]" value="{{ json_decode(get_setting('home_banner1_links'), true)[$key] }}">
 											</div>
 										</div>
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label>{{ translate('Body Text English Text') }}</label>
+                                                <input type="hidden" name="types[]" value="home_banner1_body_en">
+                                                <input type="text" class="form-control" placeholder="Enter text in english" name="home_banner1_body_en[]"
+                                                    value="{{ get_setting('home_banner1_body_en') ? json_decode(get_setting('home_banner1_body_en'), true)[$key] : '' }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label>{{ translate('Body Text Arabic Text') }}</label>
+                                                <input type="hidden" name="types[]" value="home_banner1_body_ar">
+                                                <input type="text" class="form-control" placeholder="Enter text in arabic" name="home_banner1_body_ar[]"
+                                                    value="{{ get_setting('home_banner1_body_ar') ?  json_decode(get_setting('home_banner1_body_ar'), true)[$key] : '' }}">
+                                            </div>
+                                        </div>
 										<div class="col-md-auto">
 											<div class="form-group">
 												<button type="button" class="mt-1 btn btn-icon btn-circle btn-sm btn-soft-danger" data-toggle="remove-parent" data-parent=".row">
@@ -152,7 +210,7 @@
 							class="btn btn-soft-secondary btn-sm"
 							data-toggle="add-more"
 							data-content='
-							<div class="row gutters-5">
+							<div class="row gutters-5 hr">
 								<div class="col-md-5">
 									<div class="form-group">
 										<div class="input-group" data-toggle="aizuploader" data-type="folder,image">
@@ -167,12 +225,26 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-md">
+								<div class="col-md-5">
 									<div class="form-group">
 										<input type="hidden" name="types[]" value="home_banner1_links">
 										<input type="text" class="form-control" placeholder="http://" name="home_banner1_links[]">
 									</div>
 								</div>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <input type="hidden" name="types[]" value="home_banner1_body_en">
+                                        <input type="text" class="form-control" placeholder="Enter text in english" name="home_banner1_body_en[]"
+                                            value="">
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <input type="hidden" name="types[]" value="home_banner1_body_ar">
+                                        <input type="text" class="form-control" placeholder="Enter text in arabic" name="home_banner1_body_ar[]"
+                                            value="">
+                                    </div>
+                                </div>
 								<div class="col-md-auto">
 									<div class="form-group">
 										<button type="button" class="mt-1 btn btn-icon btn-circle btn-sm btn-soft-danger" data-toggle="remove-parent" data-parent=".row">
@@ -195,7 +267,7 @@
 		{{-- Home Banner 2 --}}
 		<div class="card">
 			<div class="card-header">
-				<h6 class="mb-0">{{ translate('Home Banner 2 (Max 3)') }}</h6>
+				<h6 class="mb-0">{{ translate('Home Banner 2 (Max 3) Not Used') }}</h6>
 			</div>
 			<div class="card-body">
 				<form action="{{ route('admin.business_settings.update') }}" method="POST" enctype="multipart/form-data">

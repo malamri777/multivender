@@ -29,8 +29,9 @@ class RestaurantRequest extends FormRequest
                 'name'          => 'required|max:255|unique:restaurants,name,' . $id,
                 'cr_no'         => 'required|unique:restaurants,cr_no,' . $id,
                 'vat_no'        => 'required|unique:restaurants,vat_no,' . $id,
-                'email'         => 'required|email',
-                'logo'          => 'required',
+                // 'email'         => 'required|email',
+                // 'logo'          => 'required',
+                'expiryDate'    => 'required',
                 // 'cr_file'    => 'required',
                 // 'vat_file'   => 'required',
             ];
@@ -40,8 +41,9 @@ class RestaurantRequest extends FormRequest
             'name'          => 'required|unique:restaurants|max:255',
             'cr_no'         => 'required|unique:restaurants',
             'vat_no'        => 'required|unique:restaurants',
-            'email'         => 'required|email',
-            'logo'          => 'required',
+            // 'email'         => 'required|email',
+            // 'logo'          => 'required',
+            'expiryDate'    => 'required',
             // 'cr_file'    => 'required',
             // 'vat_file'   => 'required',
 

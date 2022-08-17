@@ -37,7 +37,11 @@ class HomeController extends Controller
     public function index()
     {
         $featured_categories = Cache::rememberForever('featured_categories', function () {
-            return Category::where('featured', 1)->get();
+            return Category::where('featured', 1)->limit(12)->get();
+        });
+
+        $top10_categories = Cache::rememberForever('app.top10_categories', function () {
+            return Category::whereIn('id', json_decode(get_setting('top10_categories')))->get();
         });
 
         $todays_deal_products = Cache::rememberForever('todays_deal_products', function () {
@@ -50,7 +54,17 @@ class HomeController extends Controller
             return filter_products(Product::with(["warehouseProducts"])->latest())->limit(12)->get();
         });
 
-        return view('frontend.index', compact('featured_categories', 'todays_deal_products', 'newest_products'));
+        $popular_products = Cache::remember('popular_products', 3600, function () {
+            return Category::with(['popularProducts'])
+                ->limit(10)
+                ->get();
+        });
+
+        $trend_products_list = Cache::remember('trend_products_list', 3600, function () {
+            return Product::with(['category', 'brand', 'warehouseProductsLowestPrice'])->whereHas('warehouseProducts')->orderBy('num_of_sale', 'desc')->limit(10)->get();
+        });
+
+        return view('frontend.index', compact('featured_categories', 'todays_deal_products', 'newest_products', 'top10_categories', 'trend_products_list'));
     }
 
     public function login()

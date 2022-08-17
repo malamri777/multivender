@@ -57,5 +57,8 @@ class CategoryTableSeeder extends Seeder
         foreach ($categories['categories'] as $category) {
             Category::create($category);
         }
+        foreach ($categories['category_translations'] as $category) {
+            CategoryTranslation::create($category);
+        }
     }
 }

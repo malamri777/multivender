@@ -304,6 +304,8 @@ Route::group(['middleware' => ['customer', 'verified', 'unbanned']], function() 
 
 Route::group(['middleware' => ['auth']], function() {
 
+    Route::get('supplier_register', [SupplierController::class, 'supplier_register'])->name('supplier_register');
+    Route::post('supplier_register', [SupplierController::class, 'supplier_register'])->name('supplier_register');
     Route::get('invoice/{order_id}', [InvoiceController::class, 'invoice_download'])->name('invoice.download');
 
     // Reviews

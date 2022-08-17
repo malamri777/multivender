@@ -110,7 +110,7 @@
                 <div class="header-action-2">
                     <div class="header-action-icon-2">
                         <a href="#">
-                            <img alt="Nest" src="{{ asset('assets/frontend/imgs/theme/icons/icon-heart.svg')}}" />
+                            <img alt="SWO" src="{{ asset('assets/frontend/imgs/theme/icons/icon-heart.svg')}}" />
                             <span class="pro-count white">4</span>
                         </a>
                     </div>

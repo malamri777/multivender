@@ -10,7 +10,8 @@ use App\Models\Role;
 use App\Models\User;
 use App\Utility\WathqUtility;
 use Auth;
-use Request;
+use Illuminate\Http\Request;
+use Str;
 
 class RestaurantController extends Controller {
 
@@ -24,7 +25,8 @@ class RestaurantController extends Controller {
                     $q->whereHas('BranchUsers', function ($q2) {
                         $q2->where('id', Auth::id());
                     });
-                })->first();
+                })
+                ->first();
 
         if ($restaurant) {
             return response()->json([
@@ -33,11 +35,27 @@ class RestaurantController extends Controller {
             ], 406);
         }
 
-        $wathqRequest = WathqUtility::sendRequest($request->cr_no);
+        $wathqRequestStatusDev = true;
+        $wathqRequest = null;
+        if (!$wathqRequestStatusDev) {
+            $wathqRequest = WathqUtility::sendRequest($request->cr_no);
+        } else {
+            $wathqRequest = WathqUtility::testData();
+        }
+
+
         if($wathqRequest['success'] == false) {
             return response()->json([
                 'status' => false,
                 'message' => $wathqRequest['message']
+            ], 406);
+        }
+
+        if($wathqRequestStatusDev and $wathqRequest['success'] == true and isset($wathqRequest['data'])
+            and (Str::lower($wathqRequest['data']['expiryDate']) != Str::lower($request->expiryDate) or Str::lower($wathqRequest['data']['crName']) != Str::lower($request->name))) {
+            return response()->json([
+                'status' => false,
+                'message' => "Incorrect data entry"
             ], 406);
         }
 
@@ -50,11 +68,8 @@ class RestaurantController extends Controller {
             'contact_user'      => $request->email,
             'description'       => $request->description ?? '',
             'content'           => $request->content ?? '',
-            'logo'              => $request->logo,
-            'cr_file'           => $request->cr_file,
-            'vat_file'          => $request->vat_file,
             'admin_id'          => Auth::id(),
-            'wathqData'         => $wathqRequest['data'] ?? '',
+            'wathqData'         => $wathqRequestStatusDev ? json_encode($wathqRequest['data']) : $wathqRequest['data'] ?? '',
         ]);
 
         $user = Auth::user();
@@ -82,6 +97,29 @@ class RestaurantController extends Controller {
             $msg = translate("You Don't have a resturant register");
             return $this->errorResponse($msg);
         }
+    }
+
+    public function uploadFiles(Request $request, Restaurant $restaurant) {
+        $request->validate([
+            'cr_file'    => 'required',
+            'vat_file'   => 'required',
+        ]);
+
+        if(empty($restaurant)) {
+            return response()->json([
+                'status' => false,
+                'message' => "Incorrect data entry"
+            ], 406);
+        }
+        $restaurant->cr_file = $request->cr_file;
+        $restaurant->vat_file = $request->vat_file;
+        $restaurant->restaurant_waiting_for_upload_file = false;
+        $restaurant->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => translate('Successfully updated')
+        ]);
     }
 
     function getOrderList(Request $request)

@@ -59,6 +59,8 @@
     @endif
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/custom.css') }}" />
 
+    @yield('style')
+
     <script>
         var AIZ = AIZ || {};
             AIZ.local = {
@@ -223,7 +225,7 @@
                                 </div>
                                 <div class="font-xs">
                                     <ul>
-                                        <li class="mb-5">Vendor: <span class="text-brand">Nest</span></li>
+                                        <li class="mb-5">Vendor: <span class="text-brand">SWO</span></li>
                                         <li class="mb-5">MFG:<span class="text-brand"> Jun 4.2022</span></li>
                                     </ul>
                                 </div>
@@ -320,6 +322,12 @@
             }
         });
     </script>
+
+    @yield('script')
+
+    @php
+        echo get_setting('footer_script');
+    @endphp
 
 </body>
 

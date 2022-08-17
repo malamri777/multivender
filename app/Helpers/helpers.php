@@ -1296,9 +1296,38 @@ if (!function_exists('otpGenerater')) {
 if (!function_exists('getLocalMapper')) {
     function getLocalMapper()
     {
-        if (App::getLocale() == 'ar') {
+        if (App::getLocale() =='ar' or App::getLocale() == 'sa') {
             return 'sa';
         }
         return App::getLocale();
+    }
+}
+
+if (!function_exists('isLocaleAr')) {
+    function isLocaleAr()
+    {
+        if (App::getLocale() == 'ar' or App::getLocale() == 'sa') {
+            return true;
+        }
+        return false;
+    }
+}
+
+if (!function_exists('get_setting_json')) {
+    function get_setting_json($name)
+    {
+        return json_decode(get_setting($name), true);
+    }
+}
+
+if (!function_exists('productLowestPrice')) {
+    function productLowestPrice($product)
+    {
+        if ($product and !empty($product->warehouseProductsLowestPrice)) {
+            $theLowest = $product->warehouseProductsLowestPrice->first();
+            return "<span>$theLowest->price</span>";
+        } else {
+            return "<span class='old-price'>" . translate("No Price Provided.") . "</span>";
+        }
     }
 }

@@ -186,5 +186,5 @@
             </a>
         @endif
     </div>
-    <div class="site-copyright">Copyright 2022 © Nest. All rights reserved. Powered by AliThemes.</div>
+    <div class="site-copyright">Copyright 2022 © Suppoet Warehouse. All rights reserved.</div>
 </div>

@@ -37,7 +37,7 @@ class WathqUtility
         ];
 
         $errArray = ['429.1.1', '404.2.1', '400.2.1'];
-        if(!empty($response_json['code']) and in_array($response_json['code'], $errArray)) {
+        if (!empty($response_json['code']) and in_array($response_json['code'], $errArray)) {
             $result['message'] = $response_json['message'];
         } else {
             $result['success'] = true;
@@ -45,5 +45,70 @@ class WathqUtility
         }
 
         return $result;
+    }
+
+    public static function testData()
+    {
+        return  [
+            'success' => true,
+            'data' => array(
+                'crName' => 'Test',
+                'crNumber' => '1111111111',
+                'crEntityNumber' => '700XXXX660',
+                'issueDate' => '1391/10/19',
+                'expiryDate' => '1444/04/04',
+                'crMainNumber' => NULL,
+                'businessType' =>
+                array(
+                    'id' => '205',
+                    'name' => 'مســــــــــاهمة',
+                ),
+                'fiscalYear' =>
+                array(
+                    'month' => 2,
+                    'day' => 1,
+                    'calendarType' =>
+                    array(
+                        'id' => 1,
+                        'name' => 'هجري',
+                    ),
+                ),
+                'status' =>
+                array(
+                    'id' => 'active',
+                    'name' => 'السجل التجاري قائم',
+                    'nameEn' => 'السجل التجاري قائم',
+                ),
+                'cancellation' =>
+                array(
+                    'date' => '1440/05/01',
+                    'reason' => 'تم الغاء السجل بسب...',
+                ),
+                'location' =>
+                array(
+                    'id' => '1010',
+                    'name' => 'الرياض',
+                ),
+                'company' =>
+                array(
+                    'period' => '10',
+                    'startDate' => '1439/01/12',
+                    'endDate' => '1449/01/12,',
+                ),
+                'activities' =>
+                array(
+                    'description' => 'البيع بالجملة و التجزئة للحبوب والبذور',
+                    'isic' =>
+                    array(
+                        0 =>
+                        array(
+                            'id' => '477211',
+                            'name' => 'أنشطة المواد الغذائية',
+                            'nameEn' => NULL,
+                        ),
+                    ),
+                ),
+            )
+        ];
     }
 }

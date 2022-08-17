@@ -19,14 +19,17 @@ const mix = require('laravel-mix');
 // ========== ^Admin ====================
 
 mix
-//     .sass('resources/assets/admin/sass/core.scss', '/public/assets/admin/css')
-//     .sass('resources/assets/admin/sass/custom/system-info.scss', '/public/assets/admin/css')
-//     .sass('resources/assets/admin/sass/custom/email.scss', '/public/assets/admin/css')
-//     .sass('resources/assets/admin/sass/custom/error-pages.scss', '/public/assets/admin/css')
-//     .sass('resources/assets/admin/sass/rtl.scss', '/public/assets/admin/css')
-//     .sass('resources/assets/admin/sass/tree-category.scss', '/public/assets/admin/css')
+    //     .sass('resources/assets/admin/sass/core.scss', '/public/assets/admin/css')
+    //     .sass('resources/assets/admin/sass/custom/system-info.scss', '/public/assets/admin/css')
+    //     .sass('resources/assets/admin/sass/custom/email.scss', '/public/assets/admin/css')
+    //     .sass('resources/assets/admin/sass/custom/error-pages.scss', '/public/assets/admin/css')
+    //     .sass('resources/assets/admin/sass/rtl.scss', '/public/assets/admin/css')
+    //     .sass('resources/assets/admin/sass/tree-category.scss', '/public/assets/admin/css')
 
-    .js('resources/js/aiz-core.js', 'public/assets/js');
+    .copy("resources/js/aiz-core.js", "public/assets/js")
+    .copy("resources/js/intlTelInput-jquery.min.js", "public/assets/js")
+    .copy("resources/js/intlTelutils.js", "public/assets/js")
+    .copy("resources/css/intlTelInput.min.css", "public/assets/css");
 //     .js('resources/assets/admin/js/app.js', '/public/assets/admin/js')
 //     .js('resources/assets/admin/js/core.js', '/public/assets/admin/js')
 //     .js('resources/assets/admin/js/editor.js', '/public/assets/admin/js')

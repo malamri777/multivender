@@ -1,4 +1,8 @@
 <div >
+    <div class="form-group">
+        <label>{{ translate('ID') }}</label>
+        <input type="text" class="form-control" value="{{ $file->id }}" disabled>
+    </div>
 	<div class="form-group">
 		<label>{{ translate('File Name') }}</label>
 		<input type="text" class="form-control" value="{{ $file->file_name }}" disabled>

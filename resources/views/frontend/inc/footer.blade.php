@@ -9,7 +9,7 @@
                                 Stay home & get your daily <br />
                                 needs from our shop
                             </h2>
-                            <p class="mb-45">Start You'r Daily Shopping with <span class="text-brand">Nest
+                            <p class="mb-45">Start You'r Daily Shopping with <span class="text-brand">SWO
                                     Mart</span></p>
                             <form class="form-subcriber d-flex">
                                 <input type="email" placeholder="Your emaill address" />

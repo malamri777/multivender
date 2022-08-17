@@ -42,8 +42,9 @@ Route::group([
         Route::post('search_user', 'RestaurantUserController@findUser')->middleware('throttle:60,3');
         Route::get('assign-user-to-restaurant/{user:uuid}', 'RestaurantUserController@assignUserToRestaurant');
 
-        Route::post('upload', 'UploadController@upload');
+        Route::post('upload/{restaurant}', 'UploadController@upload');
         Route::post('store', 'RestaurantController@store');
+        Route::put('upload-files/{restaurant}', 'RestaurantController@uploadFiles');
         Route::get('show', 'RestaurantController@show');
     });
 });

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Upload;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -58,6 +59,9 @@ return new class extends Migration
             $table->integer('bank_payment_status')->default(0);
 
             $table->foreignIdFor(\App\Models\Upload::class, 'parent_folder_id' )->nullable();
+            $table->foreignIdFor(Upload::class, 'cr_file')->nullable();
+            $table->foreignIdFor(Upload::class, 'vat_file')->nullable();
+            $table->json('wathqData')->nullable();
             $table->foreignIdFor(\App\Models\User::class, 'admin_id' )->nullable();
             $table->timestamps();
             $table->softDeletes();

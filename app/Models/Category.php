@@ -27,6 +27,11 @@ class Category extends Model
     	return $this->hasMany(Product::class);
     }
 
+    public function popularProducts()
+    {
+        return $this->hasMany(Product::class)->orderBy('num_of_sale', 'desc')->limit(10);
+    }
+
     public function classified_products(){
     	return $this->hasMany(CustomerProduct::class);
     }

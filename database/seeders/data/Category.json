@@ -1,344 +1,19 @@
 {
     "categories": [
         {
-            "parent_id": 4,
-            "level": 1,
-            "name": "Oil",
-            "order_level": 0,
-            "commision_rate": 0.0,
-            "banner": "86",
-            "icon": "86",
-            "featured": 1,
-            "top": 0,
-            "digital": 0,
-            "slug": "oil",
-            "meta_title": null,
-            "meta_description": null,
-            "created_at": "2022-08-02T02:00:02.000Z",
-            "updated_at": "2022-08-03T07:44:53.000Z"
-        },
-        {
-            "parent_id": 0,
-            "level": 0,
-            "name": "Cooking",
-            "order_level": 0,
-            "commision_rate": 0.0,
-            "banner": "87",
-            "icon": "87",
-            "featured": 1,
-            "top": 0,
-            "digital": 0,
-            "slug": "مكونات المطبخ",
-            "meta_title": null,
-            "meta_description": null,
-            "created_at": "2022-08-02T02:00:02.000Z",
-            "updated_at": "2022-08-03T07:46:26.000Z"
-        },
-        {
-            "parent_id": 23,
-            "level": 1,
-            "name": "Soft Drinks",
-            "order_level": 0,
-            "commision_rate": 0.0,
-            "banner": "88",
-            "icon": "88",
-            "featured": 1,
-            "top": 0,
-            "digital": 0,
-            "slug": "soft-drinks-cfqej",
-            "meta_title": null,
-            "meta_description": null,
-            "created_at": "2022-08-02T10:11:43.000Z",
-            "updated_at": "2022-08-03T07:48:27.000Z"
-        },
-        {
-            "parent_id": 23,
-            "level": 1,
-            "name": "Water",
-            "order_level": 0,
-            "commision_rate": 0.0,
-            "banner": "89",
-            "icon": "89",
-            "featured": 1,
-            "top": 0,
-            "digital": 0,
-            "slug": "water-bbzat",
-            "meta_title": null,
-            "meta_description": null,
-            "created_at": "2022-08-02T10:12:43.000Z",
-            "updated_at": "2022-08-03T07:49:59.000Z"
-        },
-        {
-            "parent_id": 23,
-            "level": 1,
-            "name": "Packaging",
-            "order_level": 0,
-            "commision_rate": 0.0,
-            "banner": "90",
-            "icon": "90",
-            "featured": 1,
-            "top": 0,
-            "digital": 0,
-            "slug": "packaging-82moz",
-            "meta_title": null,
-            "meta_description": null,
-            "created_at": "2022-08-02T10:16:39.000Z",
-            "updated_at": "2022-08-03T07:51:47.000Z"
-        },
-        {
-            "parent_id": 23,
-            "level": 1,
-            "name": "Beverages",
-            "order_level": 0,
-            "commision_rate": 0.0,
-            "banner": "91",
-            "icon": "91",
-            "featured": 1,
-            "top": 0,
-            "digital": 0,
-            "slug": "beverages-t4gpk",
-            "meta_title": null,
-            "meta_description": null,
-            "created_at": "2022-08-02T10:14:45.000Z",
-            "updated_at": "2022-08-03T07:53:32.000Z"
-        },
-        {
-            "parent_id": 17,
-            "level": 1,
-            "name": "Surface Cleaners",
-            "order_level": 0,
-            "commision_rate": 0.0,
-            "banner": "92",
-            "icon": "92",
-            "featured": 1,
-            "top": 0,
-            "digital": 0,
-            "slug": "surface-cleaners-shsgm",
-            "meta_title": null,
-            "meta_description": null,
-            "created_at": "2022-08-02T10:01:34.000Z",
-            "updated_at": "2022-08-03T07:56:35.000Z"
-        },
-        {
-            "parent_id": 17,
-            "level": 1,
-            "name": "Hygine",
-            "order_level": 0,
-            "commision_rate": 0.0,
-            "banner": "93",
-            "icon": "93",
-            "featured": 1,
-            "top": 0,
-            "digital": 0,
-            "slug": "hygine-kqm6m",
-            "meta_title": null,
-            "meta_description": null,
-            "created_at": "2022-08-02T10:02:48.000Z",
-            "updated_at": "2022-08-03T07:58:26.000Z"
-        },
-        {
-            "parent_id": 0,
-            "level": 0,
-            "name": "Cleaning",
-            "order_level": 0,
-            "commision_rate": 0.0,
-            "banner": "70",
-            "icon": "70",
-            "featured": 0,
-            "top": 0,
-            "digital": 0,
-            "slug": "cleaning-x5atq",
-            "meta_title": null,
-            "meta_description": null,
-            "created_at": "2022-08-02T10:00:42.000Z",
-            "updated_at": "2022-08-03T07:15:04.000Z"
-        },
-        {
-            "parent_id": 17,
-            "level": 1,
-            "name": "Tissues",
-            "order_level": 0,
-            "commision_rate": 0.0,
-            "banner": "71",
-            "icon": "71",
-            "featured": 1,
-            "top": 0,
-            "digital": 0,
-            "slug": "tissues-jymiu",
-            "meta_title": null,
-            "meta_description": null,
-            "created_at": "2022-08-02T10:06:39.000Z",
-            "updated_at": "2022-08-03T07:16:29.000Z"
-        },
-        {
-            "parent_id": 4,
-            "level": 1,
-            "name": "Baking",
-            "order_level": 0,
-            "commision_rate": 0.0,
-            "banner": "72",
-            "icon": "72",
-            "featured": 0,
-            "top": 0,
-            "digital": 0,
-            "slug": "baking-3gndf",
-            "meta_title": null,
-            "meta_description": null,
-            "created_at": "2022-08-02T09:47:24.000Z",
-            "updated_at": "2022-08-03T07:18:37.000Z"
-        },
-        {
-            "parent_id": 4,
-            "level": 1,
-            "name": "Pasta & Noodles",
-            "order_level": 0,
-            "commision_rate": 0.0,
-            "banner": "73",
-            "icon": "73",
-            "featured": 0,
-            "top": 0,
-            "digital": 0,
-            "slug": "pasta--noodles-87hat",
-            "meta_title": null,
-            "meta_description": null,
-            "created_at": "2022-08-02T09:54:26.000Z",
-            "updated_at": "2022-08-03T07:20:06.000Z"
-        },
-        {
-            "parent_id": 4,
-            "level": 1,
-            "name": "Salt & Spices",
-            "order_level": 0,
-            "commision_rate": 0.0,
-            "banner": "74",
-            "icon": "74",
-            "featured": 1,
-            "top": 0,
-            "digital": 0,
-            "slug": "salt--spices-hxem2",
-            "meta_title": null,
-            "meta_description": null,
-            "created_at": "2022-08-02T09:34:45.000Z",
-            "updated_at": "2022-08-03T07:21:08.000Z"
-        },
-        {
-            "parent_id": 4,
-            "level": 1,
-            "name": "Canned Food",
-            "order_level": 0,
-            "commision_rate": 0.0,
-            "banner": "75",
-            "icon": "75",
-            "featured": 0,
-            "top": 0,
-            "digital": 0,
-            "slug": "canned-food-nh0n1",
-            "meta_title": null,
-            "meta_description": null,
-            "created_at": "2022-08-02T09:48:32.000Z",
-            "updated_at": "2022-08-03T07:26:25.000Z"
-        },
-        {
-            "parent_id": 4,
-            "level": 1,
-            "name": "Dairy",
-            "order_level": 0,
-            "commision_rate": 0.0,
-            "banner": "76",
-            "icon": "76",
-            "featured": 0,
-            "top": 0,
-            "digital": 0,
-            "slug": "dairy-reumo",
-            "meta_title": null,
-            "meta_description": null,
-            "created_at": "2022-08-02T09:49:58.000Z",
-            "updated_at": "2022-08-03T07:27:27.000Z"
-        },
-        {
-            "parent_id": 4,
-            "level": 1,
-            "name": "Oat & Soups",
-            "order_level": 0,
-            "commision_rate": 0.0,
-            "banner": "77",
-            "icon": "77",
-            "featured": 0,
-            "top": 0,
-            "digital": 0,
-            "slug": "oat--soups-exyco",
-            "meta_title": null,
-            "meta_description": null,
-            "created_at": "2022-08-02T09:55:30.000Z",
-            "updated_at": "2022-08-03T07:28:38.000Z"
-        },
-        {
-            "parent_id": 4,
+            "parent_id": 2,
             "level": 1,
             "name": "Beans",
             "order_level": 0,
             "commision_rate": 0.0,
-            "banner": "78",
-            "icon": "78",
+            "banner": "141",
+            "icon": "141",
             "featured": 0,
             "top": 0,
             "digital": 0,
             "slug": "beans-qzfb5",
             "meta_title": null,
-            "meta_description": null,
-            "created_at": "2022-08-02T09:56:41.000Z",
-            "updated_at": "2022-08-03T07:31:33.000Z"
-        },
-        {
-            "parent_id": 23,
-            "level": 1,
-            "name": "Plastics",
-            "order_level": 0,
-            "commision_rate": 0.0,
-            "banner": "79",
-            "icon": "79",
-            "featured": 1,
-            "top": 0,
-            "digital": 0,
-            "slug": "plastics-lxn88",
-            "meta_title": null,
-            "meta_description": null,
-            "created_at": "2022-08-02T10:15:43.000Z",
-            "updated_at": "2022-08-03T07:32:51.000Z"
-        },
-        {
-            "parent_id": 17,
-            "level": 1,
-            "name": "Dish Washing",
-            "order_level": 0,
-            "commision_rate": 0.0,
-            "banner": "80",
-            "icon": "80",
-            "featured": 1,
-            "top": 0,
-            "digital": 0,
-            "slug": "dish-washing-5wfya",
-            "meta_title": null,
-            "meta_description": null,
-            "created_at": "2022-08-02T10:04:00.000Z",
-            "updated_at": "2022-08-03T07:35:49.000Z"
-        },
-        {
-            "parent_id": 23,
-            "level": 1,
-            "name": "Juices",
-            "order_level": 0,
-            "commision_rate": 0.0,
-            "banner": "81",
-            "icon": "81",
-            "featured": 1,
-            "top": 0,
-            "digital": 0,
-            "slug": "juices-oezz9",
-            "meta_title": null,
-            "meta_description": null,
-            "created_at": "2022-08-02T10:13:43.000Z",
-            "updated_at": "2022-08-03T07:37:11.000Z"
+            "meta_description": null
         },
         {
             "parent_id": 0,
@@ -346,84 +21,581 @@
             "name": "Serving",
             "order_level": 0,
             "commision_rate": 0.0,
-            "banner": "82",
-            "icon": "82",
+            "banner": "137",
+            "icon": "137",
             "featured": 1,
             "top": 0,
             "digital": 0,
             "slug": "serving-gjhhj",
             "meta_title": null,
-            "meta_description": null,
-            "created_at": "2022-08-02T10:09:57.000Z",
-            "updated_at": "2022-08-03T07:38:59.000Z"
+            "meta_description": null
         },
         {
-            "parent_id": 4,
+            "parent_id": 2,
             "level": 1,
-            "name": "Rice",
+            "name": "Dairy",
             "order_level": 0,
             "commision_rate": 0.0,
-            "banner": "83",
-            "icon": "83",
-            "featured": 1,
-            "top": 0,
-            "digital": 0,
-            "slug": "rice",
-            "meta_title": null,
-            "meta_description": null,
-            "created_at": "2022-08-02T02:00:02.000Z",
-            "updated_at": "2022-08-03T07:40:28.000Z"
-        },
-        {
-            "parent_id": 4,
-            "level": 1,
-            "name": "Salt & Spices",
-            "order_level": 0,
-            "commision_rate": 0.0,
-            "banner": "74",
-            "icon": "74",
+            "banner": "116",
+            "icon": "116",
             "featured": 0,
             "top": 0,
             "digital": 0,
-            "slug": "salt--spices-m304j",
+            "slug": "dairy-reumo",
             "meta_title": null,
-            "meta_description": null,
-            "created_at": "2022-08-02T09:35:15.000Z",
-            "updated_at": "2022-08-03T07:40:50.000Z"
+            "meta_description": null
         },
         {
-            "parent_id": 17,
-            "level": 1,
-            "name": "Garbage Bags",
-            "order_level": 0,
-            "commision_rate": 0.0,
-            "banner": "84",
-            "icon": "84",
-            "featured": 1,
-            "top": 0,
-            "digital": 0,
-            "slug": "garbage-bags-lvbs2",
-            "meta_title": null,
-            "meta_description": null,
-            "created_at": "2022-08-02T10:05:15.000Z",
-            "updated_at": "2022-08-03T07:42:04.000Z"
-        },
-        {
-            "parent_id": 4,
+            "parent_id": 2,
             "level": 1,
             "name": "Sauces",
             "order_level": 0,
             "commision_rate": 0.0,
-            "banner": "85",
-            "icon": "85",
+            "banner": "118",
+            "icon": "118",
             "featured": 1,
             "top": 0,
             "digital": 0,
             "slug": "sauces",
             "meta_title": null,
-            "meta_description": null,
-            "created_at": "2022-08-02T02:00:02.000Z",
-            "updated_at": "2022-08-03T07:43:44.000Z"
+            "meta_description": null
+        },
+        {
+            "parent_id": 9,
+            "level": 1,
+            "name": "Garbage Bags",
+            "order_level": 0,
+            "commision_rate": 0.0,
+            "banner": "119",
+            "icon": "119",
+            "featured": 1,
+            "top": 0,
+            "digital": 0,
+            "slug": "garbage-bags-lvbs2",
+            "meta_title": null,
+            "meta_description": null
+        },
+        {
+            "parent_id": 2,
+            "level": 1,
+            "name": "Salt & Spices",
+            "order_level": 0,
+            "commision_rate": 0.0,
+            "banner": "120",
+            "icon": "120",
+            "featured": 1,
+            "top": 0,
+            "digital": 0,
+            "slug": "salt--spices-hxem2",
+            "meta_title": null,
+            "meta_description": null
+        },
+        {
+            "parent_id": 2,
+            "level": 1,
+            "name": "Pasta & Noodles",
+            "order_level": 0,
+            "commision_rate": 0.0,
+            "banner": "144",
+            "icon": "144",
+            "featured": 0,
+            "top": 0,
+            "digital": 0,
+            "slug": "pasta--noodles-87hat",
+            "meta_title": null,
+            "meta_description": null
+        },
+        {
+            "parent_id": 9,
+            "level": 1,
+            "name": "Surface Cleaners",
+            "order_level": 0,
+            "commision_rate": 0.0,
+            "banner": "122",
+            "icon": "122",
+            "featured": 1,
+            "top": 0,
+            "digital": 0,
+            "slug": "surface-cleaners-shsgm",
+            "meta_title": null,
+            "meta_description": null
+        },
+        {
+            "parent_id": 0,
+            "level": 0,
+            "name": "Cooking",
+            "order_level": 0,
+            "commision_rate": 0.0,
+            "banner": "117",
+            "icon": "117",
+            "featured": 1,
+            "top": 0,
+            "digital": 0,
+            "slug": "مكونات المطبخ",
+            "meta_title": null,
+            "meta_description": null
+        },
+        {
+            "parent_id": 21,
+            "level": 1,
+            "name": "Packaging",
+            "order_level": 0,
+            "commision_rate": 0.0,
+            "banner": "127",
+            "icon": "127",
+            "featured": 1,
+            "top": 0,
+            "digital": 0,
+            "slug": "packaging-82moz",
+            "meta_title": null,
+            "meta_description": null
+        },
+        {
+            "parent_id": 9,
+            "level": 1,
+            "name": "Tissues",
+            "order_level": 0,
+            "commision_rate": 0.0,
+            "banner": "129",
+            "icon": "129",
+            "featured": 1,
+            "top": 0,
+            "digital": 0,
+            "slug": "tissues-jymiu",
+            "meta_title": null,
+            "meta_description": null
+        },
+        {
+            "parent_id": 2,
+            "level": 1,
+            "name": "Baking",
+            "order_level": 0,
+            "commision_rate": 0.0,
+            "banner": "126",
+            "icon": "126",
+            "featured": 0,
+            "top": 0,
+            "digital": 0,
+            "slug": "baking-3gndf",
+            "meta_title": null,
+            "meta_description": null
+        },
+        {
+            "parent_id": 21,
+            "level": 1,
+            "name": "Plastics",
+            "order_level": 0,
+            "commision_rate": 0.0,
+            "banner": "131",
+            "icon": "131",
+            "featured": 1,
+            "top": 0,
+            "digital": 0,
+            "slug": "plastics-lxn88",
+            "meta_title": null,
+            "meta_description": null
+        },
+        {
+            "parent_id": 21,
+            "level": 1,
+            "name": "Juices",
+            "order_level": 0,
+            "commision_rate": 0.0,
+            "banner": "130",
+            "icon": "130",
+            "featured": 1,
+            "top": 0,
+            "digital": 0,
+            "slug": "juices-oezz9",
+            "meta_title": null,
+            "meta_description": null
+        },
+        {
+            "parent_id": 21,
+            "level": 1,
+            "name": "Soft Drinks",
+            "order_level": 0,
+            "commision_rate": 0.0,
+            "banner": "147",
+            "icon": "147",
+            "featured": 1,
+            "top": 0,
+            "digital": 0,
+            "slug": "soft-drinks-cfqej",
+            "meta_title": null,
+            "meta_description": null
+        },
+        {
+            "parent_id": 21,
+            "level": 1,
+            "name": "Beverages",
+            "order_level": 0,
+            "commision_rate": 0.0,
+            "banner": "162",
+            "icon": "162",
+            "featured": 1,
+            "top": 0,
+            "digital": 0,
+            "slug": "beverages-t4gpk",
+            "meta_title": null,
+            "meta_description": null
+        },
+        {
+            "parent_id": 0,
+            "level": 0,
+            "name": "Cleaning",
+            "order_level": 0,
+            "commision_rate": 0.0,
+            "banner": "125",
+            "icon": "125",
+            "featured": 0,
+            "top": 0,
+            "digital": 0,
+            "slug": "cleaning-x5atq",
+            "meta_title": null,
+            "meta_description": null
+        },
+        {
+            "parent_id": 2,
+            "level": 1,
+            "name": "Canned Food",
+            "order_level": 0,
+            "commision_rate": 0.0,
+            "banner": "164",
+            "icon": "164",
+            "featured": 0,
+            "top": 0,
+            "digital": 0,
+            "slug": "canned-food-nh0n1",
+            "meta_title": null,
+            "meta_description": null
+        },
+        {
+            "parent_id": 2,
+            "level": 1,
+            "name": "Oil",
+            "order_level": 0,
+            "commision_rate": 0.0,
+            "banner": "115",
+            "icon": "115",
+            "featured": 0,
+            "top": 0,
+            "digital": 0,
+            "slug": "oil",
+            "meta_title": null,
+            "meta_description": null
+        },
+        {
+            "parent_id": 21,
+            "level": 1,
+            "name": "Water",
+            "order_level": 0,
+            "commision_rate": 0.0,
+            "banner": "128",
+            "icon": "128",
+            "featured": 0,
+            "top": 0,
+            "digital": 0,
+            "slug": "water-qe1kz",
+            "meta_title": null,
+            "meta_description": null
+        },
+        {
+            "parent_id": 9,
+            "level": 1,
+            "name": "Dish Washing",
+            "order_level": 0,
+            "commision_rate": 0.0,
+            "banner": "132",
+            "icon": "132",
+            "featured": 1,
+            "top": 0,
+            "digital": 0,
+            "slug": "dish-washing-5wfya",
+            "meta_title": null,
+            "meta_description": null
+        },
+        {
+            "parent_id": 2,
+            "level": 1,
+            "name": "Oat & Soups",
+            "order_level": 0,
+            "commision_rate": 0.0,
+            "banner": "139",
+            "icon": "139",
+            "featured": 0,
+            "top": 0,
+            "digital": 0,
+            "slug": "oat--soups-exyco",
+            "meta_title": null,
+            "meta_description": null
+        },
+        {
+            "parent_id": 9,
+            "level": 1,
+            "name": "Hygine",
+            "order_level": 0,
+            "commision_rate": 0.0,
+            "banner": "140",
+            "icon": "140",
+            "featured": 1,
+            "top": 0,
+            "digital": 0,
+            "slug": "hygine-kqm6m",
+            "meta_title": null,
+            "meta_description": null
+        },
+        {
+            "parent_id": 2,
+            "level": 1,
+            "name": "Rice",
+            "order_level": 0,
+            "commision_rate": 0.0,
+            "banner": "142",
+            "icon": "142",
+            "featured": 1,
+            "top": 0,
+            "digital": 0,
+            "slug": "rice",
+            "meta_title": null,
+            "meta_description": null
+        }
+    ],
+    "category_translations": [
+        {
+            "category_id": 15,
+            "name": "Dairy",
+            "lang": "en"
+        },
+        {
+            "category_id": 1,
+            "name": "Oil",
+            "lang": "en"
+        },
+        {
+            "category_id": 2,
+            "name": "Cooking",
+            "lang": "en"
+        },
+        {
+            "category_id": 3,
+            "name": "Soft Drinks",
+            "lang": "en"
+        },
+        {
+            "category_id": 25,
+            "name": "Sauces",
+            "lang": "en"
+        },
+        {
+            "category_id": 24,
+            "name": "Garbage Bags",
+            "lang": "en"
+        },
+        {
+            "category_id": 13,
+            "name": "Salt & Spices",
+            "lang": "en"
+        },
+        {
+            "category_id": 7,
+            "name": "Surface Cleaners",
+            "lang": "en"
+        },
+        {
+            "category_id": 9,
+            "name": "Cleaning",
+            "lang": "en"
+        },
+        {
+            "category_id": 5,
+            "name": "Packaging",
+            "lang": "en"
+        },
+        {
+            "category_id": 10,
+            "name": "Tissues",
+            "lang": "en"
+        },
+        {
+            "category_id": 11,
+            "name": "Baking",
+            "lang": "en"
+        },
+        {
+            "category_id": 18,
+            "name": "Plastics",
+            "lang": "en"
+        },
+        {
+            "category_id": 20,
+            "name": "Juices",
+            "lang": "en"
+        },
+        {
+            "category_id": 21,
+            "name": "Serving",
+            "lang": "en"
+        },
+        {
+            "category_id": 14,
+            "name": "Canned Food",
+            "lang": "en"
+        },
+        {
+            "category_id": 19,
+            "name": "Dish Washing",
+            "lang": "en"
+        },
+        {
+            "category_id": 6,
+            "name": "Beverages",
+            "lang": "en"
+        },
+        {
+            "category_id": 16,
+            "name": "Oat & Soups",
+            "lang": "en"
+        },
+        {
+            "category_id": 8,
+            "name": "Hygine",
+            "lang": "en"
+        },
+        {
+            "category_id": 17,
+            "name": "Beans",
+            "lang": "en"
+        },
+        {
+            "category_id": 22,
+            "name": "Rice",
+            "lang": "en"
+        },
+        {
+            "category_id": 12,
+            "name": "Pasta & Noodles",
+            "lang": "en"
+        },
+        {
+            "category_id": 26,
+            "name": "Water",
+            "lang": "en"
+        },
+        {
+            "category_id": 26,
+            "name": "مياة",
+            "lang": "sa"
+        },
+        {
+            "category_id": 14,
+            "name": "معلبات",
+            "lang": "sa"
+        },
+        {
+            "category_id": 21,
+            "name": "منتجات التقديم",
+            "lang": "sa"
+        },
+        {
+            "category_id": 19,
+            "name": "تنظيف الاطباق",
+            "lang": "sa"
+        },
+        {
+            "category_id": 2,
+            "name": "مكونات المطبخ",
+            "lang": "sa"
+        },
+        {
+            "category_id": 9,
+            "name": "مواد تنظيف",
+            "lang": "sa"
+        },
+        {
+            "category_id": 6,
+            "name": "مشروبات",
+            "lang": "sa"
+        },
+        {
+            "category_id": 16,
+            "name": "مرقة و شوفان",
+            "lang": "sa"
+        },
+        {
+            "category_id": 8,
+            "name": "المنظفات",
+            "lang": "sa"
+        },
+        {
+            "category_id": 22,
+            "name": "الارز",
+            "lang": "sa"
+        },
+        {
+            "category_id": 17,
+            "name": "حبوب",
+            "lang": "sa"
+        },
+        {
+            "category_id": 1,
+            "name": "زيت",
+            "lang": "sa"
+        },
+        {
+            "category_id": 15,
+            "name": "حليب ومشتقاته",
+            "lang": "sa"
+        },
+        {
+            "category_id": 25,
+            "name": "صلصة",
+            "lang": "sa"
+        },
+        {
+            "category_id": 12,
+            "name": "مكرونة ونودلز",
+            "lang": "sa"
+        },
+        {
+            "category_id": 7,
+            "name": "تنظيف الأسطح",
+            "lang": "sa"
+        },
+        {
+            "category_id": 5,
+            "name": "تغليف وتعبئة",
+            "lang": "sa"
+        },
+        {
+            "category_id": 10,
+            "name": "مناديل",
+            "lang": "sa"
+        },
+        {
+            "category_id": 11,
+            "name": "لوازم الخبز",
+            "lang": "sa"
+        },
+        {
+            "category_id": 18,
+            "name": "بلاستيكيات",
+            "lang": "sa"
+        },
+        {
+            "category_id": 20,
+            "name": "عصائر",
+            "lang": "sa"
+        },
+        {
+            "category_id": 3,
+            "name": "مشروبات غازية",
+            "lang": "sa"
+        },
+        {
+            "category_id": 24,
+            "name": "أكياس نفايات",
+            "lang": "sa"
         }
     ]
 }
