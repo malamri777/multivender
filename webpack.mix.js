@@ -1,4 +1,4 @@
-const mix = require('laravel-mix');
+const mix = require("laravel-mix");
 
 /*
  |--------------------------------------------------------------------------
@@ -43,17 +43,34 @@ mix
 
 // ========== ^Frontend ====================
 
-mix
-    .sass('resources/assets/frontend/sass/main.scss', '/public/assets/frontend/css')
-    .sass('resources/assets/frontend/sass/rtl.scss', '/public/assets/frontend/css')
-    .sass('resources/assets/frontend/sass/custom.scss', '/public/assets/frontend/css')
+mix.sass(
+        "resources/assets/frontend/sass/main.scss",
+        "public/assets/frontend/css"
+    )
+    .sass(
+        "resources/assets/frontend/sass/rtl.scss",
+        "public/assets/frontend/css"
+    )
+    .sass(
+        "resources/assets/frontend/sass/custom.scss",
+        "public/assets/frontend/css"
+    )
 
-    // .js('resources/assets/frontend/js/vendor/**/*.js', '/public/assets/frontend/js/vendor/')
-    // .js('resources/assets/frontend/js/plugins/**/*.js', 'public/assets/frontend/js/plugins/')
-    // .js('resources/assets/frontend/js/invoice/**/*.js', 'public/assets/frontend/js/invoice/')
-    // .js('resources/assets/frontend/js/**/*.js', 'public/assets/frontend/js');
+    .js(
+        "resources/assets/frontend/js/vendor/**/*.js",
+        "public/assets/frontend/js/vendor/"
+    )
+    .js(
+        "resources/assets/frontend/js/plugins/**/*.js",
+        "public/assets/frontend/js/plugins/"
+    )
+    .js(
+        "resources/assets/frontend/js/invoice/**/*.js",
+        "public/assets/frontend/js/invoice/"
+    )
+
+    .copy("resources/assets/frontend/imgs", "public/assets/frontend/imgs");
 // ========== &Frontend ====================
-
 
 let webpackPlugins = [];
 if (mix.inProduction() && process.env.UPLOAD_S3) {
@@ -67,16 +84,16 @@ if (mix.inProduction() && process.env.UPLOAD_S3) {
             },
             s3UploadOptions: {
                 Bucket: process.env.AWS_BUCKET,
-                CacheControl: 'public, max-age=31536000'
+                CacheControl: "public, max-age=31536000",
             },
-            basePath: 'public',
-            directory: 'public'
-        })
-    ]
+            basePath: "public",
+            directory: "public",
+        }),
+    ];
 }
 
 mix.webpackConfig({
-    plugins: webpackPlugins
+    plugins: webpackPlugins,
 });
 
 if (mix.inProduction()) {

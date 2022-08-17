@@ -21,4 +21,8 @@ TODO.md
 public/vendor
 .for_me
 public/assets/frontend
-public/assets/js/azi-core.js
+public/assets/js
+public/assets/js/aiz-core.js
+public/assets/css
+public/images
+public/fonts
