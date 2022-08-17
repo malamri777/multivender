@@ -25,6 +25,10 @@ class Brand extends Model
     return $this->hasMany(BrandTranslation::class);
   }
 
+  public function products() {
+    return $this->hasMany(Product::class);
+  }
+
     public function sluggable(): array
     {
         return [

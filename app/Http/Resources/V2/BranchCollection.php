@@ -13,7 +13,12 @@ class BranchCollection extends ResourceCollection
                 return [
                     'id' => $data->id,
                     'name' => $data->name,
-                    'logo' => uploaded_asset($data->logo)
+                    'status' => $data->status,
+                    'long' => $data->long,
+                    'lat' => $data->lat,
+                    'state' => $data->state->getTranslation('name'),
+                    'city' => $data->city->getTranslation('name'),
+                    'district' => $data->district->getTranslation('name'),
                 ];
             })
         ];

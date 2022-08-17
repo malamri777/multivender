@@ -17,11 +17,14 @@ class SearchController extends Controller
 {
     public function index(Request $request, $category_id = null, $brand_id = null)
     {
+
+        $pageType = $request->pageType ?? [];
         $query = $request->keyword;
         $sort_by = $request->sort_by;
         $min_price = $request->min_price;
         $max_price = $request->max_price;
         $seller_id = $request->seller_id;
+        $paginateNumber = $request->paginateNumber ?? 10;
         $attributes = Attribute::all();
         $selected_attribute_values = array();
 
@@ -115,9 +118,26 @@ class SearchController extends Controller
         // $products = filter_products($products)->with('taxes')->paginate(12)->appends(request()->query());
 
         $products = $products->has('warehouseProducts')
-            ->paginate(12)->appends(request()->query());
+            ->paginate($paginateNumber)->appends(request()->query());
 
-        return view('frontend.product_listing', compact('products', 'query', 'category_id', 'brand_id', 'sort_by', 'seller_id', 'min_price', 'max_price', 'attributes', 'selected_attribute_values'));
+        if(array_key_exists('isCategory', $pageType)) {
+            $pageType['category'] = Category::findOrFail($category_id);
+        }
+
+        return view('frontend.product_listing', compact(
+            'products',
+            'query',
+            'category_id',
+            'brand_id',
+            'sort_by',
+            'seller_id',
+            'min_price',
+            'max_price',
+            'attributes',
+            'selected_attribute_values',
+            'pageType',
+            'paginateNumber'
+        ));
     }
 
     public function listing(Request $request)
@@ -129,6 +149,9 @@ class SearchController extends Controller
     {
         $category = Category::where('slug', $category_slug)->first();
         if ($category != null) {
+            $request['pageType'] = [
+                'isCategory' => true,
+            ];
             return $this->index($request, $category->id);
         }
         abort(404);

@@ -38,7 +38,7 @@ class RestaurantPublicController extends Controller
         });
 
         $brands = Cache::remember('mobile_home_brands', 86400, function () {
-            return new BrandCollection(Brand::get());
+            return new BrandCollection(Brand::orderBy('updated_at', 'desc')->get());
         });
 
         $suppliers = Cache::remember('mobile_home_suppliers', 86400, function () {

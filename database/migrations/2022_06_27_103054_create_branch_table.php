@@ -17,6 +17,8 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('name')->nullable();
             $table->tinyInteger('status')->default(1);
+            $table->decimal('long', 10, 7)->nullable();
+            $table->decimal('lat', 10, 7)->nullable();
 
             $table->foreignIdFor(\App\Models\User::class, 'admin_id' )->nullable();
             $table->foreignIdFor(\App\Models\Restaurant::class, 'restaurant_id' );

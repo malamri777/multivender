@@ -289,6 +289,7 @@
     <script src="{{ asset('assets/frontend/js/plugins/jquery.syotimer.min.js') }}"></script>
     <script src="{{ asset('assets/frontend/js/plugins/waypoints.js') }}"></script>
     <script src="{{ asset('assets/frontend/js/plugins/wow.js') }}"></script>
+    <script src="{{ asset('assets/frontend/js/plugins/slider-range.js') }}"></script>
     <script src="{{ asset('assets/frontend/js/plugins/perfect-scrollbar.js') }}"></script>
     <script src="{{ asset('assets/frontend/js/plugins/magnific-popup.js') }}"></script>
     <script src="{{ asset('assets/frontend/js/plugins/select2.min.js') }}"></script>

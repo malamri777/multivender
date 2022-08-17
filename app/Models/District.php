@@ -30,10 +30,18 @@ class District extends Model
         'deleted_at',
     ];
 
-    public function getTranslation($field = '', $lang = false){
+    protected $with = ['district_translations'];
+
+    public function getTranslation($field = '', $lang = false)
+    {
         $lang = $lang == false ? getLocalMapper() : $lang;
-        $district_translation = $this->hasMany(DistrictTranslation::class)->where('lang', $lang)->first();
-        return $district_translation != null ? $district_translation->$field : $this->$field;
+        $district_translations = $this->district_translations->where('lang', $lang)->first();
+        return $district_translations != null ? $district_translations->$field : $this->$field;
+    }
+
+    public function district_translations()
+    {
+        return $this->hasMany(DistrictTranslation::class);
     }
 
     public function districtWarehouses()

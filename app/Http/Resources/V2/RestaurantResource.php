@@ -25,14 +25,15 @@ class RestaurantResource extends JsonResource
             "contact_user" => $this->contact_user,
             "description" => $this->description,
             "content" => $this->content,
-            // "logo" => uploaded_asset($this->logo),
             "status" => $this->status ? true : false,
-            "restaurant_waiting_for_upload_file" => $this->restaurant_waiting_for_upload_file ? true : false,
-            "restaurant_waiting_for_admin_approve" => $this->restaurant_waiting_for_admin_approve ? true : false,
+            "restaurant_waiting_for_upload_file" => $this->restaurant_waiting_for_upload_file,
+            "restaurant_waiting_for_admin_approve" => $this->restaurant_waiting_for_admin_approve,
             // "admin" => $this->when(Auth::id() != null, Auth::id()),
+            "logo" => uploaded_asset($this->logo),
             "cr_file" => uploaded_asset($this->cr_file),
             "vat_file" => uploaded_asset($this->vat_file),
             'branches' => BranchCollection::make($this->restaurantBranches),
+            'expiryDate' => json_decode($this->wathqData)->expiryDate ?? null,
         ];
     }
 

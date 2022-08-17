@@ -25,8 +25,8 @@ return new class extends Migration
             $table->longText('description')->nullable();
             $table->longText('content')->nullable();
             $table->boolean('status')->default(false);
-            $table->boolean('restaurant_waiting_for_upload_file')->default(false);
-            $table->boolean('restaurant_waiting_for_admin_approve')->default(false);
+            $table->boolean('restaurant_waiting_for_upload_file')->default(true);
+            $table->boolean('restaurant_waiting_for_admin_approve')->default(true);
 
             $table->foreignIdFor(\App\Models\User::class, 'admin_id' )->nullable();
             $table->foreignIdFor(Upload::class, 'logo')->nullable();

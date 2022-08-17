@@ -43,6 +43,8 @@ Route::group([
         Route::get('assign-user-to-restaurant/{user:uuid}', 'RestaurantUserController@assignUserToRestaurant');
 
         Route::post('upload/{restaurant}', 'UploadController@upload');
+        Route::post('branch/create', 'BranchController@create');
+        Route::put('branch/update/{branch}', 'BranchController@update');
         Route::post('store', 'RestaurantController@store');
         Route::put('upload-files/{restaurant}', 'RestaurantController@uploadFiles');
         Route::get('show', 'RestaurantController@show');
