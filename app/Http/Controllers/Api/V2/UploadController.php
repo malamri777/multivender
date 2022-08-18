@@ -14,7 +14,6 @@ class UploadController extends Controller
 {
     public function upload(Request $request, Restaurant $restaurant)
     {
-        // info($request->all(), $restaurant);
         $request->validate([
             'file'  => 'required|mimes:png,jpg,pdf|max:2048',
             'kind' => 'required'

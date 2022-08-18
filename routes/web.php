@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\AizUploadController;
+use App\Http\Controllers\Api\V2\UploadController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\BlogController;
@@ -43,6 +44,7 @@ use App\Http\Controllers\Payment\VoguepayController;
 use App\Http\Controllers\Payment\IyzicoController;
 use App\Http\Controllers\Payment\NagadController;
 use App\Http\Controllers\Payment\PaykuController;
+use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\WishlistController;
 
@@ -304,8 +306,18 @@ Route::group(['middleware' => ['customer', 'verified', 'unbanned']], function() 
 
 Route::group(['middleware' => ['auth']], function() {
 
-    Route::get('supplier_register', [SupplierController::class, 'supplier_register'])->name('supplier_register');
-    Route::post('supplier_register', [SupplierController::class, 'supplier_register'])->name('supplier_register');
+    Route::get('supplier_register', [SupplierController::class, 'supplierRegisterForm'])->name('supplierRegisterForm');
+    Route::post('supplier_register', [SupplierController::class, 'supplierRegister'])->name('supplierRegister');
+
+    Route::get('restaurant_register', [RestaurantController::class, 'restaurantRegisterForm'])->name('restaurantRegisterForm');
+    Route::post('restaurant_register', [RestaurantController::class, 'restaurantRegister'])->name('restaurantRegister');
+    Route::get('restaurant_uploader/{restaurant}', [RestaurantController::class, 'restaurantRegisterUploaderForm'])->name('restaurantRegisterUploaderForm');
+    // Route::post('restaurant_uploader/{restaurant}', [RestaurantController::class, 'restaurantRegisterUploader'])->name('restaurantRegisterUploader');
+    Route::post('restaurant_uploader/{restaurant}',[UploadController::class, 'upload'])->name('restaurantRegisterUploader');
+    Route::get('restaurant_uploader/{restaurant}', [RestaurantController::class, 'restaurantRegisterUploaderForm'])->name('restaurantRegisterUploaderForm');
+    Route::get('restaurant_uploader_status/{restaurant}', [RestaurantController::class, 'restaurantRegisterUploaderStatus'])->name('restaurantRegisterUploaderStatus');
+
+
     Route::get('invoice/{order_id}', [InvoiceController::class, 'invoice_download'])->name('invoice.download');
 
     // Reviews
@@ -331,7 +343,8 @@ Route::group(['middleware' => ['auth']], function() {
     });
 });
 
-Route::resource('supplier', SupplierController::class);
+Route::get('suppliers/list', [SupplierController::class, 'frontendIndex'])->name('supplierList');
+// Route::resource('supplier', SupplierController::class);
 
 Route::get('/instamojo/payment/pay-success', [InstamojoController::class, 'success'])->name('instamojo.success');
 

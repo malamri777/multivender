@@ -85,6 +85,9 @@
                             @endforeach
 
                             <li>
+                                <a href="{{ route('supplierList') }}">Suppliers</a>
+                            </li>
+                            <li>
                                 <a href="page-contact.html">Contact</a>
                             </li>
                         </ul>

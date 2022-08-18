@@ -23,6 +23,12 @@ class SupplierController extends Controller
         return view('backend.suppliers.index', compact('suppliers'));
     }
 
+    public function frontendIndex()
+    {
+        $suppliers = Supplier::where('verification_status', 1)->paginate(10);
+        return view('frontend.supplier.list', compact('suppliers'));
+    }
+
     public function create()
     {
         return view('backend.suppliers.create');
@@ -203,7 +209,12 @@ class SupplierController extends Controller
         return view('backend.suppliers.index', compact('suppliers'));
     }
 
-    public function supplier_register() {
+    public function supplierRegisterForm() {
         return view('frontend.supplier.register');
+    }
+
+    public function supplierRegister(Request $request)
+    {
+        dd($request->all());
     }
 }

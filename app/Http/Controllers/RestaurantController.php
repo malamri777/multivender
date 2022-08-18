@@ -6,11 +6,19 @@ use App\Http\Requests\RestaurantRequest;
 use App\Models\Restaurant;
 use App\Models\Role;
 use App\Models\User;
+use App\Services\RestaurantService;
 use Auth;
 use Illuminate\Http\Request;
 
 class RestaurantController extends Controller
 {
+
+    protected $restaurantService;
+
+    public function __construct(RestaurantService $restaurantService) {
+        $this->restaurantService = $restaurantService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -198,5 +206,43 @@ class RestaurantController extends Controller
 
             return \Response::json($results);
         }
+    }
+
+    public function restaurantRegisterForm()
+    {
+        return view('frontend.restaurant.register');
+    }
+
+    public function restaurantRegister(Request $request) {
+        $request->validate([
+            'name' => 'required',
+            'cr_no' => 'required',
+            'expiryDate' => 'required',
+        ]);
+
+        $restaurant = $this->restaurantService->store($request);
+        if($restaurant instanceof Restaurant) {
+            return redirect()->route('restaurantRegisterUploaderForm', ['restaurant' => $restaurant->id]);
+        } else {
+            $resJson = json_decode(json_encode($restaurant), true);
+            if ($resJson and array_key_exists('original', $resJson) and array_key_exists('status', $resJson['original']) and $resJson['original']['status'] == false) {
+                return redirect()->back()->withInput($request->all())->with('error', $resJson['original']['message']);
+            } else {
+                return redirect()->back()->withInput($request->all())->with('error', translate('There was an error creating the restaurant. Please Countact the administrator of the system. '));
+            }
+        }
+    }
+
+    public function restaurantRegisterUploaderForm(Restaurant $restaurant) {
+        return view('frontend.restaurant.upload', [
+            'restaurant' => $restaurant
+        ]);
+    }
+
+    public function restaurantRegisterUploaderStatus(Restaurant $restaurant)
+    {
+        return view('frontend.restaurant.status', [
+            'restaurant' => $restaurant
+        ]);
     }
 }

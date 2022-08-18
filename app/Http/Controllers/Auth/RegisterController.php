@@ -182,8 +182,10 @@ class RegisterController extends Controller
     protected function registered(Request $request, $user)
     {
         if ($request->user_type == 'supplier' and $user->provider_id == null) {
-            return redirect()->route('supplier_register');
-        } elseif ($user->email == null) {
+            return redirect()->route('supplierRegisterForm');
+        } elseif($request->user_type == 'restaurant' and $user->restaurant_id == null) {
+            return redirect()->route('restaurantRegister');
+        }elseif ($user->email == null) {
             return redirect()->route('verification');
         }elseif(session('link') != null){
             return redirect(session('link'));

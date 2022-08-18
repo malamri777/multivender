@@ -42,6 +42,7 @@ Route::group([
         Route::post('search_user', 'RestaurantUserController@findUser')->middleware('throttle:60,3');
         Route::get('assign-user-to-restaurant/{user:uuid}', 'RestaurantUserController@assignUserToRestaurant');
 
+        Route::get('locations', 'RestaurantPublicController@getLocationList')->middleware('throttle:60,3');
         Route::get('countries', 'RestaurantPublicController@getCountriesList')->middleware('throttle:60,3');
         Route::get('states', 'RestaurantPublicController@getStateList')->middleware('throttle:60,3');
         Route::get('states/cities/{state}', 'RestaurantPublicController@getCityList')->middleware('throttle:60,3');
@@ -51,7 +52,9 @@ Route::group([
         Route::post('branch/create', 'BranchController@create');
         Route::put('branch/update/{branch}', 'BranchController@update');
         Route::post('store', 'RestaurantController@store');
-        Route::put('upload-files/{restaurant}', 'RestaurantController@uploadFiles');
+
+        // TODO: Is not USED
+        // Route::put('upload-files/{restaurant}', 'RestaurantController@uploadFiles');
         Route::get('show', 'RestaurantController@show');
     });
 });

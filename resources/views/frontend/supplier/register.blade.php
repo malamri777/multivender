@@ -372,8 +372,8 @@ body{margin-top:20px;}
 <div class="page-header breadcrumb-wrap">
     <div class="container">
         <div class="breadcrumb">
-            <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-            <span></span> Supplier <span></span> Register
+            <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>{{ translate('Home') }}</a>
+            <span></span> {{translate('Supplier') }} <span></span> {{ translate('Register') }}
         </div>
     </div>
 </div>

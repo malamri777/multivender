@@ -120,6 +120,27 @@ class RestaurantPublicController extends Controller
         });
     }
 
+    public function getLocationList()
+    {
+        try {
+            $countries = Cache::rememberForever('api.locations', function () {
+                return Country::with(['states', 'states.cities', 'states.cities.districts'])->get();
+            });
+
+            return response()->json([
+                'success' => true,
+                'data' => $countries
+            ], 200);
+        } catch (\Exception $e) {
+            $data = [];
+            $data['success'] = false;
+            if (config('app.debug')) {
+                $data['error'] = $e->getMessage();
+            }
+            return response()->json($data, 406);
+        }
+    }
+
     public function getCountriesList()
     {
         try {

@@ -21,4 +21,8 @@ class Country extends Model
         return $this->hasMany(CountryTranslation::class);
     }
 
+    public function states() {
+        return $this->hasMany(State::class);
+    }
+
 }
