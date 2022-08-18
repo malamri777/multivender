@@ -31,7 +31,7 @@
             <div class="col-12 col-lg-8 mx-auto">
                 <div class="shop-product-fillter">
                     <div class="totall-product">
-                        <p>We have <strong class="text-brand">780</strong> Supplier now</p>
+                        <p>We have <strong class="text-brand">{{ $supplierCount }}</strong> Supplier now</p>
                     </div>
                     <div class="sort-by-product-area">
                         <div class="sort-by-cover mr-10">
@@ -98,7 +98,7 @@
                                 <div class="product-category">
                                     <span class="text-muted">Since {{ $supplier->created_at->format('Y') }}</span>
                                 </div>
-                                <h4 class="mb-5"><a href="vendor-details-1.html">{{ $supplier->name }}</a></h4>
+                                <h4 class="mb-5"><a href="#">{{ $supplier->name }}</a></h4>
                                 <div class="product-rate-cover">
                                     <div class="product-rate d-inline-block">
                                         <div class="product-rating" style="width: 90%"></div>
@@ -107,14 +107,20 @@
                                 </div>
                                 <div class="vendor-info d-flex justify-content-between align-items-end mt-30">
                                     <ul class="contact-infor text-muted">
-                                        <li><img src="assets/imgs/theme/icons/icon-location.svg" alt="" /><strong>Address:
-                                            </strong> <span>5171 W Campbell Ave undefined Kent, Utah 53127 United
-                                                States</span></li>
-                                        <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt="" /><strong>Call
-                                                Us:</strong><span>(+91) - 540-025-124553</span></li>
+                                        <li>
+                                            <img src="assets/imgs/theme/icons/icon-location.svg" alt="" />
+                                            <strong>Address:</strong>
+                                            <span>5171 W Campbell Ave undefined Kent, Utah 53127 United States</span>
+                                        </li>
+                                        <li>
+                                            <img src="assets/imgs/theme/icons/icon-contact.svg" alt="" />
+                                            <strong>Call Us:</strong><span>(+966) - 540-025-124553</span>
+                                        </li>
                                     </ul>
-                                    <a href="vendor-details-1.html" class="btn btn-xs">Visit Store <i
-                                            class="fi-rs-arrow-small-right"></i></a>
+                                    <a href="#" class="btn btn-xs">
+                                        Visit Store
+                                        <i class="fi-rs-arrow-small-right"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>

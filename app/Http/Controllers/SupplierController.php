@@ -26,7 +26,8 @@ class SupplierController extends Controller
     public function frontendIndex()
     {
         $suppliers = Supplier::where('verification_status', 1)->paginate(10);
-        return view('frontend.supplier.list', compact('suppliers'));
+        $supplierCount = Supplier::where('verification_status', 1)->count();
+        return view('frontend.supplier.list', compact('suppliers', 'supplierCount'));
     }
 
     public function create()
