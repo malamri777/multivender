@@ -36,6 +36,7 @@ class BranchController extends Controller
             $branch->name = $request->name;
             $branch->admin_id = $request->admin_id ?? Auth::id();
             $branch->restaurant_id = $restaurant->id;
+            $branch->street = $request->street;
             $branch->country_id = 1;
             $branch->state_id = $request->state_id;
             $branch->city_id = $request->city_id;
@@ -76,6 +77,7 @@ class BranchController extends Controller
             $branch->name = $request->name;
             $branch->admin_id = $request->admin_id ?? Auth::id();
             $branch->restaurant_id = $restaurant->id;
+            $branch->street = $request->street;
             $branch->country_id = 1;
             $branch->state_id = $request->state_id;
             $branch->city_id = $request->city_id;

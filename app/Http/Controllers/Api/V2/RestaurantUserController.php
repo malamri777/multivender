@@ -30,6 +30,8 @@ class RestaurantUserController extends Controller
         $user = User::where(['phone' => $phone, 'country_code' => $country_code, 'country_dial_code' => $country_dial_code])
             ->first();
 
+        return $user;
+
         $user->otp_code = otpGenerater();
         $user->otp_code_count = 0;
         $user->otp_code_time_amount_left = now();

@@ -13,9 +13,9 @@ class BranchCollection extends ResourceCollection
                 return [
                     'id' => $data->id,
                     'name' => $data->name,
-                    'status' => $data->status,
-                    'long' => $data->long,
-                    'lat' => $data->lat,
+                    'street' => $data->street,
+                    'long' => (float) $data->long,
+                    'lat' => (float) $data->lat,
                     'state' => $data->state->getTranslation('name'),
                     'city' => $data->city->getTranslation('name'),
                     'district' => $data->district->getTranslation('name'),

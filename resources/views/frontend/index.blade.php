@@ -24,7 +24,7 @@
             @endif
             @php
             $mainBannerSize = 7;
-            if (empty(get_setting_json('home_banner1_images')) or count($featured_categories) == 0) {
+            if (empty(get_setting_json('home_banner1_images')) and count($featured_categories) == 0) {
             $mainBannerSize = 12;
             } elseif (empty(get_setting_json('home_banner1_images'))) {
             $mainBannerSize = 9;
