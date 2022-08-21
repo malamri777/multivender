@@ -16,7 +16,7 @@ class DashboardController extends Controller
             $q->where('published', 1)->orderBy('num_of_sale', 'desc');
         }))->limit(12)->get();
         $data['last_7_days_sales'] = Order::where('created_at', '>=', Carbon::now()->subDays(7))
-            ->where('seller_id', '=', Auth::user()->id)
+            ->where('supplier_id', '=', Auth::user()->provider_id)
             ->where('delivery_status', '=', 'delivered')
             ->select(DB::raw("sum(grand_total) as total, created_at as date"))
             ->groupBy("created_at")

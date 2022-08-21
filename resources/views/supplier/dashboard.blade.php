@@ -70,7 +70,7 @@
                                 <span class="fs-16 text-info">{{ translate('Total Order') }}</span>
                             </p>
                             <h3 class="mb-0 text-white fs-30">
-                                {{ \App\Models\Order::where('seller_id', Auth::user()->id)->where('delivery_status', 'delivered')->count() }}
+                                {{ \App\Models\Order::where('supplier_id', Auth::user()->provider_id)->where('delivery_status', 'delivered')->count() }}
                             </h3>
                         </div>
                         <div class="col-auto text-right">
@@ -180,7 +180,7 @@
                     $days_ago_30 = date('Y-m-d', strtotime('-30 days', strtotime($date)));
                     $days_ago_60 = date('Y-m-d', strtotime('-60 days', strtotime($date)));
 
-                    $orderTotal = \App\Models\Order::where('seller_id', Auth::user()->id)
+                    $orderTotal = \App\Models\Order::where('supplier_id', Auth::user()->provider_id)
                         ->where('payment_status', 'paid')
                         ->where('created_at', '>=', $days_ago_30)
                         ->sum('grand_total');
@@ -196,7 +196,7 @@
                     </h3>
                     <p class="mt-4">
                         @php
-                            $orderTotal = \App\Models\Order::where('seller_id', Auth::user()->id)
+                            $orderTotal = \App\Models\Order::where('supplier_id', Auth::user()->provider_id)
                                 ->where('payment_status', 'paid')
                                 ->where('created_at', '>=', $days_ago_60)
                                 ->where('created_at', '<=', $days_ago_30)
