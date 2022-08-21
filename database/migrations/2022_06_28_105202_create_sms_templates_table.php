@@ -30,8 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('sms_templates', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('otp_configurations');
     }
 };

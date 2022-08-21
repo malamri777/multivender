@@ -31,6 +31,6 @@ class CreateDistrictWarehouseDriverPivotTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('district_warehouse_driver');
+        Schema::dropIfExists('district_wh_driver');
     }
 }
