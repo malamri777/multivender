@@ -3,562 +3,557 @@
         {
             "type": "home_default_currency",
             "value": "1",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "system_default_currency",
             "value": "1",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "currency_format",
             "value": "1",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "symbol_format",
             "value": "1",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "no_of_decimals",
             "value": "2",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "product_activation",
             "value": "1",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "vendor_system_activation",
             "value": "1",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "show_vendors",
             "value": "1",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "paypal_payment",
             "value": "0",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "stripe_payment",
             "value": "0",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "cash_payment",
             "value": "0",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "payumoney_payment",
             "value": "0",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "best_selling",
             "value": "1",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "paypal_sandbox",
             "value": "0",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "sslcommerz_sandbox",
             "value": "1",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "sslcommerz_payment",
             "value": "0",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "vendor_commission",
             "value": "20",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "verification_form",
             "value": "[{\"type\":\"text\",\"label\":\"Your name\"},{\"type\":\"text\",\"label\":\"Shop name\"},{\"type\":\"text\",\"label\":\"Email\"},{\"type\":\"text\",\"label\":\"License No\"},{\"type\":\"text\",\"label\":\"Full Address\"},{\"type\":\"text\",\"label\":\"Phone Number\"},{\"type\":\"file\",\"label\":\"Tax Papers\"}]",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "google_analytics",
             "value": "0",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "facebook_login",
             "value": "0",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "google_login",
             "value": "0",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "twitter_login",
             "value": "0",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "payumoney_payment",
             "value": "1",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "payumoney_sandbox",
             "value": "1",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "facebook_chat",
             "value": "0",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "email_verification",
             "value": "0",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "wallet_system",
             "value": "1",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "coupon_system",
             "value": "1",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "current_version",
             "value": "6.0",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "instamojo_payment",
             "value": "0",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "instamojo_sandbox",
             "value": "1",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "razorpay",
             "value": "0",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "paystack",
             "value": "0",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "pickup_point",
             "value": "0",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "maintenance_mode",
             "value": "0",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "voguepay",
             "value": "0",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "voguepay_sandbox",
             "value": "0",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "category_wise_commission",
             "value": "0",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "conversation_system",
             "value": "1",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "guest_checkout_active",
             "value": "0",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "facebook_pixel",
             "value": "0",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "classified_product",
             "value": "1",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "pos_activation_for_seller",
             "value": "1",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "shipping_type",
             "value": "product_wise_shipping",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "flat_rate_shipping_cost",
             "value": "0",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "shipping_cost_admin",
             "value": "0",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "payhere_sandbox",
             "value": "0",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "payhere",
             "value": "0",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "google_recaptcha",
             "value": "0",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "ngenius",
             "value": "0",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "header_logo",
             "value": "8",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "show_language_switcher",
             "value": "yes",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "show_currency_switcher",
             "value": "yes",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "header_stikcy",
             "value": "yes",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "footer_logo",
             "value": "7",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "about_us_description",
             "value": "About Us Description",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "contact_address",
             "value": "123 Main st",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "contact_phone",
             "value": "123123",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "contact_email",
             "value": "info@dev.com",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "widget_one_labels",
             "value": null,
-            "lang": null,
+            "lang": null
         },
         {
             "type": "widget_one_links",
             "value": null,
-            "lang": null,
+            "lang": null
         },
         {
             "type": "widget_one",
             "value": null,
-            "lang": null,
+            "lang": null
         },
         {
             "type": "frontend_copyright_text",
             "value": "Warehouse Copyright",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "show_social_links",
             "value": null,
-            "lang": null,
+            "lang": null
         },
         {
             "type": "facebook_link",
             "value": null,
-            "lang": null,
+            "lang": null
         },
         {
             "type": "twitter_link",
             "value": null,
-            "lang": null,
+            "lang": null
         },
         {
             "type": "instagram_link",
             "value": null,
-            "lang": null,
+            "lang": null
         },
         {
             "type": "youtube_link",
             "value": null,
-            "lang": null,
+            "lang": null
         },
         {
             "type": "linkedin_link",
             "value": null,
-            "lang": null,
+            "lang": null
         },
         {
             "type": "payment_method_images",
             "value": null,
-            "lang": null,
+            "lang": null
         },
         {
             "type": "home_slider_images",
             "value": "[]",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "home_slider_links",
             "value": "[]",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "home_banner1_images",
             "value": "[]",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "home_banner1_links",
             "value": "[]",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "home_banner2_images",
             "value": "[]",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "home_banner2_links",
             "value": "[]",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "home_categories",
             "value": "[]",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "top10_categories",
             "value": "[]",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "top10_brands",
             "value": "[]",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "website_name",
             "value": "Warehouse Storage",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "site_motto",
             "value": null,
-            "lang": null,
+            "lang": null
         },
         {
             "type": "site_icon",
             "value": "9",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "base_color",
             "value": "#e62e04",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "base_hov_color",
             "value": "#e62e04",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "meta_title",
             "value": "Meta Title",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "meta_description",
             "value": "Meta Description",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "meta_keywords",
             "value": "Meta Keywards",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "meta_image",
             "value": null,
-            "lang": null,
+            "lang": null
         },
         {
             "type": "site_name",
             "value": "Support Warehouse",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "system_logo_white",
             "value": "7",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "system_logo_black",
             "value": "8",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "timezone",
             "value": null,
-            "lang": null,
+            "lang": null
         },
         {
             "type": "admin_login_background",
             "value": null,
-            "lang": null,
+            "lang": null
         },
         {
             "type": "iyzico_sandbox",
             "value": "1",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "iyzico",
             "value": "1",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "decimal_separator",
             "value": "1",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "nagad",
             "value": "0",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "bkash",
             "value": "0",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "bkash_sandbox",
             "value": "1",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "header_menu_labels",
             "value": "[\"Home\",\"Flash Sale\",\"Blogs\",\"All Brands\",\"All Categories\"]",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "header_menu_links",
             "value": "[\"\/\",\"\/flash-deals\",\"\/blog\",\"\/brands\",\"\/categories\"]",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "proxypay",
             "value": "1",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "proxypay_sandbox",
             "value": "1",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "google_map",
             "value": "0",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "google_firebase",
             "value": "0",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "authorizenet_sandbox",
             "value": "1",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "min_order_amount_check_activat",
             "value": null,
-            "lang": null,
+            "lang": null
         },
         {
             "type": "minimum_order_amount",
             "value": null,
-            "lang": null,
+            "lang": null
         },
         {
             "type": "helpline_number",
             "value": "0555555555",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "mobile_home_slider_images",
             "value": "[\"17\",\"16\"]",
-            "lang": null,
+            "lang": null
         },
         {
             "type": "mobile_home_slider_links",
             "value": "[null,null]",
-            "lang": null,
-        },
-        {
-            "type": "default_tax",
-            "value": "1",
-            "lang": null,
+            "lang": null
         }
     ]
 }
