@@ -245,9 +245,11 @@ class HomeController extends Controller
         $detailedProduct  = Product::with('reviews', 'brand', 'stocks', 'user', 'user.supplier')
             // ->where('auction_product', 0)
             ->where('slug', $slug)
-            ->where('approved', 1)->first();
+            ->where('approved', 1)
+            ->published()
+            ->first();
 
-        if($detailedProduct != null && $detailedProduct->published){
+        if($detailedProduct != null){
             if($request->has('product_referral_code') && addon_is_activated('affiliate_system')) {
 
                 $affiliate_validation_time = AffiliateConfig::where('type', 'validation_time')->first();
@@ -265,8 +267,7 @@ class HomeController extends Controller
             }
             if($detailedProduct->digital == 1){
                 return view('frontend.digital_product_details', compact('detailedProduct'));
-            }
-            else {
+            } else {
                 return view('frontend.product_details', compact('detailedProduct'));
             }
         }

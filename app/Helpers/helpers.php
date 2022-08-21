@@ -208,7 +208,8 @@ if (!function_exists('home_price')) {
     {
         $lowest_price = $product->unit_price;
         $highest_price = $product->unit_price;
-        $tax = TaxUtilty::getDefaultTaxValue();
+        // $tax = TaxUtilty::getDefaultTaxValue();
+        $tax = 0.15;
 
         if ($product->variant_product) {
             foreach ($product->stocks as $key => $stock) {

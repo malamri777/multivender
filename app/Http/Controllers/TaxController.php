@@ -40,6 +40,7 @@ class TaxController extends Controller
     {
         $tax = new Tax;
         $tax->name = $request->name;
+        $tax->tax_amount = $request->tax_amount;
 //        $pickup_point->address = $request->address;
 
         if ($tax->save()) {
@@ -88,7 +89,8 @@ class TaxController extends Controller
     {
         $tax = Tax::findOrFail($id);
         $tax->name = $request->name;
-//        $language->code = $request->code;
+        $tax->tax_amount = $request->tax_amount;
+
         if($tax->save()){
             flash(translate('Tax has been updated successfully'))->success();
             return redirect()->route('admin.tax.index');

@@ -27,6 +27,7 @@
                 <tr>
                     <th>#</th>
                     <th>{{translate('Tax Type')}}</th>
+                    <th>{{translate('Tax Value')}}</th>
                     <th>{{translate('Status')}}</th>
                     <th>{{translate('Default')}}</th>
                     <th class="text-right">{{translate('Options')}}</th>
@@ -37,6 +38,7 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $tax->name }}</td>
+                    <td>{{ $tax->tax_amount * 100 }}%</td>
 
                     <td>
                         <label class="aiz-switch aiz-switch-success mb-0">
@@ -91,6 +93,17 @@
                                 </label>
                                 <div class="col-sm-9">
                                     <input type="text" placeholder="{{translate('Name')}}" id="name" name="name" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class=" row">
+                                <label class="col-sm-3 control-label" for="tax_amount">
+                                    {{translate('Tax Value')}}
+                                </label>
+                                <div class="col-sm-9">
+                                    <input type="number" min="0.01" max="0.99" step="0.01" placeholder="{{translate('Tax Value')}} - ex: 0.15" id="tax_amount" name="tax_amount" class="form-control" required>
                                 </div>
                             </div>
                         </div>

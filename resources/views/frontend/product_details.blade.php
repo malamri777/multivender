@@ -270,7 +270,7 @@
                                     @endforeach
                                 @endif
 
-                                @if (count(json_decode($detailedProduct->colors)) > 0)
+                                {{-- @if (count(json_decode($detailedProduct->colors)) > 0)
                                     <div class="row no-gutters">
                                         <div class="col-sm-2">
                                             <div class="opacity-50 my-2">{{ translate('Color')}}:</div>
@@ -295,7 +295,7 @@
                                     </div>
 
                                     <hr>
-                                @endif
+                                @endif --}}
 
                                 <!-- Quantity + Add to cart -->
                                 <div class="row no-gutters">

@@ -4,778 +4,561 @@
             "type": "home_default_currency",
             "value": "1",
             "lang": null,
-            "created_at": "2018-10-15T22:35:52.000Z",
-            "updated_at": "2019-01-27T22:26:53.000Z"
         },
         {
             "type": "system_default_currency",
             "value": "1",
             "lang": null,
-            "created_at": "2018-10-15T22:36:58.000Z",
-            "updated_at": "2020-01-26T01:22:13.000Z"
         },
         {
             "type": "currency_format",
             "value": "1",
             "lang": null,
-            "created_at": "2018-10-17T00:01:59.000Z",
-            "updated_at": "2018-10-17T00:01:59.000Z"
         },
         {
             "type": "symbol_format",
             "value": "1",
             "lang": null,
-            "created_at": "2018-10-17T00:01:59.000Z",
-            "updated_at": "2019-01-19T23:10:55.000Z"
         },
         {
             "type": "no_of_decimals",
             "value": "2",
             "lang": null,
-            "created_at": "2018-10-17T00:01:59.000Z",
-            "updated_at": "2020-03-03T21:57:16.000Z"
         },
         {
             "type": "product_activation",
             "value": "1",
             "lang": null,
-            "created_at": "2018-10-27T22:38:37.000Z",
-            "updated_at": "2019-02-03T22:11:41.000Z"
         },
         {
             "type": "vendor_system_activation",
             "value": "1",
             "lang": null,
-            "created_at": "2018-10-28T04:44:16.000Z",
-            "updated_at": "2019-02-03T22:11:38.000Z"
         },
         {
             "type": "show_vendors",
             "value": "1",
             "lang": null,
-            "created_at": "2018-10-28T04:44:47.000Z",
-            "updated_at": "2019-02-03T22:11:13.000Z"
         },
         {
             "type": "paypal_payment",
             "value": "0",
             "lang": null,
-            "created_at": "2018-10-28T04:45:16.000Z",
-            "updated_at": "2019-01-31T02:09:10.000Z"
         },
         {
             "type": "stripe_payment",
             "value": "0",
             "lang": null,
-            "created_at": "2018-10-28T04:45:47.000Z",
-            "updated_at": "2018-11-13T22:51:51.000Z"
         },
         {
             "type": "cash_payment",
             "value": "0",
             "lang": null,
-            "created_at": "2018-10-28T04:46:05.000Z",
-            "updated_at": "2019-01-24T00:40:18.000Z"
         },
         {
             "type": "payumoney_payment",
             "value": "0",
             "lang": null,
-            "created_at": "2018-10-28T04:46:27.000Z",
-            "updated_at": "2019-03-05T02:41:36.000Z"
         },
         {
             "type": "best_selling",
             "value": "1",
             "lang": null,
-            "created_at": "2018-12-24T05:13:44.000Z",
-            "updated_at": "2019-02-14T02:29:13.000Z"
         },
         {
             "type": "paypal_sandbox",
             "value": "0",
             "lang": null,
-            "created_at": "2019-01-16T09:44:18.000Z",
-            "updated_at": "2019-01-16T09:44:18.000Z"
         },
         {
             "type": "sslcommerz_sandbox",
             "value": "1",
             "lang": null,
-            "created_at": "2019-01-16T09:44:18.000Z",
-            "updated_at": "2019-03-13T21:07:26.000Z"
         },
         {
             "type": "sslcommerz_payment",
             "value": "0",
             "lang": null,
-            "created_at": "2019-01-24T06:39:07.000Z",
-            "updated_at": "2019-01-29T03:13:46.000Z"
         },
         {
             "type": "vendor_commission",
             "value": "20",
             "lang": null,
-            "created_at": "2019-01-31T03:18:04.000Z",
-            "updated_at": "2019-04-13T03:49:26.000Z"
         },
         {
             "type": "verification_form",
             "value": "[{\"type\":\"text\",\"label\":\"Your name\"},{\"type\":\"text\",\"label\":\"Shop name\"},{\"type\":\"text\",\"label\":\"Email\"},{\"type\":\"text\",\"label\":\"License No\"},{\"type\":\"text\",\"label\":\"Full Address\"},{\"type\":\"text\",\"label\":\"Phone Number\"},{\"type\":\"file\",\"label\":\"Tax Papers\"}]",
             "lang": null,
-            "created_at": "2019-02-03T08:36:58.000Z",
-            "updated_at": "2019-02-16T03:14:42.000Z"
         },
         {
             "type": "google_analytics",
             "value": "0",
             "lang": null,
-            "created_at": "2019-02-06T09:22:35.000Z",
-            "updated_at": "2019-02-06T09:22:35.000Z"
         },
         {
             "type": "facebook_login",
             "value": "0",
             "lang": null,
-            "created_at": "2019-02-07T09:51:59.000Z",
-            "updated_at": "2019-02-08T16:41:15.000Z"
         },
         {
             "type": "google_login",
             "value": "0",
             "lang": null,
-            "created_at": "2019-02-07T09:52:10.000Z",
-            "updated_at": "2019-02-08T16:41:14.000Z"
         },
         {
             "type": "twitter_login",
             "value": "0",
             "lang": null,
-            "created_at": "2019-02-07T09:52:20.000Z",
-            "updated_at": "2019-02-07T23:32:56.000Z"
         },
         {
             "type": "payumoney_payment",
             "value": "1",
             "lang": null,
-            "created_at": "2019-03-05T08:38:17.000Z",
-            "updated_at": "2019-03-05T08:38:17.000Z"
         },
         {
             "type": "payumoney_sandbox",
             "value": "1",
             "lang": null,
-            "created_at": "2019-03-05T08:38:17.000Z",
-            "updated_at": "2019-03-05T02:39:18.000Z"
         },
         {
             "type": "facebook_chat",
             "value": "0",
             "lang": null,
-            "created_at": "2019-04-15T08:45:04.000Z",
-            "updated_at": "2019-04-15T08:45:04.000Z"
         },
         {
             "type": "email_verification",
             "value": "0",
             "lang": null,
-            "created_at": "2019-04-30T04:30:07.000Z",
-            "updated_at": "2019-04-30T04:30:07.000Z"
         },
         {
             "type": "wallet_system",
             "value": "1",
             "lang": null,
-            "created_at": "2019-05-19T05:05:44.000Z",
-            "updated_at": "2019-05-18T23:11:57.000Z"
         },
         {
             "type": "coupon_system",
             "value": "1",
             "lang": null,
-            "created_at": "2019-06-11T06:46:18.000Z",
-            "updated_at": "2019-06-11T06:46:18.000Z"
         },
         {
             "type": "current_version",
             "value": "6.0",
             "lang": null,
-            "created_at": "2019-06-11T06:46:18.000Z",
-            "updated_at": "2019-06-11T06:46:18.000Z"
         },
         {
             "type": "instamojo_payment",
             "value": "0",
             "lang": null,
-            "created_at": "2019-07-06T06:58:03.000Z",
-            "updated_at": "2019-07-06T06:58:03.000Z"
         },
         {
             "type": "instamojo_sandbox",
             "value": "1",
             "lang": null,
-            "created_at": "2019-07-06T06:58:43.000Z",
-            "updated_at": "2019-07-06T06:58:43.000Z"
         },
         {
             "type": "razorpay",
             "value": "0",
             "lang": null,
-            "created_at": "2019-07-06T06:58:43.000Z",
-            "updated_at": "2019-07-06T06:58:43.000Z"
         },
         {
             "type": "paystack",
             "value": "0",
             "lang": null,
-            "created_at": "2019-07-21T10:00:38.000Z",
-            "updated_at": "2019-07-21T10:00:38.000Z"
         },
         {
             "type": "pickup_point",
             "value": "0",
             "lang": null,
-            "created_at": "2019-10-17T08:50:39.000Z",
-            "updated_at": "2019-10-17T08:50:39.000Z"
         },
         {
             "type": "maintenance_mode",
             "value": "0",
             "lang": null,
-            "created_at": "2019-10-17T08:51:04.000Z",
-            "updated_at": "2019-10-17T08:51:04.000Z"
         },
         {
             "type": "voguepay",
             "value": "0",
             "lang": null,
-            "created_at": "2019-10-17T08:51:24.000Z",
-            "updated_at": "2019-10-17T08:51:24.000Z"
         },
         {
             "type": "voguepay_sandbox",
             "value": "0",
             "lang": null,
-            "created_at": "2019-10-17T08:51:38.000Z",
-            "updated_at": "2019-10-17T08:51:38.000Z"
         },
         {
             "type": "category_wise_commission",
             "value": "0",
             "lang": null,
-            "created_at": "2020-01-21T04:22:47.000Z",
-            "updated_at": "2020-01-21T04:22:47.000Z"
         },
         {
             "type": "conversation_system",
             "value": "1",
             "lang": null,
-            "created_at": "2020-01-21T04:23:21.000Z",
-            "updated_at": "2020-01-21T04:23:21.000Z"
         },
         {
             "type": "guest_checkout_active",
             "value": "0",
             "lang": null,
-            "created_at": "2020-01-22T04:36:38.000Z",
-            "updated_at": "2020-01-22T04:36:38.000Z"
         },
         {
             "type": "facebook_pixel",
             "value": "0",
             "lang": null,
-            "created_at": "2020-01-22T08:43:58.000Z",
-            "updated_at": "2020-01-22T08:43:58.000Z"
         },
         {
             "type": "classified_product",
             "value": "1",
             "lang": null,
-            "created_at": "2020-05-13T10:01:05.000Z",
-            "updated_at": "2020-05-13T10:01:05.000Z"
         },
         {
             "type": "pos_activation_for_seller",
             "value": "1",
             "lang": null,
-            "created_at": "2020-06-11T06:45:02.000Z",
-            "updated_at": "2020-06-11T06:45:02.000Z"
         },
         {
             "type": "shipping_type",
             "value": "product_wise_shipping",
             "lang": null,
-            "created_at": "2020-07-01T10:49:56.000Z",
-            "updated_at": "2020-07-01T10:49:56.000Z"
         },
         {
             "type": "flat_rate_shipping_cost",
             "value": "0",
             "lang": null,
-            "created_at": "2020-07-01T10:49:56.000Z",
-            "updated_at": "2020-07-01T10:49:56.000Z"
         },
         {
             "type": "shipping_cost_admin",
             "value": "0",
             "lang": null,
-            "created_at": "2020-07-01T10:49:56.000Z",
-            "updated_at": "2020-07-01T10:49:56.000Z"
         },
         {
             "type": "payhere_sandbox",
             "value": "0",
             "lang": null,
-            "created_at": "2020-07-30T15:23:53.000Z",
-            "updated_at": "2020-07-30T15:23:53.000Z"
         },
         {
             "type": "payhere",
             "value": "0",
             "lang": null,
-            "created_at": "2020-07-30T15:23:53.000Z",
-            "updated_at": "2020-07-30T15:23:53.000Z"
         },
         {
             "type": "google_recaptcha",
             "value": "0",
             "lang": null,
-            "created_at": "2020-08-17T04:13:37.000Z",
-            "updated_at": "2020-08-17T04:13:37.000Z"
         },
         {
             "type": "ngenius",
             "value": "0",
             "lang": null,
-            "created_at": "2020-09-22T07:58:21.000Z",
-            "updated_at": "2020-09-22T07:58:21.000Z"
         },
         {
             "type": "header_logo",
             "value": "8",
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "show_language_switcher",
             "value": "yes",
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "show_currency_switcher",
             "value": "yes",
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "header_stikcy",
             "value": "yes",
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "footer_logo",
             "value": "7",
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "about_us_description",
             "value": "About Us Description",
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "contact_address",
             "value": "123 Main st",
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "contact_phone",
             "value": "123123",
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "contact_email",
             "value": "info@dev.com",
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "widget_one_labels",
             "value": null,
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "widget_one_links",
             "value": null,
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "widget_one",
             "value": null,
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "frontend_copyright_text",
             "value": "Warehouse Copyright",
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "show_social_links",
             "value": null,
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "facebook_link",
             "value": null,
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "twitter_link",
             "value": null,
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "instagram_link",
             "value": null,
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "youtube_link",
             "value": null,
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "linkedin_link",
             "value": null,
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "payment_method_images",
             "value": null,
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "home_slider_images",
             "value": "[]",
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "home_slider_links",
             "value": "[]",
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "home_banner1_images",
             "value": "[]",
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "home_banner1_links",
             "value": "[]",
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "home_banner2_images",
             "value": "[]",
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "home_banner2_links",
             "value": "[]",
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "home_categories",
             "value": "[]",
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "top10_categories",
             "value": "[]",
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "top10_brands",
             "value": "[]",
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "website_name",
             "value": "Warehouse Storage",
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "site_motto",
             "value": null,
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "site_icon",
             "value": "9",
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "base_color",
             "value": "#e62e04",
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "base_hov_color",
             "value": "#e62e04",
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "meta_title",
             "value": "Meta Title",
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "meta_description",
             "value": "Meta Description",
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "meta_keywords",
             "value": "Meta Keywards",
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "meta_image",
             "value": null,
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "site_name",
             "value": "Support Warehouse",
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "system_logo_white",
             "value": "7",
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "system_logo_black",
             "value": "8",
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "timezone",
             "value": null,
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "admin_login_background",
             "value": null,
             "lang": null,
-            "created_at": "2020-11-16T04:26:36.000Z",
-            "updated_at": "2020-11-16T04:26:36.000Z"
         },
         {
             "type": "iyzico_sandbox",
             "value": "1",
             "lang": null,
-            "created_at": "2020-12-30T13:45:56.000Z",
-            "updated_at": "2020-12-30T13:45:56.000Z"
         },
         {
             "type": "iyzico",
             "value": "1",
             "lang": null,
-            "created_at": "2020-12-30T13:45:56.000Z",
-            "updated_at": "2020-12-30T13:45:56.000Z"
         },
         {
             "type": "decimal_separator",
             "value": "1",
             "lang": null,
-            "created_at": "2020-12-30T13:45:56.000Z",
-            "updated_at": "2020-12-30T13:45:56.000Z"
         },
         {
             "type": "nagad",
             "value": "0",
             "lang": null,
-            "created_at": "2021-01-22T07:30:03.000Z",
-            "updated_at": "2021-01-22T07:30:03.000Z"
         },
         {
             "type": "bkash",
             "value": "0",
             "lang": null,
-            "created_at": "2021-01-22T07:30:03.000Z",
-            "updated_at": "2021-01-22T07:30:03.000Z"
         },
         {
             "type": "bkash_sandbox",
             "value": "1",
             "lang": null,
-            "created_at": "2021-01-22T07:30:03.000Z",
-            "updated_at": "2021-01-22T07:30:03.000Z"
         },
         {
             "type": "header_menu_labels",
             "value": "[\"Home\",\"Flash Sale\",\"Blogs\",\"All Brands\",\"All Categories\"]",
             "lang": null,
-            "created_at": "2021-02-15T23:43:11.000Z",
-            "updated_at": "2021-02-15T23:52:18.000Z"
         },
         {
             "type": "header_menu_links",
             "value": "[\"\/\",\"\/flash-deals\",\"\/blog\",\"\/brands\",\"\/categories\"]",
             "lang": null,
-            "created_at": "2021-02-15T23:43:11.000Z",
-            "updated_at": "2021-02-17T22:20:04.000Z"
         },
         {
             "type": "proxypay",
             "value": "1",
             "lang": null,
-            "created_at": "2021-06-20T08:25:42.000Z",
-            "updated_at": "2021-06-20T08:25:42.000Z"
         },
         {
             "type": "proxypay_sandbox",
             "value": "1",
             "lang": null,
-            "created_at": "2021-06-20T08:25:42.000Z",
-            "updated_at": "2021-06-20T08:25:42.000Z"
         },
         {
             "type": "google_map",
             "value": "0",
             "lang": null,
-            "created_at": "2021-07-27T12:49:39.000Z",
-            "updated_at": "2021-07-27T12:49:39.000Z"
         },
         {
             "type": "google_firebase",
             "value": "0",
             "lang": null,
-            "created_at": "2021-07-27T12:49:39.000Z",
-            "updated_at": "2021-07-27T12:49:39.000Z"
         },
         {
             "type": "authorizenet_sandbox",
             "value": "1",
             "lang": null,
-            "created_at": "2021-02-15T23:43:11.000Z",
-            "updated_at": "2021-06-14T02:00:23.000Z"
         },
         {
             "type": "min_order_amount_check_activat",
             "value": null,
             "lang": null,
-            "created_at": "2022-04-17T03:57:17.000Z",
-            "updated_at": "2022-04-17T03:57:17.000Z"
         },
         {
             "type": "minimum_order_amount",
             "value": null,
             "lang": null,
-            "created_at": "2022-04-17T03:57:17.000Z",
-            "updated_at": "2022-04-17T03:57:17.000Z"
         },
         {
             "type": "helpline_number",
             "value": "0555555555",
             "lang": null,
-            "created_at": "2022-04-17T03:57:17.000Z",
-            "updated_at": "2022-04-17T03:57:17.000Z"
         },
         {
             "type": "mobile_home_slider_images",
             "value": "[\"17\",\"16\"]",
             "lang": null,
-            "created_at": "2022-08-02T07:50:20.000Z",
-            "updated_at": "2022-08-03T08:34:51.000Z"
         },
         {
             "type": "mobile_home_slider_links",
             "value": "[null,null]",
             "lang": null,
-            "created_at": "2022-08-02T07:50:20.000Z",
-            "updated_at": "2022-08-03T08:34:51.000Z"
+        },
+        {
+            "type": "default_tax",
+            "value": "1",
+            "lang": null,
         }
     ]
 }

@@ -25,6 +25,15 @@
                         </div>
                     </div>
 
+                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            <label class="control-label">{{translate('Tax Value')}}</label>
+                        </div>
+                        <div class="col-lg-9">
+                            <input type="number" min="0.01" max="0.99" step="0.01" class="form-control" name="tax_amount" placeholder="{{translate('Tax Value')}} - ex: 0.15" value="{{ $tax->tax_amount }}" required>
+                        </div>
+                    </div>
+
                     <div class="form-group mb-0 text-right">
                         <button type="submit" class="btn btn-sm btn-primary">{{translate('Save')}}</button>
                     </div>
